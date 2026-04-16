@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>VMG Site Visit Tracker 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --navy:#1F3864;--navy-dk:#152847;--teal:#2E75B6;--teal-lt:#DEEAF1;
+  --red:#C00000;--red-lt:#FFE2E2;--amber:#D4700A;--amber-lt:#FCE4D6;
+  --yellow-lt:#FFF2CC;--green:#1E7A3C;--green-lt:#E2EFDA;
+  --blue-dk:#1A5276;--blue-lt:#D6EAF8;--grey:#5D6D7E;--grey-lt:#EEF1F4;
+  --bg:#F0F4F9;--card:#fff;--border:#DDE3EA;--text:#1a2535;--text2:#6B7A8D;
+  --shadow:0 1px 8px rgba(31,56,100,.09),0 4px 16px rgba(31,56,100,.06);
+  --shadow-lg:0 8px 40px rgba(31,56,100,.16);
+  --radius:14px;--rsm:8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased}
+
+/* ── HEADER ─────────────────────────────── */
+.hdr{background:var(--navy-dk);position:sticky;top:0;z-index:200;box-shadow:0 2px 20px rgba(0,0,0,.3)}
+.hdr-top{display:flex;align-items:center;padding:0 14px;height:54px;gap:10px}
+.hdr-logo{width:34px;height:34px;background:var(--teal);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.hdr-text{flex:1;min-width:0}
+.hdr-title{font-size:15px;font-weight:700;color:#fff}
+.hdr-sub{font-size:10px;color:rgba(255,255,255,.4);font-family:'JetBrains Mono',monospace}
+.hdr-actions{display:flex;gap:6px;align-items:center;flex-shrink:0;flex-wrap:wrap}
+
+.btn{padding:7px 12px;border:none;border-radius:var(--rsm);font-family:'Sora',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:background .15s,opacity .15s;white-space:nowrap}
+.btn-teal{background:var(--teal);color:#fff} .btn-teal:hover{background:#2565a0}
+.btn-dl{background:#6B4EAA;color:#fff} .btn-dl:hover{background:#5a3e91}
+.btn-ul{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3)} .btn-ul:hover{background:rgba(255,255,255,.25)}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ── TABS ───────────────────────────────── */
+.tabs{display:flex;background:var(--navy);padding:0 14px;border-top:1px solid rgba(255,255,255,.07);overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{padding:10px 14px;font-size:12px;font-weight:600;color:rgba(255,255,255,.45);cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent;transition:all .15s}
+.tab.active{color:#fff;border-bottom-color:var(--teal)}
+.tab:hover:not(.active){color:rgba(255,255,255,.75)}
+
+/* ── LAYOUT ─────────────────────────────── */
+.page{padding:16px;max-width:1440px;margin:0 auto}
+.view{display:none}.view.active{display:block}
+
+/* ── STAT CARDS ─────────────────────────── */
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px}
+@media(max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
+.sc{background:var(--card);border-radius:var(--radius);padding:16px 14px 14px;box-shadow:var(--shadow);cursor:pointer;transition:transform .15s,box-shadow .15s;position:relative;overflow:hidden;border:2px solid transparent}
+.sc::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--radius) var(--radius) 0 0}
+.sc:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.sc-num{font-size:34px;font-weight:800;line-height:1;margin-bottom:4px}
+.sc-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text2)}
+.sc.s-all::after{background:var(--navy)}.sc.s-all .sc-num{color:var(--navy)}
+.sc.s-ov::after {background:var(--red)} .sc.s-ov .sc-num {color:var(--red)}
+.sc.s-soon::after{background:var(--amber)}.sc.s-soon .sc-num{color:var(--amber)}
+.sc.s-ns::after {background:var(--grey)}.sc.s-ns .sc-num {color:var(--grey)}
+.sc.s-ok::after {background:var(--green)}.sc.s-ok .sc-num {color:var(--green)}
+
+/* ── WEEK BANNER ────────────────────────── */
+.week-banner{background:linear-gradient(135deg,var(--navy),var(--teal));border-radius:var(--radius);padding:14px 18px;margin-bottom:16px;color:#fff;display:none}
+.week-banner.has{display:block}
+.week-title{font-size:11px;font-weight:700;letter-spacing:.3px;margin-bottom:8px;opacity:.8;text-transform:uppercase}
+.week-list{display:flex;flex-direction:column;gap:5px}
+.week-item{background:rgba(255,255,255,.12);border-radius:var(--rsm);padding:7px 12px;display:flex;align-items:center;gap:10px}
+.w-dot{width:8px;height:8px;border-radius:50%;background:#FFD700;flex-shrink:0}
+.w-name{font-size:13px;font-weight:600;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.w-due{font-size:11px;font-family:'JetBrains Mono',monospace;opacity:.7;flex-shrink:0}
+
+/* ── FILTER BAR ─────────────────────────── */
+.fbar{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center}
+.sw{position:relative;flex:1;min-width:180px}
+.sw input{width:100%;padding:9px 12px 9px 34px;border:1px solid var(--border);border-radius:var(--rsm);font-family:'Sora',sans-serif;font-size:13px;background:var(--card);color:var(--text);outline:none;transition:border-color .15s}
+.sw input:focus{border-color:var(--teal)}
+.si{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text2);font-size:13px;pointer-events:none}
+.fsel{padding:9px 10px;border:1px solid var(--border);border-radius:var(--rsm);font-family:'Sora',sans-serif;font-size:12px;background:var(--card);color:var(--text);outline:none;cursor:pointer}
+.fcnt{font-size:11px;color:var(--text2);font-family:'JetBrains Mono',monospace;white-space:nowrap}
+
+/* ── PRACTICE CARDS ─────────────────────── */
+.plist{display:flex;flex-direction:column;gap:8px}
+.pcard{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);border-left:4px solid var(--border);overflow:hidden;transition:box-shadow .15s;animation:fadeUp .18s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.pcard:hover{box-shadow:var(--shadow-lg)}
+.pcard.s-overdue{border-left-color:var(--red)}.pcard.s-soon{border-left-color:var(--amber)}
+.pcard.s-upcoming{border-left-color:#D4AA00}.pcard.s-ontrack{border-left-color:var(--green)}.pcard.s-unsched{border-left-color:var(--grey)}
+.pcard-hdr{display:flex;align-items:center;padding:12px 16px;gap:12px;cursor:pointer;user-select:none}
+.pcard-main{flex:1;min-width:0}
+.pcard-name{font-weight:700;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pcard-meta{font-size:11px;color:var(--text2);margin-top:3px;display:flex;gap:10px;flex-wrap:wrap}
+.pcard-right{display:flex;align-items:center;gap:7px;flex-shrink:0}
+.pill{display:inline-block;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;white-space:nowrap}
+.p-ov{background:var(--red-lt);color:var(--red)}.p-soon{background:var(--amber-lt);color:var(--amber)}
+.p-up{background:var(--yellow-lt);color:#8B7000}.p-ok{background:var(--green-lt);color:var(--green)}
+.p-ns{background:var(--grey-lt);color:var(--grey)}.p-vs{background:#EEF3FB;color:var(--teal)}
+.chev{color:var(--text2);font-size:11px;transition:transform .2s;flex-shrink:0}
+.pcard.open .chev{transform:rotate(180deg)}
+.pcard-body{display:none;border-top:1px solid var(--border)}
+.pcard.open .pcard-body{display:block}
+.dtabs{display:flex;background:var(--bg);border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none}
+.dtabs::-webkit-scrollbar{display:none}
+.dtab{padding:9px 14px;font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap}
+.dtab.active{color:var(--teal);border-bottom-color:var(--teal);background:var(--card)}
+.dcon{display:none;padding:14px}.dcon.active{display:block}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:500px){.cg{grid-template-columns:1fr}}
+.cf{display:flex;flex-direction:column;gap:3px}
+.cf-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--text2)}
+.cf-val{font-size:13px;color:var(--text);line-height:1.4}
+.cf-val.warn{color:var(--red);font-weight:600}
+.eg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:12px}
+.eg{display:flex;flex-direction:column;gap:4px}
+.eg label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--text2)}
+.eg input[type=date],.eg select,.eg textarea{padding:8px 10px;border:1px solid var(--border);border-radius:var(--rsm);font-family:'Sora',sans-serif;font-size:13px;color:var(--text);background:var(--bg);outline:none;transition:border-color .15s;width:100%}
+.eg input:focus,.eg select:focus,.eg textarea:focus{border-color:var(--teal);background:#fff}
+.eg textarea{resize:vertical;min-height:60px}
+.eact{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.btn-upd{padding:9px 18px;background:var(--teal);color:#fff;border:none;border-radius:var(--rsm);font-family:'Sora',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:background .15s}
+.btn-upd:hover{background:#2565a0}
+.btn-pr{padding:8px 14px;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:var(--rsm);font-family:'Sora',sans-serif;font-size:12px;font-weight:600;cursor:pointer}
+.btn-pr:hover{background:var(--teal-lt)}
+.flash{font-size:12px;color:var(--green);font-weight:700;opacity:0;transition:opacity .3s}
+.flash.show{opacity:1}
+.eq-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:7px}
+.eq-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--border);border-radius:var(--rsm);background:var(--bg);cursor:pointer;transition:background .12s;user-select:none}
+.eq-item.yes{background:var(--green-lt);border-color:#A9D6A0}
+.eq-item.no{background:var(--grey-lt)}
+.eq-cb{width:16px;height:16px;border-radius:4px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;transition:all .12s}
+.eq-item.yes .eq-cb{background:var(--green);border-color:var(--green);color:#fff}
+.eq-name{font-size:12px;font-weight:500}
+.hist-list{display:flex;flex-direction:column;gap:6px;max-height:240px;overflow-y:auto}
+.hist-item{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--bg);border-radius:var(--rsm);border-left:3px solid var(--green)}
+.h-date{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;color:var(--teal);flex-shrink:0;min-width:80px}
+.h-note{font-size:12px;color:var(--text);flex:1}
+.h-ts{font-size:10px;color:var(--text2);flex-shrink:0;font-family:'JetBrains Mono',monospace}
+.hist-empty{font-size:13px;color:var(--text2);text-align:center;padding:16px;font-style:italic}
+
+/* ── CALENDAR ───────────────────────────── */
+.cal-hdr{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.cal-title{font-size:18px;font-weight:800;color:var(--navy)}
+.cal-legend{display:flex;gap:12px;flex-wrap:wrap;margin-left:auto}
+.leg{display:flex;align-items:center;gap:5px;font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px}
+.leg-dot{width:10px;height:10px;border-radius:3px}
+.cal-wrap{overflow-x:auto;border-radius:var(--radius);box-shadow:var(--shadow)}
+table.cal{width:100%;border-collapse:collapse;background:#fff;min-width:680px}
+table.cal th{background:var(--navy);color:#fff;padding:9px 6px;font-size:11px;font-weight:700;text-align:center}
+table.cal th.pn-col{background:var(--teal);text-align:left;padding-left:14px;min-width:190px;font-size:12px}
+table.cal th.cur-mo{background:#0D2347}
+table.cal td{padding:6px 5px;border:1px solid var(--border);text-align:center;font-size:10px;font-weight:700;vertical-align:middle}
+table.cal td.pname{text-align:left;padding-left:14px;font-size:12px;font-weight:500;color:var(--text);background:#FAFCFF;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px}
+table.cal tr:nth-child(even) td.pname{background:#F5F8FC}
+table.cal tr:hover td.pname{background:var(--teal-lt)}
+.c-due{background:var(--teal);color:#fff;border-radius:4px;padding:2px 5px;display:inline-block}
+.c-pend{background:#FFEB9C;color:#7D4E00;border-radius:4px;padding:2px 5px;display:inline-block}
+.c-sched{background:var(--blue-lt);color:var(--blue-dk);border-radius:4px;padding:2px 5px;display:inline-block}
+.c-done{background:var(--green-lt);color:var(--green);border-radius:4px;padding:2px 5px;display:inline-block}
+
+/* ── TOAST ──────────────────────────────── */
+.toast{position:fixed;bottom:20px;right:20px;background:var(--navy);color:#fff;padding:11px 18px;border-radius:var(--radius);font-size:13px;font-weight:500;box-shadow:var(--shadow-lg);transform:translateY(80px);opacity:0;transition:all .3s cubic-bezier(.34,1.56,.64,1);z-index:999;max-width:300px}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.err{background:var(--red)}
+.toast.ok{background:var(--green)}
+
+
+
+
+
+
+
+
+
+
+
+
+/* ── MISC ───────────────────────────────── */
+@media print{.hdr,.tabs,.fbar,.chev,.eact,.dtabs,.btn-pr,.hdr-actions,.stats,.week-banner,.cfg-banner,.dcon:not(.active){display:none!important}body{background:#fff}.pcard{box-shadow:none;border:1px solid #ccc;break-inside:avoid}.pcard-body{display:block!important}.dcon.active{display:block!important}.page{padding:0}}
+@media(max-width:480px){.page{padding:10px}.tab{padding:9px 11px;font-size:11px}.sc-num{font-size:26px}.pcard-name{font-size:13px}.hdr-actions .btn{padding:6px 9px;font-size:11px}}
+
+
+.sync-status{font-size:10px;color:rgba(255,255,255,.45);font-family:'JetBrains Mono',monospace;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.btn{padding:7px 12px;border:none;border-radius:var(--rsm);font-family:'Sora',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:background .15s;white-space:nowrap}
+.btn-teal{background:var(--teal);color:#fff} .btn-teal:hover{background:#2565a0}
+.btn-dl{background:#6B4EAA;color:#fff} .btn-dl:hover{background:#5a3e91}
+.btn-ul{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);cursor:pointer} .btn-ul:hover{background:rgba(255,255,255,.25)}
+#settingsBar input[type=checkbox]{accent-color:var(--teal);cursor:pointer}
+@media(max-width:600px){#settingsBar .tip{display:none}}
+
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-top">
+    <div class="hdr-logo">🏥</div>
+    <div class="hdr-text">
+      <div class="hdr-title">VMG Site Visit Tracker 2026</div>
+      <div class="hdr-sub">27 practices · Mary</div>
+    </div>
+    <div class="hdr-actions">
+      <span class="sync-status" id="syncStatus"></span>
+      <button class="btn btn-teal" onclick="manualSave()" title="Save + download backup">💾 Save</button>
+      <button class="btn btn-dl" onclick="downloadBackup()" title="Download backup to your OneDrive folder">⬇ Backup</button>
+      <label class="btn btn-ul" title="Load from a saved backup file">⬆ Load<input type="file" accept=".json" style="display:none" onchange="uploadBackup(event)"></label>
+    </div>
+  </div>
+  <div class="tabs">
+    <div class="tab active" onclick="goTab('dashboard')">📊 Dashboard</div>
+    <div class="tab" onclick="goTab('practices')">📋 All Practices</div>
+    <div class="tab" onclick="goTab('calendar')">📅 Schedule</div>
+  </div>
+</div>
+
+<!-- Save settings bar -->
+<div id="settingsBar" style="background:var(--navy);padding:6px 18px;display:flex;gap:16px;align-items:center;font-size:11px;color:rgba(255,255,255,.65);flex-wrap:wrap">
+  <span style="font-weight:700;color:rgba(255,255,255,.85)">⚙ Save Settings:</span>
+  <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
+    <input type="checkbox" id="cbAutoDownload" checked onchange="toggleAutoDownload(this)">
+    Auto-download backup on every save
+  </label>
+  <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
+    <input type="checkbox" id="cbRemindClose" checked onchange="toggleRemindOnClose(this)">
+    Warn me before closing if unsaved changes
+  </label>
+  <span style="margin-left:auto;opacity:.5">💡 Tip: save backup to your OneDrive folder — it syncs to your phone automatically</span>
+</div>
+
+<div class="page">
+
+  <div class="view active" id="view-dashboard">
+    <div class="stats" id="statsEl"></div>
+    <div class="week-banner" id="weekBanner">
+      <div class="week-title">📍 Due This Week</div>
+      <div class="week-list" id="weekList"></div>
+    </div>
+    <div class="fbar">
+      <div class="sw"><span class="si">🔍</span><input id="ds" type="text" placeholder="Search name, city, specialty, manager…" oninput="renderDash()"></div>
+      <select class="fsel" id="df" onchange="renderDash()">
+        <option value="">All Statuses</option><option value="overdue">Overdue</option>
+        <option value="soon">Due Soon</option><option value="upcoming">Upcoming</option>
+        <option value="unsched">Not Scheduled</option><option value="ontrack">On Track</option>
+      </select>
+      <select class="fsel" id="dfreq" onchange="renderDash()">
+        <option value="">All Frequencies</option><option value="Quarterly">Quarterly</option>
+        <option value="Bi-Monthly">Bi-Monthly</option><option value="Bi-Annual">Bi-Annual</option><option value="Annual">Annual</option>
+      </select>
+      <span class="fcnt" id="dcnt"></span>
+    </div>
+    <div class="plist" id="dashList"></div>
+  </div>
+
+  <div class="view" id="view-practices">
+    <div class="fbar">
+      <div class="sw"><span class="si">🔍</span><input id="ps" type="text" placeholder="Search name, city, specialty, manager, lead MA…" oninput="renderPrac()"></div>
+      <select class="fsel" id="pfreq" onchange="renderPrac()"><option value="">All Frequencies</option><option value="Quarterly">Quarterly</option><option value="Bi-Monthly">Bi-Monthly</option><option value="Bi-Annual">Bi-Annual</option><option value="Annual">Annual</option></select>
+      <select class="fsel" id="pcity" onchange="renderPrac()"><option value="">All Cities</option></select>
+      <select class="fsel" id="pspec" onchange="renderPrac()"><option value="">All Specialties</option></select>
+      <span class="fcnt" id="pcnt"></span>
+    </div>
+    <div class="plist" id="pracList"></div>
+  </div>
+
+  <div class="view" id="view-calendar">
+    <div class="cal-hdr">
+      <div class="cal-title">2026 Monthly Schedule</div>
+      <div class="cal-legend">
+        <div class="leg"><div class="leg-dot" style="background:var(--teal)"></div>Due</div>
+        <div class="leg"><div class="leg-dot" style="background:#FFEB9C;border:1px solid #E8C547"></div>Pending</div>
+        <div class="leg"><div class="leg-dot" style="background:var(--blue-lt);border:1px solid #7FB3D3"></div>Scheduled</div>
+        <div class="leg"><div class="leg-dot" style="background:var(--green-lt);border:1px solid #82C992"></div>Done</div>
+      </div>
+    </div>
+    <div class="cal-wrap"><table class="cal" id="calEl"></table></div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+
+// ════════════════════════════════════════
+// SAVE / LOAD SYSTEM
+// Three-layer permanent storage:
+//   1. localStorage  — instant, survives normal browser use
+//   2. Auto-download — every Save drops a dated .json file
+//   3. Close warning — reminds you to download if unsaved changes exist
+// For OneDrive sync: save the backup file into your OneDrive folder on
+// your computer — it syncs automatically and is accessible on your phone
+// via the OneDrive app.
+// ════════════════════════════════════════
+
+const SKEY_DATA   = 'vmgTracker26v3';
+const SKEY_CONFIG = 'vmgTrackerConfig';
+const FILE_NAME   = 'VMGTracker2026.json';
+
+let _unsavedChanges  = false;
+let _lastSaveTime    = null;
+let _autoDownload    = true;   // auto-download backup on every save
+let _remindOnClose   = true;
+
+// ── GET DATA FOR SAVE ────────────────────
+function getDataForSave(){
+  const out = {};
+  P.forEach((p,i) => {
+    out[i] = {
+      lastVisit:     p.lastVisit,
+      visitStatus:   p.visitStatus,
+      notes:         p.notes,
+      nextScheduled: p.nextScheduled,
+      history:       p.history,
+      equip:         p.equip,
+    };
+  });
+  return out;
+}
+
+// ── APPLY LOADED DATA ────────────────────
+function applyLoadedData(data){
+  P.forEach((p,i) => {
+    const s = data[i] || {};
+    if(s.lastVisit     !== undefined) p.lastVisit     = s.lastVisit;
+    if(s.visitStatus   !== undefined) p.visitStatus   = s.visitStatus;
+    if(s.notes         !== undefined) p.notes         = s.notes;
+    if(s.nextScheduled !== undefined) p.nextScheduled = s.nextScheduled;
+    if(s.history       !== undefined) p.history       = s.history;
+    if(s.equip         !== undefined) p.equip         = {...p.equip, ...s.equip};
+  });
+  localStorage.setItem(SKEY_DATA, JSON.stringify(data));
+  _unsavedChanges = false;
+  renderStats(); renderWeek(); renderDash();
+  if(document.getElementById('view-calendar').classList.contains('active')) renderCal();
+}
+
+// ── SAVE TO LOCALSTORAGE ─────────────────
+function saveLocal(){
+  const data = getDataForSave();
+  localStorage.setItem(SKEY_DATA, JSON.stringify(data));
+  _lastSaveTime    = new Date();
+  _unsavedChanges  = false;
+  return data;
+}
+
+// ── MANUAL SAVE (button) ─────────────────
+// Saves locally + downloads backup
+function manualSave(){
+  const data = saveLocal();
+  triggerDownload(data);
+  setSyncStatus('Saved ' + _lastSaveTime.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}));
+  toast('✓ Saved & backup downloaded', 'ok');
+}
+
+// ── AUTO-SAVE after each practice update ─
+// Saves locally. Also downloads if _autoDownload is on.
+function autoSave(data){
+  localStorage.setItem(SKEY_DATA, JSON.stringify(data));
+  _lastSaveTime   = new Date();
+  _unsavedChanges = false;
+  if(_autoDownload) triggerDownload(data);
+  setSyncStatus('Auto-saved ' + _lastSaveTime.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}));
+}
+
+// ── DOWNLOAD BACKUP ──────────────────────
+function downloadBackup(){
+  const data = getDataForSave();
+  triggerDownload(data);
+  toast('✓ Backup file downloaded');
+}
+
+function triggerDownload(data){
+  const json = JSON.stringify(data, null, 2);
+  const blob = new Blob([json], {type:'application/json'});
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = FILE_NAME;  // always same filename so it overwrites in OneDrive folder
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+// ── UPLOAD / RESTORE ─────────────────────
+function uploadBackup(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try{
+      const data = JSON.parse(ev.target.result);
+      applyLoadedData(data);
+      toast('✓ Data loaded from file', 'ok');
+    }catch(err){ toast('Invalid backup file — check the file and try again', 'err'); }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+}
+
+// ── CLOSE WARNING ─────────────────────────
+window.addEventListener('beforeunload', e => {
+  if(_remindOnClose && _unsavedChanges){
+    e.preventDefault();
+    e.returnValue = 'You have unsaved changes. Download a backup before closing?';
+    return e.returnValue;
+  }
+});
+
+// ── SYNC STATUS DISPLAY ──────────────────
+function setSyncStatus(msg){
+  document.getElementById('syncStatus').textContent = msg;
+}
+
+// ── SETTINGS PANEL TOGGLES ───────────────
+function toggleAutoDownload(cb){
+  _autoDownload = cb.checked;
+  toast(_autoDownload ? '✓ Auto-backup on every save' : 'Auto-backup off');
+}
+function toggleRemindOnClose(cb){
+  _remindOnClose = cb.checked;
+  toast(_remindOnClose ? '✓ Close reminder on' : 'Close reminder off');
+}
+
+// ════════════════════════════════════════
+// PRACTICE DATA
+// ════════════════════════════════════════
+const TODAY   = new Date(2026,3,14);
+const FREQ_MO = {Annual:12,'Bi-Annual':6,Quarterly:3,'Bi-Monthly':2};
+const MOS     = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const EQ_KEYS = ['Vaccines/Refrig. Meds','Sample Meds','CirrusCon','POC Testing','VFC','Autoclave','Trophon','AED','Eyewash','Oxygen'];
+
+const BASE=[
+  {name:"Virtua Center for Liver Disease - Linwood",addr:"1201 New Road, Suite 150F, Linwood, NJ 08221",spec:"Hepatology",city:"Linwood",freq:"Annual",lastVisit:"2025-04-01",mgr:"Yaitza Foley",dir:"Kara Hovatter",leadMA:"Erica Roberts",hours:"Mon–Fri: call to confirm ⚠",equip:{}},
+  {name:"Virtua Gastroenterology - Hammonton",addr:"2 Sindoni Lane, Suite B, Hammonton, NJ 08037",spec:"Gastroenterology",city:"Hammonton",freq:"Annual",lastVisit:"2025-07-09",mgr:"Beth Grossman-Gilbert",dir:"Tracy McArthur",leadMA:"",hours:"2nd & 4th Wed only, 8am–3:30pm ⚠",equip:{Vaccines:'No','Sample Meds':'No',CirrusCon:'No','POC Testing':'No',VFC:'No',Autoclave:'No',Trophon:'No',AED:'Shared',Eyewash:'Shared',Oxygen:'No'}},
+  {name:"Virtua Cardiology - Galloway",addr:"310 Chris Gaupp Dr., Suites 103 & 104, Galloway, NJ",spec:"Cardiology",city:"Galloway",freq:"Bi-Annual",lastVisit:"2025-06-11",mgr:"Jackie DeLash",dir:"Jennifer Garron",leadMA:"",hours:"Mon–Fri: 8:30am–5pm",equip:{Vaccines:'Yes','Sample Meds':'Yes',CirrusCon:'Yes','POC Testing':'No',VFC:'No',Autoclave:'No',Trophon:'No',AED:'Yes',Eyewash:'Yes',Oxygen:'Yes'}},
+  {name:"Virtua Cardiology - Hammonton",addr:"2 Sindoni Lane, Suite A, Hammonton, NJ 08037",spec:"Cardiology",city:"Hammonton",freq:"Bi-Annual",lastVisit:"2025-11-12",mgr:"Jackie DeLash",dir:"Jennifer Garron",leadMA:"",hours:"Mon–Fri: 8:30am–5pm",equip:{Vaccines:'Yes','Sample Meds':'Yes',CirrusCon:'Yes','POC Testing':'No',VFC:'No',Autoclave:'No',Trophon:'No',AED:'Yes',Eyewash:'Yes',Oxygen:'Yes'}},
+  {name:"Virtua Cardiology - Sewell",addr:"539 Egg Harbor Road, Suite 1A, Sewell, NJ 08080",spec:"Cardiology",city:"Sewell",freq:"Bi-Annual",lastVisit:"2025-12-11",mgr:"Christina LaBelle",dir:"Jennifer Garron",leadMA:"",hours:"Mon–Fri: 8:30am–5pm",equip:{}},
+  {name:"Virtua Cardiology - Berlin",addr:"181 W. White Horse Pike, Suite 201, Berlin, NJ 08009",spec:"Cardiology",city:"Berlin",freq:"Bi-Annual",lastVisit:"2025-12-16",mgr:"Christina LaBelle",dir:"Jennifer Garron",leadMA:"",hours:"Mon–Fri: 8:30am–5pm",equip:{Vaccines:'No','Sample Meds':'Yes',CirrusCon:'No','POC Testing':'No',VFC:'No',Autoclave:'No',Trophon:'No',AED:'Yes',Eyewash:'Yes',Oxygen:''}},
+  {name:"Virtua Cardiology - Ventnor",addr:"6508 Ventnor Ave, Suite B, Ventnor City, NJ 08406",spec:"Cardiology",city:"Ventnor",freq:"Bi-Annual",lastVisit:"",mgr:"Catherine Martin",dir:"Tania Pinho",leadMA:"",hours:"Mon–Fri: call to confirm ⚠",equip:{}},
+  {name:"Virtua Primary Care - Linwood",addr:"1201 New Road, Suite 150G, Linwood, NJ 08221",spec:"Primary Care",city:"Linwood",freq:"Bi-Monthly",lastVisit:"2026-01-29",mgr:"Jennifer Laramore",dir:"Tamitra Tann",leadMA:"Alberta Lewis",hours:"Mon–Thu: 8am–7pm, Fri: 8am–3:30pm, Sat: 9am–12pm",equip:{Vaccines:'Yes','Sample Meds':'No',CirrusCon:'Yes','POC Testing':'Yes',VFC:'Yes',Autoclave:'No',Trophon:'No',AED:'Yes',Eyewash:'Yes',Oxygen:'Yes'}},
+  {name:"Virtua Primary Care - Ventnor",addr:"6508 Ventnor Avenue, Ventnor, NJ 08406",spec:"Primary Care",city:"Ventnor",freq:"Bi-Monthly",lastVisit:"2026-02-25",mgr:"Marisol Pirela",dir:"Tamitra Tann",leadMA:"Keily Velasquez",hours:"Mon–Fri: call to confirm ⚠",equip:{}},
+  {name:"Virtua Primary Care - Lindenwold",addr:"406 E Gibbsboro Road, Lindenwold, NJ 08021",spec:"Primary Care",city:"Lindenwold",freq:"Bi-Monthly",lastVisit:"2026-02-27",mgr:"Priscilla Chanza",dir:"Tamitra Tann",leadMA:"Laura Frias",hours:"Mon–Fri: call to confirm ⚠",equip:{Vaccines:'Yes','Sample Meds':'Yes',CirrusCon:'Yes','POC Testing':'Yes',VFC:'Yes',Autoclave:'No',Trophon:'No',AED:'Yes',Eyewash:'Yes',Oxygen:'Yes'}},
+  {name:"Virtua Primary Care - Hammonton",addr:"75 South White Horse Pike, Hammonton, NJ 08037",spec:"Primary Care",city:"Hammonton",freq:"Bi-Monthly",lastVisit:"2026-02-26",mgr:"Tiffany Tatum",dir:"Tamitra Tann",leadMA:"Samantha DeMarco",hours:"Mon: 8am–7pm, Tue: 7am–4:30pm ⚠",equip:{Vaccines:'Yes','Sample Meds':'No',CirrusCon:'Yes','POC Testing':'Yes',VFC:'No',Autoclave:'No',Trophon:'No',AED:'Yes',Eyewash:'Yes',Oxygen:'Yes'}},
+  {name:"Rowan Medicine OBGYN - Sewell",addr:"405 Hurffville-Crosskeys Rd, Ste 202, Sewell, NJ",spec:"OBGYN",city:"Sewell",freq:"Quarterly",lastVisit:"2025-08-20",mgr:"(vacant)",dir:"Tiruayer Battle",leadMA:"Tina Rivera",hours:"Mon–Fri: call to confirm (856-589-1414) ⚠",equip:{Vaccines:'Yes','Sample Meds':'Yes',CirrusCon:'No','POC Testing':'Yes',VFC:'No',Autoclave:'Yes',Trophon:'No',AED:'Facilities',Eyewash:'',Oxygen:''}},
+  {name:"Rowan Medicine Infectious Disease - Sewell",addr:"405 Hurffville-Crosskeys Rd, Ste 101, Sewell, NJ",spec:"Infectious Disease",city:"Sewell",freq:"Quarterly",lastVisit:"2025-09-02",mgr:"Nancy Fox",dir:"Brenda Savinson",leadMA:"",hours:"Tue: 9am–1pm, Wed: 8am–4pm ⚠",equip:{}},
+  {name:"Virtua Reconstructive Orthopedics - Vineland",addr:"994 West Sherman Avenue, Vineland, NJ 08360",spec:"Orthopedic",city:"Vineland",freq:"Quarterly",lastVisit:"2026-03-13",mgr:"Melissa Atlee & Sal Spitalieri",dir:"Jennifer Ritondo",leadMA:"",hours:"Mon–Fri: 8am–5pm",equip:{Vaccines:'No','Sample Meds':'No',CirrusCon:'No','POC Testing':'No',VFC:'No',Autoclave:'Yes',Trophon:'No',AED:'Yes',Eyewash:'Yes',Oxygen:''}},
+  {name:"Rowan NeuroMusculoskeletal - Vineland",addr:"3360 College Dr., Suite A, Vineland, NJ 08360",spec:"NMI",city:"Vineland",freq:"Quarterly",lastVisit:"2025-09-09",mgr:"Season Williams",dir:"Nikole Ticcino",leadMA:"",hours:"By appt only, Call 856-566-7017 ⚠",equip:{}},
+  {name:"Rowan Medicine Pediatrics - Sewell",addr:"405 Hurffville-Crosskeys Rd, Ste 203, Sewell, NJ",spec:"Pediatrics",city:"Sewell",freq:"Quarterly",lastVisit:"2026-01-23",mgr:"Janet Thornton",dir:"Tiruayer Battle",leadMA:"Janet Flood",hours:"Mon/Wed/Thu: 8am–7pm, Tue: 8am–4pm",equip:{}},
+  {name:"Rowan Family Medicine - Sewell",addr:"405 Hurffville-Crosskeys Rd, Ste 101, Sewell, NJ",spec:"Primary Care",city:"Sewell",freq:"Quarterly",lastVisit:"2025-10-03",mgr:"Crystal Kanavel",dir:"Nancy Garback",leadMA:"Mindy Niedzawiadek",hours:"Mon/Thu: 8am–8pm, Tue/Wed/Fri: 8am–4pm",equip:{}},
+  {name:"Virtua Reconstructive Orthopedics - Sewell",addr:"570 Egg Harbor Rd, Ste C4, Sewell, NJ 08080",spec:"Orthopedic",city:"Sewell",freq:"Quarterly",lastVisit:"2026-03-12",mgr:"Melissa Atlee & Sal Spitalieri",dir:"Jennifer Ritondo",leadMA:"Jacob Feenstra",hours:"Mon–Fri: 8am–5pm",equip:{Vaccines:'No','Sample Meds':'No',CirrusCon:'No','POC Testing':'No',VFC:'No',Autoclave:'Yes',Trophon:'No',AED:'Yes',Eyewash:'Yes',Oxygen:''}},
+  {name:"Virtua Reconstructive Orthopedics - Somers Point",addr:"547 New Road, Somers Point, NJ 08244",spec:"Orthopedic",city:"Somers Point",freq:"Quarterly",lastVisit:"2025-11-07",mgr:"Sal Spitalieri",dir:"Jennifer Ritondo",leadMA:"",hours:"Mon/Wed: 7:30am–4pm, Tue/Thu: 8am–4pm ⚠",equip:{}},
+  {name:"Virtua Pulmonology - Linwood",addr:"1201 New Road, Suite 150E, Linwood, NJ 08221",spec:"Pulmonary",city:"Linwood",freq:"Quarterly",lastVisit:"2025-11-10",mgr:"Tina Molchanow",dir:"Thomas Bianco",leadMA:"Eugenia Poole",hours:"FRIDAY ONLY: 8am–3pm ⚠",equip:{Vaccines:'Yes','Sample Meds':'Yes',CirrusCon:'Yes - shared','POC Testing':'No',VFC:'No',Autoclave:'No',Trophon:'No',AED:'Shared',Eyewash:'Shared',Oxygen:'Yes'}},
+  {name:"Virtua Pulmonology & Sleep - Hammonton",addr:"2 Sindoni Lane, Suite D, Hammonton, NJ 08037",spec:"Pulmonary",city:"Hammonton",freq:"Quarterly",lastVisit:"2025-11-24",mgr:"Tina Molchanow",dir:"Thomas Bianco",leadMA:"Eugenia Poole",hours:"Mon–Thu: 8am–5pm, Fri: 8am–3pm",equip:{Vaccines:'Yes','Sample Meds':'Yes',CirrusCon:'Yes','POC Testing':'No',VFC:'No',Autoclave:'No',Trophon:'No',AED:'Shared',Eyewash:'Shared',Oxygen:'Yes'}},
+  {name:"Rowan Medicine Endocrinology - Sewell",addr:"405 Hurffville-Crosskeys Rd, Ste 101, Sewell, NJ",spec:"Endocrinology",city:"Sewell",freq:"Quarterly",lastVisit:"",mgr:"Nancy Fox",dir:"Brenda Savinson",leadMA:"",hours:"Call: 856-566-7070 ⚠",equip:{}},
+  {name:"Rowan Family Medicine - Hammonton",addr:"854 South White Horse Pike, Suite 4, Hammonton, NJ",spec:"Primary Care",city:"Hammonton",freq:"Quarterly",lastVisit:"2025-11-24",mgr:"Kristina Shaffer",dir:"Nancy Garback",leadMA:"Arielle Panaro",hours:"Mon–Tue: 8am–8pm, Wed–Fri: 8am–4pm",equip:{Vaccines:'Yes','Sample Meds':'No',CirrusCon:'Yes','POC Testing':'Yes',VFC:'No',Autoclave:'No',Trophon:'No',AED:'Yes',Eyewash:'Yes',Oxygen:'Yes'}},
+  {name:"Virtua Midwifery - Sicklerville",addr:"100 Independence Blvd., Suite 100A, Sicklerville, NJ",spec:"Midwifery",city:"Sicklerville",freq:"Quarterly",lastVisit:"2025-12-05",mgr:"Valerie Brady",dir:"Kim DeShayes",leadMA:"Erika Davis",hours:"Mon/Wed: 8:30am–7pm, Tue/Thu: 8:30am–5pm",equip:{Vaccines:'Yes','Sample Meds':'Yes',CirrusCon:'Yes','POC Testing':'Yes',VFC:'No',Autoclave:'Yes',Trophon:'No',AED:'Yes',Eyewash:'Yes',Oxygen:''}},
+  {name:"Virtua Nephrology - Hammonton",addr:"75 South White Horse Pike, Hammonton, NJ 08037",spec:"Nephrology",city:"Hammonton",freq:"Quarterly",lastVisit:"2025-12-17",mgr:"Karen Crafchun",dir:"Kathy Glorioso",leadMA:"",hours:"WEDNESDAY ONLY: 9am–1pm ⚠",equip:{}},
+  {name:"Virtua OB/GYN - Hammonton",addr:"75 South White Horse Pike, Hammonton, NJ 08037",spec:"OB/GYN",city:"Hammonton",freq:"Quarterly",lastVisit:"2025-12-17",mgr:"Michele Fidelibus",dir:"Mirelys Placeres",leadMA:"Breanna Plank",hours:"Mon–Fri: call to confirm ⚠",equip:{}},
+  {name:"Rowan Regional Integrated Special Needs - Vineland",addr:"3322 College Dr., Suite C100, Vineland, NJ 08360",spec:"Special Needs",city:"Vineland",freq:"Quarterly",lastVisit:"",mgr:"Tanya Boyd",dir:"Dana Galligani",leadMA:"",hours:"Mon–Fri: call to confirm ⚠",equip:{}},
+];
+
+let P=[];
+
+function load(){
+  let s={};
+  try{ s=JSON.parse(localStorage.getItem(SKEY_DATA)||'{}'); }catch(e){}
+  P=BASE.map((b,i)=>{
+    const sv=s[i]||{};
+    return{...b,lastVisit:sv.lastVisit??b.lastVisit,visitStatus:sv.visitStatus??'',
+      notes:sv.notes??'',nextScheduled:sv.nextScheduled??'',
+      history:sv.history??[],equip:{...b.equip,...(sv.equip||{})}};
+  });
+}
+
+// ════════════════════════════════════════
+// UTILS
+// ════════════════════════════════════════
+function pd(s){if(!s)return null;const d=new Date(s+'T00:00:00');return isNaN(d)?null:d}
+function addMo(d,n){const r=new Date(d);r.setMonth(r.getMonth()+n);return r}
+function fmt(d){return d?(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear():''}
+function fmts(d){return d?(d.getMonth()+1)+'/'+d.getDate():''}
+function dd(d){return Math.round((d-TODAY)/864e5)}
+function nextDue(p){const l=pd(p.lastVisit);if(!l)return null;return addMo(l,FREQ_MO[p.freq]||12)}
+function stOf(p){const d=nextDue(p);if(!d)return'unsched';const n=dd(d);if(n<0)return'overdue';if(n<=30)return'soon';if(n<=60)return'upcoming';return'ontrack'}
+function stLbl(s){return{overdue:'OVERDUE',soon:'Due Soon',upcoming:'Upcoming',ontrack:'On Track',unsched:'Not Scheduled'}[s]}
+function stPill(s){return{overdue:'p-ov',soon:'p-soon',upcoming:'p-up',ontrack:'p-ok',unsched:'p-ns'}[s]}
+function stCard(s){return{overdue:'s-overdue',soon:'s-soon',upcoming:'s-upcoming',ontrack:'s-ontrack',unsched:'s-unsched'}[s]}
+
+function calCell(p,mo){
+  const last=pd(p.lastVisit),qd=pd(p.nextScheduled),iv=FREQ_MO[p.freq]||12,vs=p.visitStatus||'';
+  if(last&&last.getFullYear()===2026&&last.getMonth()+1===mo)return{t:fmts(last),c:'c-done'};
+  if(qd&&qd.getFullYear()===2026&&qd.getMonth()+1===mo)return{t:fmts(qd),c:'c-done'};
+  const dm=new Set();
+  if(last)for(let k=1;k<=8;k++){const d=addMo(last,iv*k);if(d.getFullYear()===2026)dm.add(d.getMonth()+1)}
+  if(!dm.has(mo))return null;
+  const wM=Math.floor((mo-1)/iv),wT=Math.floor(TODAY.getMonth()/iv);
+  if(last&&last.getFullYear()===2026&&Math.floor(last.getMonth()/iv)===wM)return null;
+  if(wM===wT){if(vs==='Scheduled')return{t:'SCHED',c:'c-sched'};if(vs==='Pending')return{t:'PEND',c:'c-pend'}}
+  return{t:'DUE',c:'c-due'};
+}
+
+// ════════════════════════════════════════
+// CARD BUILDER
+// ════════════════════════════════════════
+function mkCard(p,idx){
+  const due=nextDue(p),st=stOf(p),days=due?dd(due):null,warn=p.hours&&p.hours.includes('⚠');
+  const dStr=days===null?'':days<0?`<span style="color:var(--red);font-weight:700">${Math.abs(days)}d overdue</span>`:days===0?`<span style="color:var(--amber);font-weight:700">Due today</span>`:`<span style="color:var(--text2)">${days}d away</span>`;
+  const eqH=EQ_KEYS.map(k=>{
+    const v=(p.equip&&p.equip[k])?String(p.equip[k]).trim():'';
+    const y=v.toLowerCase().startsWith('yes'),n2=v.toLowerCase()==='no';
+    return`<div class="eq-item ${y?'yes':n2?'no':''}" onclick="togEq(${idx},'${k}')"><div class="eq-cb">${y?'✓':''}</div><div><div class="eq-name">${k}</div><div style="font-size:10px;color:var(--text2)">${v||'—'}</div></div></div>`;
+  }).join('');
+  const histH=(p.history||[]).length===0?'<div class="hist-empty">No visit history yet.</div>':[...(p.history||[])].reverse().map(h=>`<div class="hist-item"><div class="h-date">${h.date}</div><div class="h-note">${h.note||'Visit completed'}</div><div class="h-ts">${h.ts||''}</div></div>`).join('');
+  return`<div class="pcard ${stCard(st)}" id="pc-${idx}">
+  <div class="pcard-hdr" onclick="tog(${idx})">
+    <div class="pcard-main">
+      <div class="pcard-name">${p.name}</div>
+      <div class="pcard-meta"><span>📍${p.city}</span><span>🏥${p.spec}</span><span>🔄${p.freq}</span>${due?`<span>📅${fmt(due)}</span>`:''}${dStr?`<span>${dStr}</span>`:''}</div>
+    </div>
+    <div class="pcard-right">
+      <span class="pill ${stPill(st)}">${stLbl(st)}</span>
+      ${p.visitStatus?`<span class="pill p-vs">${p.visitStatus}</span>`:''}
+      <span class="chev">▼</span>
+    </div>
+  </div>
+  <div class="pcard-body">
+    <div class="dtabs">
+      <div class="dtab active" onclick="dtab(${idx},'i')">Info</div>
+      <div class="dtab" onclick="dtab(${idx},'u')">✏️ Update</div>
+      <div class="dtab" onclick="dtab(${idx},'e')">🔧 Equipment</div>
+      <div class="dtab" onclick="dtab(${idx},'h')">📋 History</div>
+    </div>
+    <div class="dcon active" id="di-${idx}">
+      <div class="cg">
+        <div class="cf"><div class="cf-lbl">Address</div><div class="cf-val">${p.addr}</div></div>
+        <div class="cf"><div class="cf-lbl">Office Hours</div><div class="cf-val ${warn?'warn':''}">${p.hours||'—'}</div></div>
+        <div class="cf"><div class="cf-lbl">Practice Manager</div><div class="cf-val">${p.mgr||'—'}</div></div>
+        <div class="cf"><div class="cf-lbl">Director</div><div class="cf-val">${p.dir||'—'}</div></div>
+        ${p.leadMA?`<div class="cf"><div class="cf-lbl">Lead MA</div><div class="cf-val">${p.leadMA}</div></div>`:''}
+        <div class="cf"><div class="cf-lbl">Last Visit</div><div class="cf-val">${p.lastVisit?fmt(pd(p.lastVisit)):'None on record'}</div></div>
+        ${p.nextScheduled?`<div class="cf"><div class="cf-lbl">Next Scheduled</div><div class="cf-val" style="color:var(--teal);font-weight:600">${fmt(pd(p.nextScheduled))}</div></div>`:''}
+        ${p.notes?`<div class="cf" style="grid-column:1/-1"><div class="cf-lbl">Notes</div><div class="cf-val">${p.notes}</div></div>`:''}
+      </div>
+    </div>
+    <div class="dcon" id="du-${idx}">
+      <div class="eg-grid">
+        <div class="eg"><label>Last Visit Date ✏</label><input type="date" id="k-${idx}" value="${p.lastVisit||''}"></div>
+        <div class="eg"><label>Next Scheduled</label><input type="date" id="q-${idx}" value="${p.nextScheduled||''}"></div>
+        <div class="eg"><label>Visit Status</label>
+          <select id="o-${idx}">
+            <option value="">—</option>
+            <option ${p.visitStatus==='Completed'?'selected':''}>Completed</option>
+            <option ${p.visitStatus==='Scheduled'?'selected':''}>Scheduled</option>
+            <option ${p.visitStatus==='Pending'?'selected':''}>Pending</option>
+            <option ${p.visitStatus==='Rescheduled'?'selected':''}>Rescheduled</option>
+            <option ${p.visitStatus==='Cancelled'?'selected':''}>Cancelled</option>
+          </select>
+        </div>
+        <div class="eg" style="grid-column:1/-1"><label>Notes</label><textarea id="n-${idx}" placeholder="Add notes about this visit…">${p.notes||''}</textarea></div>
+      </div>
+      <div class="eact">
+        <button class="btn-upd" onclick="doUpd(${idx})">Save Changes</button>
+        <button class="btn-pr" onclick="printCard(${idx})">🖨 Print Summary</button>
+        <span class="flash" id="fl-${idx}">✓ Saved</span>
+      </div>
+    </div>
+    <div class="dcon" id="de-${idx}">
+      <div style="font-size:11px;color:var(--text2);margin-bottom:10px">Tap to toggle Yes/No. Hit Save Changes to persist.</div>
+      <div class="eq-grid" id="eq-${idx}">${eqH}</div>
+    </div>
+    <div class="dcon" id="dh-${idx}"><div class="hist-list">${histH}</div></div>
+  </div>
+</div>`;
+}
+
+function tog(i){document.getElementById('pc-'+i)?.classList.toggle('open')}
+function dtab(i,n){
+  document.getElementById('pc-'+i)?.querySelectorAll('.dtab').forEach((t,j)=>t.classList.toggle('active','iueh'[j]===n));
+  ['i','u','e','h'].forEach(x=>{document.getElementById('d'+x+'-'+i)?.classList.toggle('active',x===n)});
+}
+function togEq(i,key){
+  const cur=String(P[i].equip[key]||'').toLowerCase();
+  P[i].equip[key]=cur.startsWith('yes')?'No':'Yes';
+  const g=document.getElementById('eq-'+i);
+  if(g)g.innerHTML=EQ_KEYS.map(k=>{
+    const v=(P[i].equip&&P[i].equip[k])?String(P[i].equip[k]).trim():'';
+    const y=v.toLowerCase().startsWith('yes'),n2=v.toLowerCase()==='no';
+    return`<div class="eq-item ${y?'yes':n2?'no':''}" onclick="togEq(${i},'${k}')"><div class="eq-cb">${y?'✓':''}</div><div><div class="eq-name">${k}</div><div style="font-size:10px;color:var(--text2)">${v||'—'}</div></div></div>`;
+  }).join('');
+}
+
+function doUpd(i){
+  const kv=document.getElementById('k-'+i)?.value;
+  const qv=document.getElementById('q-'+i)?.value;
+  const ov=document.getElementById('o-'+i)?.value;
+  const nv=document.getElementById('n-'+i)?.value;
+  const oldK=P[i].lastVisit;
+  if(kv&&kv!==oldK){
+    P[i].history=P[i].history||[];
+    P[i].history.push({date:kv,note:(nv||'').substring(0,80)||'Visit completed',ts:new Date().toLocaleDateString()});
+  }
+  P[i].lastVisit=kv??P[i].lastVisit;
+  P[i].nextScheduled=qv??P[i].nextScheduled;
+  P[i].visitStatus=ov??P[i].visitStatus;
+  P[i].notes=nv??P[i].notes;
+  // Save with auto-backup
+  _unsavedChanges = true;
+  autoSave(getDataForSave());
+  renderStats();renderWeek();
+  const wasOpen=document.getElementById('pc-'+i)?.classList.contains('open');
+  const tmp=document.createElement('div');tmp.innerHTML=mkCard(P[i],i);
+  const nc=tmp.firstElementChild;
+  if(wasOpen)nc.classList.add('open');
+  document.getElementById('pc-'+i)?.replaceWith(nc);
+  if(wasOpen)dtab(i,'u');
+  const fl=document.getElementById('fl-'+i);
+  if(fl){fl.classList.add('show');setTimeout(()=>fl.classList.remove('show'),2500)}
+  toast('✓ '+P[i].name.split(' - ')[0]+' updated','ok');
+}
+
+function printCard(i){
+  const p=P[i],due=nextDue(p);
+  const w=window.open('','_blank','width=700,height=900');
+  w.document.write(`<!DOCTYPE html><html><head><title>Visit Summary — ${p.name}</title>
+  <style>body{font-family:sans-serif;padding:30px;font-size:13px;line-height:1.6}h1{font-size:18px;color:#1F3864;margin-bottom:4px}.sub{font-size:11px;color:#888;margin-bottom:20px;font-family:monospace}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}.f{border:1px solid #ddd;border-radius:6px;padding:10px 12px}.lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#888;margin-bottom:3px}h2{font-size:13px;font-weight:700;border-bottom:2px solid #1F3864;padding-bottom:4px;margin-bottom:10px;color:#1F3864}.hi{display:flex;gap:12px;padding:6px 0;border-bottom:1px solid #eee;font-size:12px}.hd{font-family:monospace;color:#2E75B6;font-weight:700;min-width:80px}@media print{button{display:none}}</style></head><body>
+  <h1>${p.name}</h1><div class="sub">VMG Site Visit Tracker · Printed ${new Date().toLocaleDateString()}</div>
+  <div class="grid"><div class="f"><div class="lbl">Address</div>${p.addr}</div><div class="f"><div class="lbl">Office Hours</div>${p.hours||'—'}</div><div class="f"><div class="lbl">Practice Manager</div>${p.mgr||'—'}</div><div class="f"><div class="lbl">Director</div>${p.dir||'—'}</div><div class="f"><div class="lbl">Lead MA</div>${p.leadMA||'—'}</div><div class="f"><div class="lbl">Frequency</div>${p.freq}</div><div class="f"><div class="lbl">Last Visit</div>${p.lastVisit?fmt(pd(p.lastVisit)):'None'}</div><div class="f"><div class="lbl">Next Due</div>${due?fmt(due):'—'}</div><div class="f"><div class="lbl">Visit Status</div>${p.visitStatus||'—'}</div><div class="f"><div class="lbl">Notes</div>${p.notes||'—'}</div></div>
+  <h2>Equipment</h2><div class="grid">${EQ_KEYS.map(k=>`<div class="f"><div class="lbl">${k}</div>${(p.equip&&p.equip[k])||'—'}</div>`).join('')}</div>
+  <h2>Visit History</h2>${(p.history||[]).length===0?'<p style="color:#999;font-style:italic">No history.</p>':[...(p.history||[])].reverse().map(h=>`<div class="hi"><div class="hd">${h.date}</div><div>${h.note||'Visit completed'}</div><div style="margin-left:auto;color:#999;font-size:11px">${h.ts||''}</div></div>`).join('')}
+  <br><button onclick="window.print()">🖨 Print</button></body></html>`);
+  w.document.close();
+}
+
+// ════════════════════════════════════════
+// RENDERS
+// ════════════════════════════════════════
+function renderStats(){
+  const c={all:P.length,overdue:0,soon:0,upcoming:0,unsched:0,ontrack:0};
+  P.forEach(p=>c[stOf(p)]++);
+  document.getElementById('statsEl').innerHTML=`
+    <div class="sc s-all" onclick="applyF('')"><div class="sc-num">${c.all}</div><div class="sc-lbl">Total</div></div>
+    <div class="sc s-ov" onclick="applyF('overdue')"><div class="sc-num">${c.overdue}</div><div class="sc-lbl">Overdue</div></div>
+    <div class="sc s-soon" onclick="applyF('soon')"><div class="sc-num">${c.soon}</div><div class="sc-lbl">Due Soon</div></div>
+    <div class="sc s-ns" onclick="applyF('unsched')"><div class="sc-num">${c.unsched}</div><div class="sc-lbl">Not Scheduled</div></div>
+    <div class="sc s-ok" onclick="applyF('ontrack')"><div class="sc-num">${c.ontrack+c.upcoming}</div><div class="sc-lbl">On Track</div></div>`;
+}
+function applyF(v){document.getElementById('df').value=v;renderDash()}
+
+function renderWeek(){
+  const lo=new Date(TODAY);lo.setDate(lo.getDate()-lo.getDay());
+  const hi=new Date(lo);hi.setDate(hi.getDate()+6);
+  const items=P.filter(p=>{const d=nextDue(p);return d&&d>=lo&&d<=hi});
+  const b=document.getElementById('weekBanner');
+  if(!items.length){b.classList.remove('has');return}
+  b.classList.add('has');
+  document.getElementById('weekList').innerHTML=items.map(p=>`<div class="week-item"><div class="w-dot"></div><div class="w-name">${p.name}</div><div class="w-due">Due ${fmt(nextDue(p))}</div></div>`).join('');
+}
+
+function getFiltered(sid,fid,frqid,ctid,spid){
+  const q=(document.getElementById(sid)||{}).value?.toLowerCase()||'';
+  const fr=(document.getElementById(fid)||{}).value||'';
+  const freq=(document.getElementById(frqid)||{}).value||'';
+  const ct=(document.getElementById(ctid)||{}).value||'';
+  const sp=(document.getElementById(spid)||{}).value||'';
+  return P.map((p,i)=>({p,i})).filter(({p})=>{
+    const st=stOf(p);
+    if(fr==='ontrack'&&!(st==='ontrack'||st==='upcoming'))return false;
+    if(fr&&fr!=='ontrack'&&st!==fr)return false;
+    if(freq&&p.freq!==freq)return false;
+    if(ct&&p.city!==ct)return false;
+    if(sp&&p.spec!==sp)return false;
+    if(q&&!([p.name,p.city,p.spec,p.mgr||'',p.leadMA||''].join(' ').toLowerCase().includes(q)))return false;
+    return true;
+  });
+}
+
+function renderDash(){
+  let list=getFiltered('ds','df','dfreq',null,null);
+  list.sort((a,b)=>{const da=nextDue(a.p),db=nextDue(b.p);if(!da&&!db)return 0;if(!da)return 1;if(!db)return-1;return da-db});
+  document.getElementById('dcnt').textContent=`${list.length} of ${P.length} practices`;
+  document.getElementById('dashList').innerHTML=list.length?list.map(({p,i})=>mkCard(p,i)).join(''):'<div style="text-align:center;padding:50px;color:var(--text2)">No practices match</div>';
+}
+
+let seeded=false;
+function renderPrac(){
+  if(!seeded){
+    const cities=[...new Set(P.map(p=>p.city))].sort();
+    const specs=[...new Set(P.map(p=>p.spec))].sort();
+    const cs=document.getElementById('pcity'),ss=document.getElementById('pspec');
+    cities.forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;cs.appendChild(o)});
+    specs.forEach(s=>{const o=document.createElement('option');o.value=s;o.textContent=s;ss.appendChild(o)});
+    seeded=true;
+  }
+  const list=getFiltered('ps',null,'pfreq','pcity','pspec');
+  document.getElementById('pcnt').textContent=`${list.length} of ${P.length}`;
+  document.getElementById('pracList').innerHTML=list.length?list.map(({p,i})=>mkCard(p,i)).join(''):'<div style="text-align:center;padding:50px;color:var(--text2)">No practices match</div>';
+}
+
+function renderCal(){
+  const cur=TODAY.getMonth();
+  let h='<thead><tr><th class="pn-col">Practice</th>';
+  MOS.forEach((m,i)=>{h+=`<th class="${i===cur?'cur-mo':''}">${m}</th>`});
+  h+='</tr></thead><tbody>';
+  P.forEach(p=>{
+    h+=`<tr><td class="pname" title="${p.name}">${p.name}</td>`;
+    for(let mo=1;mo<=12;mo++){const c=calCell(p,mo);h+=c?`<td><span class="${c.c}">${c.t}</span></td>`:'<td></td>'}
+    h+='</tr>';
+  });
+  document.getElementById('calEl').innerHTML=h+'</tbody>';
+}
+
+function goTab(id){
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',['dashboard','practices','calendar'][i]===id));
+  document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+id));
+  if(id==='calendar')renderCal();
+  if(id==='practices')renderPrac();
+}
+
+let tt;
+function toast(msg,type){
+  clearTimeout(tt);
+  const el=document.getElementById('toast');
+  el.textContent=msg;
+  el.className='toast'+(type?' '+type:'');
+  el.classList.add('show');
+  tt=setTimeout(()=>el.classList.remove('show'),3000);
+}
+
+// ════════════════════════════════════════
+// INIT
+// ════════════════════════════════════════
+load();
+renderStats();renderWeek();renderDash();
+
+// Periodic local save every 3 minutes as extra safety
+setInterval(()=>{
+  if(_unsavedChanges) saveLocal();
+}, 180000);
+
+</script>
+</body>
+</html>
