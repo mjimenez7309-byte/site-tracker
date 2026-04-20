@@ -701,7 +701,8 @@ function mkCard(p,idx){
     </div>
     <div class="pcard-right">
       <span class="pill ${stPill(st)}">${stLbl(st)}</span>
-      ${p.visitStatus?`<span class="pill p-vs">${p.visitStatus}</span>`:''}
+      ${p.nextScheduled ? `<span class="pill p-vs">Scheduled: ${fmts(pd(p.nextScheduled))}</span>` : ''}
+      ${!p.nextScheduled && p.visitStatus && p.visitStatus!=='Scheduled' ? `<span class="pill p-vs">${p.visitStatus}</span>` : ''}
       <span class="chev">▼</span>
     </div>
   </div>
