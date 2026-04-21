@@ -52,7 +52,7 @@ body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);font-s
 .sc.s-soon::after{background:var(--amber)}.sc.s-soon .sc-num{color:var(--amber)}
 .sc.s-ns::after{background:var(--grey)}.sc.s-ns .sc-num{color:var(--grey)}
 .sc.s-ok::after{background:var(--green)}.sc.s-ok .sc-num{color:var(--green)}
-.week-banner-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.week-banner-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:16px}
 @media(max-width:900px){.week-banner-grid{grid-template-columns:1fr}}
 .week-banner{background:linear-gradient(135deg,var(--navy),var(--teal));border-radius:var(--radius);padding:14px 18px;color:#fff;display:none}
 .week-banner.has{display:block}
@@ -261,6 +261,10 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
         <div class="week-title">🗓 Due This Month</div>
         <div class="week-list" id="monthList"></div>
       </div>
+      <div class="week-banner" id="scheduledBanner">
+        <div class="week-title">📅 Scheduled Visits</div>
+        <div class="week-list" id="scheduledList"></div>
+      </div>
     </div>
     <div class="fbar">
       <div class="sw"><span class="si">🔍</span><input id="ds" type="text" placeholder="Search name, city, specialty, manager…" oninput="renderDash()"></div>
@@ -367,7 +371,7 @@ function applyLoadedData(data){
   });
   localStorage.setItem(SKEY_DATA, JSON.stringify(data));
   _unsaved = false;
-  renderStats(); renderWeek(); renderDash();
+  renderStats(); renderWeek(); renderScheduled(); renderDash();
   if(document.getElementById('view-calendar').classList.contains('active')) renderCal();
 }
 function saveLocal(){
@@ -820,7 +824,7 @@ function doUpd(i){
   P[i].hours = hoursv ?? P[i].hours;
   _unsaved = true;
   autoSave(getDataForSave());
-  renderStats(); renderWeek();
+  renderStats(); renderWeek(); renderScheduled();
   const wasOpen = document.getElementById('pc-' + i)?.classList.contains('open');
   const tmp = document.createElement('div');
   tmp.innerHTML = mkCard(P[i], i);
@@ -1491,6 +1495,7 @@ function schedulePlannerVisit(dayIdx, stopIdx){
   autoSave(getDataForSave());
   renderStats();
   renderWeek();
+  renderScheduled();
   renderDash();
   if(document.getElementById('view-practices').classList.contains('active')) renderPrac();
   if(document.getElementById('view-calendar').classList.contains('active')) renderCal();
@@ -1548,6 +1553,31 @@ function renderWeek(){
         <div class="w-due">Due ${fmt(nextDue(p))}</div>
       </div>`).join('');
   }
+}
+function renderScheduled(){
+  const items = P.filter(p => p.nextScheduled && p.nextScheduled !== '').sort((a,b)=>{
+    const ad = pd(a.nextScheduled);
+    const bd = pd(b.nextScheduled);
+    if(!ad && !bd) return 0;
+    if(!ad) return 1;
+    if(!bd) return -1;
+    return ad - bd;
+  });
+  const b = document.getElementById('scheduledBanner');
+  const list = document.getElementById('scheduledList');
+  if(!b || !list) return;
+  if(!items.length){
+    b.classList.remove('has');
+    list.innerHTML = '';
+    return;
+  }
+  b.classList.add('has');
+  list.innerHTML = items.map(p => `
+    <div class="week-item">
+      <div class="w-dot" style="background:var(--teal)"></div>
+      <div class="w-name">${escapeHtml(p.name)}</div>
+      <div class="w-due">Scheduled ${fmt(pd(p.nextScheduled))}</div>
+    </div>`).join('');
 }
 function getFiltered(sid,fid,frqid,ctid,spid){
   const q = (document.getElementById(sid)||{}).value?.toLowerCase() || '';
@@ -1627,6 +1657,7 @@ function toast(msg,type){
 load();
 renderStats();
 renderWeek();
+renderScheduled();
 renderDash();
 setInterval(()=>{ if(_unsaved) saveLocal(); }, 180000);
 </script>
