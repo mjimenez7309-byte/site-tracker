@@ -410,7 +410,7 @@ function setSS(m){ document.getElementById('syncStatus').textContent = m; }
 function toggleAutoDownload(cb){ _autoDownload = cb.checked; toast(_autoDownload ? 'Auto-backup on' : 'Auto-backup off'); }
 function toggleRemindOnClose(cb){ _remindClose = cb.checked; }
 
-const TODAY = new Date(2026,3,14);
+const TODAY = new Date(); TODAY.setHours(0,0,0,0);
 const FREQ_MO = {Annual:12,'Bi-Annual':6,Quarterly:3,'Bi-Monthly':2};
 const MOS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const EQ_KEYS = ['Vaccines/Refrig. Meds','Sample Meds','OceanView','POC Testing','VFC','Autoclave','Trophon','AED','Eyewash','Oxygen'];
@@ -544,7 +544,13 @@ function toHM(mins){
   return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
 }
 function toReadableHM(mins){
-  return toHM(mins).replace(/^0/,'');
+  const safe = Math.max(0, Math.round(mins));
+  let h = Math.floor(safe/60);
+  const m = safe%60;
+  const ap = h >= 12 ? 'PM' : 'AM';
+  h = h % 12;
+  if(h === 0) h = 12;
+  return `${h}:${String(m).padStart(2,'0')} ${ap}`;
 }
 function minutesLabel(mins){
   const h = Math.floor(mins/60);
@@ -822,10 +828,17 @@ function printCard(i){
 let availDates = [];
 let plannerDays = [];
 
+const DRIVE_TIME_OVERRIDES = {
+  'Rowan Family Medicine - Hammonton||Virtua Primary Care - Hammonton': {mins:5, miles:'2.1 mi'},
+  'Virtua Primary Care - Hammonton||Virtua Cardiology - Hammonton': {mins:4, miles:'0.8 mi'},
+  'Virtua Cardiology - Hammonton||Virtua Primary Care - Hammonton': {mins:4, miles:'0.8 mi'},
+  'Virtua Primary Care - Hammonton||Rowan Family Medicine - Hammonton': {mins:5, miles:'2.1 mi'}
+};
+
 function addAvailDate(){
   const d = new Date(TODAY);
   d.setDate(d.getDate() + 1 + availDates.length);
-  availDates.push(d.toISOString().slice(0,10));
+  availDates.push({date:d.toISOString().slice(0,10), time:'09:00'});
   renderAvailDates();
 }
 function removeAvailDate(i){
@@ -836,16 +849,22 @@ function getDayName(dateStr){
   const d = new Date(dateStr + 'T00:00:00');
   return d.toLocaleDateString('en-US', {weekday:'short', month:'short', day:'numeric'});
 }
+function normalizeAvailEntry(entry){
+  if(typeof entry === 'string') return {date: entry, time: '09:00'};
+  return {date: entry?.date || '', time: entry?.time || '09:00'};
+}
 function renderAvailDates(){
+  availDates = availDates.map(normalizeAvailEntry);
   const el = document.getElementById('availDates');
   if(!availDates.length){
     el.innerHTML = '<div style="font-size:13px;color:var(--text2);font-style:italic;padding:8px 0">No dates added yet — click + Add Available Date</div>';
     return;
   }
-  el.innerHTML = availDates.map((d,i)=>`
-    <div class="avail-row">
-      <span style="font-size:12px;font-weight:600;color:var(--text2);min-width:80px">${getDayName(d)}</span>
-      <input type="date" value="${d}" onchange="availDates[${i}] = this.value; renderAvailDates()">
+  el.innerHTML = availDates.map((entry,i)=>`
+    <div class="avail-row" style="display:grid;grid-template-columns:90px 150px 120px 40px;gap:8px;align-items:center;">
+      <span style="font-size:12px;font-weight:600;color:var(--text2);min-width:80px">${getDayName(entry.date)}</span>
+      <input type="date" value="${entry.date}" onchange="availDates[${i}] = {...normalizeAvailEntry(availDates[${i}]), date:this.value}; renderAvailDates()">
+      <input type="time" value="${entry.time || '09:00'}" onchange="availDates[${i}] = {...normalizeAvailEntry(availDates[${i}]), time:this.value}; renderAvailDates()">
       <button onclick="removeAvailDate(${i})" style="padding:5px 8px;background:var(--red-lt);color:var(--red);border:none;border-radius:4px;cursor:pointer;font-size:14px;line-height:1">✕</button>
     </div>`).join('');
 }
@@ -854,6 +873,35 @@ function clearSchedule(){
   plannerDays = [];
   renderAvailDates();
   document.getElementById('schedResults').innerHTML = '';
+}
+function getDriveOverride(fromName, toName){
+  return DRIVE_TIME_OVERRIDES[`${fromName}||${toName}`] || null;
+}
+function estimateDriveBetweenStops(prevStop, stop){
+  if(!prevStop || !stop) return {mins:0, miles:''};
+  const override = getDriveOverride(prevStop.name, stop.name);
+  if(override) return override;
+  const sameAddress = (P[prevStop.practiceIndex]?.addr || '').trim() && (P[prevStop.practiceIndex]?.addr || '').trim() === (P[stop.practiceIndex]?.addr || '').trim();
+  if(sameAddress) return {mins:0, miles:'same building'};
+  const sameCity = (prevStop.city || '').trim().toLowerCase() === (stop.city || '').trim().toLowerCase();
+  if(sameCity) return {mins:8, miles:'same city'};
+  const sameBucket = (prevStop.bucket || '').trim().toLowerCase() === (stop.bucket || '').trim().toLowerCase();
+  if(sameBucket) return {mins:15, miles:'same area'};
+  return {mins:25, miles:'cross-area'};
+}
+function applyEstimatedDriveTimes(day){
+  day.stops.forEach((stop, idx) => {
+    if(idx === 0){
+      if(stop.driveMin === null || stop.driveMin === undefined || stop.driveMin === '') stop.driveMin = 30;
+      stop.driveLabel = 'from home';
+      stop.driveMiles = '';
+      return;
+    }
+    const estimate = estimateDriveBetweenStops(day.stops[idx-1], stop);
+    stop.driveMin = estimate.mins;
+    stop.driveMiles = estimate.miles || '';
+    stop.driveLabel = stop.driveMiles ? `${stop.driveMiles}` : '';
+  });
 }
 function makeStop(practiceIndex, source='suggested'){
   const p = P[practiceIndex];
@@ -916,24 +964,25 @@ function generateSchedule(){
     return bWeight - aWeight;
   });
 
-  const sortedDates = [...availDates].sort();
-  plannerDays = sortedDates.map((date, idx)=>{
+  const sortedDates = [...availDates].map(normalizeAvailEntry).sort((a,b)=> {
+    const ad = `${a.date}T${a.time || '09:00'}`;
+    const bd = `${b.date}T${b.time || '09:00'}`;
+    return ad.localeCompare(bd);
+  });
+  plannerDays = sortedDates.map((entry, idx)=>{
     const bucketEntry = buckets[idx];
     const stops = bucketEntry
-      ? bucketEntry[1].map(x => {
-          const stop = makeStop(x.i, 'suggested');
-          stop.driveMin = 20;
-          return stop;
-        })
+      ? bucketEntry[1].map(x => makeStop(x.i, 'suggested'))
       : [];
-    if(stops.length) stops[0].driveMin = 30;
-    return {
-      date,
+    const day = {
+      date: entry.date,
       bucket: bucketEntry ? bucketEntry[0] : '',
-      startTime: '09:00',
+      startTime: entry.time || '09:00',
       homeDriveMin: 30,
       stops
     };
+    applyEstimatedDriveTimes(day);
+    return day;
   });
 
   renderPlannerResults();
@@ -994,6 +1043,7 @@ function renderPlannerResults(){
         <div>
           <label class="small-note">Drive from previous</label><br>
           <input class="planner-input" type="number" min="0" value="${Number(stop.driveMin || 0)}" style="width:85px" onchange="updateStopField(${dayIdx}, ${stopIdx}, 'driveMin', this.value)">
+          ${stop.driveMiles ? `<div class="small-note" style="margin-top:4px">${escapeHtml(stop.driveMiles)}</div>` : ''}
         </div>
 
         <div>
@@ -1052,7 +1102,9 @@ function renderPlannerResults(){
   }).join('');
 }
 function updateStopField(dayIdx, stopIdx, field, value){
-  plannerDays[dayIdx].stops[stopIdx][field] = Number(value || 0);
+  const stop = plannerDays[dayIdx].stops[stopIdx];
+  stop[field] = Number(value || 0);
+  if(field === 'driveMin') stop.driveMiles = 'manual';
   renderPlannerResults();
 }
 function updateDayField(dayIdx, field, value){
@@ -1064,10 +1116,12 @@ function moveStop(dayIdx, stopIdx, direction){
   const newIdx = stopIdx + direction;
   if(newIdx < 0 || newIdx >= arr.length) return;
   [arr[stopIdx], arr[newIdx]] = [arr[newIdx], arr[stopIdx]];
+  applyEstimatedDriveTimes(plannerDays[dayIdx]);
   renderPlannerResults();
 }
 function removeStop(dayIdx, stopIdx){
   plannerDays[dayIdx].stops.splice(stopIdx,1);
+  applyEstimatedDriveTimes(plannerDays[dayIdx]);
   renderPlannerResults();
 }
 function addOfficeToDay(dayIdx){
@@ -1075,9 +1129,10 @@ function addOfficeToDay(dayIdx){
   const practiceIndex = Number(sel.value);
   if(Number.isNaN(practiceIndex)) return;
   const stop = makeStop(practiceIndex, 'manual');
-  stop.driveMin = 15;
+  stop.driveMin = null;
   stop.visitMin = 60;
   plannerDays[dayIdx].stops.push(stop);
+  applyEstimatedDriveTimes(plannerDays[dayIdx]);
   renderPlannerResults();
 }
 
