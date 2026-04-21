@@ -52,7 +52,9 @@ body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);font-s
 .sc.s-soon::after{background:var(--amber)}.sc.s-soon .sc-num{color:var(--amber)}
 .sc.s-ns::after{background:var(--grey)}.sc.s-ns .sc-num{color:var(--grey)}
 .sc.s-ok::after{background:var(--green)}.sc.s-ok .sc-num{color:var(--green)}
-.week-banner{background:linear-gradient(135deg,var(--navy),var(--teal));border-radius:var(--radius);padding:14px 18px;margin-bottom:16px;color:#fff;display:none}
+.week-banner-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+@media(max-width:900px){.week-banner-grid{grid-template-columns:1fr}}
+.week-banner{background:linear-gradient(135deg,var(--navy),var(--teal));border-radius:var(--radius);padding:14px 18px;color:#fff;display:none}
 .week-banner.has{display:block}
 .week-title{font-size:11px;font-weight:700;letter-spacing:.3px;margin-bottom:8px;opacity:.8;text-transform:uppercase}
 .week-list{display:flex;flex-direction:column;gap:5px}
@@ -250,9 +252,15 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
 
   <div class="view active" id="view-dashboard">
     <div class="stats" id="statsEl"></div>
-    <div class="week-banner" id="weekBanner">
-      <div class="week-title">📍 Due This Week</div>
-      <div class="week-list" id="weekList"></div>
+    <div class="week-banner-grid">
+      <div class="week-banner" id="weekBanner">
+        <div class="week-title">📍 Due This Week</div>
+        <div class="week-list" id="weekList"></div>
+      </div>
+      <div class="week-banner" id="monthBanner">
+        <div class="week-title">🗓 Due This Month</div>
+        <div class="week-list" id="monthList"></div>
+      </div>
     </div>
     <div class="fbar">
       <div class="sw"><span class="si">🔍</span><input id="ds" type="text" placeholder="Search name, city, specialty, manager…" oninput="renderDash()"></div>
@@ -308,7 +316,7 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
       </div>
       <div id="availDates" style="display:flex;flex-direction:column;gap:6px;margin-bottom:16px"></div>
       <div class="small-note" style="margin-bottom:12px">
-        Tip: edit the “Drive from previous” minutes for the first stop to represent drive from home. Use “Drive home” at the day level for the last leg back.
+        Tip: office-to-office drive times and miles are pulled from map routing and cached. Home is estimated from Annie Way, Sicklerville, NJ 08081 and can still be edited if needed.
       </div>
       <div id="schedResults"></div>
     </div>
@@ -333,7 +341,11 @@ function getDataForSave(){
       nextScheduled: p.nextScheduled,
       history: p.history,
       equip: p.equip,
-      noteLog: p.noteLog
+      noteLog: p.noteLog,
+      mgr: p.mgr,
+      dir: p.dir,
+      leadMA: p.leadMA,
+      hours: p.hours
     };
   });
   return out;
@@ -348,6 +360,10 @@ function applyLoadedData(data){
     if(s.history !== undefined) p.history = s.history;
     if(s.equip !== undefined) p.equip = {...p.equip, ...s.equip};
     if(s.noteLog !== undefined) p.noteLog = s.noteLog;
+    if(s.mgr !== undefined) p.mgr = s.mgr;
+    if(s.dir !== undefined) p.dir = s.dir;
+    if(s.leadMA !== undefined) p.leadMA = s.leadMA;
+    if(s.hours !== undefined) p.hours = s.hours;
   });
   localStorage.setItem(SKEY_DATA, JSON.stringify(data));
   _unsaved = false;
@@ -471,7 +487,11 @@ function load(){
       nextScheduled: sv.nextScheduled ?? '',
       history: sv.history ?? [],
       equip: {...b.equip, ...(sv.equip || {})},
-      noteLog: sv.noteLog ?? []
+      noteLog: sv.noteLog ?? [],
+      mgr: sv.mgr ?? b.mgr,
+      dir: sv.dir ?? b.dir,
+      leadMA: sv.leadMA ?? b.leadMA,
+      hours: sv.hours ?? b.hours
     };
   });
 }
@@ -619,7 +639,7 @@ function mkCard(p,idx){
       </div>
       <div class="pcard-right">
         <span class="pill ${stPill(st)}">${stLbl(st)}</span>
-        ${p.visitStatus ? `<span class="pill p-vs">${escapeHtml(p.visitStatus)}</span>` : ''}
+        ${(p.visitStatus || p.nextScheduled) ? `<span class="pill p-vs">${escapeHtml(p.visitStatus || 'Scheduled')}${p.nextScheduled ? ` · ${fmt(pd(p.nextScheduled))}` : ''}</span>` : ''}
         <span class="chev">▼</span>
       </div>
     </div>
@@ -668,6 +688,10 @@ function mkCard(p,idx){
               <option ${p.visitStatus==='Cancelled'?'selected':''}>Cancelled</option>
             </select>
           </div>
+          <div class="eg"><label>Practice Manager</label><input type="text" id="mgr-${idx}" value="${escapeHtml(p.mgr || '')}"></div>
+          <div class="eg"><label>Director</label><input type="text" id="dir-${idx}" value="${escapeHtml(p.dir || '')}"></div>
+          <div class="eg"><label>Lead MA</label><input type="text" id="lead-${idx}" value="${escapeHtml(p.leadMA || '')}"></div>
+          <div class="eg" style="grid-column:1/-1"><label>Office Hours</label><textarea id="hours-${idx}" placeholder="Office hours">${escapeHtml(p.hours || '')}</textarea></div>
           <div class="eg" style="grid-column:1/-1">
             <label>General Notes</label>
             <textarea id="n-${idx}" placeholder="General notes about this practice…">${escapeHtml(p.notes || '')}</textarea>
@@ -776,6 +800,10 @@ function doUpd(i){
   const qv = document.getElementById('q-' + i)?.value;
   const ov = document.getElementById('o-' + i)?.value;
   const nv = document.getElementById('n-' + i)?.value;
+  const mgrv = document.getElementById('mgr-' + i)?.value;
+  const dirv = document.getElementById('dir-' + i)?.value;
+  const leadv = document.getElementById('lead-' + i)?.value;
+  const hoursv = document.getElementById('hours-' + i)?.value;
   const oldK = P[i].lastVisit;
   if(kv && kv !== oldK){
     P[i].history = P[i].history || [];
@@ -786,6 +814,10 @@ function doUpd(i){
   P[i].nextScheduled = qv ?? P[i].nextScheduled;
   P[i].visitStatus = ov ?? P[i].visitStatus;
   P[i].notes = nv ?? P[i].notes;
+  P[i].mgr = mgrv ?? P[i].mgr;
+  P[i].dir = dirv ?? P[i].dir;
+  P[i].leadMA = leadv ?? P[i].leadMA;
+  P[i].hours = hoursv ?? P[i].hours;
   _unsaved = true;
   autoSave(getDataForSave());
   renderStats(); renderWeek();
@@ -825,20 +857,132 @@ function printCard(i){
   w.document.close();
 }
 
+
 let availDates = [];
 let plannerDays = [];
 
+const GEO_CACHE_KEY = 'vmgGeoCache_v1';
+const ROUTE_CACHE_KEY = 'vmgRouteCache_v1';
+const HOME_QUERY = 'Annie Way, Sicklerville, NJ 08081';
+const HOME_GEO_KEY = '__HOME__';
+let geoCache = (()=>{ try{return JSON.parse(localStorage.getItem(GEO_CACHE_KEY)||'{}'); }catch(e){ return {}; } })();
+let routeCache = (()=>{ try{return JSON.parse(localStorage.getItem(ROUTE_CACHE_KEY)||'{}'); }catch(e){ return {}; } })();
+let plannerBusy = false;
+
 const DRIVE_TIME_OVERRIDES = {
-  'Rowan Family Medicine - Hammonton||Virtua Primary Care - Hammonton': {mins:5, miles:'2.1 mi'},
-  'Virtua Primary Care - Hammonton||Virtua Cardiology - Hammonton': {mins:4, miles:'0.8 mi'},
-  'Virtua Cardiology - Hammonton||Virtua Primary Care - Hammonton': {mins:4, miles:'0.8 mi'},
-  'Virtua Primary Care - Hammonton||Rowan Family Medicine - Hammonton': {mins:5, miles:'2.1 mi'}
+  'Rowan Family Medicine - Hammonton||Virtua Primary Care - Hammonton': {mins:5, miles:'2.1 mi', source:'override'},
+  'Virtua Primary Care - Hammonton||Virtua Cardiology - Hammonton': {mins:4, miles:'0.8 mi', source:'override'},
+  'Virtua Cardiology - Hammonton||Virtua Primary Care - Hammonton': {mins:4, miles:'0.8 mi', source:'override'},
+  'Virtua Primary Care - Hammonton||Rowan Family Medicine - Hammonton': {mins:5, miles:'2.1 mi', source:'override'}
 };
 
+function saveGeoCache(){ localStorage.setItem(GEO_CACHE_KEY, JSON.stringify(geoCache)); }
+function saveRouteCache(){ localStorage.setItem(ROUTE_CACHE_KEY, JSON.stringify(routeCache)); }
+function routeKey(a,b){ return `${a}||${b}`; }
+function sleep(ms){ return new Promise(r=>setTimeout(r, ms)); }
+function setPlannerBusy(isBusy, msg=''){
+  plannerBusy = isBusy;
+  const btn = document.querySelector('#view-planner button[onclick="generateSchedule()"]');
+  if(btn){
+    btn.disabled = isBusy;
+    btn.style.opacity = isBusy ? '.7' : '1';
+    btn.textContent = isBusy ? 'Mapping…' : '✨ Generate Schedule';
+  }
+  if(msg) setSS(msg);
+}
+function normalizeAddress(addr){
+  return String(addr || '').replace(/\s+/g,' ').trim();
+}
+async function geocodePractice(practiceIndex){
+  const p = P[practiceIndex];
+  const key = p.name;
+  if(geoCache[key]?.lat && geoCache[key]?.lon) return geoCache[key];
+
+  const query = normalizeAddress(p.addr || `${p.name}, ${p.city}, NJ`);
+  const url = new URL('https://nominatim.openstreetmap.org/search');
+  url.searchParams.set('q', query);
+  url.searchParams.set('format', 'jsonv2');
+  url.searchParams.set('limit', '1');
+  url.searchParams.set('countrycodes', 'us');
+  url.searchParams.set('addressdetails', '0');
+
+  const res = await fetch(url.toString(), {
+    headers: {
+      'Accept': 'application/json',
+      'Accept-Language': 'en-US,en;q=0.9'
+    }
+  });
+  if(!res.ok) throw new Error('Geocoding failed');
+  const data = await res.json();
+  if(!Array.isArray(data) || !data.length) throw new Error(`No map match for ${p.name}`);
+
+  const out = {
+    lat: Number(data[0].lat),
+    lon: Number(data[0].lon),
+    display_name: data[0].display_name || query
+  };
+  geoCache[key] = out;
+  saveGeoCache();
+  await sleep(1100);
+  return out;
+}
+async function geocodeHome(){
+  if(geoCache[HOME_GEO_KEY]?.lat && geoCache[HOME_GEO_KEY]?.lon) return geoCache[HOME_GEO_KEY];
+  const url = new URL('https://nominatim.openstreetmap.org/search');
+  url.searchParams.set('q', HOME_QUERY);
+  url.searchParams.set('format', 'jsonv2');
+  url.searchParams.set('limit', '1');
+  url.searchParams.set('countrycodes', 'us');
+  const res = await fetch(url.toString(), {
+    headers: {
+      'Accept': 'application/json',
+      'Accept-Language': 'en-US,en;q=0.9'
+    }
+  });
+  if(!res.ok) throw new Error('Home geocoding failed');
+  const data = await res.json();
+  if(!Array.isArray(data) || !data.length) throw new Error('No home map match');
+  const out = {
+    lat: Number(data[0].lat),
+    lon: Number(data[0].lon),
+    display_name: data[0].display_name || HOME_QUERY
+  };
+  geoCache[HOME_GEO_KEY] = out;
+  saveGeoCache();
+  await sleep(1100);
+  return out;
+}
+async function getRouteByCoords(fromKey, fromCoords, toKey, toCoords){
+  const rk = routeKey(fromKey, toKey);
+  if(routeCache[rk]) return routeCache[rk];
+  const url = `https://router.project-osrm.org/route/v1/driving/${fromCoords.lon},${fromCoords.lat};${toCoords.lon},${toCoords.lat}?overview=false`;
+  const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+  if(!res.ok) throw new Error('Routing failed');
+  const data = await res.json();
+  if(!data.routes || !data.routes.length) throw new Error('No route found');
+  const route = data.routes[0];
+  const out = {
+    mins: Math.max(1, Math.round(route.duration / 60)),
+    miles: `${(route.distance / 1609.344).toFixed(1)} mi`,
+    source: 'map'
+  };
+  routeCache[rk] = out;
+  saveRouteCache();
+  return out;
+}
+async function getRouteDataByPracticeIndexes(fromIdx, toIdx){
+  const from = P[fromIdx], to = P[toIdx];
+  const ovr = DRIVE_TIME_OVERRIDES[routeKey(from.name, to.name)];
+  if(ovr) return ovr;
+
+  const a = await geocodePractice(fromIdx);
+  const b = await geocodePractice(toIdx);
+  return await getRouteByCoords(from.name, a, to.name, b);
+}
 function addAvailDate(){
   const d = new Date(TODAY);
   d.setDate(d.getDate() + 1 + availDates.length);
-  availDates.push({date:d.toISOString().slice(0,10), time:'09:00'});
+  availDates.push({date:d.toISOString().slice(0,10), startTime:'09:00', endTime:'15:00'});
   renderAvailDates();
 }
 function removeAvailDate(i){
@@ -850,8 +994,136 @@ function getDayName(dateStr){
   return d.toLocaleDateString('en-US', {weekday:'short', month:'short', day:'numeric'});
 }
 function normalizeAvailEntry(entry){
-  if(typeof entry === 'string') return {date: entry, time: '09:00'};
-  return {date: entry?.date || '', time: entry?.time || '09:00'};
+  if(typeof entry === 'string') return {date: entry, startTime: '09:00', endTime: '15:00'};
+  return {
+    date: entry?.date || '',
+    startTime: entry?.startTime || entry?.time || '09:00',
+    endTime: entry?.endTime || '15:00'
+  };
+}
+
+function getNthWeekdayOfMonth(dateObj){
+  return Math.floor((dateObj.getDate() - 1) / 7) + 1;
+}
+function getWeekdayToken(dateObj){
+  return ['sun','mon','tue','wed','thu','fri','sat'][dateObj.getDay()];
+}
+function expandDayToken(token){
+  const t = String(token || '').toLowerCase().trim().slice(0,3);
+  return ['sun','mon','tue','wed','thu','fri','sat'].includes(t) ? t : '';
+}
+function expandDaySpec(block){
+  const order = ['sun','mon','tue','wed','thu','fri','sat'];
+  const txt = String(block || '').toLowerCase().replace(/\s+/g,' ').trim();
+  if(!txt) return [];
+  if(txt.includes('mon–fri') || txt.includes('mon-fri') || txt.includes('mon thru fri')) return ['mon','tue','wed','thu','fri'];
+  if(txt.includes('mon–thu') || txt.includes('mon-thu')) return ['mon','tue','wed','thu'];
+  if(txt.includes('mon–wed') || txt.includes('mon-wed')) return ['mon','tue','wed'];
+  if(txt.includes('tue–thu') || txt.includes('tue-thu')) return ['tue','wed','thu'];
+  const rangeMatch = txt.match(/(sun|mon|tue|wed|thu|fri|sat)\s*[–-]\s*(sun|mon|tue|wed|thu|fri|sat)/);
+  if(rangeMatch){
+    let a = order.indexOf(rangeMatch[1]), b = order.indexOf(rangeMatch[2]);
+    if(a !== -1 && b !== -1 && a <= b) return order.slice(a, b+1);
+  }
+  return [...new Set((txt.match(/sun|mon|tue|wed|thu|fri|sat/g) || []).map(x=>x.slice(0,3)))];
+}
+function extractAllowedWeekdays(hoursText){
+  const txt = String(hoursText || '').toLowerCase();
+  if(!txt) return null;
+  const allowed = new Set();
+  const explicitBlocks = [...txt.matchAll(/((?:sun|mon|tue|wed|thu|fri|sat)[^:]{0,30})\s*:/g)];
+  explicitBlocks.forEach(match => expandDaySpec(match[1]).forEach(d => allowed.add(d)));
+  if(allowed.size) return [...allowed];
+  const direct = expandDaySpec(txt);
+  return direct.length ? direct : null;
+}
+function toMinFrom12(hour, minute, meridiem){
+  let h = Number(hour || 0) % 12;
+  if(String(meridiem || '').toLowerCase() === 'pm') h += 12;
+  return h * 60 + Number(minute || 0);
+}
+function parseTimeToken(token){
+  const m = String(token || '').toLowerCase().trim().match(/(\d{1,2})(?::(\d{2}))?\s*(am|pm)/);
+  if(!m) return null;
+  return toMinFrom12(m[1], m[2] || '0', m[3]);
+}
+function parseTimeRange(text){
+  const m = String(text || '').toLowerCase().match(/(\d{1,2}(?::\d{2})?\s*(?:am|pm))\s*[–-]\s*(\d{1,2}(?::\d{2})?\s*(?:am|pm))/);
+  if(!m) return null;
+  const start = parseTimeToken(m[1]);
+  const end = parseTimeToken(m[2]);
+  if(start === null || end === null) return null;
+  return {start, end};
+}
+function getOfficeHoursWindowsForDate(dateStr, hoursText){
+  const txt = String(hoursText || '').trim();
+  if(!dateStr || !txt) return {open:true, windows:[], known:false};
+  const d = new Date(dateStr + 'T00:00:00');
+  if(Number.isNaN(d.getTime())) return {open:true, windows:[], known:false};
+  const weekday = getWeekdayToken(d);
+  const lower = txt.toLowerCase();
+
+  const nthOnly = lower.match(/(\d)(?:st|nd|rd|th)\s*&\s*(\d)(?:st|nd|rd|th)\s*(mon|tue|wed|thu|fri|sat|sun)\s+only(?::\s*([^,]+))?/);
+  if(nthOnly){
+    const nth = getNthWeekdayOfMonth(d);
+    const allowedWeekday = expandDayToken(nthOnly[3]);
+    if(weekday !== allowedWeekday || ![Number(nthOnly[1]), Number(nthOnly[2])].includes(nth)) return {open:false, windows:[], known:true};
+    const range = parseTimeRange(nthOnly[4] || '');
+    return {open:true, windows: range ? [range] : [], known:!!range};
+  }
+
+  const dayOnly = lower.match(/(monday|tuesday|wednesday|thursday|friday|saturday|sunday|mon|tue|wed|thu|fri|sat|sun)(?:day)?\s+only(?::\s*([^,]+))?/);
+  if(dayOnly){
+    const allowedWeekday = expandDayToken(dayOnly[1]);
+    if(weekday !== allowedWeekday) return {open:false, windows:[], known:true};
+    const range = parseTimeRange(dayOnly[2] || '');
+    return {open:true, windows: range ? [range] : [], known:!!range};
+  }
+
+  const segments = lower.split(',').map(s=>s.trim()).filter(Boolean);
+  const windows = [];
+  let matchedStructuredSegment = false;
+  for(const seg of segments){
+    const m = seg.match(/^((?:sun|mon|tue|wed|thu|fri|sat)[^:]{0,30})\s*:\s*(.+)$/);
+    if(!m) continue;
+    const days = expandDaySpec(m[1]);
+    if(!days.length) continue;
+    matchedStructuredSegment = true;
+    if(days.includes(weekday)){
+      const range = parseTimeRange(m[2]);
+      if(range) windows.push(range);
+      else return {open:true, windows:[], known:false};
+    }
+  }
+  if(matchedStructuredSegment){
+    return windows.length ? {open:true, windows, known:true} : {open:false, windows:[], known:true};
+  }
+
+  const allowedDays = extractAllowedWeekdays(lower);
+  if(allowedDays && !allowedDays.includes(weekday)) return {open:false, windows:[], known:true};
+  const genericRange = parseTimeRange(lower);
+  if(genericRange) return {open:true, windows:[genericRange], known:true};
+  return {open:true, windows:[], known:false};
+}
+function isOfficeLikelyOpenOn(dateStr, hoursText){
+  return getOfficeHoursWindowsForDate(dateStr, hoursText).open;
+}
+function isOfficeLikelyOpenForWindow(dateStr, startTime, endTime, hoursText){
+  const info = getOfficeHoursWindowsForDate(dateStr, hoursText);
+  if(!info.open) return false;
+  if(!info.known || !info.windows.length) return true;
+  const availStart = toMin(startTime || '09:00');
+  const availEnd = toMin(endTime || '15:00');
+  return info.windows.some(w => Math.max(availStart, w.start) < Math.min(availEnd, w.end));
+}
+function getOfficeHoursMismatchReason(dateStr, startTime, endTime, hoursText){
+  const info = getOfficeHoursWindowsForDate(dateStr, hoursText);
+  if(!info.open) return 'closed that day';
+  if(!info.known || !info.windows.length) return '';
+  const availStart = toMin(startTime || '09:00');
+  const availEnd = toMin(endTime || '15:00');
+  const overlaps = info.windows.some(w => Math.max(availStart, w.start) < Math.min(availEnd, w.end));
+  return overlaps ? '' : 'outside available hours';
 }
 function renderAvailDates(){
   availDates = availDates.map(normalizeAvailEntry);
@@ -861,10 +1133,12 @@ function renderAvailDates(){
     return;
   }
   el.innerHTML = availDates.map((entry,i)=>`
-    <div class="avail-row" style="display:grid;grid-template-columns:90px 150px 120px 40px;gap:8px;align-items:center;">
+    <div class="avail-row" style="display:grid;grid-template-columns:90px 150px 120px 26px 120px 40px;gap:8px;align-items:center;">
       <span style="font-size:12px;font-weight:600;color:var(--text2);min-width:80px">${getDayName(entry.date)}</span>
       <input type="date" value="${entry.date}" onchange="availDates[${i}] = {...normalizeAvailEntry(availDates[${i}]), date:this.value}; renderAvailDates()">
-      <input type="time" value="${entry.time || '09:00'}" onchange="availDates[${i}] = {...normalizeAvailEntry(availDates[${i}]), time:this.value}; renderAvailDates()">
+      <input type="time" value="${entry.startTime || '09:00'}" onchange="availDates[${i}] = {...normalizeAvailEntry(availDates[${i}]), startTime:this.value}; renderAvailDates()">
+      <span style="text-align:center;font-size:12px;color:var(--text2)">to</span>
+      <input type="time" value="${entry.endTime || '15:00'}" onchange="availDates[${i}] = {...normalizeAvailEntry(availDates[${i}]), endTime:this.value}; renderAvailDates()">
       <button onclick="removeAvailDate(${i})" style="padding:5px 8px;background:var(--red-lt);color:var(--red);border:none;border-radius:4px;cursor:pointer;font-size:14px;line-height:1">✕</button>
     </div>`).join('');
 }
@@ -873,35 +1147,6 @@ function clearSchedule(){
   plannerDays = [];
   renderAvailDates();
   document.getElementById('schedResults').innerHTML = '';
-}
-function getDriveOverride(fromName, toName){
-  return DRIVE_TIME_OVERRIDES[`${fromName}||${toName}`] || null;
-}
-function estimateDriveBetweenStops(prevStop, stop){
-  if(!prevStop || !stop) return {mins:0, miles:''};
-  const override = getDriveOverride(prevStop.name, stop.name);
-  if(override) return override;
-  const sameAddress = (P[prevStop.practiceIndex]?.addr || '').trim() && (P[prevStop.practiceIndex]?.addr || '').trim() === (P[stop.practiceIndex]?.addr || '').trim();
-  if(sameAddress) return {mins:0, miles:'same building'};
-  const sameCity = (prevStop.city || '').trim().toLowerCase() === (stop.city || '').trim().toLowerCase();
-  if(sameCity) return {mins:8, miles:'same city'};
-  const sameBucket = (prevStop.bucket || '').trim().toLowerCase() === (stop.bucket || '').trim().toLowerCase();
-  if(sameBucket) return {mins:15, miles:'same area'};
-  return {mins:25, miles:'cross-area'};
-}
-function applyEstimatedDriveTimes(day){
-  day.stops.forEach((stop, idx) => {
-    if(idx === 0){
-      if(stop.driveMin === null || stop.driveMin === undefined || stop.driveMin === '') stop.driveMin = 30;
-      stop.driveLabel = 'from home';
-      stop.driveMiles = '';
-      return;
-    }
-    const estimate = estimateDriveBetweenStops(day.stops[idx-1], stop);
-    stop.driveMin = estimate.mins;
-    stop.driveMiles = estimate.miles || '';
-    stop.driveLabel = stop.driveMiles ? `${stop.driveMiles}` : '';
-  });
 }
 function makeStop(practiceIndex, source='suggested'){
   const p = P[practiceIndex];
@@ -915,6 +1160,8 @@ function makeStop(practiceIndex, source='suggested'){
     status: st,
     dueText: formatStatusWithDue(p, st),
     driveMin: 0,
+    driveMiles: '',
+    driveSource: '',
     visitMin: 60,
     arriveMin: null,
     departMin: null
@@ -930,8 +1177,9 @@ function buildPlannerCandidates(){
   }))
   .filter(x => !x.scheduledFuture && x.status !== 'ontrack')
   .sort((a,b)=>{
-    const bkt = bucketSortValue(a.bucket) - bucketSortValue(b.bucket);
-    if(bkt !== 0) return bkt;
+    const aBucket = bucketSortValue(a.bucket);
+    const bBucket = bucketSortValue(b.bucket);
+    if(aBucket !== bBucket) return aBucket - bBucket;
     const pri = plannerPriority(a.status) - plannerPriority(b.status);
     if(pri !== 0) return pri;
     if(a.due && b.due) return a.due - b.due;
@@ -940,63 +1188,161 @@ function buildPlannerCandidates(){
     return a.p.name.localeCompare(b.p.name);
   });
 }
-function generateSchedule(){
-  if(!availDates.length){ toast('Add at least one available date first','err'); return; }
-
-  const candidates = buildPlannerCandidates();
-  if(!candidates.length){
-    plannerDays = [];
-    document.getElementById('schedResults').innerHTML = `<div class="sched-empty">🎉 All practices are on track or already scheduled.</div>`;
-    return;
+async function applyAccurateDriveTimes(day){
+  for(let idx=0; idx<day.stops.length; idx++){
+    const stop = day.stops[idx];
+    if(idx === 0){
+      try {
+        const home = await geocodeHome();
+        const office = await geocodePractice(stop.practiceIndex);
+        const route = await getRouteByCoords(HOME_QUERY, home, P[stop.practiceIndex].name, office);
+        stop.driveMin = route.mins;
+        stop.driveMiles = route.miles;
+        stop.driveSource = 'home';
+      } catch(err){
+        if(stop.driveMin === null || stop.driveMin === undefined || stop.driveMin === '') stop.driveMin = 30;
+        stop.driveMiles = 'home estimate';
+        stop.driveSource = 'home';
+      }
+      continue;
+    }
+    const prevStop = day.stops[idx-1];
+    try {
+      const route = await getRouteDataByPracticeIndexes(prevStop.practiceIndex, stop.practiceIndex);
+      stop.driveMin = route.mins;
+      stop.driveMiles = route.miles;
+      stop.driveSource = route.source || 'map';
+    } catch(err){
+      const sameAddress = (P[prevStop.practiceIndex]?.addr || '').trim() && (P[prevStop.practiceIndex]?.addr || '').trim() === (P[stop.practiceIndex]?.addr || '').trim();
+      const sameCity = (prevStop.city || '').trim().toLowerCase() === (stop.city || '').trim().toLowerCase();
+      stop.driveMin = sameAddress ? 0 : (sameCity ? 8 : 20);
+      stop.driveMiles = sameAddress ? 'same building' : (sameCity ? 'same city estimate' : 'area estimate');
+      stop.driveSource = 'estimate';
+    }
   }
-
-  const byBucket = new Map();
-  candidates.forEach(item=>{
-    if(!byBucket.has(item.bucket)) byBucket.set(item.bucket, []);
-    byBucket.get(item.bucket).push(item);
-  });
-
-  const buckets = [...byBucket.entries()].sort((a,b)=>{
-    const orderDiff = bucketSortValue(a[0]) - bucketSortValue(b[0]);
-    if(orderDiff !== 0) return orderDiff;
-    const aWeight = Math.max(...a[1].map(x=>statusWeight(x.status)));
-    const bWeight = Math.max(...b[1].map(x=>statusWeight(x.status)));
-    return bWeight - aWeight;
-  });
-
-  const sortedDates = [...availDates].map(normalizeAvailEntry).sort((a,b)=> {
-    const ad = `${a.date}T${a.time || '09:00'}`;
-    const bd = `${b.date}T${b.time || '09:00'}`;
-    return ad.localeCompare(bd);
-  });
-  plannerDays = sortedDates.map((entry, idx)=>{
-    const bucketEntry = buckets[idx];
-    const stops = bucketEntry
-      ? bucketEntry[1].map(x => makeStop(x.i, 'suggested'))
-      : [];
-    const day = {
-      date: entry.date,
-      bucket: bucketEntry ? bucketEntry[0] : '',
-      startTime: entry.time || '09:00',
-      homeDriveMin: 30,
-      stops
-    };
-    applyEstimatedDriveTimes(day);
-    return day;
-  });
-
+  if(day.stops.length){
+    try {
+      const lastStop = day.stops[day.stops.length - 1];
+      const office = await geocodePractice(lastStop.practiceIndex);
+      const home = await geocodeHome();
+      const route = await getRouteByCoords(P[lastStop.practiceIndex].name, office, HOME_QUERY, home);
+      day.homeDriveMin = route.mins;
+      day.homeDriveMiles = route.miles;
+    } catch(err){
+      if(day.homeDriveMin === null || day.homeDriveMin === undefined || day.homeDriveMin === '') day.homeDriveMin = 30;
+      day.homeDriveMiles = 'home estimate';
+    }
+  }
+}
+async function refreshDayRoutes(dayIdx){
+  if(!plannerDays[dayIdx]) return;
+  const day = plannerDays[dayIdx];
+  for(let i=1;i<day.stops.length;i++){
+    day.stops[i].driveSource = '';
+    day.stops[i].driveMiles = '';
+  }
+  await applyAccurateDriveTimes(day);
   renderPlannerResults();
+}
+async function generateSchedule(){
+  if(!availDates.length){ toast('Add at least one available date first','err'); return; }
+  setPlannerBusy(true, 'Looking up map-based office routes...');
+  try {
+    const candidates = buildPlannerCandidates();
+    if(!candidates.length){
+      plannerDays = [];
+      document.getElementById('schedResults').innerHTML = `<div class="sched-empty">🎉 All practices are on track or already scheduled.</div>`;
+      return;
+    }
 
-  if(buckets.length > sortedDates.length){
-    const extra = buckets.slice(sortedDates.length).map(([bucket,items])=>`${bucket}: ${items.map(x=>x.p.name.split(' - ').pop()).join(', ')}`);
-    toast('Generated, but some locations still need dates','err');
-    const extraBox = `<div style="margin-top:12px;padding:12px;background:var(--amber-lt);border-left:4px solid var(--amber);border-radius:10px">
-      <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:6px">Additional locations still needing a date</div>
-      <div style="font-size:12px;line-height:1.6">${extra.map(x=>escapeHtml(x)).join('<br>')}</div>
-    </div>`;
-    document.getElementById('schedResults').insertAdjacentHTML('beforeend', extraBox);
-  } else {
-    toast('✓ Schedule generated','ok');
+    const byBucket = new Map();
+    candidates.forEach(item=>{
+      if(!byBucket.has(item.bucket)) byBucket.set(item.bucket, []);
+      byBucket.get(item.bucket).push(item);
+    });
+
+    const bucketQueue = [...byBucket.entries()]
+      .sort((a,b)=>{
+        const orderDiff = bucketSortValue(a[0]) - bucketSortValue(b[0]);
+        if(orderDiff !== 0) return orderDiff;
+        const aWeight = Math.max(...a[1].map(x=>statusWeight(x.status)));
+        const bWeight = Math.max(...b[1].map(x=>statusWeight(x.status)));
+        return bWeight - aWeight;
+      })
+      .map(([bucket, items]) => ({ bucket, items:[...items] }));
+
+    const sortedDates = [...availDates].map(normalizeAvailEntry).sort((a,b)=> {
+      const ad = `${a.date}T${a.startTime || '09:00'}`;
+      const bd = `${b.date}T${b.startTime || '09:00'}`;
+      return ad.localeCompare(bd);
+    });
+
+    plannerDays = sortedDates.map(entry => {
+      let chosenBucket = '';
+      let chosenItems = [];
+      let officeHoursNote = '';
+
+      for(const bucketEntry of bucketQueue){
+        if(!bucketEntry.items.length) continue;
+        const openItems = bucketEntry.items.filter(x => isOfficeLikelyOpenForWindow(entry.date, entry.startTime, entry.endTime, x.p.hours));
+        if(!openItems.length) continue;
+
+        chosenBucket = bucketEntry.bucket;
+        chosenItems = openItems;
+        const blocked = bucketEntry.items.filter(x => !isOfficeLikelyOpenForWindow(entry.date, entry.startTime, entry.endTime, x.p.hours));
+        if(blocked.length){
+          const reasons = blocked.map(x => getOfficeHoursMismatchReason(entry.date, entry.startTime, entry.endTime, x.p.hours)).filter(Boolean);
+          const detail = reasons.includes('outside available hours') ? ' or fall outside your available time window' : '';
+          officeHoursNote = `Skipped ${blocked.length} office${blocked.length===1?'':'s'} in ${bucketEntry.bucket} because the posted office hours do not match ${getDayName(entry.date)}${detail}.`;
+        }
+        bucketEntry.items = blocked;
+        break;
+      }
+
+      return {
+        date: entry.date,
+        bucket: chosenBucket,
+        startTime: entry.startTime || '09:00',
+        endTime: entry.endTime || '15:00',
+        homeDriveMin: 30,
+        homeDriveMiles: 'home estimate',
+        officeHoursNote,
+        stops: chosenItems.map(x => makeStop(x.i, 'suggested'))
+      };
+    });
+
+    bucketQueue.forEach(bucketEntry => {
+      bucketEntry.items = bucketEntry.items.filter(item => {
+        return !plannerDays.some(day => day.stops.some(stop => stop.practiceIndex === item.i));
+      });
+    });
+
+    for(let i=0;i<plannerDays.length;i++){
+      if(plannerDays[i].stops.length){
+        await applyAccurateDriveTimes(plannerDays[i]);
+      }
+    }
+
+    renderPlannerResults();
+
+    const remainingBuckets = bucketQueue.filter(x => x.items.length);
+    if(remainingBuckets.length){
+      const extra = remainingBuckets.map(({bucket, items})=>{
+        const closedCounts = items.filter(item => sortedDates.length && !sortedDates.some(d => isOfficeLikelyOpenForWindow(d.date, d.startTime, d.endTime, item.p.hours))).length;
+        const suffix = closedCounts ? ` (some may be blocked by office hours)` : '';
+        return `${bucket}: ${items.map(x=>x.p.name.split(' - ').pop()).join(', ')}${suffix}`;
+      });
+      toast('Generated, but some locations still need dates','err');
+      const extraBox = `<div style="margin-top:12px;padding:12px;background:var(--amber-lt);border-left:4px solid var(--amber);border-radius:10px">
+        <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:6px">Additional locations still needing a date</div>
+        <div style="font-size:12px;line-height:1.6">${extra.map(x=>escapeHtml(x)).join('<br>')}</div>
+      </div>`;
+      document.getElementById('schedResults').insertAdjacentHTML('beforeend', extraBox);
+    } else {
+      toast('✓ Schedule generated with map-based office routes','ok');
+    }
+  } finally {
+    setPlannerBusy(false, '');
   }
 }
 function recalcDay(day){
@@ -1043,7 +1389,7 @@ function renderPlannerResults(){
         <div>
           <label class="small-note">Drive from previous</label><br>
           <input class="planner-input" type="number" min="0" value="${Number(stop.driveMin || 0)}" style="width:85px" onchange="updateStopField(${dayIdx}, ${stopIdx}, 'driveMin', this.value)">
-          ${stop.driveMiles ? `<div class="small-note" style="margin-top:4px">${escapeHtml(stop.driveMiles)}</div>` : ''}
+          ${stop.driveMiles ? `<div class="small-note" style="margin-top:4px">${escapeHtml(stop.driveMiles)}${stop.driveSource === 'estimate' ? ' · est.' : (stop.driveSource === 'map' || stop.driveSource === 'override' ? ' · map' : '')}</div>` : ''}
         </div>
 
         <div>
@@ -1056,6 +1402,7 @@ function renderPlannerResults(){
         </div>
 
         <div class="sv-move">
+          <button class="sv-mini" onclick="schedulePlannerVisit(${dayIdx}, ${stopIdx})">Add to schedule</button>
           <button class="sv-mini" onclick="moveStop(${dayIdx}, ${stopIdx}, -1)">↑</button>
           <button class="sv-mini" onclick="moveStop(${dayIdx}, ${stopIdx}, 1)">↓</button>
           <button class="sv-mini danger" onclick="removeStop(${dayIdx}, ${stopIdx})">✕</button>
@@ -1065,18 +1412,24 @@ function renderPlannerResults(){
     return `<div class="sched-day">
       <div class="sched-day-hdr">
         <div class="sched-day-date">${getDayName(day.date)}</div>
-        <div class="sched-day-meta">${escapeHtml(day.bucket || 'Manual planning day')} · ${day.stops.length} stop${day.stops.length===1?'':'s'}</div>
+        <div class="sched-day-meta">${escapeHtml(day.bucket || 'Manual planning day')} · ${day.stops.length} stop${day.stops.length===1?'':'s'} · ${toReadableHM(toMin(day.startTime || '09:00'))} to ${toReadableHM(toMin(day.endTime || '15:00'))}</div>
       </div>
 
       <div class="sched-day-body">
+        ${day.officeHoursNote ? `<div style="margin-bottom:10px;padding:10px 12px;background:var(--amber-lt);border-left:4px solid var(--amber);border-radius:10px;font-size:12px;color:var(--amber)">${escapeHtml(day.officeHoursNote)}</div>` : ''}
         <div class="sched-day-tools">
           <div class="tool-box">
-            <label>Start time</label>
+            <label>Available from</label>
             <input class="planner-input" type="time" value="${escapeHtml(day.startTime)}" onchange="updateDayField(${dayIdx}, 'startTime', this.value)">
+          </div>
+          <div class="tool-box">
+            <label>Available to</label>
+            <input class="planner-input" type="time" value="${escapeHtml(day.endTime || '15:00')}" onchange="updateDayField(${dayIdx}, 'endTime', this.value)">
           </div>
           <div class="tool-box">
             <label>Drive home (mins)</label>
             <input class="planner-input" type="number" min="0" value="${Number(day.homeDriveMin || 0)}" onchange="updateDayField(${dayIdx}, 'homeDriveMin', this.value)">
+            <div class="small-note" style="margin-top:4px">${escapeHtml(day.homeDriveMiles || 'home estimate')}</div>
           </div>
           <div class="tool-box">
             <label>Location focus</label>
@@ -1096,46 +1449,63 @@ function renderPlannerResults(){
           <span class="sum-chip">Visit total: ${minutesLabel(day.totalVisitMin || 0)}</span>
           <span class="sum-chip">Last stop done: ${toReadableHM(day.finishLastStopMin || toMin(day.startTime))}</span>
           <span class="sum-chip">Home by: ${toReadableHM(day.returnHomeMin || toMin(day.startTime))}</span>
+          <span class="sum-chip">${day.overByMin > 0 ? `Over window by ${minutesLabel(day.overByMin)}` : `Fits by ${toReadableHM(day.availableEndMin || toMin(day.endTime || '15:00'))}`}</span>
         </div>
       </div>
     </div>`;
   }).join('');
 }
-function updateStopField(dayIdx, stopIdx, field, value){
+async function updateStopField(dayIdx, stopIdx, field, value){
   const stop = plannerDays[dayIdx].stops[stopIdx];
   stop[field] = Number(value || 0);
-  if(field === 'driveMin') stop.driveMiles = 'manual';
+  if(field === 'driveMin'){
+    stop.driveSource = stopIdx === 0 ? 'home' : 'manual';
+    if(!stop.driveMiles) stop.driveMiles = stopIdx === 0 ? 'home estimate' : 'manual';
+  }
   renderPlannerResults();
 }
-function updateDayField(dayIdx, field, value){
+async function updateDayField(dayIdx, field, value){
   plannerDays[dayIdx][field] = field === 'homeDriveMin' ? Number(value || 0) : value;
   renderPlannerResults();
 }
-function moveStop(dayIdx, stopIdx, direction){
+async function moveStop(dayIdx, stopIdx, direction){
   const arr = plannerDays[dayIdx].stops;
   const newIdx = stopIdx + direction;
   if(newIdx < 0 || newIdx >= arr.length) return;
   [arr[stopIdx], arr[newIdx]] = [arr[newIdx], arr[stopIdx]];
-  applyEstimatedDriveTimes(plannerDays[dayIdx]);
-  renderPlannerResults();
+  await refreshDayRoutes(dayIdx);
 }
-function removeStop(dayIdx, stopIdx){
+async function removeStop(dayIdx, stopIdx){
   plannerDays[dayIdx].stops.splice(stopIdx,1);
-  applyEstimatedDriveTimes(plannerDays[dayIdx]);
-  renderPlannerResults();
+  await refreshDayRoutes(dayIdx);
 }
-function addOfficeToDay(dayIdx){
+function schedulePlannerVisit(dayIdx, stopIdx){
+  const day = plannerDays[dayIdx];
+  const stop = day?.stops?.[stopIdx];
+  if(!stop) return;
+  const p = P[stop.practiceIndex];
+  if(!p) return;
+  p.nextScheduled = day.date;
+  p.visitStatus = 'Scheduled';
+  _unsaved = true;
+  autoSave(getDataForSave());
+  renderStats();
+  renderWeek();
+  renderDash();
+  if(document.getElementById('view-practices').classList.contains('active')) renderPrac();
+  if(document.getElementById('view-calendar').classList.contains('active')) renderCal();
+  toast(`✓ Added ${p.name} to the schedule for ${fmt(pd(day.date))}`,'ok');
+}
+async function addOfficeToDay(dayIdx){
   const sel = document.getElementById('addOffice-' + dayIdx);
   const practiceIndex = Number(sel.value);
   if(Number.isNaN(practiceIndex)) return;
   const stop = makeStop(practiceIndex, 'manual');
-  stop.driveMin = null;
+  stop.driveMin = 0;
   stop.visitMin = 60;
   plannerDays[dayIdx].stops.push(stop);
-  applyEstimatedDriveTimes(plannerDays[dayIdx]);
-  renderPlannerResults();
+  await refreshDayRoutes(dayIdx);
 }
-
 function renderStats(){
   const c = {all:P.length, overdue:0, soon:0, upcoming:0, unsched:0, ontrack:0};
   P.forEach(p=> c[stOf(p)]++);
@@ -1150,15 +1520,34 @@ function applyF(v){ document.getElementById('df').value = v; renderDash(); }
 function renderWeek(){
   const lo = new Date(TODAY); lo.setDate(lo.getDate() - lo.getDay());
   const hi = new Date(lo); hi.setDate(hi.getDate() + 6);
-  const items = P.filter(p=>{ const d = nextDue(p); return d && d>=lo && d<=hi; });
-  const b = document.getElementById('weekBanner');
-  if(!items.length){ b.classList.remove('has'); return; }
-  b.classList.add('has');
-  document.getElementById('weekList').innerHTML = items.map(p=>`
-    <div class="week-item"><div class="w-dot"></div>
-      <div class="w-name">${escapeHtml(p.name)}</div>
-      <div class="w-due">Due ${fmt(nextDue(p))}</div>
-    </div>`).join('');
+  const weekItems = P.filter(p=>{ const d = nextDue(p); return d && d>=lo && d<=hi; }).sort((a,b)=> nextDue(a)-nextDue(b));
+  const monthItems = P.filter(p=>{
+    const d = nextDue(p);
+    return d && d.getFullYear() === TODAY.getFullYear() && d.getMonth() === TODAY.getMonth();
+  }).sort((a,b)=> nextDue(a)-nextDue(b));
+
+  const weekBanner = document.getElementById('weekBanner');
+  const monthBanner = document.getElementById('monthBanner');
+
+  if(!weekItems.length){ weekBanner.classList.remove('has'); document.getElementById('weekList').innerHTML = ''; }
+  else{
+    weekBanner.classList.add('has');
+    document.getElementById('weekList').innerHTML = weekItems.map(p=>`
+      <div class="week-item"><div class="w-dot"></div>
+        <div class="w-name">${escapeHtml(p.name)}</div>
+        <div class="w-due">Due ${fmt(nextDue(p))}</div>
+      </div>`).join('');
+  }
+
+  if(!monthItems.length){ monthBanner.classList.remove('has'); document.getElementById('monthList').innerHTML = ''; }
+  else{
+    monthBanner.classList.add('has');
+    document.getElementById('monthList').innerHTML = monthItems.map(p=>`
+      <div class="week-item"><div class="w-dot"></div>
+        <div class="w-name">${escapeHtml(p.name)}</div>
+        <div class="w-due">Due ${fmt(nextDue(p))}</div>
+      </div>`).join('');
+  }
 }
 function getFiltered(sid,fid,frqid,ctid,spid){
   const q = (document.getElementById(sid)||{}).value?.toLowerCase() || '';
