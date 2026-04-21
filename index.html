@@ -40,8 +40,7 @@ body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);font-s
 .tab:hover:not(.active){color:rgba(255,255,255,.75)}
 .page{padding:16px;max-width:1440px;margin:0 auto}
 .view{display:none}.view.active{display:block}
-/* stat cards */
-.stats{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:16px}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px}
 @media(max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
 .sc{background:var(--card);border-radius:var(--radius);padding:16px 14px 14px;box-shadow:var(--shadow);cursor:pointer;transition:transform .15s,box-shadow .15s;position:relative;overflow:hidden;border:2px solid transparent}
 .sc::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--radius) var(--radius) 0 0}
@@ -53,7 +52,6 @@ body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);font-s
 .sc.s-soon::after{background:var(--amber)}.sc.s-soon .sc-num{color:var(--amber)}
 .sc.s-ns::after{background:var(--grey)}.sc.s-ns .sc-num{color:var(--grey)}
 .sc.s-ok::after{background:var(--green)}.sc.s-ok .sc-num{color:var(--green)}
-/* week banner */
 .week-banner{background:linear-gradient(135deg,var(--navy),var(--teal));border-radius:var(--radius);padding:14px 18px;margin-bottom:16px;color:#fff;display:none}
 .week-banner.has{display:block}
 .week-title{font-size:11px;font-weight:700;letter-spacing:.3px;margin-bottom:8px;opacity:.8;text-transform:uppercase}
@@ -62,7 +60,6 @@ body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);font-s
 .w-dot{width:8px;height:8px;border-radius:50%;background:#FFD700;flex-shrink:0}
 .w-name{font-size:13px;font-weight:600;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .w-due{font-size:11px;font-family:'JetBrains Mono',monospace;opacity:.7;flex-shrink:0}
-/* filter bar */
 .fbar{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center}
 .sw{position:relative;flex:1;min-width:180px}
 .sw input{width:100%;padding:9px 12px 9px 34px;border:1px solid var(--border);border-radius:var(--rsm);font-family:'Sora',sans-serif;font-size:13px;background:var(--card);color:var(--text);outline:none;transition:border-color .15s}
@@ -70,7 +67,6 @@ body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);font-s
 .si{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text2);font-size:13px;pointer-events:none}
 .fsel{padding:9px 10px;border:1px solid var(--border);border-radius:var(--rsm);font-family:'Sora',sans-serif;font-size:12px;background:var(--card);color:var(--text);outline:none;cursor:pointer}
 .fcnt{font-size:11px;color:var(--text2);font-family:'JetBrains Mono',monospace;white-space:nowrap}
-/* practice cards */
 .plist{display:flex;flex-direction:column;gap:8px}
 .pcard{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);border-left:4px solid var(--border);overflow:hidden;transition:box-shadow .15s;animation:fadeUp .18s ease both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
@@ -95,14 +91,12 @@ body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);font-s
 .dtab{padding:9px 14px;font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap}
 .dtab.active{color:var(--teal);border-bottom-color:var(--teal);background:var(--card)}
 .dcon{display:none;padding:14px}.dcon.active{display:block}
-/* info tab */
 .cg{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:500px){.cg{grid-template-columns:1fr}}
 .cf{display:flex;flex-direction:column;gap:3px}
 .cf-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--text2)}
 .cf-val{font-size:13px;color:var(--text);line-height:1.4}
 .cf-val.warn{color:var(--red);font-weight:600}
-/* notes section on info tab */
 .notes-section{margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
 .notes-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
 .notes-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--text2)}
@@ -114,7 +108,6 @@ body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);font-s
 .note-add-form input[type=date]{padding:6px 8px;border:1px solid var(--border);border-radius:6px;font-family:'Sora',sans-serif;font-size:12px;outline:none}
 .note-add-form textarea{flex:1;min-width:150px;padding:6px 8px;border:1px solid var(--border);border-radius:6px;font-family:'Sora',sans-serif;font-size:12px;resize:none;height:52px;outline:none}
 .note-add-form input:focus,.note-add-form textarea:focus{border-color:var(--teal)}
-/* update tab */
 .eg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:12px}
 .eg{display:flex;flex-direction:column;gap:4px}
 .eg label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--text2)}
@@ -128,33 +121,19 @@ body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);font-s
 .btn-pr:hover{background:var(--teal-lt)}
 .flash{font-size:12px;color:var(--green);font-weight:700;opacity:0;transition:opacity .3s}
 .flash.show{opacity:1}
-/* equipment */
-.eq-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
-.eq-item{display:flex;flex-direction:column;gap:8px;padding:10px;border:1px solid var(--border);border-radius:var(--rsm);background:var(--bg)}
-.eq-top{display:flex;align-items:center;gap:8px}
-.eq-name{font-size:11px;font-weight:700;letter-spacing:.3px;flex:1}
-.eq-check{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--text)}
-.eq-check input{width:16px;height:16px;accent-color:var(--teal);cursor:pointer}
-.eq-input,.eq-select,.info-input,.info-textarea,.dur-input{width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-family:'Sora',sans-serif;font-size:12px;background:#fff;outline:none}
-.eq-input:focus,.eq-select:focus,.info-input:focus,.info-textarea:focus,.dur-input:focus{border-color:var(--teal)}
-.info-edit-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.info-edit-grid .full{grid-column:1/-1}
-.info-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px}
-.info-view .cg{margin-bottom:10px}
-.info-edit-wrap{margin-top:12px;padding:12px;background:var(--bg);border:1px solid var(--border);border-radius:var(--rsm)}
-.info-edit-wrap[hidden]{display:none !important}
-.info-edit-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--text2);margin-bottom:10px}
-.visit-duration-row{margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
-.visit-duration-help{font-size:11px;color:var(--text2);margin-top:5px}
-@media(max-width:650px){.info-edit-grid{grid-template-columns:1fr}}
-/* history */
+.eq-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:7px}
+.eq-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--border);border-radius:var(--rsm);background:var(--bg);cursor:pointer;transition:background .12s;user-select:none}
+.eq-item.yes{background:var(--green-lt);border-color:#A9D6A0}
+.eq-item.no{background:var(--grey-lt)}
+.eq-cb{width:16px;height:16px;border-radius:4px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;transition:all .12s}
+.eq-item.yes .eq-cb{background:var(--green);border-color:var(--green);color:#fff}
+.eq-name{font-size:12px;font-weight:500}
 .hist-list{display:flex;flex-direction:column;gap:6px;max-height:220px;overflow-y:auto;margin-bottom:12px}
 .hist-item{display:flex;align-items:flex-start;gap:10px;padding:8px 12px;background:var(--bg);border-radius:var(--rsm);border-left:3px solid var(--green)}
 .h-date{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;color:var(--teal);flex-shrink:0;min-width:80px}
 .h-note{font-size:12px;color:var(--text);flex:1;line-height:1.4}
 .h-ts{font-size:10px;color:var(--text2);flex-shrink:0;font-family:'JetBrains Mono',monospace}
 .hist-empty{font-size:13px;color:var(--text2);text-align:center;padding:16px;font-style:italic}
-/* add past visit form */
 .past-visit-form{background:var(--bg);border:1px solid var(--border);border-radius:var(--rsm);padding:12px;margin-top:6px}
 .past-visit-form h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text2);margin-bottom:10px}
 .past-visit-row{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end}
@@ -162,7 +141,6 @@ body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);font-s
 .past-visit-row input[type=date]:focus{border-color:var(--teal)}
 .past-visit-row input[type=text]{flex:1;min-width:160px;padding:7px 10px;border:1px solid var(--border);border-radius:6px;font-family:'Sora',sans-serif;font-size:12px;outline:none;background:#fff}
 .past-visit-row input[type=text]:focus{border-color:var(--teal)}
-/* calendar */
 .cal-hdr{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
 .cal-title{font-size:18px;font-weight:800;color:var(--navy)}
 .cal-legend{display:flex;gap:12px;flex-wrap:wrap;margin-left:auto}
@@ -181,53 +159,52 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
 .c-pend{background:#FFEB9C;color:#7D4E00;border-radius:4px;padding:2px 5px;display:inline-block}
 .c-sched{background:var(--blue-lt);color:var(--blue-dk);border-radius:4px;padding:2px 5px;display:inline-block}
 .c-done{background:var(--green-lt);color:var(--green);border-radius:4px;padding:2px 5px;display:inline-block}
-/* schedule planner */
 .sched-planner{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;margin-bottom:20px}
 .sched-planner h3{font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px}
 .sched-planner p{font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.5}
-.avail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:16px}
-.avail-row{display:grid;grid-template-columns:140px 1fr 120px 120px auto;gap:8px;align-items:center;background:var(--bg);padding:10px 12px;border-radius:var(--rsm);border:1px solid var(--border)}
-.avail-row .avail-label{font-size:12px;font-weight:700;color:var(--text2)}
-.avail-row input[type=date],.avail-row input[type=time]{padding:7px 8px;border:1px solid var(--border);border-radius:6px;font-family:'Sora',sans-serif;font-size:12px;outline:none;background:#fff}
-.avail-row input[type=date]:focus,.avail-row input[type=time]:focus{border-color:var(--teal)}
-.avail-row button{padding:5px 8px;background:var(--red-lt);color:var(--red);border:none;border-radius:4px;cursor:pointer;font-size:14px;line-height:1}
+.avail-row{display:flex;gap:8px;align-items:center;background:var(--bg);padding:8px 12px;border-radius:var(--rsm);border:1px solid var(--border)}
+.avail-row input[type=date], .planner-input, .planner-select{padding:7px 9px;border:1px solid var(--border);border-radius:6px;font-family:'Sora',sans-serif;font-size:12px;outline:none;background:#fff}
+.avail-row input[type=date]:focus,.planner-input:focus,.planner-select:focus{border-color:var(--teal)}
 .sched-results{display:flex;flex-direction:column;gap:12px}
 .sched-day{background:var(--bg);border-radius:var(--radius);border:2px solid var(--border);overflow:hidden}
-.sched-day-hdr{background:var(--navy);color:#fff;padding:12px 16px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.sched-day-hdr{background:var(--navy);color:#fff;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
 .sched-day-date{font-size:14px;font-weight:700}
-.sched-day-meta{font-size:11px;opacity:.8;font-family:'JetBrains Mono',monospace}
-.route-note{font-size:11px;color:rgba(255,255,255,.82);margin-top:3px}
-.sched-visits{padding:12px;display:flex;flex-direction:column;gap:8px}
-.sched-visit{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:#fff;border-radius:var(--rsm);border-left:3px solid var(--teal)}
+.sched-day-meta{font-size:11px;opacity:.75;font-family:'JetBrains Mono',monospace}
+.sched-day-body{padding:12px}
+.sched-day-tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-bottom:12px}
+.sched-day-tools .tool-box{background:#fff;border:1px solid var(--border);border-radius:var(--rsm);padding:8px 10px}
+.tool-box label{display:block;font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;margin-bottom:4px}
+.sched-visits{display:flex;flex-direction:column;gap:8px}
+.sched-visit{display:grid;grid-template-columns:minmax(220px,1.4fr) repeat(4,auto);gap:10px;align-items:center;padding:10px 12px;background:#fff;border-radius:var(--rsm);border-left:3px solid var(--teal)}
 .sched-visit.overdue{border-left-color:var(--red)}
 .sched-visit.soon{border-left-color:var(--amber)}
-.sched-visit.flagged{box-shadow:inset 0 0 0 1px rgba(208,112,10,.35)}
-.sv-main{flex:1;min-width:0}
-.sv-name{font-size:13px;font-weight:600;flex:1}
-.sv-city{font-size:11px;color:var(--text2);margin-top:2px}
-.sv-flags{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
-.flag-chip{display:inline-block;padding:2px 7px;border-radius:999px;font-size:10px;font-weight:700;background:var(--amber-lt);color:var(--amber)}
-.flag-chip.red{background:var(--red-lt);color:var(--red)}
-.route-box{margin:0 12px 12px;background:#fff;border:1px dashed var(--border);border-radius:var(--rsm);padding:10px 12px}
-.route-step{font-size:12px;color:var(--text);padding:6px 0;border-bottom:1px solid #eef2f6}.route-step:last-child{border-bottom:none}.route-leg{font-size:11px;color:var(--text2);margin-top:2px}.route-total{font-size:11px;color:var(--teal);font-weight:700;margin-top:8px}
-.route-step strong{color:var(--navy)}
-.route-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-.route-btn{padding:7px 10px;border:none;border-radius:6px;font-family:'Sora',sans-serif;font-size:11px;font-weight:700;cursor:pointer}
-.route-btn.primary{background:var(--teal);color:#fff}
-.route-btn.secondary{background:var(--grey-lt);color:var(--text);border:1px solid var(--border)}
-.sv-status{font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px}
+.sched-visit.unsched{border-left-color:var(--grey)}
+.sched-visit.upcoming{border-left-color:#D4AA00}
+.sv-main{min-width:0}
+.sv-name{font-size:13px;font-weight:600;line-height:1.35}
+.sv-city{font-size:11px;color:var(--text2)}
+.sv-badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.sv-type{font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;background:var(--grey-lt);color:var(--grey)}
+.sv-time{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--navy);font-weight:700;min-width:115px}
+.sv-move{display:flex;gap:4px}
+.sv-mini{padding:5px 8px;border:none;border-radius:6px;background:var(--grey-lt);cursor:pointer;font-size:11px;font-weight:700}
+.sv-mini:hover{background:var(--border)}
+.sv-mini.danger{background:var(--red-lt);color:var(--red)}
+.sv-mini.danger:hover{background:#ffd0d0}
+.day-add-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+.day-summary{margin-top:10px;padding:10px 12px;background:#fff;border:1px solid var(--border);border-radius:var(--rsm);display:flex;gap:14px;flex-wrap:wrap;font-size:12px}
+.sum-chip{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:5px 10px;font-weight:600}
 .sched-empty{text-align:center;padding:30px;color:var(--text2);font-style:italic;font-size:13px}
-.schedule-warning{margin-top:16px;padding:14px;background:var(--amber-lt);border-radius:var(--radius);border-left:4px solid var(--amber)}
-.schedule-warning-title{font-size:12px;font-weight:700;color:var(--amber);margin-bottom:8px}
-@media(max-width:780px){.avail-row{grid-template-columns:1fr 1fr;}.avail-row .avail-label{grid-column:1/-1}.avail-row button{justify-self:start}}
-/* toast */
+.small-note{font-size:11px;color:var(--text2)}
+@media(max-width:900px){
+  .sched-visit{grid-template-columns:1fr;align-items:flex-start}
+  .sv-time{min-width:auto}
+}
 .toast{position:fixed;bottom:20px;right:20px;background:var(--navy);color:#fff;padding:11px 18px;border-radius:var(--radius);font-size:13px;font-weight:500;box-shadow:var(--shadow-lg);transform:translateY(80px);opacity:0;transition:all .3s cubic-bezier(.34,1.56,.64,1);z-index:999;max-width:300px}
 .toast.show{transform:translateY(0);opacity:1}
 .toast.err{background:var(--red)}.toast.ok{background:var(--green)}
-/* settings bar */
 #settingsBar{background:var(--navy);padding:6px 18px;display:flex;gap:16px;align-items:center;font-size:11px;color:rgba(255,255,255,.65);flex-wrap:wrap}
 #settingsBar input[type=checkbox]{accent-color:var(--teal);cursor:pointer}
-/* print */
 @media print{.hdr,.tabs,.fbar,.chev,.eact,.dtabs,.btn-pr,.hdr-actions,.stats,.week-banner,.dcon:not(.active){display:none!important}body{background:#fff}.pcard{box-shadow:none;border:1px solid #ccc;break-inside:avoid}.pcard-body{display:block!important}.dcon.active{display:block!important}.page{padding:0}}
 @media(max-width:480px){.page{padding:10px}.tab{padding:9px 10px;font-size:11px}.sc-num{font-size:26px}.pcard-name{font-size:13px}.hdr-actions .btn{padding:6px 8px;font-size:11px}}
 </style>
@@ -271,7 +248,6 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
 
 <div class="page">
 
-  <!-- DASHBOARD -->
   <div class="view active" id="view-dashboard">
     <div class="stats" id="statsEl"></div>
     <div class="week-banner" id="weekBanner">
@@ -283,7 +259,7 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
       <select class="fsel" id="df" onchange="renderDash()">
         <option value="">All Statuses</option><option value="overdue">Overdue</option>
         <option value="soon">Due Soon</option><option value="upcoming">Upcoming</option>
-        <option value="unsched">Not Scheduled</option><option value="flagged">Flagged</option><option value="ontrack">On Track</option>
+        <option value="unsched">Not Scheduled</option><option value="ontrack">On Track</option>
       </select>
       <select class="fsel" id="dfreq" onchange="renderDash()">
         <option value="">All Frequencies</option><option value="Quarterly">Quarterly</option>
@@ -294,7 +270,6 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
     <div class="plist" id="dashList"></div>
   </div>
 
-  <!-- ALL PRACTICES -->
   <div class="view" id="view-practices">
     <div class="fbar">
       <div class="sw"><span class="si">🔍</span><input id="ps" type="text" placeholder="Search name, city, specialty, manager, lead MA…" oninput="renderPrac()"></div>
@@ -306,7 +281,6 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
     <div class="plist" id="pracList"></div>
   </div>
 
-  <!-- MONTHLY SCHEDULE -->
   <div class="view" id="view-calendar">
     <div class="cal-hdr">
       <div class="cal-title">2026 Monthly Schedule</div>
@@ -320,17 +294,22 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
     <div class="cal-wrap"><table class="cal" id="calEl"></table></div>
   </div>
 
-  <!-- DAY PLANNER -->
   <div class="view" id="view-planner">
     <div class="sched-planner">
       <h3>🗓 Smart Day Planner</h3>
-      <p>Enter the dates and times you're available for site visits. The planner will cluster nearby practices, suggest the best route order for the day, flag high-priority sites, and let you add chosen visits to the monthly calendar only when you want to.</p>
+      <p>
+        Suggestions are built by location first, then urgency. Offices with a future scheduled visit are excluded from the planner.
+        After generating, you can edit the route, change drive minutes, add offices manually, and recalculate times.
+      </p>
       <div style="display:flex;gap:8px;align-items:center;margin-bottom:12px;flex-wrap:wrap">
         <button class="btn btn-teal" onclick="addAvailDate()">+ Add Available Date</button>
         <button class="btn" style="background:var(--green);color:#fff" onclick="generateSchedule()">✨ Generate Schedule</button>
         <button class="btn btn-grey" onclick="clearSchedule()">Clear</button>
       </div>
       <div id="availDates" style="display:flex;flex-direction:column;gap:6px;margin-bottom:16px"></div>
+      <div class="small-note" style="margin-bottom:12px">
+        Tip: edit the “Drive from previous” minutes for the first stop to represent drive from home. Use “Drive home” at the day level for the last leg back.
+      </div>
       <div id="schedResults"></div>
     </div>
   </div>
@@ -340,1095 +319,872 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
 <div class="toast" id="toast"></div>
 
 <script>
-// ════════════════════════════════════
-// SAVE / LOAD SYSTEM
-// ════════════════════════════════════
-const SKEY_DATA  = 'vmgTracker26v3';
-const FILE_NAME  = 'VMGTracker2026.json';
-let _unsaved=false, _lastSave=null, _autoDownload=true, _remindClose=true;
+const SKEY_DATA = 'vmgTracker26v3';
+const FILE_NAME = 'VMGTracker2026.json';
+let _unsaved = false, _lastSave = null, _autoDownload = true, _remindClose = true;
 
 function getDataForSave(){
-  const out={};
+  const out = {};
   P.forEach((p,i)=>{
-    out[i]={
-      lastVisit:p.lastVisit,visitStatus:p.visitStatus,notes:p.notes,
-      nextScheduled:p.nextScheduled,history:p.history,equip:p.equip,noteLog:p.noteLog,
-      addr:p.addr,spec:p.spec,city:p.city,mgr:p.mgr,dir:p.dir,leadMA:p.leadMA,hours:p.hours,visitDuration:p.visitDuration
+    out[i] = {
+      lastVisit: p.lastVisit,
+      visitStatus: p.visitStatus,
+      notes: p.notes,
+      nextScheduled: p.nextScheduled,
+      history: p.history,
+      equip: p.equip,
+      noteLog: p.noteLog
     };
   });
   return out;
 }
 function applyLoadedData(data){
   P.forEach((p,i)=>{
-    const s=data[i]||{};
-    if(s.lastVisit!==undefined)      p.lastVisit=s.lastVisit;
-    if(s.visitStatus!==undefined)    p.visitStatus=s.visitStatus;
-    if(s.notes!==undefined)          p.notes=s.notes;
-    if(s.nextScheduled!==undefined)  p.nextScheduled=s.nextScheduled;
-    if(s.history!==undefined)        p.history=s.history;
-    if(s.equip!==undefined)          p.equip=mergeEquipMaps(p.equip,s.equip);
-    if(s.noteLog!==undefined)        p.noteLog=s.noteLog;
-    ['addr','spec','city','mgr','dir','leadMA','hours','visitDuration'].forEach(k=>{if(s[k]!==undefined)p[k]=s[k];});
+    const s = data[i] || {};
+    if(s.lastVisit !== undefined) p.lastVisit = s.lastVisit;
+    if(s.visitStatus !== undefined) p.visitStatus = s.visitStatus;
+    if(s.notes !== undefined) p.notes = s.notes;
+    if(s.nextScheduled !== undefined) p.nextScheduled = s.nextScheduled;
+    if(s.history !== undefined) p.history = s.history;
+    if(s.equip !== undefined) p.equip = {...p.equip, ...s.equip};
+    if(s.noteLog !== undefined) p.noteLog = s.noteLog;
   });
-  localStorage.setItem(SKEY_DATA,JSON.stringify(getDataForSave()));
-  _unsaved=false;
-  renderStats();renderWeek();renderDash();renderPrac();
-  if(document.getElementById('view-calendar').classList.contains('active'))renderCal();
+  localStorage.setItem(SKEY_DATA, JSON.stringify(data));
+  _unsaved = false;
+  renderStats(); renderWeek(); renderDash();
+  if(document.getElementById('view-calendar').classList.contains('active')) renderCal();
 }
 function saveLocal(){
-  const d=getDataForSave();
-  localStorage.setItem(SKEY_DATA,JSON.stringify(d));
-  _lastSave=new Date();_unsaved=false;
+  const d = getDataForSave();
+  localStorage.setItem(SKEY_DATA, JSON.stringify(d));
+  _lastSave = new Date();
+  _unsaved = false;
   return d;
 }
 function manualSave(){
-  const d=saveLocal();triggerDownload(d);
-  setSS('Saved '+_lastSave.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}));
+  const d = saveLocal();
+  triggerDownload(d);
+  setSS('Saved ' + _lastSave.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}));
   toast('✓ Saved & backup downloaded','ok');
 }
 function autoSave(data){
-  localStorage.setItem(SKEY_DATA,JSON.stringify(data));
-  _lastSave=new Date();_unsaved=false;
-  if(_autoDownload)triggerDownload(data);
-  setSS('Auto-saved '+_lastSave.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}));
+  localStorage.setItem(SKEY_DATA, JSON.stringify(data));
+  _lastSave = new Date();
+  _unsaved = false;
+  if(_autoDownload) triggerDownload(data);
+  setSS('Auto-saved ' + _lastSave.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}));
 }
-function downloadBackup(){triggerDownload(getDataForSave());toast('✓ Backup downloaded')}
+function downloadBackup(){ triggerDownload(getDataForSave()); toast('✓ Backup downloaded'); }
 function triggerDownload(data){
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));
-  a.download=FILE_NAME;document.body.appendChild(a);a.click();
-  document.body.removeChild(a);URL.revokeObjectURL(a.href);
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(data,null,2)], {type:'application/json'}));
+  a.download = FILE_NAME;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
 }
 function uploadBackup(e){
-  const file=e.target.files[0];if(!file)return;
-  const r=new FileReader();
-  r.onload=ev=>{try{applyLoadedData(JSON.parse(ev.target.result));toast('✓ Data loaded','ok')}catch(er){toast('Invalid file','err')}};
-  r.readAsText(file);e.target.value='';
+  const file = e.target.files[0];
+  if(!file) return;
+  const r = new FileReader();
+  r.onload = ev => {
+    try{
+      applyLoadedData(JSON.parse(ev.target.result));
+      toast('✓ Data loaded','ok');
+    }catch(err){
+      toast('Invalid file','err');
+    }
+  };
+  r.readAsText(file);
+  e.target.value = '';
 }
-window.addEventListener('beforeunload',e=>{
-  if(_remindClose&&_unsaved){e.preventDefault();e.returnValue='Unsaved changes — download a backup?';return e.returnValue}
+window.addEventListener('beforeunload', e => {
+  if(_remindClose && _unsaved){
+    e.preventDefault();
+    e.returnValue = 'Unsaved changes — download a backup?';
+    return e.returnValue;
+  }
 });
-function setSS(m){document.getElementById('syncStatus').textContent=m}
-function toggleAutoDownload(cb){_autoDownload=cb.checked;toast(_autoDownload?'Auto-backup on':'Auto-backup off')}
-function toggleRemindOnClose(cb){_remindClose=cb.checked}
+function setSS(m){ document.getElementById('syncStatus').textContent = m; }
+function toggleAutoDownload(cb){ _autoDownload = cb.checked; toast(_autoDownload ? 'Auto-backup on' : 'Auto-backup off'); }
+function toggleRemindOnClose(cb){ _remindClose = cb.checked; }
 
-// ════════════════════════════════════
-// PRACTICE DATA
-// ════════════════════════════════════
-const TODAY  = new Date(2026,3,14);
-const FREQ_MO= {Annual:12,'Bi-Annual':6,Quarterly:3,'Bi-Monthly':2};
-const MOS    = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-// OceaView replaces CirrusCon
-const EQ_KEYS= ['Vaccines/Refrig. Meds','Sample Meds','OceaView','POC Testing','VFC','Autoclave','Trophon','AED','Eyewash','Oxygen'];
+const TODAY = new Date(2026,3,14);
+const FREQ_MO = {Annual:12,'Bi-Annual':6,Quarterly:3,'Bi-Monthly':2};
+const MOS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const EQ_KEYS = ['Vaccines/Refrig. Meds','Sample Meds','OceanView','POC Testing','VFC','Autoclave','Trophon','AED','Eyewash','Oxygen'];
 
-// City groupings for smart scheduling (driving proximity)
 const CITY_GROUPS = {
-  'Hammonton':  ['Hammonton'],
-  'Linwood':    ['Linwood','Ventnor','Ventnor City'],
-  'Sewell':     ['Sewell','Berlin'],
-  'Vineland':   ['Vineland'],
-  'Sicklerville':['Sicklerville','Lindenwold'],
-  'Somers Point':['Somers Point'],
-  'Galloway':   ['Galloway'],
+  'Hammonton Area': ['Hammonton'],
+  'Linwood / Ventnor Area': ['Linwood','Ventnor','Ventnor City'],
+  'Sewell / Berlin Area': ['Sewell','Berlin'],
+  'Vineland Area': ['Vineland'],
+  'Sicklerville / Lindenwold Area': ['Sicklerville','Lindenwold'],
+  'Somers Point Area': ['Somers Point'],
+  'Galloway Area': ['Galloway']
 };
+const CITY_GROUP_ORDER = Object.keys(CITY_GROUPS);
 
-const GEO_BY_CITY = {
-  'Hammonton':[39.6365,-74.8024],
-  'Linwood':[39.3398,-74.5752],
-  'Ventnor':[39.3404,-74.4774],
-  'Ventnor City':[39.3404,-74.4774],
-  'Sewell':[39.7663,-75.1452],
-  'Berlin':[39.7912,-74.9291],
-  'Vineland':[39.4864,-75.0257],
-  'Sicklerville':[39.7212,-74.9693],
-  'Lindenwold':[39.8243,-74.9974],
-  'Somers Point':[39.3176,-74.5946],
-  'Galloway':[39.4912,-74.5027]
-};
-
-const GEO_BY_NAME = {
-  'Virtua Center for Liver Disease - Linwood':[39.3395,-74.5760],
-  'Virtua Gastroenterology - Hammonton':[39.6490,-74.7888],
-  'Virtua Cardiology - Galloway':[39.4920,-74.5070],
-  'Virtua Cardiology - Hammonton':[39.6490,-74.7888],
-  'Virtua Cardiology - Sewell':[39.7599,-75.1459],
-  'Virtua Cardiology - Berlin':[39.8083,-74.9348],
-  'Virtua Cardiology - Ventnor':[39.3384,-74.4812],
-  'Virtua Primary Care - Linwood':[39.3396,-74.5759],
-  'Virtua Primary Care - Ventnor':[39.3384,-74.4812],
-  'Virtua Primary Care - Lindenwold':[39.8250,-74.9940],
-  'Virtua Primary Care - Hammonton':[39.6316,-74.7990],
-  'Rowan Medicine OBGYN - Sewell':[39.7670,-75.1480],
-  'Rowan Medicine Infectious Disease - Sewell':[39.7670,-75.1480],
-  'Virtua Reconstructive Orthopedics - Vineland':[39.5010,-75.0410],
-  'Rowan NeuroMusculoskeletal - Vineland':[39.4785,-75.0520],
-  'Rowan Medicine Pediatrics - Sewell':[39.7670,-75.1480],
-  'Rowan Family Medicine - Sewell':[39.7670,-75.1480],
-  'Virtua Reconstructive Orthopedics - Sewell':[39.7605,-75.1470],
-  'Virtua Reconstructive Orthopedics - Somers Point':[39.3160,-74.5948],
-  'Virtua Pulmonology - Linwood':[39.3395,-74.5760],
-  'Virtua Pulmonology & Sleep - Hammonton':[39.6490,-74.7888],
-  'Rowan Medicine Endocrinology - Sewell':[39.7670,-75.1480],
-  'Rowan Family Medicine - Hammonton':[39.6299,-74.7972],
-  'Virtua Midwifery - Sicklerville':[39.7198,-74.9690],
-  'Virtua Nephrology - Hammonton':[39.6316,-74.7990],
-  'Virtua OB/GYN - Hammonton':[39.6316,-74.7990],
-  'Rowan Regional Integrated Special Needs - Vineland':[39.4780,-75.0510]
-};
-
-const BASE=[
+const BASE = [
   {name:"Virtua Center for Liver Disease - Linwood",addr:"1201 New Road, Suite 150F, Linwood, NJ 08221",spec:"Hepatology",city:"Linwood",freq:"Annual",lastVisit:"2025-04-01",mgr:"Yaitza Foley",dir:"Kara Hovatter",leadMA:"Erica Roberts",hours:"Mon–Fri: call to confirm ⚠",equip:{}},
-  {name:"Virtua Gastroenterology - Hammonton",addr:"2 Sindoni Lane, Suite B, Hammonton, NJ 08037",spec:"Gastroenterology",city:"Hammonton",freq:"Annual",lastVisit:"2025-07-09",mgr:"Beth Grossman-Gilbert",dir:"Tracy McArthur",leadMA:"",hours:"2nd & 4th Wed only, 8am–3:30pm ⚠",equip:{Vaccines:'No','Sample Meds':'No',OceaView:'No','POC Testing':'No',VFC:'No',Autoclave:'No',Trophon:'No',AED:'Shared',Eyewash:'Shared',Oxygen:'No'}},
-  {name:"Virtua Cardiology - Galloway",addr:"310 Chris Gaupp Dr., Suites 103 & 104, Galloway, NJ",spec:"Cardiology",city:"Galloway",freq:"Bi-Annual",lastVisit:"2025-06-11",mgr:"Jackie DeLash",dir:"Jennifer Garron",leadMA:"",hours:"Mon–Fri: 8:30am–5pm",equip:{Vaccines:'Yes','Sample Meds':'Yes',OceaView:'Yes','POC Testing':'No',VFC:'No',Autoclave:'No',Trophon:'No',AED:'Yes',Eyewash:'Yes',Oxygen:'Yes'}},
-  {name:"Virtua Cardiology - Hammonton",addr:"2 Sindoni Lane, Suite A, Hammonton, NJ 08037",spec:"Cardiology",city:"Hammonton",freq:"Bi-Annual",lastVisit:"2025-11-12",mgr:"Jackie DeLash",dir:"Jennifer Garron",leadMA:"",hours:"Mon–Fri: 8:30am–5pm",equip:{Vaccines:'Yes','Sample Meds':'Yes',OceaView:'Yes','POC Testing':'No',VFC:'No',Autoclave:'No',Trophon:'No',AED:'Yes',Eyewash:'Yes',Oxygen:'Yes'}},
+  {name:"Virtua Gastroenterology - Hammonton",addr:"2 Sindoni Lane, Suite B, Hammonton, NJ 08037",spec:"Gastroenterology",city:"Hammonton",freq:"Annual",lastVisit:"2025-07-09",mgr:"Beth Grossman-Gilbert",dir:"Tracy McArthur",leadMA:"",hours:"2nd & 4th Wed only, 8am–3:30pm ⚠",equip:{'Vaccines/Refrig. Meds':'No','Sample Meds':'No','OceanView':'No','POC Testing':'No','VFC':'No','Autoclave':'No','Trophon':'No','AED':'Shared','Eyewash':'Shared','Oxygen':'No'}},
+  {name:"Virtua Cardiology - Galloway",addr:"310 Chris Gaupp Dr., Suites 103 & 104, Galloway, NJ",spec:"Cardiology",city:"Galloway",freq:"Bi-Annual",lastVisit:"2025-06-11",mgr:"Jackie DeLash",dir:"Jennifer Garron",leadMA:"",hours:"Mon–Fri: 8:30am–5pm",equip:{'Vaccines/Refrig. Meds':'Yes','Sample Meds':'Yes','OceanView':'Yes','POC Testing':'No','VFC':'No','Autoclave':'No','Trophon':'No','AED':'Yes','Eyewash':'Yes','Oxygen':'Yes'}},
+  {name:"Virtua Cardiology - Hammonton",addr:"2 Sindoni Lane, Suite A, Hammonton, NJ 08037",spec:"Cardiology",city:"Hammonton",freq:"Bi-Annual",lastVisit:"2025-11-12",mgr:"Jackie DeLash",dir:"Jennifer Garron",leadMA:"",hours:"Mon–Fri: 8:30am–5pm",equip:{'Vaccines/Refrig. Meds':'Yes','Sample Meds':'Yes','OceanView':'Yes','POC Testing':'No','VFC':'No','Autoclave':'No','Trophon':'No','AED':'Yes','Eyewash':'Yes','Oxygen':'Yes'}},
   {name:"Virtua Cardiology - Sewell",addr:"539 Egg Harbor Road, Suite 1A, Sewell, NJ 08080",spec:"Cardiology",city:"Sewell",freq:"Bi-Annual",lastVisit:"2025-12-11",mgr:"Christina LaBelle",dir:"Jennifer Garron",leadMA:"",hours:"Mon–Fri: 8:30am–5pm",equip:{}},
-  {name:"Virtua Cardiology - Berlin",addr:"181 W. White Horse Pike, Suite 201, Berlin, NJ 08009",spec:"Cardiology",city:"Berlin",freq:"Bi-Annual",lastVisit:"2025-12-16",mgr:"Christina LaBelle",dir:"Jennifer Garron",leadMA:"",hours:"Mon–Fri: 8:30am–5pm",equip:{Vaccines:'No','Sample Meds':'Yes',OceaView:'No','POC Testing':'No',VFC:'No',Autoclave:'No',Trophon:'No',AED:'Yes',Eyewash:'Yes',Oxygen:''}},
+  {name:"Virtua Cardiology - Berlin",addr:"181 W. White Horse Pike, Suite 201, Berlin, NJ 08009",spec:"Cardiology",city:"Berlin",freq:"Bi-Annual",lastVisit:"2025-12-16",mgr:"Christina LaBelle",dir:"Jennifer Garron",leadMA:"",hours:"Mon–Fri: 8:30am–5pm",equip:{'Vaccines/Refrig. Meds':'No','Sample Meds':'Yes','OceanView':'No','POC Testing':'No','VFC':'No','Autoclave':'No','Trophon':'No','AED':'Yes','Eyewash':'Yes','Oxygen':''}},
   {name:"Virtua Cardiology - Ventnor",addr:"6508 Ventnor Ave, Suite B, Ventnor City, NJ 08406",spec:"Cardiology",city:"Ventnor",freq:"Bi-Annual",lastVisit:"",mgr:"Catherine Martin",dir:"Tania Pinho",leadMA:"",hours:"Mon–Fri: call to confirm ⚠",equip:{}},
-  {name:"Virtua Primary Care - Linwood",addr:"1201 New Road, Suite 150G, Linwood, NJ 08221",spec:"Primary Care",city:"Linwood",freq:"Bi-Monthly",lastVisit:"2026-01-29",mgr:"Jennifer Laramore",dir:"Tamitra Tann",leadMA:"Alberta Lewis",hours:"Mon–Thu: 8am–7pm, Fri: 8am–3:30pm, Sat: 9am–12pm",equip:{Vaccines:'Yes','Sample Meds':'No',OceaView:'Yes','POC Testing':'Yes',VFC:'Yes',Autoclave:'No',Trophon:'No',AED:'Yes',Eyewash:'Yes',Oxygen:'Yes'}},
+  {name:"Virtua Primary Care - Linwood",addr:"1201 New Road, Suite 150G, Linwood, NJ 08221",spec:"Primary Care",city:"Linwood",freq:"Bi-Monthly",lastVisit:"2026-01-29",mgr:"Jennifer Laramore",dir:"Tamitra Tann",leadMA:"Alberta Lewis",hours:"Mon–Thu: 8am–7pm, Fri: 8am–3:30pm, Sat: 9am–12pm",equip:{'Vaccines/Refrig. Meds':'Yes','Sample Meds':'No','OceanView':'Yes','POC Testing':'Yes','VFC':'Yes','Autoclave':'No','Trophon':'No','AED':'Yes','Eyewash':'Yes','Oxygen':'Yes'}},
   {name:"Virtua Primary Care - Ventnor",addr:"6508 Ventnor Avenue, Ventnor, NJ 08406",spec:"Primary Care",city:"Ventnor",freq:"Bi-Monthly",lastVisit:"2026-02-25",mgr:"Marisol Pirela",dir:"Tamitra Tann",leadMA:"Keily Velasquez",hours:"Mon–Fri: call to confirm ⚠",equip:{}},
-  {name:"Virtua Primary Care - Lindenwold",addr:"406 E Gibbsboro Road, Lindenwold, NJ 08021",spec:"Primary Care",city:"Lindenwold",freq:"Bi-Monthly",lastVisit:"2026-02-27",mgr:"Priscilla Chanza",dir:"Tamitra Tann",leadMA:"Laura Frias",hours:"Mon–Fri: call to confirm ⚠",equip:{Vaccines:'Yes','Sample Meds':'Yes',OceaView:'Yes','POC Testing':'Yes',VFC:'Yes',Autoclave:'No',Trophon:'No',AED:'Yes',Eyewash:'Yes',Oxygen:'Yes'}},
-  {name:"Virtua Primary Care - Hammonton",addr:"75 South White Horse Pike, Hammonton, NJ 08037",spec:"Primary Care",city:"Hammonton",freq:"Bi-Monthly",lastVisit:"2026-02-26",mgr:"Tiffany Tatum",dir:"Tamitra Tann",leadMA:"Samantha DeMarco",hours:"Mon: 8am–7pm, Tue: 7am–4:30pm ⚠",equip:{Vaccines:'Yes','Sample Meds':'No',OceaView:'Yes','POC Testing':'Yes',VFC:'No',Autoclave:'No',Trophon:'No',AED:'Yes',Eyewash:'Yes',Oxygen:'Yes'}},
-  {name:"Rowan Medicine OBGYN - Sewell",addr:"405 Hurffville-Crosskeys Rd, Ste 202, Sewell, NJ",spec:"OBGYN",city:"Sewell",freq:"Quarterly",lastVisit:"2025-08-20",mgr:"(vacant)",dir:"Tiruayer Battle",leadMA:"Tina Rivera",hours:"Mon–Fri: call to confirm (856-589-1414) ⚠",equip:{Vaccines:'Yes','Sample Meds':'Yes',OceaView:'No','POC Testing':'Yes',VFC:'No',Autoclave:'Yes',Trophon:'No',AED:'Facilities',Eyewash:'',Oxygen:''}},
+  {name:"Virtua Primary Care - Lindenwold",addr:"406 E Gibbsboro Road, Lindenwold, NJ 08021",spec:"Primary Care",city:"Lindenwold",freq:"Bi-Monthly",lastVisit:"2026-02-27",mgr:"Priscilla Chanza",dir:"Tamitra Tann",leadMA:"Laura Frias",hours:"Mon–Fri: call to confirm ⚠",equip:{'Vaccines/Refrig. Meds':'Yes','Sample Meds':'Yes','OceanView':'Yes','POC Testing':'Yes','VFC':'Yes','Autoclave':'No','Trophon':'No','AED':'Yes','Eyewash':'Yes','Oxygen':'Yes'}},
+  {name:"Virtua Primary Care - Hammonton",addr:"75 South White Horse Pike, Hammonton, NJ 08037",spec:"Primary Care",city:"Hammonton",freq:"Bi-Monthly",lastVisit:"2026-02-26",mgr:"Tiffany Tatum",dir:"Tamitra Tann",leadMA:"Samantha DeMarco",hours:"Mon: 8am–7pm, Tue: 7am–4:30pm ⚠",equip:{'Vaccines/Refrig. Meds':'Yes','Sample Meds':'No','OceanView':'Yes','POC Testing':'Yes','VFC':'No','Autoclave':'No','Trophon':'No','AED':'Yes','Eyewash':'Yes','Oxygen':'Yes'}},
+  {name:"Rowan Medicine OBGYN - Sewell",addr:"405 Hurffville-Crosskeys Rd, Ste 202, Sewell, NJ",spec:"OBGYN",city:"Sewell",freq:"Quarterly",lastVisit:"2025-08-20",mgr:"(vacant)",dir:"Tiruayer Battle",leadMA:"Tina Rivera",hours:"Mon–Fri: call to confirm (856-589-1414) ⚠",equip:{'Vaccines/Refrig. Meds':'Yes','Sample Meds':'Yes','OceanView':'No','POC Testing':'Yes','VFC':'No','Autoclave':'Yes','Trophon':'No','AED':'Facilities','Eyewash':'','Oxygen':''}},
   {name:"Rowan Medicine Infectious Disease - Sewell",addr:"405 Hurffville-Crosskeys Rd, Ste 101, Sewell, NJ",spec:"Infectious Disease",city:"Sewell",freq:"Quarterly",lastVisit:"2025-09-02",mgr:"Nancy Fox",dir:"Brenda Savinson",leadMA:"",hours:"Tue: 9am–1pm, Wed: 8am–4pm ⚠",equip:{}},
-  {name:"Virtua Reconstructive Orthopedics - Vineland",addr:"994 West Sherman Avenue, Vineland, NJ 08360",spec:"Orthopedic",city:"Vineland",freq:"Quarterly",lastVisit:"2026-03-13",mgr:"Melissa Atlee & Sal Spitalieri",dir:"Jennifer Ritondo",leadMA:"",hours:"Mon–Fri: 8am–5pm",equip:{Vaccines:'No','Sample Meds':'No',OceaView:'No','POC Testing':'No',VFC:'No',Autoclave:'Yes',Trophon:'No',AED:'Yes',Eyewash:'Yes',Oxygen:''}},
+  {name:"Virtua Reconstructive Orthopedics - Vineland",addr:"994 West Sherman Avenue, Vineland, NJ 08360",spec:"Orthopedic",city:"Vineland",freq:"Quarterly",lastVisit:"2026-03-13",mgr:"Melissa Atlee & Sal Spitalieri",dir:"Jennifer Ritondo",leadMA:"",hours:"Mon–Fri: 8am–5pm",equip:{'Vaccines/Refrig. Meds':'No','Sample Meds':'No','OceanView':'No','POC Testing':'No','VFC':'No','Autoclave':'Yes','Trophon':'No','AED':'Yes','Eyewash':'Yes','Oxygen':''}},
   {name:"Rowan NeuroMusculoskeletal - Vineland",addr:"3360 College Dr., Suite A, Vineland, NJ 08360",spec:"NMI",city:"Vineland",freq:"Quarterly",lastVisit:"2025-09-09",mgr:"Season Williams",dir:"Nikole Ticcino",leadMA:"",hours:"By appt only, Call 856-566-7017 ⚠",equip:{}},
   {name:"Rowan Medicine Pediatrics - Sewell",addr:"405 Hurffville-Crosskeys Rd, Ste 203, Sewell, NJ",spec:"Pediatrics",city:"Sewell",freq:"Quarterly",lastVisit:"2026-01-23",mgr:"Janet Thornton",dir:"Tiruayer Battle",leadMA:"Janet Flood",hours:"Mon/Wed/Thu: 8am–7pm, Tue: 8am–4pm",equip:{}},
   {name:"Rowan Family Medicine - Sewell",addr:"405 Hurffville-Crosskeys Rd, Ste 101, Sewell, NJ",spec:"Primary Care",city:"Sewell",freq:"Quarterly",lastVisit:"2025-10-03",mgr:"Crystal Kanavel",dir:"Nancy Garback",leadMA:"Mindy Niedzawiadek",hours:"Mon/Thu: 8am–8pm, Tue/Wed/Fri: 8am–4pm",equip:{}},
-  {name:"Virtua Reconstructive Orthopedics - Sewell",addr:"570 Egg Harbor Rd, Ste C4, Sewell, NJ 08080",spec:"Orthopedic",city:"Sewell",freq:"Quarterly",lastVisit:"2026-03-12",mgr:"Melissa Atlee & Sal Spitalieri",dir:"Jennifer Ritondo",leadMA:"Jacob Feenstra",hours:"Mon–Fri: 8am–5pm",equip:{Vaccines:'No','Sample Meds':'No',OceaView:'No','POC Testing':'No',VFC:'No',Autoclave:'Yes',Trophon:'No',AED:'Yes',Eyewash:'Yes',Oxygen:''}},
+  {name:"Virtua Reconstructive Orthopedics - Sewell",addr:"570 Egg Harbor Rd, Ste C4, Sewell, NJ 08080",spec:"Orthopedic",city:"Sewell",freq:"Quarterly",lastVisit:"2026-03-12",mgr:"Melissa Atlee & Sal Spitalieri",dir:"Jennifer Ritondo",leadMA:"Jacob Feenstra",hours:"Mon–Fri: 8am–5pm",equip:{'Vaccines/Refrig. Meds':'No','Sample Meds':'No','OceanView':'No','POC Testing':'No','VFC':'No','Autoclave':'Yes','Trophon':'No','AED':'Yes','Eyewash':'Yes','Oxygen':''}},
   {name:"Virtua Reconstructive Orthopedics - Somers Point",addr:"547 New Road, Somers Point, NJ 08244",spec:"Orthopedic",city:"Somers Point",freq:"Quarterly",lastVisit:"2025-11-07",mgr:"Sal Spitalieri",dir:"Jennifer Ritondo",leadMA:"",hours:"Mon/Wed: 7:30am–4pm, Tue/Thu: 8am–4pm ⚠",equip:{}},
-  {name:"Virtua Pulmonology - Linwood",addr:"1201 New Road, Suite 150E, Linwood, NJ 08221",spec:"Pulmonary",city:"Linwood",freq:"Quarterly",lastVisit:"2025-11-10",mgr:"Tina Molchanow",dir:"Thomas Bianco",leadMA:"Eugenia Poole",hours:"FRIDAY ONLY: 8am–3pm ⚠",equip:{Vaccines:'Yes','Sample Meds':'Yes',OceaView:'Yes - shared','POC Testing':'No',VFC:'No',Autoclave:'No',Trophon:'No',AED:'Shared',Eyewash:'Shared',Oxygen:'Yes'}},
-  {name:"Virtua Pulmonology & Sleep - Hammonton",addr:"2 Sindoni Lane, Suite D, Hammonton, NJ 08037",spec:"Pulmonary",city:"Hammonton",freq:"Quarterly",lastVisit:"2025-11-24",mgr:"Tina Molchanow",dir:"Thomas Bianco",leadMA:"Eugenia Poole",hours:"Mon–Thu: 8am–5pm, Fri: 8am–3pm",equip:{Vaccines:'Yes','Sample Meds':'Yes',OceaView:'Yes','POC Testing':'No',VFC:'No',Autoclave:'No',Trophon:'No',AED:'Shared',Eyewash:'Shared',Oxygen:'Yes'}},
+  {name:"Virtua Pulmonology - Linwood",addr:"1201 New Road, Suite 150E, Linwood, NJ 08221",spec:"Pulmonary",city:"Linwood",freq:"Quarterly",lastVisit:"2025-11-10",mgr:"Tina Molchanow",dir:"Thomas Bianco",leadMA:"Eugenia Poole",hours:"FRIDAY ONLY: 8am–3pm ⚠",equip:{'Vaccines/Refrig. Meds':'Yes','Sample Meds':'Yes','OceanView':'Yes - shared','POC Testing':'No','VFC':'No','Autoclave':'No','Trophon':'No','AED':'Shared','Eyewash':'Shared','Oxygen':'Yes'}},
+  {name:"Virtua Pulmonology & Sleep - Hammonton",addr:"2 Sindoni Lane, Suite D, Hammonton, NJ 08037",spec:"Pulmonary",city:"Hammonton",freq:"Quarterly",lastVisit:"2025-11-24",mgr:"Tina Molchanow",dir:"Thomas Bianco",leadMA:"Eugenia Poole",hours:"Mon–Thu: 8am–5pm, Fri: 8am–3pm",equip:{'Vaccines/Refrig. Meds':'Yes','Sample Meds':'Yes','OceanView':'Yes','POC Testing':'No','VFC':'No','Autoclave':'No','Trophon':'No','AED':'Shared','Eyewash':'Shared','Oxygen':'Yes'}},
   {name:"Rowan Medicine Endocrinology - Sewell",addr:"405 Hurffville-Crosskeys Rd, Ste 101, Sewell, NJ",spec:"Endocrinology",city:"Sewell",freq:"Quarterly",lastVisit:"",mgr:"Nancy Fox",dir:"Brenda Savinson",leadMA:"",hours:"Call: 856-566-7070 ⚠",equip:{}},
-  {name:"Rowan Family Medicine - Hammonton",addr:"854 South White Horse Pike, Suite 4, Hammonton, NJ",spec:"Primary Care",city:"Hammonton",freq:"Quarterly",lastVisit:"2025-11-24",mgr:"Kristina Shaffer",dir:"Nancy Garback",leadMA:"Arielle Panaro",hours:"Mon–Tue: 8am–8pm, Wed–Fri: 8am–4pm",equip:{Vaccines:'Yes','Sample Meds':'No',OceaView:'Yes','POC Testing':'Yes',VFC:'No',Autoclave:'No',Trophon:'No',AED:'Yes',Eyewash:'Yes',Oxygen:'Yes'}},
-  {name:"Virtua Midwifery - Sicklerville",addr:"100 Independence Blvd., Suite 100A, Sicklerville, NJ",spec:"Midwifery",city:"Sicklerville",freq:"Quarterly",lastVisit:"2025-12-05",mgr:"Valerie Brady",dir:"Kim DeShayes",leadMA:"Erika Davis",hours:"Mon/Wed: 8:30am–7pm, Tue/Thu: 8:30am–5pm",equip:{Vaccines:'Yes','Sample Meds':'Yes',OceaView:'Yes','POC Testing':'Yes',VFC:'No',Autoclave:'Yes',Trophon:'No',AED:'Yes',Eyewash:'Yes',Oxygen:''}},
+  {name:"Rowan Family Medicine - Hammonton",addr:"854 South White Horse Pike, Suite 4, Hammonton, NJ",spec:"Primary Care",city:"Hammonton",freq:"Quarterly",lastVisit:"2025-11-24",mgr:"Kristina Shaffer",dir:"Nancy Garback",leadMA:"Arielle Panaro",hours:"Mon–Tue: 8am–8pm, Wed–Fri: 8am–4pm",equip:{'Vaccines/Refrig. Meds':'Yes','Sample Meds':'No','OceanView':'Yes','POC Testing':'Yes','VFC':'No','Autoclave':'No','Trophon':'No','AED':'Yes','Eyewash':'Yes','Oxygen':'Yes'}},
+  {name:"Virtua Midwifery - Sicklerville",addr:"100 Independence Blvd., Suite 100A, Sicklerville, NJ",spec:"Midwifery",city:"Sicklerville",freq:"Quarterly",lastVisit:"2025-12-05",mgr:"Valerie Brady",dir:"Kim DeShayes",leadMA:"Erika Davis",hours:"Mon/Wed: 8:30am–7pm, Tue/Thu: 8:30am–5pm",equip:{'Vaccines/Refrig. Meds':'Yes','Sample Meds':'Yes','OceanView':'Yes','POC Testing':'Yes','VFC':'No','Autoclave':'Yes','Trophon':'No','AED':'Yes','Eyewash':'Yes','Oxygen':''}},
   {name:"Virtua Nephrology - Hammonton",addr:"75 South White Horse Pike, Hammonton, NJ 08037",spec:"Nephrology",city:"Hammonton",freq:"Quarterly",lastVisit:"2025-12-17",mgr:"Karen Crafchun",dir:"Kathy Glorioso",leadMA:"",hours:"WEDNESDAY ONLY: 9am–1pm ⚠",equip:{}},
   {name:"Virtua OB/GYN - Hammonton",addr:"75 South White Horse Pike, Hammonton, NJ 08037",spec:"OB/GYN",city:"Hammonton",freq:"Quarterly",lastVisit:"2025-12-17",mgr:"Michele Fidelibus",dir:"Mirelys Placeres",leadMA:"Breanna Plank",hours:"Mon–Fri: call to confirm ⚠",equip:{}},
-  {name:"Rowan Regional Integrated Special Needs - Vineland",addr:"3322 College Dr., Suite C100, Vineland, NJ 08360",spec:"Special Needs",city:"Vineland",freq:"Quarterly",lastVisit:"",mgr:"Tanya Boyd",dir:"Dana Galligani",leadMA:"",hours:"Mon–Fri: call to confirm ⚠",equip:{}},
+  {name:"Rowan Regional Integrated Special Needs - Vineland",addr:"3322 College Dr., Suite C100, Vineland, NJ 08360",spec:"Special Needs",city:"Vineland",freq:"Quarterly",lastVisit:"",mgr:"Tanya Boyd",dir:"Dana Galligani",leadMA:"",hours:"Mon–Fri: call to confirm ⚠",equip:{}}
 ];
 
-let P=[];
-
-
-function applyScreenshotSeed(){
-  const map={
-    "Virtua Cardiology - Galloway":"2026-03-20",
-    "Virtua Primary Care - Linwood":"2026-03-27",
-    "Virtua Primary Care - Ventnor":"2026-02-25",
-    "Virtua Primary Care - Lindenwold":"2026-02-27",
-    "Virtua Primary Care - Hammonton":"2026-02-26",
-    "Rowan Medicine OBGYN - Sewell":"2026-03-25",
-    "Virtua Reconstructive Orthopedics - Vineland":"2026-03-13",
-    "Rowan Medicine Pediatrics - Sewell":"2026-01-23",
-    "Rowan Family Medicine - Sewell":"2026-03-25",
-    "Virtua Reconstructive Orthopedics - Sewell":"2026-03-12",
-    "Virtua Reconstructive Orthopedics - Somers Point":"2026-03-20",
-    "Virtua Pulmonology - Linwood":"2026-03-27",
-    "Virtua Pulmonology & Sleep - Hammonton":"2026-03-23",
-    "Virtua Midwifery - Sicklerville":"2026-03-19",
-    "Virtua Nephrology - Hammonton":"2026-03-23",
-    "Virtua OB/GYN - Hammonton":"2026-03-23"
-  };
-  P.forEach(p=>{
-    if(map[p.name] && (!p.lastVisit || p.lastVisit < map[p.name])) p.lastVisit = map[p.name];
-  });
-}
-
+let P = [];
 
 function load(){
-  let s={};
-  try{s=JSON.parse(localStorage.getItem(SKEY_DATA)||'{}')}catch(e){}
-  P=BASE.map((b,i)=>{
-    const sv=s[i]||{};
-    return{...b,
-      addr:         sv.addr??b.addr,
-      spec:         sv.spec??b.spec,
-      city:         sv.city??b.city,
-      mgr:          sv.mgr??b.mgr,
-      dir:          sv.dir??b.dir,
-      leadMA:       sv.leadMA??b.leadMA,
-      hours:        sv.hours??b.hours,
-      visitDuration: sv.visitDuration ?? b.visitDuration ?? '',
-      lastVisit:     sv.lastVisit??b.lastVisit,
-      visitStatus:   sv.visitStatus??'',
-      notes:         sv.notes??'',
-      nextScheduled: sv.nextScheduled??'',
-      history:       sv.history??[],
-      equip:         mergeEquipMaps(b.equip,sv.equip||{}),
-      noteLog:       sv.noteLog??[],
+  let s = {};
+  try{s = JSON.parse(localStorage.getItem(SKEY_DATA) || '{}')}catch(e){}
+  P = BASE.map((b,i)=>{
+    const sv = s[i] || {};
+    return {
+      ...b,
+      lastVisit: sv.lastVisit ?? b.lastVisit,
+      visitStatus: sv.visitStatus ?? '',
+      notes: sv.notes ?? '',
+      nextScheduled: sv.nextScheduled ?? '',
+      history: sv.history ?? [],
+      equip: {...b.equip, ...(sv.equip || {})},
+      noteLog: sv.noteLog ?? []
     };
   });
 }
 
-// ════════════════════════════════════
-// UTILS
-// ════════════════════════════════════
-function pd(s){if(!s)return null;const d=new Date(s+'T00:00:00');return isNaN(d)?null:d}
-function addMo(d,n){const r=new Date(d);r.setMonth(r.getMonth()+n);return r}
-function fmt(d){return d?(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear():''}
-function fmts(d){return d?(d.getMonth()+1)+'/'+d.getDate():''}
-function dd(d){return Math.round((d-TODAY)/864e5)}
-function nextDue(p){const l=pd(p.lastVisit);if(!l)return null;return addMo(l,FREQ_MO[p.freq]||12)}
-function stOf(p){const d=nextDue(p);if(!d)return'unsched';const n=dd(d);if(n<0)return'overdue';if(n<=30)return'soon';if(n<=60)return'upcoming';return'ontrack'}
-function stLbl(s){return{overdue:'OVERDUE',soon:'Due Soon',upcoming:'Upcoming',ontrack:'On Track',unsched:'Not Scheduled'}[s]}
-function stPill(s){return{overdue:'p-ov',soon:'p-soon',upcoming:'p-up',ontrack:'p-ok',unsched:'p-ns'}[s]}
-function stCard(s){return{overdue:'s-overdue',soon:'s-soon',upcoming:'s-upcoming',ontrack:'s-ontrack',unsched:'s-unsched'}[s]}
-function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-function normalizeEquipEntry(raw){
-  if(raw && typeof raw==='object' && !Array.isArray(raw)){
-    return {checked:!!raw.checked, note:String(raw.note||'')};
+function pd(s){ if(!s) return null; const d = new Date(s + 'T00:00:00'); return isNaN(d) ? null : d; }
+function addMo(d,n){ const r = new Date(d); r.setMonth(r.getMonth() + n); return r; }
+function fmt(d){ return d ? (d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear() : ''; }
+function fmts(d){ return d ? (d.getMonth()+1)+'/'+d.getDate() : ''; }
+function dd(d){ return Math.round((d - TODAY)/864e5); }
+function nextDue(p){ const l = pd(p.lastVisit); if(!l) return null; return addMo(l, FREQ_MO[p.freq] || 12); }
+function stOf(p){
+  const d = nextDue(p);
+  if(!d) return 'unsched';
+  const n = dd(d);
+  if(n < 0) return 'overdue';
+  if(n <= 30) return 'soon';
+  if(n <= 60) return 'upcoming';
+  return 'ontrack';
+}
+function stLbl(s){ return {overdue:'OVERDUE',soon:'Due Soon',upcoming:'Upcoming',ontrack:'On Track',unsched:'Not Scheduled'}[s]; }
+function stPill(s){ return {overdue:'p-ov',soon:'p-soon',upcoming:'p-up',ontrack:'p-ok',unsched:'p-ns'}[s]; }
+function stCard(s){ return {overdue:'s-overdue',soon:'s-soon',upcoming:'s-upcoming',ontrack:'s-ontrack',unsched:'s-unsched'}[s]; }
+function isScheduledFuture(p){
+  const d = pd(p.nextScheduled);
+  return !!(d && d >= TODAY);
+}
+function getLocationBucket(city){
+  const normalized = (city || '').toLowerCase();
+  for(const [bucket, cities] of Object.entries(CITY_GROUPS)){
+    if(cities.some(c => normalized.includes(c.toLowerCase()))) return bucket;
   }
-  if(typeof raw==='string'){
-    const t=raw.trim();
-    const low=t.toLowerCase();
-    if(!t)return {checked:false,note:''};
-    if(low==='yes')return {checked:true,note:''};
-    if(low==='no')return {checked:false,note:''};
-    return {checked:true,note:t};
-  }
-  if(raw===true)return {checked:true,note:''};
-  return {checked:false,note:''};
+  return city || 'Other';
 }
-function mergeEquipMaps(baseMap={},savedMap={}){
-  const out={};
-  const keys=new Set([...Object.keys(baseMap||{}),...Object.keys(savedMap||{}),...EQ_KEYS]);
-  keys.forEach(k=>{
-    const baseNorm=normalizeEquipEntry(baseMap?.[k]);
-    const saved = savedMap?.[k];
-    if(saved!==undefined){
-      const savedNorm=normalizeEquipEntry(saved);
-      out[k]={checked:savedNorm.checked,note:savedNorm.note};
-    }else{
-      out[k]={checked:baseNorm.checked,note:baseNorm.note};
-    }
-  });
-  return out;
+function bucketSortValue(bucket){
+  const idx = CITY_GROUP_ORDER.indexOf(bucket);
+  return idx === -1 ? 999 : idx;
 }
-function equipChecked(p,key){return normalizeEquipEntry(p?.equip?.[key]).checked}
-function equipNote(p,key){return normalizeEquipEntry(p?.equip?.[key]).note}
-function setEquipChecked(i,key,val){
-  const cur=normalizeEquipEntry(P[i].equip[key]);
-  P[i].equip[key]={checked:!!val,note:cur.note};
-  _unsaved=true;
+function plannerPriority(status){
+  return {overdue:0, soon:1, upcoming:2, unsched:3, ontrack:4}[status] ?? 9;
 }
-function updateEquipNote(i,key,val){
-  const cur=normalizeEquipEntry(P[i].equip[key]);
-  P[i].equip[key]={checked:cur.checked,note:val};
-  _unsaved=true;
+function statusWeight(status){
+  return {overdue:100, soon:60, upcoming:20, unsched:10, ontrack:0}[status] ?? 0;
 }
-
-function getFlags(p){
-  const flags=[];
-  const due=nextDue(p);
-  const days=due?dd(due):null;
-  if(!p.lastVisit) flags.push({text:'No last visit',sev:'red'});
-  if(days!==null && days < -30) flags.push({text:'30+ days overdue',sev:'red'});
-  if(!p.nextScheduled && (stOf(p)==='overdue' || stOf(p)==='soon' || stOf(p)==='unsched')) flags.push({text:'No future date',sev:'amber'});
-  if((p.hours||'').includes('⚠')) flags.push({text:'Hours to confirm',sev:'amber'});
-  if((p.visitStatus||'')==='Cancelled' || (p.visitStatus||'')==='Rescheduled') flags.push({text:p.visitStatus,sevc:'amber',sev:'amber'});
-  return flags;
+function formatStatusWithDue(p, st){
+  const due = nextDue(p);
+  if(st === 'unsched') return 'No last visit on record';
+  if(!due) return stLbl(st);
+  const diff = dd(due);
+  if(diff < 0) return `${Math.abs(diff)}d overdue`;
+  if(diff === 0) return 'Due today';
+  return `${diff}d until due`;
 }
-function hasFlags(p){return getFlags(p).length>0}
-function flagHtml(p){
-  return getFlags(p).map(f=>`<span class="flag-chip ${f.sev==='red'?'red':''}">${f.text}</span>`).join('');
+function getHoursShort(hours){
+  if(!hours) return 'Hours not listed';
+  if(hours.includes('⚠')) return '⚠ ' + hours.split('⚠')[1].trim();
+  return hours.split(',')[0];
+}
+function escapeHtml(str){
+  return String(str ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+function toMin(hm){
+  if(!hm) return 540;
+  const [h,m] = hm.split(':').map(Number);
+  return (h||0)*60 + (m||0);
+}
+function toHM(mins){
+  const safe = Math.max(0, Math.round(mins));
+  const h = Math.floor(safe/60);
+  const m = safe%60;
+  return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
+}
+function toReadableHM(mins){
+  return toHM(mins).replace(/^0/,'');
+}
+function minutesLabel(mins){
+  const h = Math.floor(mins/60);
+  const m = mins%60;
+  if(h && m) return `${h}h ${m}m`;
+  if(h) return `${h}h`;
+  return `${m}m`;
 }
 
 function calCell(p,mo){
-  const last=pd(p.lastVisit),qd=pd(p.nextScheduled),iv=FREQ_MO[p.freq]||12,vs=p.visitStatus||'';
-  if(last&&last.getFullYear()===2026&&last.getMonth()+1===mo)return{t:fmts(last),c:'c-done'};
-  if(qd&&qd.getFullYear()===2026&&qd.getMonth()+1===mo){
-    if(vs==='Pending')return{t:'PEND',c:'c-pend'};
-    return{t:fmts(qd),c:'c-sched'};
+  const last = pd(p.lastVisit), qd = pd(p.nextScheduled), iv = FREQ_MO[p.freq] || 12, vs = p.visitStatus || '';
+  if(last && last.getFullYear()===2026 && last.getMonth()+1===mo) return {t:fmts(last), c:'c-done'};
+  if(qd && qd.getFullYear()===2026 && qd.getMonth()+1===mo) return {t:fmts(qd), c:'c-done'};
+  const dm = new Set();
+  if(last) for(let k=1;k<=8;k++){ const d = addMo(last, iv*k); if(d.getFullYear()===2026) dm.add(d.getMonth()+1); }
+  if(!dm.has(mo)) return null;
+  const wM = Math.floor((mo-1)/iv), wT = Math.floor(TODAY.getMonth()/iv);
+  if(last && last.getFullYear()===2026 && Math.floor(last.getMonth()/iv)===wM) return null;
+  if(wM===wT){
+    if(vs==='Scheduled') return {t:'SCHED', c:'c-sched'};
+    if(vs==='Pending') return {t:'PEND', c:'c-pend'};
   }
-  const dm=new Set();
-  if(last)for(let k=1;k<=8;k++){const d=addMo(last,iv*k);if(d.getFullYear()===2026)dm.add(d.getMonth()+1)}
-  if(!dm.has(mo))return null;
-  const wM=Math.floor((mo-1)/iv),wT=Math.floor(TODAY.getMonth()/iv);
-  if(last&&last.getFullYear()===2026&&Math.floor(last.getMonth()/iv)===wM)return null;
-  if(wM===wT){if(vs==='Scheduled')return{t:'SCHED',c:'c-sched'};if(vs==='Pending')return{t:'PEND',c:'c-pend'}}
-  return{t:'DUE',c:'c-due'};
+  return {t:'DUE', c:'c-due'};
 }
 
-// ════════════════════════════════════
-// CARD BUILDER
-// ════════════════════════════════════
 function mkCard(p,idx){
-  const due=nextDue(p),st=stOf(p),days=due?dd(due):null,warn=p.hours&&p.hours.includes('⚠');
-  const dStr=days===null?'':
-    days<0?`<span style="color:var(--red);font-weight:700">${Math.abs(days)}d overdue</span>`:
-    days===0?`<span style="color:var(--amber);font-weight:700">Due today</span>`:
+  const due = nextDue(p), st = stOf(p), days = due ? dd(due) : null, warn = p.hours && p.hours.includes('⚠');
+  const dStr = days===null ? '' :
+    days<0 ? `<span style="color:var(--red);font-weight:700">${Math.abs(days)}d overdue</span>` :
+    days===0 ? `<span style="color:var(--amber);font-weight:700">Due today</span>` :
     `<span style="color:var(--text2)">${days}d away</span>`;
 
-  const eqH=EQ_KEYS.map(k=>{
-    const checked=equipChecked(p,k);
-    const note=equipNote(p,k);
-    return`<div class="eq-item">
-      <div class="eq-top">
-        <label class="eq-check">
-          <input type="checkbox" ${checked?'checked':''} onchange="setEquipChecked(${idx},'${k.replace(/'/g,"\'")}',this.checked)">
-          <span>Has item</span>
-        </label>
-      </div>
-      <div class="eq-name">${k}</div>
-      <input class="eq-input" type="text" value="${esc(note)}" placeholder="Add notes for this item…" oninput="updateEquipNote(${idx},'${k.replace(/'/g,"\'")}',this.value)">
+  const eqH = EQ_KEYS.map(k=>{
+    const v = (p.equip && p.equip[k]) ? String(p.equip[k]).trim() : '';
+    const y = v.toLowerCase().startsWith('yes'), n2 = v.toLowerCase()==='no';
+    return `<div class="eq-item ${y?'yes':n2?'no':''}" onclick="togEq(${idx}, ${JSON.stringify(k)})">
+      <div class="eq-cb">${y?'✓':''}</div>
+      <div><div class="eq-name">${escapeHtml(k)}</div><div style="font-size:10px;color:var(--text2)">${escapeHtml(v || '—')}</div></div>
     </div>`;
   }).join('');
-  const flagsH=flagHtml(p);
 
-  const histItems=(p.history||[]).length===0?'<div class="hist-empty">No visit history yet.</div>':
+  const histItems = (p.history||[]).length===0 ? '<div class="hist-empty">No visit history yet.</div>' :
     [...(p.history||[])].reverse().map(h=>`
       <div class="hist-item">
-        <div class="h-date">${h.date}</div>
-        <div class="h-note">${h.note||'Visit completed'}</div>
-        <div class="h-ts">${h.ts||''}</div>
+        <div class="h-date">${escapeHtml(h.date)}</div>
+        <div class="h-note">${escapeHtml(h.note || 'Visit completed')}</div>
+        <div class="h-ts">${escapeHtml(h.ts || '')}</div>
       </div>`).join('');
 
-  const noteLogH=(p.noteLog||[]).length===0?'<div style="font-size:12px;color:var(--text2);font-style:italic;padding:4px 0">No notes yet — add one below</div>':
+  const noteLogH = (p.noteLog||[]).length===0 ? '<div style="font-size:12px;color:var(--text2);font-style:italic;padding:4px 0">No notes yet — add one below</div>' :
     [...(p.noteLog||[])].reverse().map(n=>`
       <div class="note-entry">
-        <div class="note-entry-date">${n.date} ${n.ts?'· '+n.ts:''}</div>
-        <div class="note-entry-text">${n.text}</div>
+        <div class="note-entry-date">${escapeHtml(n.date)} ${n.ts ? '· ' + escapeHtml(n.ts) : ''}</div>
+        <div class="note-entry-text">${escapeHtml(n.text)}</div>
       </div>`).join('');
 
-  return`<div class="pcard ${stCard(st)}" id="pc-${idx}">
-  <div class="pcard-hdr" onclick="tog(${idx})">
-    <div class="pcard-main">
-      <div class="pcard-name">${p.name}</div>
-      <div class="pcard-meta">
-        <span>📍${p.city}</span><span>🏥${p.spec}</span><span>🔄${p.freq}</span>
-        ${due?`<span>📅${fmt(due)}</span>`:''}
-        ${dStr?`<span>${dStr}</span>`:''}
-      </div>
-    </div>
-    <div class="pcard-right">
-      <span class="pill ${stPill(st)}">${stLbl(st)}</span>
-      ${p.nextScheduled ? `<span class="pill p-vs">Scheduled: ${fmts(pd(p.nextScheduled))}</span>` : ''}
-      ${!p.nextScheduled && p.visitStatus && p.visitStatus!=='Scheduled' ? `<span class="pill p-vs">${p.visitStatus}</span>` : ''}
-      <span class="chev">▼</span>
-    </div>
-  </div>
-  <div class="pcard-body">
-    <div class="dtabs">
-      <div class="dtab active" onclick="dtab(${idx},'i')">Info & Notes</div>
-      <div class="dtab" onclick="dtab(${idx},'u')">✏️ Update</div>
-      <div class="dtab" onclick="dtab(${idx},'e')">🔧 Equipment</div>
-      <div class="dtab" onclick="dtab(${idx},'h')">📋 History</div>
-    </div>
-
-    <div class="dcon active" id="di-${idx}">
-      <div class="info-view">
-        <div class="cg">
-          <div class="cf"><div class="cf-lbl">Address</div><div class="cf-val">${esc(p.addr||'—')}</div></div>
-          <div class="cf"><div class="cf-lbl">Office Hours</div><div class="cf-val ${warn?'warn':''}">${esc(p.hours||'—')}</div></div>
-          <div class="cf"><div class="cf-lbl">Practice Manager</div><div class="cf-val">${esc(p.mgr||'—')}</div></div>
-          <div class="cf"><div class="cf-lbl">Director</div><div class="cf-val">${esc(p.dir||'—')}</div></div>
-          <div class="cf"><div class="cf-lbl">Lead MA</div><div class="cf-val">${esc(p.leadMA||'—')}</div></div>
-          <div class="cf"><div class="cf-lbl">Specialty</div><div class="cf-val">${esc(p.spec||'—')}</div></div>
-          <div class="cf"><div class="cf-lbl">City</div><div class="cf-val">${esc(p.city||'—')}</div></div>
-          <div class="cf"><div class="cf-lbl">Last Visit</div><div class="cf-val">${p.lastVisit?fmt(pd(p.lastVisit)):'None on record'}</div></div>
-          ${p.nextScheduled?`<div class="cf"><div class="cf-lbl">Next Scheduled</div><div class="cf-val" style="color:var(--teal);font-weight:600">${fmt(pd(p.nextScheduled))}</div></div>`:''}
-          <div class="cf"><div class="cf-lbl">Custom Visit Duration</div><div class="cf-val">${p.visitDuration?`${p.visitDuration} hr`:'Auto estimate'}</div></div>
+  return `<div class="pcard ${stCard(st)}" id="pc-${idx}">
+    <div class="pcard-hdr" onclick="tog(${idx})">
+      <div class="pcard-main">
+        <div class="pcard-name">${escapeHtml(p.name)}</div>
+        <div class="pcard-meta">
+          <span>📍${escapeHtml(p.city)}</span><span>🏥${escapeHtml(p.spec)}</span><span>🔄${escapeHtml(p.freq)}</span>
+          ${due?`<span>📅${fmt(due)}</span>`:''}
+          ${dStr?`<span>${dStr}</span>`:''}
         </div>
       </div>
-      <div class="info-actions">
-        <button class="btn-sm btn-grey" onclick="toggleInfoEdit(${idx})" id="ieb-${idx}">Edit Info</button>
-        ${flagsH?`<div class="sv-flags">${flagsH}</div>`:''}
+      <div class="pcard-right">
+        <span class="pill ${stPill(st)}">${stLbl(st)}</span>
+        ${p.visitStatus ? `<span class="pill p-vs">${escapeHtml(p.visitStatus)}</span>` : ''}
+        <span class="chev">▼</span>
       </div>
-      <div class="info-edit-wrap" id="iew-${idx}" hidden>
-        <div class="info-edit-title">Edit practice details</div>
-        <div class="info-edit-grid">
-          <div class="eg"><label>Address</label><input class="info-input" id="ia-${idx}" value="${esc(p.addr||'')}"></div>
-          <div class="eg"><label>City</label><input class="info-input" id="ic-${idx}" value="${esc(p.city||'')}"></div>
-          <div class="eg"><label>Specialty</label><input class="info-input" id="is-${idx}" value="${esc(p.spec||'')}"></div>
-          <div class="eg"><label>Practice Manager</label><input class="info-input" id="im-${idx}" value="${esc(p.mgr||'')}"></div>
-          <div class="eg"><label>Director</label><input class="info-input" id="id-${idx}" value="${esc(p.dir||'')}"></div>
-          <div class="eg"><label>Lead MA</label><input class="info-input" id="il-${idx}" value="${esc(p.leadMA||'')}"></div>
-          <div class="eg full"><label>Office Hours / Access Notes</label><textarea class="info-textarea" id="ih-${idx}" rows="3">${esc(p.hours||'')}</textarea></div>
-          <div class="eg">
-            <label>Custom Visit Duration (hours)</label>
-            <input class="dur-input" id="ivd-${idx}" type="number" min="1" max="8" step="0.25" value="${esc(p.visitDuration||'')}" placeholder="Leave blank for auto">
+    </div>
+    <div class="pcard-body">
+      <div class="dtabs">
+        <div class="dtab active" onclick="dtab(${idx},'i')">Info & Notes</div>
+        <div class="dtab" onclick="dtab(${idx},'u')">✏️ Update</div>
+        <div class="dtab" onclick="dtab(${idx},'e')">🔧 Equipment</div>
+        <div class="dtab" onclick="dtab(${idx},'h')">📋 History</div>
+      </div>
+
+      <div class="dcon active" id="di-${idx}">
+        <div class="cg">
+          <div class="cf"><div class="cf-lbl">Address</div><div class="cf-val">${escapeHtml(p.addr)}</div></div>
+          <div class="cf"><div class="cf-lbl">Office Hours</div><div class="cf-val ${warn?'warn':''}">${escapeHtml(p.hours || '—')}</div></div>
+          <div class="cf"><div class="cf-lbl">Practice Manager</div><div class="cf-val">${escapeHtml(p.mgr || '—')}</div></div>
+          <div class="cf"><div class="cf-lbl">Director</div><div class="cf-val">${escapeHtml(p.dir || '—')}</div></div>
+          ${p.leadMA ? `<div class="cf"><div class="cf-lbl">Lead MA</div><div class="cf-val">${escapeHtml(p.leadMA)}</div></div>` : ''}
+          <div class="cf"><div class="cf-lbl">Last Visit</div><div class="cf-val">${p.lastVisit ? fmt(pd(p.lastVisit)) : 'None on record'}</div></div>
+          ${p.nextScheduled ? `<div class="cf"><div class="cf-lbl">Next Scheduled</div><div class="cf-val" style="color:var(--teal);font-weight:600">${fmt(pd(p.nextScheduled))}</div></div>` : ''}
+        </div>
+
+        <div class="notes-section">
+          <div class="notes-hdr"><span class="notes-title">📝 Notes Log</span></div>
+          <div class="note-log" id="nl-${idx}">${noteLogH}</div>
+          <div class="note-add-form">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text2);margin-bottom:6px;width:100%">Add a note</div>
+            <input type="date" id="nd-${idx}" value="${new Date().toISOString().slice(0,10)}">
+            <textarea id="nt-${idx}" placeholder="Type your note here…" rows="2"></textarea>
+            <button class="btn-sm btn-green" onclick="addNote(${idx})">Add Note</button>
           </div>
         </div>
-        <div class="visit-duration-help">Leave blank to use the automatic estimate based on equipment, flags, and notes.</div>
-        <div class="info-actions">
-          <button class="btn-sm btn-green" onclick="saveInfoDetails(${idx})">Save Info Details</button>
-          <button class="btn-sm btn-grey" onclick="toggleInfoEdit(${idx}, false)">Cancel</button>
+      </div>
+
+      <div class="dcon" id="du-${idx}">
+        <div class="eg-grid">
+          <div class="eg"><label>Last Visit Date</label><input type="date" id="k-${idx}" value="${escapeHtml(p.lastVisit || '')}"></div>
+          <div class="eg"><label>Next Scheduled</label><input type="date" id="q-${idx}" value="${escapeHtml(p.nextScheduled || '')}"></div>
+          <div class="eg"><label>Visit Status</label>
+            <select id="o-${idx}">
+              <option value="">—</option>
+              <option ${p.visitStatus==='Completed'?'selected':''}>Completed</option>
+              <option ${p.visitStatus==='Scheduled'?'selected':''}>Scheduled</option>
+              <option ${p.visitStatus==='Pending'?'selected':''}>Pending</option>
+              <option ${p.visitStatus==='Rescheduled'?'selected':''}>Rescheduled</option>
+              <option ${p.visitStatus==='Cancelled'?'selected':''}>Cancelled</option>
+            </select>
+          </div>
+          <div class="eg" style="grid-column:1/-1">
+            <label>General Notes</label>
+            <textarea id="n-${idx}" placeholder="General notes about this practice…">${escapeHtml(p.notes || '')}</textarea>
+          </div>
+        </div>
+        <div class="eact">
+          <button class="btn-upd" onclick="doUpd(${idx})">Save Changes</button>
+          <button class="btn-pr" onclick="printCard(${idx})">🖨 Print Summary</button>
+          <span class="flash" id="fl-${idx}">✓ Saved</span>
         </div>
       </div>
-      <div class="notes-section">
-        <div class="notes-hdr">
-          <span class="notes-title">📝 Notes Log</span>
-        </div>
-        <div class="note-log" id="nl-${idx}">${noteLogH}</div>
-        <div class="note-add-form">
-          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text2);margin-bottom:6px;width:100%">Add a note</div>
-          <input type="date" id="nd-${idx}" value="${new Date().toISOString().slice(0,10)}">
-          <textarea id="nt-${idx}" placeholder="Type your note here…" rows="2"></textarea>
-          <button class="btn-sm btn-green" onclick="addNote(${idx})">Add Note</button>
+
+      <div class="dcon" id="de-${idx}">
+        <div style="font-size:11px;color:var(--text2);margin-bottom:10px">Tap to toggle Yes/No. Hit Save Changes in the Update tab to persist.</div>
+        <div class="eq-grid" id="eq-${idx}">${eqH}</div>
+      </div>
+
+      <div class="dcon" id="dh-${idx}">
+        <div class="hist-list">${histItems}</div>
+        <div class="past-visit-form">
+          <h4>➕ Add a Past Visit Date</h4>
+          <div class="past-visit-row">
+            <input type="date" id="pv-date-${idx}" placeholder="Visit date">
+            <input type="text" id="pv-note-${idx}" placeholder="Notes (optional)">
+            <button class="btn-sm btn-green" onclick="addPastVisit(${idx})">Add to History</button>
+          </div>
+          <div style="font-size:11px;color:var(--text2);margin-top:6px">This adds to the history log only. To update the Last Visit Date, use the Update tab.</div>
         </div>
       </div>
     </div>
-
-    <div class="dcon" id="du-${idx}">
-      <div class="eg-grid">
-        <div class="eg"><label>Last Visit Date ✏</label><input type="date" id="k-${idx}" value="${p.lastVisit||''}"></div>
-        <div class="eg"><label>Next Scheduled</label><input type="date" id="q-${idx}" value="${p.nextScheduled||''}"></div>
-        <div class="eg"><label>Visit Status</label>
-          <select id="o-${idx}">
-            <option value="">—</option>
-            <option ${p.visitStatus==='Completed'?'selected':''}>Completed</option>
-            <option ${p.visitStatus==='Scheduled'?'selected':''}>Scheduled</option>
-            <option ${p.visitStatus==='Pending'?'selected':''}>Pending</option>
-            <option ${p.visitStatus==='Rescheduled'?'selected':''}>Rescheduled</option>
-            <option ${p.visitStatus==='Cancelled'?'selected':''}>Cancelled</option>
-          </select>
-        </div>
-        <div class="eg"><label>Visit Duration (hours)</label><input type="number" id="vd-${idx}" min="1" max="8" step="0.25" value="${esc(p.visitDuration||'')}" placeholder="Auto"></div>
-        <div class="eg" style="grid-column:1/-1">
-          <label>General Notes</label>
-          <textarea id="n-${idx}" placeholder="General notes about this practice…">${esc(p.notes||'')}</textarea>
-        </div>
-      </div>
-      <div class="eact">
-        <button class="btn-upd" onclick="doUpd(${idx})">Save Changes</button>
-        <button class="btn-pr" onclick="printCard(${idx})">🖨 Print Summary</button>
-        <span class="flash" id="fl-${idx}">✓ Saved</span>
-      </div>
-    </div>
-
-    <div class="dcon" id="de-${idx}">
-      <div style="font-size:11px;color:var(--text2);margin-bottom:10px">Use the checkbox when the practice has the item. Use the notes box for details like shared, facilities, backup owner, or storage notes. Hit Save Changes in either tab to persist.</div>
-      <div class="eq-grid" id="eq-${idx}">${eqH}</div>
-    </div>
-
-    <div class="dcon" id="dh-${idx}">
-      <div class="hist-list">${histItems}</div>
-      <div class="past-visit-form">
-        <h4>➕ Add a Past Visit Date</h4>
-        <div class="past-visit-row">
-          <input type="date" id="pv-date-${idx}" placeholder="Visit date">
-          <input type="text" id="pv-note-${idx}" placeholder="Notes (optional)">
-          <button class="btn-sm btn-green" onclick="addPastVisit(${idx})">Add to History</button>
-        </div>
-        <div style="font-size:11px;color:var(--text2);margin-top:6px">This adds to the history log only. To update the Last Visit Date, use the Update tab.</div>
-      </div>
-    </div>
-
-  </div>
-</div>`;
+  </div>`;
 }
 
-// ════════════════════════════════════
-// INTERACTIONS
-// ════════════════════════════════════
-function tog(i){document.getElementById('pc-'+i)?.classList.toggle('open')}
+function tog(i){ document.getElementById('pc-' + i)?.classList.toggle('open'); }
 function dtab(i,n){
-  document.getElementById('pc-'+i)?.querySelectorAll('.dtab').forEach((t,j)=>t.classList.toggle('active','iueh'[j]===n));
-  ['i','u','e','h'].forEach(x=>document.getElementById('d'+x+'-'+i)?.classList.toggle('active',x===n));
+  const tabs = document.getElementById('pc-' + i)?.querySelectorAll('.dtab') || [];
+  tabs.forEach((t,j)=> t.classList.toggle('active', 'iueh'[j] === n));
+  ['i','u','e','h'].forEach(x=> document.getElementById('d' + x + '-' + i)?.classList.toggle('active', x===n));
 }
-
-function toggleInfoEdit(i, force){
-  const wrap=document.getElementById('iew-'+i);
-  const btn=document.getElementById('ieb-'+i);
-  if(!wrap)return;
-  const show = typeof force==='boolean' ? force : wrap.hasAttribute('hidden');
-  if(show){
-    wrap.removeAttribute('hidden');
-    if(btn) btn.textContent='Editing…';
-  }else{
-    wrap.setAttribute('hidden','hidden');
-    if(btn) btn.textContent='Edit Info';
+function togEq(i,key){
+  const cur = String(P[i].equip[key] || '').toLowerCase();
+  P[i].equip[key] = cur.startsWith('yes') ? 'No' : 'Yes';
+  const g = document.getElementById('eq-' + i);
+  if(g){
+    g.innerHTML = EQ_KEYS.map(k=>{
+      const v = (P[i].equip && P[i].equip[k]) ? String(P[i].equip[k]).trim() : '';
+      const y = v.toLowerCase().startsWith('yes'), n2 = v.toLowerCase()==='no';
+      return `<div class="eq-item ${y?'yes':n2?'no':''}" onclick="togEq(${i}, ${JSON.stringify(k)})"><div class="eq-cb">${y?'✓':''}</div><div><div class="eq-name">${escapeHtml(k)}</div><div style="font-size:10px;color:var(--text2)">${escapeHtml(v || '—')}</div></div></div>`;
+    }).join('');
   }
 }
-
-function saveInfoDetails(i){
-  P[i].addr=document.getElementById('ia-'+i)?.value||'';
-  P[i].city=document.getElementById('ic-'+i)?.value||'';
-  P[i].spec=document.getElementById('is-'+i)?.value||'';
-  P[i].mgr=document.getElementById('im-'+i)?.value||'';
-  P[i].dir=document.getElementById('id-'+i)?.value||'';
-  P[i].leadMA=document.getElementById('il-'+i)?.value||'';
-  P[i].hours=document.getElementById('ih-'+i)?.value||'';
-  const durVal=(document.getElementById('ivd-'+i)?.value||'').trim();
-  P[i].visitDuration = durVal;
-  _unsaved=true;
-  autoSave(getDataForSave());
-  renderStats();renderWeek();
-  const wasOpen=document.getElementById('pc-'+i)?.classList.contains('open');
-  const tmp=document.createElement('div');tmp.innerHTML=mkCard(P[i],i);
-  const nc=tmp.firstElementChild;
-  if(wasOpen)nc.classList.add('open');
-  document.getElementById('pc-'+i)?.replaceWith(nc);
-  if(wasOpen)dtab(i,'i');
-  toggleInfoEdit(i,false);
-  toast('✓ Info details updated','ok');
-}
-
-function updateEquipValue(i,key,val){
-  P[i].equip[key]=val;
-  _unsaved=true;
-}
-
 function addNote(i){
-  const dateEl=document.getElementById('nd-'+i);
-  const textEl=document.getElementById('nt-'+i);
-  const dateVal=dateEl?.value;
-  const textVal=textEl?.value?.trim();
-  if(!textVal){toast('Please type a note first','err');return}
-  P[i].noteLog=P[i].noteLog||[];
+  const dateEl = document.getElementById('nd-' + i);
+  const textEl = document.getElementById('nt-' + i);
+  const dateVal = dateEl?.value;
+  const textVal = textEl?.value?.trim();
+  if(!textVal){ toast('Please type a note first','err'); return; }
+  P[i].noteLog = P[i].noteLog || [];
   P[i].noteLog.push({
-    date: dateVal||new Date().toISOString().slice(0,10),
+    date: dateVal || new Date().toISOString().slice(0,10),
     text: textVal,
-    ts:   new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}),
+    ts: new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})
   });
-  if(textEl)textEl.value='';
-  _unsaved=true;
+  if(textEl) textEl.value = '';
+  _unsaved = true;
   autoSave(getDataForSave());
-  // Refresh note log display
-  const nl=document.getElementById('nl-'+i);
+  const nl = document.getElementById('nl-' + i);
   if(nl){
-    nl.innerHTML=[...(P[i].noteLog||[])].reverse().map(n=>`
+    nl.innerHTML = [...(P[i].noteLog || [])].reverse().map(n=>`
       <div class="note-entry">
-        <div class="note-entry-date">${n.date} ${n.ts?'· '+n.ts:''}</div>
-        <div class="note-entry-text">${n.text}</div>
+        <div class="note-entry-date">${escapeHtml(n.date)} ${n.ts ? '· ' + escapeHtml(n.ts) : ''}</div>
+        <div class="note-entry-text">${escapeHtml(n.text)}</div>
       </div>`).join('');
   }
   toast('✓ Note added','ok');
 }
-
 function addPastVisit(i){
-  const dateEl=document.getElementById('pv-date-'+i);
-  const noteEl=document.getElementById('pv-note-'+i);
-  const dateVal=dateEl?.value;
-  if(!dateVal){toast('Please select a date','err');return}
-  P[i].history=P[i].history||[];
+  const dateEl = document.getElementById('pv-date-' + i);
+  const noteEl = document.getElementById('pv-note-' + i);
+  const dateVal = dateEl?.value;
+  if(!dateVal){ toast('Please select a date','err'); return; }
+  P[i].history = P[i].history || [];
   P[i].history.push({
     date: dateVal,
-    note: noteEl?.value?.trim()||'Visit completed',
-    ts:   '(manually added)',
+    note: noteEl?.value?.trim() || 'Visit completed',
+    ts: '(manually added)'
   });
-  // Sort history by date ascending
-  P[i].history.sort((a,b)=>a.date.localeCompare(b.date));
-  if(dateEl)dateEl.value='';
-  if(noteEl)noteEl.value='';
-  _unsaved=true;
+  P[i].history.sort((a,b)=> a.date.localeCompare(b.date));
+  if(dateEl) dateEl.value = '';
+  if(noteEl) noteEl.value = '';
+  _unsaved = true;
   autoSave(getDataForSave());
-  // Refresh history list
-  const hl=document.getElementById('dh-'+i)?.querySelector('.hist-list');
+  const hl = document.getElementById('dh-' + i)?.querySelector('.hist-list');
   if(hl){
-    hl.innerHTML=[...(P[i].history||[])].reverse().map(h=>`
+    hl.innerHTML = [...(P[i].history || [])].reverse().map(h=>`
       <div class="hist-item">
-        <div class="h-date">${h.date}</div>
-        <div class="h-note">${h.note||'Visit completed'}</div>
-        <div class="h-ts">${h.ts||''}</div>
+        <div class="h-date">${escapeHtml(h.date)}</div>
+        <div class="h-note">${escapeHtml(h.note || 'Visit completed')}</div>
+        <div class="h-ts">${escapeHtml(h.ts || '')}</div>
       </div>`).join('');
   }
   toast('✓ Past visit added to history','ok');
 }
-
 function doUpd(i){
-  const kv=document.getElementById('k-'+i)?.value;
-  const qv=document.getElementById('q-'+i)?.value;
-  const ov=document.getElementById('o-'+i)?.value;
-  const vv=(document.getElementById('vd-'+i)?.value||'').trim();
-  const nv=document.getElementById('n-'+i)?.value;
-  const oldK=P[i].lastVisit;
-  if(kv&&kv!==oldK){
-    P[i].history=P[i].history||[];
-    P[i].history.push({date:kv,note:(nv||'').substring(0,80)||'Visit completed',ts:new Date().toLocaleDateString()});
-    P[i].history.sort((a,b)=>a.date.localeCompare(b.date));
+  const kv = document.getElementById('k-' + i)?.value;
+  const qv = document.getElementById('q-' + i)?.value;
+  const ov = document.getElementById('o-' + i)?.value;
+  const nv = document.getElementById('n-' + i)?.value;
+  const oldK = P[i].lastVisit;
+  if(kv && kv !== oldK){
+    P[i].history = P[i].history || [];
+    P[i].history.push({date:kv, note:(nv || '').substring(0,80) || 'Visit completed', ts:new Date().toLocaleDateString()});
+    P[i].history.sort((a,b)=> a.date.localeCompare(b.date));
   }
-  P[i].lastVisit=kv??P[i].lastVisit;
-  P[i].nextScheduled=qv??P[i].nextScheduled;
-  P[i].visitStatus=ov??P[i].visitStatus;
-  P[i].visitDuration=vv;
-  P[i].notes=nv??P[i].notes;
-  _unsaved=true;
+  P[i].lastVisit = kv ?? P[i].lastVisit;
+  P[i].nextScheduled = qv ?? P[i].nextScheduled;
+  P[i].visitStatus = ov ?? P[i].visitStatus;
+  P[i].notes = nv ?? P[i].notes;
+  _unsaved = true;
   autoSave(getDataForSave());
-  renderStats();renderWeek();
-  const wasOpen=document.getElementById('pc-'+i)?.classList.contains('open');
-  const tmp=document.createElement('div');tmp.innerHTML=mkCard(P[i],i);
-  const nc=tmp.firstElementChild;
-  if(wasOpen)nc.classList.add('open');
-  document.getElementById('pc-'+i)?.replaceWith(nc);
-  if(wasOpen)dtab(i,'u');
-  const fl=document.getElementById('fl-'+i);
-  if(fl){fl.classList.add('show');setTimeout(()=>fl.classList.remove('show'),2500)}
-  toast('✓ '+P[i].name.split(' - ')[0]+' updated','ok');
+  renderStats(); renderWeek();
+  const wasOpen = document.getElementById('pc-' + i)?.classList.contains('open');
+  const tmp = document.createElement('div');
+  tmp.innerHTML = mkCard(P[i], i);
+  const nc = tmp.firstElementChild;
+  if(wasOpen) nc.classList.add('open');
+  document.getElementById('pc-' + i)?.replaceWith(nc);
+  if(wasOpen) dtab(i,'u');
+  const fl = document.getElementById('fl-' + i);
+  if(fl){ fl.classList.add('show'); setTimeout(()=>fl.classList.remove('show'), 2500); }
+  toast('✓ ' + P[i].name.split(' - ')[0] + ' updated','ok');
 }
-
 function printCard(i){
-  const p=P[i],due=nextDue(p);
-  const w=window.open('','_blank','width=700,height=900');
-  w.document.write(`<!DOCTYPE html><html><head><title>Visit Summary — ${p.name}</title>
+  const p = P[i], due = nextDue(p);
+  const w = window.open('', '_blank', 'width=700,height=900');
+  w.document.write(`<!DOCTYPE html><html><head><title>Visit Summary — ${escapeHtml(p.name)}</title>
   <style>body{font-family:sans-serif;padding:30px;font-size:13px;line-height:1.6}h1{font-size:18px;color:#1F3864;margin-bottom:4px}.sub{font-size:11px;color:#888;margin-bottom:20px;font-family:monospace}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}.f{border:1px solid #ddd;border-radius:6px;padding:10px 12px}.lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#888;margin-bottom:3px}h2{font-size:13px;font-weight:700;border-bottom:2px solid #1F3864;padding-bottom:4px;margin-bottom:10px;color:#1F3864}.hi{display:flex;gap:12px;padding:6px 0;border-bottom:1px solid #eee;font-size:12px}.hd{font-family:monospace;color:#2E75B6;font-weight:700;min-width:80px}.ni{padding:6px 0;border-bottom:1px solid #eee;font-size:12px}.nd{font-family:monospace;color:#2E75B6;font-size:11px;margin-bottom:2px}@media print{button{display:none}}</style></head><body>
-  <h1>${p.name}</h1><div class="sub">VMG Site Visit Tracker · Printed ${new Date().toLocaleDateString()}</div>
+  <h1>${escapeHtml(p.name)}</h1><div class="sub">VMG Site Visit Tracker · Printed ${new Date().toLocaleDateString()}</div>
   <div class="grid">
-    <div class="f"><div class="lbl">Address</div>${p.addr}</div>
-    <div class="f"><div class="lbl">Office Hours</div>${p.hours||'—'}</div>
-    <div class="f"><div class="lbl">Practice Manager</div>${p.mgr||'—'}</div>
-    <div class="f"><div class="lbl">Director</div>${p.dir||'—'}</div>
-    <div class="f"><div class="lbl">Lead MA</div>${p.leadMA||'—'}</div>
-    <div class="f"><div class="lbl">Frequency</div>${p.freq}</div>
-    <div class="f"><div class="lbl">Last Visit</div>${p.lastVisit?fmt(pd(p.lastVisit)):'None'}</div>
-    <div class="f"><div class="lbl">Next Due</div>${due?fmt(due):'—'}</div>
-    <div class="f"><div class="lbl">Visit Status</div>${p.visitStatus||'—'}</div>
-    <div class="f"><div class="lbl">Visit Duration</div>${p.visitDuration?`${p.visitDuration} hr`:'Auto estimate'}</div>
-    <div class="f"><div class="lbl">General Notes</div>${p.notes||'—'}</div>
+    <div class="f"><div class="lbl">Address</div>${escapeHtml(p.addr)}</div>
+    <div class="f"><div class="lbl">Office Hours</div>${escapeHtml(p.hours || '—')}</div>
+    <div class="f"><div class="lbl">Practice Manager</div>${escapeHtml(p.mgr || '—')}</div>
+    <div class="f"><div class="lbl">Director</div>${escapeHtml(p.dir || '—')}</div>
+    <div class="f"><div class="lbl">Lead MA</div>${escapeHtml(p.leadMA || '—')}</div>
+    <div class="f"><div class="lbl">Frequency</div>${escapeHtml(p.freq)}</div>
+    <div class="f"><div class="lbl">Last Visit</div>${p.lastVisit ? fmt(pd(p.lastVisit)) : 'None'}</div>
+    <div class="f"><div class="lbl">Next Due</div>${due ? fmt(due) : '—'}</div>
+    <div class="f"><div class="lbl">Visit Status</div>${escapeHtml(p.visitStatus || '—')}</div>
+    <div class="f"><div class="lbl">General Notes</div>${escapeHtml(p.notes || '—')}</div>
   </div>
-  <h2>Equipment</h2><div class="grid">${EQ_KEYS.map(k=>`<div class="f"><div class="lbl">${k}</div>${equipChecked(p,k)?'Yes':'No'}${equipNote(p,k)?`<br><span style="color:#666">${esc(equipNote(p,k))}</span>`:''}</div>`).join('')}</div>
-  <h2>Visit History</h2>${(p.history||[]).length===0?'<p style="color:#999;font-style:italic">No history.</p>':[...(p.history||[])].reverse().map(h=>`<div class="hi"><div class="hd">${h.date}</div><div>${h.note||'Visit completed'}</div><div style="margin-left:auto;color:#999;font-size:11px">${h.ts||''}</div></div>`).join('')}
-  <h2>Notes Log</h2>${(p.noteLog||[]).length===0?'<p style="color:#999;font-style:italic">No notes.</p>':[...(p.noteLog||[])].reverse().map(n=>`<div class="ni"><div class="nd">${n.date}${n.ts?' · '+n.ts:''}</div>${n.text}</div>`).join('')}
+  <h2>Equipment</h2><div class="grid">${EQ_KEYS.map(k=>`<div class="f"><div class="lbl">${escapeHtml(k)}</div>${escapeHtml((p.equip && p.equip[k]) || '—')}</div>`).join('')}</div>
+  <h2>Visit History</h2>${(p.history||[]).length===0?'<p style="color:#999;font-style:italic">No history.</p>':[...(p.history||[])].reverse().map(h=>`<div class="hi"><div class="hd">${escapeHtml(h.date)}</div><div>${escapeHtml(h.note || 'Visit completed')}</div><div style="margin-left:auto;color:#999;font-size:11px">${escapeHtml(h.ts || '')}</div></div>`).join('')}
+  <h2>Notes Log</h2>${(p.noteLog||[]).length===0?'<p style="color:#999;font-style:italic">No notes.</p>':[...(p.noteLog||[])].reverse().map(n=>`<div class="ni"><div class="nd">${escapeHtml(n.date)}${n.ts ? ' · ' + escapeHtml(n.ts) : ''}</div>${escapeHtml(n.text)}</div>`).join('')}
   <br><button onclick="window.print()">🖨 Print</button></body></html>`);
   w.document.close();
 }
 
-// ════════════════════════════════════
-// DAY PLANNER
-// ════════════════════════════════════
-let availDates=[];
+let availDates = [];
+let plannerDays = [];
 
 function addAvailDate(){
-  const d=new Date(TODAY);d.setDate(d.getDate()+1);
-  availDates.push({date:d.toISOString().slice(0,10),start:'08:30',end:'15:30'});
+  const d = new Date(TODAY);
+  d.setDate(d.getDate() + 1 + availDates.length);
+  availDates.push(d.toISOString().slice(0,10));
   renderAvailDates();
 }
-
 function removeAvailDate(i){
   availDates.splice(i,1);
   renderAvailDates();
 }
-
+function getDayName(dateStr){
+  const d = new Date(dateStr + 'T00:00:00');
+  return d.toLocaleDateString('en-US', {weekday:'short', month:'short', day:'numeric'});
+}
 function renderAvailDates(){
-  const el=document.getElementById('availDates');
+  const el = document.getElementById('availDates');
   if(!availDates.length){
-    el.innerHTML='<div style="font-size:13px;color:var(--text2);font-style:italic;padding:8px 0">No availability added yet — click + Add Available Date</div>';
+    el.innerHTML = '<div style="font-size:13px;color:var(--text2);font-style:italic;padding:8px 0">No dates added yet — click + Add Available Date</div>';
     return;
   }
-  el.innerHTML=availDates.map((slot,i)=>`
+  el.innerHTML = availDates.map((d,i)=>`
     <div class="avail-row">
-      <span class="avail-label">${getDayName(slot.date)}</span>
-      <input type="date" value="${slot.date}" onchange="availDates[${i}].date=this.value">
-      <input type="time" value="${slot.start||''}" onchange="availDates[${i}].start=this.value">
-      <input type="time" value="${slot.end||''}" onchange="availDates[${i}].end=this.value">
-      <button onclick="removeAvailDate(${i})">✕</button>
+      <span style="font-size:12px;font-weight:600;color:var(--text2);min-width:80px">${getDayName(d)}</span>
+      <input type="date" value="${d}" onchange="availDates[${i}] = this.value; renderAvailDates()">
+      <button onclick="removeAvailDate(${i})" style="padding:5px 8px;background:var(--red-lt);color:var(--red);border:none;border-radius:4px;cursor:pointer;font-size:14px;line-height:1">✕</button>
     </div>`).join('');
 }
-
-function getDayName(dateStr){
-  const d=new Date(dateStr+'T00:00:00');
-  return d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
-}
-
 function clearSchedule(){
-  availDates=[];
+  availDates = [];
+  plannerDays = [];
   renderAvailDates();
-  document.getElementById('schedResults').innerHTML='';
+  document.getElementById('schedResults').innerHTML = '';
 }
-
-function timeDiffHours(start,end){
-  if(!start||!end)return 6;
-  const s=new Date('1970-01-01T'+start+':00');
-  const e=new Date('1970-01-01T'+end+':00');
-  const diff=(e-s)/36e5;
-  return diff>0?diff:6;
+function makeStop(practiceIndex, source='suggested'){
+  const p = P[practiceIndex];
+  const st = stOf(p);
+  return {
+    practiceIndex,
+    source,
+    name: p.name,
+    city: p.city,
+    bucket: getLocationBucket(p.city),
+    status: st,
+    dueText: formatStatusWithDue(p, st),
+    driveMin: 0,
+    visitMin: 60,
+    arriveMin: null,
+    departMin: null
+  };
 }
-function plannerVisitCapacity(slot){
-  return Math.max(1, Math.floor(timeDiffHours(slot.start,slot.end)/2));
-}
-function estimateVisitMinutes(p){
-  const manual = parseFloat(p.visitDuration);
-  if(!isNaN(manual) && manual > 0) return Math.round(manual*60);
-
-  let minutes = 120; // baseline: at least 2 hours per site visit
-
-  const addIfChecked = (key, mins) => { if(equipChecked(p,key)) minutes += mins; };
-  addIfChecked('Vaccines/Refrig. Meds', 20);
-  addIfChecked('Sample Meds', 25);
-  addIfChecked('VFC', 20);
-  addIfChecked('POC Testing', 15);
-  addIfChecked('Autoclave', 15);
-  addIfChecked('Trophon', 10);
-  addIfChecked('OceaView', 10);
-  addIfChecked('AED', 5);
-  addIfChecked('Eyewash', 5);
-  addIfChecked('Oxygen', 5);
-
-  const flags = getFlags(p);
-  minutes += flags.filter(f=>f.sev==='red').length * 10;
-  minutes += flags.filter(f=>f.sev!=='red').length * 5;
-
-  const notes = ((p.notes||'') + ' ' + (p.hours||'')).toLowerCase();
-  if(notes.includes('inventory')) minutes += 20;
-  if(notes.includes('sample')) minutes += 15;
-  if(notes.includes('vfc')) minutes += 10;
-  if(notes.includes('call to confirm') || notes.includes('⚠')) minutes += 10;
-
-  return Math.min(240, minutes);
-}
-function scheduleWindowMinutes(slot){
-  return Math.max(60, Math.round(timeDiffHours(slot.start,slot.end)*60));
-}
-function getCityGroup(city){
-  for(const[group,cities]of Object.entries(CITY_GROUPS)){
-    if(cities.some(c=>city.toLowerCase().includes(c.toLowerCase())))return group;
-  }
-  return city;
-}
-function priorityScore(item){
-  const base={overdue:100,soon:60,upcoming:25,unsched:40,ontrack:0}[item.st]||0;
-  const flags=getFlags(item.p);
-  const red=flags.filter(f=>f.sev==='red').length*20;
-  const amber=flags.filter(f=>f.sev!=='red').length*8;
-  const due=item.due?Math.max(0,30-dd(item.due)):0;
-  return base+red+amber+due;
-}
-function getCoords(p){
-  const byName=GEO_BY_NAME[p.name];
-  if(byName)return byName;
-  const cityKey=Object.keys(GEO_BY_CITY).find(c=>(p.city||'').toLowerCase().includes(c.toLowerCase()));
-  return cityKey?GEO_BY_CITY[cityKey]:null;
-}
-function havMiles(a,b){
-  if(!a||!b)return 0;
-  const toRad=v=>v*Math.PI/180;
-  const R=3958.8;
-  const dLat=toRad(b[0]-a[0]);
-  const dLon=toRad(b[1]-a[1]);
-  const lat1=toRad(a[0]);
-  const lat2=toRad(b[0]);
-  const x=Math.sin(dLat/2)**2 + Math.cos(lat1)*Math.cos(lat2)*Math.sin(dLon/2)**2;
-  return 2*R*Math.asin(Math.sqrt(x));
-}
-function driveMinutesBetween(a,b){
-  const ca=getCoords(a.p||a), cb=getCoords(b.p||b);
-  const miles=havMiles(ca,cb);
-  if(miles<1) return 4;
-  return Math.max(6, Math.round(((miles*1.23)/38)*60));
-}
-function routeSort(a,b){
-  return priorityScore(b)-priorityScore(a);
-}
-function buildTimedRouteFromCandidates(candidates,slot){
-  if(!candidates.length)return [];
-  const windowMins = scheduleWindowMinutes(slot);
-  const pool=[...candidates].sort((a,b)=>priorityScore(b)-priorityScore(a)).slice(0,14);
-  let bestRoute=[];
-  let bestScore=-Infinity;
-
-  pool.forEach(start=>{
-    const used=new Set([start.i]);
-    const route=[start];
-    let usedMins=estimateVisitMinutes(start.p);
-
-    while(true){
-      const current=route[route.length-1];
-      const remaining=pool.filter(x=>!used.has(x.i));
-      if(!remaining.length)break;
-
-      let bestNext=null, bestNextScore=-Infinity, bestAddedMins=0;
-      remaining.forEach(item=>{
-        const driveMins=driveMinutesBetween(current,item);
-        const visitMins=estimateVisitMinutes(item.p);
-        const addedMins=driveMins + visitMins;
-        if(usedMins + addedMins > windowMins) return;
-
-        const score=priorityScore(item) - (driveMins*0.55) - (visitMins*0.08);
-        if(score>bestNextScore){
-          bestNextScore=score;
-          bestNext=item;
-          bestAddedMins=addedMins;
-        }
-      });
-
-      if(!bestNext)break;
-      used.add(bestNext.i);
-      route.push(bestNext);
-      usedMins += bestAddedMins;
-    }
-
-    const totalDrive=route.reduce((sum,item,idx)=>idx===0?sum:sum+driveMinutesBetween(route[idx-1],item),0);
-    const totalVisit=route.reduce((sum,item)=>sum+estimateVisitMinutes(item.p),0);
-    const score=route.reduce((s,x)=>s+priorityScore(x),0) - totalDrive*0.45 - totalVisit*0.03;
-    if(score>bestScore){
-      bestScore=score;
-      bestRoute=route;
-    }
+function buildPlannerCandidates(){
+  return P.map((p,i)=>({
+    p, i,
+    status: stOf(p),
+    bucket: getLocationBucket(p.city),
+    due: nextDue(p),
+    scheduledFuture: isScheduledFuture(p)
+  }))
+  .filter(x => !x.scheduledFuture && x.status !== 'ontrack')
+  .sort((a,b)=>{
+    const bkt = bucketSortValue(a.bucket) - bucketSortValue(b.bucket);
+    if(bkt !== 0) return bkt;
+    const pri = plannerPriority(a.status) - plannerPriority(b.status);
+    if(pri !== 0) return pri;
+    if(a.due && b.due) return a.due - b.due;
+    if(!a.due && b.due) return 1;
+    if(a.due && !b.due) return -1;
+    return a.p.name.localeCompare(b.p.name);
   });
-
-  return bestRoute;
 }
-function routeVisitMinutes(visits){
-  return visits.map(v=>estimateVisitMinutes(v.p));
-}
-function totalVisitMinutes(visits){
-  return routeVisitMinutes(visits).reduce((a,b)=>a+b,0);
-}
-function totalScheduledMinutes(visits){
-  return totalVisitMinutes(visits) + totalRouteDriveMinutes(visits);
-}
-function routeLegs(visits){
-  return visits.map((v,idx)=> idx===0 ? 0 : driveMinutesBetween(visits[idx-1],v));
-}
-function totalRouteDriveMinutes(visits){
-  return routeLegs(visits).reduce((a,b)=>a+b,0);
-}
-function formatMinutes(min){
-  if(min<60)return `${min} min`;
-  const h=Math.floor(min/60), m=min%60;
-  return `${h}h ${m}m`;
-}
-function addVisitToMonthlyCalendar(idx,date,status='Scheduled'){
-  const p=P[idx];
-  p.nextScheduled=date;
-  p.visitStatus=status;
-  _unsaved=true;
-  autoSave(getDataForSave());
-  renderStats();renderWeek();renderDash();renderCal();
-  toast('✓ Added to monthly calendar','ok');
-}
-function addDayToMonthlyCalendar(date,indexes){
-  indexes.forEach(idx=>{
-    P[idx].nextScheduled=date;
-    P[idx].visitStatus='Scheduled';
-  });
-  _unsaved=true;
-  autoSave(getDataForSave());
-  renderStats();renderWeek();renderDash();renderCal();
-  toast('✓ Day added to monthly calendar','ok');
-}
-function openRouteInMaps(indexes){
-  const stops=indexes.map(i=>encodeURIComponent(P[i].addr||P[i].name));
-  if(!stops.length)return;
-  const origin=stops[0];
-  const destination=stops[stops.length-1];
-  const waypoints=stops.slice(1,-1).join('|');
-  const url=`https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}${waypoints?`&waypoints=${waypoints}`:''}&travelmode=driving`;
-  window.open(url,'_blank');
-}
-function buildRouteLabel(visits){
-  return visits.map(v=>v.p.city).filter((v,i,a)=>a.indexOf(v)===i).join(' → ');
-}
-
 function generateSchedule(){
-  if(!availDates.length){toast('Add at least one available date first','err');return}
+  if(!availDates.length){ toast('Add at least one available date first','err'); return; }
 
-  const needsVisit = P.map((p,i)=>({p,i,st:stOf(p),due:nextDue(p),flags:getFlags(p)}))
-    .filter(({st})=>st!=='ontrack')
-    .sort((a,b)=>priorityScore(b)-priorityScore(a));
-
-  if(!needsVisit.length){
-    document.getElementById('schedResults').innerHTML=`<div class="sched-empty">🎉 All practices are on track — no visits needed right now!</div>`;
+  const candidates = buildPlannerCandidates();
+  if(!candidates.length){
+    plannerDays = [];
+    document.getElementById('schedResults').innerHTML = `<div class="sched-empty">🎉 All practices are on track or already scheduled.</div>`;
     return;
   }
 
-  const sortedDates=[...availDates].sort((a,b)=>a.date.localeCompare(b.date));
-  const used=new Set();
-  const schedule=[];
-
-  sortedDates.forEach(slot=>{
-    const remaining=needsVisit.filter(x=>!used.has(x.i));
-    const bestItems=buildTimedRouteFromCandidates(remaining,slot);
-    const windowMins=scheduleWindowMinutes(slot);
-
-    if(!bestItems.length){
-      schedule.push({...slot,visits:[],routeLabel:'No urgent visits',windowMins,totalDrive:0,totalVisit:0,totalUsed:0});
-      return;
-    }
-
-    bestItems.forEach(x=>used.add(x.i));
-    schedule.push({
-      ...slot,
-      visits:bestItems,
-      routeLabel:buildRouteLabel(bestItems),
-      windowMins,
-      totalDrive:totalRouteDriveMinutes(bestItems),
-      totalVisit:totalVisitMinutes(bestItems),
-      totalUsed:totalScheduledMinutes(bestItems)
-    });
+  const byBucket = new Map();
+  candidates.forEach(item=>{
+    if(!byBucket.has(item.bucket)) byBucket.set(item.bucket, []);
+    byBucket.get(item.bucket).push(item);
   });
 
-  const remaining=needsVisit.filter(x=>!used.has(x.i));
-  let html=schedule.map(day=>{
-    const remainingMins=Math.max(0, day.windowMins - day.totalUsed);
-    if(!day.visits.length)return`
-      <div class="sched-day">
-        <div class="sched-day-hdr">
-          <div>
-            <div class="sched-day-date">${getDayName(day.date)}</div>
-            <div class="route-note">${day.start||'Open'} - ${day.end||'Open'} · ${formatMinutes(day.windowMins)} available</div>
-          </div>
-          <div class="sched-day-meta">No urgent visits</div>
-        </div>
-        <div class="sched-visits"><div style="font-size:13px;color:var(--text2);font-style:italic;padding:4px">All nearby practices are on track ✓</div></div>
-      </div>`;
+  const buckets = [...byBucket.entries()].sort((a,b)=>{
+    const orderDiff = bucketSortValue(a[0]) - bucketSortValue(b[0]);
+    if(orderDiff !== 0) return orderDiff;
+    const aWeight = Math.max(...a[1].map(x=>statusWeight(x.status)));
+    const bWeight = Math.max(...b[1].map(x=>statusWeight(x.status)));
+    return bWeight - aWeight;
+  });
 
-    const legs=routeLegs(day.visits);
-    const visitMins=routeVisitMinutes(day.visits);
-    const visitHtml=day.visits.map(({p,i,st},idx)=>`
-      <div class="sched-visit ${st} ${hasFlags(p)?'flagged':''}">
-        <div class="sv-main">
-          <div class="sv-name">${p.name}</div>
-          <div class="sv-city">📍 ${p.city} · ${p.freq} · ${p.hours.includes('⚠')?'<span style="color:var(--red);font-size:10px">⚠ '+p.hours.split('⚠')[1].trim()+'</span>':(p.hours||'Hours not listed')}</div>
-          <div class="route-leg">Estimated site visit time: ${formatMinutes(visitMins[idx])}</div>
-          ${idx>0?`<div class="route-leg">Drive from previous stop: ${formatMinutes(legs[idx])}</div>`:'<div class="route-leg">First stop of the day</div>'}
-          ${flagHtml(p)?`<div class="sv-flags">${flagHtml(p)}</div>`:''}
-        </div>
-        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">
-          <span class="sv-status pill ${stPill(st)}">${stLbl(st)}</span>
-          <button class="route-btn secondary" onclick="addVisitToMonthlyCalendar(${i},'${day.date}')">Add to calendar</button>
-        </div>
-      </div>`).join('');
+  const sortedDates = [...availDates].sort();
+  plannerDays = sortedDates.map((date, idx)=>{
+    const bucketEntry = buckets[idx];
+    const stops = bucketEntry
+      ? bucketEntry[1].map(x => {
+          const stop = makeStop(x.i, 'suggested');
+          stop.driveMin = 20;
+          return stop;
+        })
+      : [];
+    if(stops.length) stops[0].driveMin = 30;
+    return {
+      date,
+      bucket: bucketEntry ? bucketEntry[0] : '',
+      startTime: '09:00',
+      homeDriveMin: 30,
+      stops
+    };
+  });
 
-    const steps=day.visits.map((v,idx)=>`<div class="route-step"><strong>${idx+1}.</strong> ${v.p.name} <span style="color:var(--text2)">(${v.p.city})</span><div class="route-leg">Visit: ${formatMinutes(visitMins[idx])}${idx>0?` · Drive: ${formatMinutes(legs[idx])}`:''}</div></div>`).join('');
-    const indexes=day.visits.map(v=>v.i).join(',');
+  renderPlannerResults();
 
-    return`
-      <div class="sched-day">
-        <div class="sched-day-hdr">
-          <div>
-            <div class="sched-day-date">${getDayName(day.date)}</div>
-            <div class="route-note">${day.start||'Open'} - ${day.end||'Open'} · ${formatMinutes(day.windowMins)} available</div>
-          </div>
-          <div class="sched-day-meta">Route: ${day.routeLabel}</div>
-        </div>
-        <div class="sched-visits">${visitHtml}</div>
-        <div class="route-box">
-          <div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Suggested route order</div>
-          ${steps}
-          <div class="route-total">Estimated site time: ${formatMinutes(day.totalVisit)} · Drive time: ${formatMinutes(day.totalDrive)} · Total scheduled: ${formatMinutes(day.totalUsed)} · Time left: ${formatMinutes(remainingMins)}</div>
-          <div class="route-actions">
-            <button class="route-btn primary" onclick="addDayToMonthlyCalendar('${day.date}',[${indexes}])">Add whole day to monthly calendar</button>
-            <button class="route-btn secondary" onclick="openRouteInMaps([${indexes}])">Open route in Google Maps</button>
-          </div>
-        </div>
-      </div>`;
-  }).join('');
-
-  if(remaining.length){
-    const grouped={};
-    remaining.forEach(item=>{
-      const g=getCityGroup(item.p.city);
-      if(!grouped[g])grouped[g]=[];
-      grouped[g].push(item);
-    });
-    html+=`<div class="schedule-warning">
-      <div class="schedule-warning-title">⚠ These practices still need time on your calendar:</div>
-      ${Object.entries(grouped).map(([cg,visits])=>`
-        <div style="font-size:12px;margin-bottom:4px"><strong>${cg}</strong> — ${visits.map(v=>`${v.p.name.split(' - ').pop()} (${formatMinutes(estimateVisitMinutes(v.p))})`).join(', ')}</div>
-      `).join('')}
-      <div style="font-size:11px;color:var(--amber);margin-top:8px">Add more available days or longer time windows, then regenerate.</div>
+  if(buckets.length > sortedDates.length){
+    const extra = buckets.slice(sortedDates.length).map(([bucket,items])=>`${bucket}: ${items.map(x=>x.p.name.split(' - ').pop()).join(', ')}`);
+    toast('Generated, but some locations still need dates','err');
+    const extraBox = `<div style="margin-top:12px;padding:12px;background:var(--amber-lt);border-left:4px solid var(--amber);border-radius:10px">
+      <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:6px">Additional locations still needing a date</div>
+      <div style="font-size:12px;line-height:1.6">${extra.map(x=>escapeHtml(x)).join('<br>')}</div>
     </div>`;
+    document.getElementById('schedResults').insertAdjacentHTML('beforeend', extraBox);
+  } else {
+    toast('✓ Schedule generated','ok');
+  }
+}
+function recalcDay(day){
+  let cur = toMin(day.startTime || '09:00');
+  let totalDrive = 0;
+  let totalVisit = 0;
+  day.stops.forEach(stop=>{
+    const drive = Number(stop.driveMin || 0);
+    const visit = Number(stop.visitMin || 0);
+    cur += drive;
+    stop.arriveMin = cur;
+    stop.departMin = cur + visit;
+    cur = stop.departMin;
+    totalDrive += drive;
+    totalVisit += visit;
+  });
+  day.totalDriveMin = totalDrive + Number(day.homeDriveMin || 0);
+  day.totalVisitMin = totalVisit;
+  day.returnHomeMin = cur + Number(day.homeDriveMin || 0);
+  day.finishLastStopMin = cur;
+}
+function renderPlannerResults(){
+  const wrap = document.getElementById('schedResults');
+  if(!plannerDays.length){
+    wrap.innerHTML = '';
+    return;
   }
 
-  document.getElementById('schedResults').innerHTML=html;
-  toast('✓ Schedule generated!','ok');
+  plannerDays.forEach(recalcDay);
+
+  wrap.innerHTML = plannerDays.map((day, dayIdx)=>{
+    const options = P.map((p, i)=>`<option value="${i}">${escapeHtml(p.city)} — ${escapeHtml(p.name)}</option>`).join('');
+    const visitsHtml = day.stops.length ? day.stops.map((stop, stopIdx)=>`
+      <div class="sched-visit ${stop.status}">
+        <div class="sv-main">
+          <div class="sv-name">${escapeHtml(stop.name)}</div>
+          <div class="sv-city">📍 ${escapeHtml(stop.city)} · ${escapeHtml(stop.bucket)} · ${escapeHtml(stop.dueText)}</div>
+          <div class="sv-badges">
+            <span class="pill ${stPill(stop.status)}">${stLbl(stop.status)}</span>
+            <span class="sv-type">${stop.source === 'manual' ? 'Manual add' : 'Suggested'}</span>
+          </div>
+        </div>
+
+        <div>
+          <label class="small-note">Drive from previous</label><br>
+          <input class="planner-input" type="number" min="0" value="${Number(stop.driveMin || 0)}" style="width:85px" onchange="updateStopField(${dayIdx}, ${stopIdx}, 'driveMin', this.value)">
+        </div>
+
+        <div>
+          <label class="small-note">Visit mins</label><br>
+          <input class="planner-input" type="number" min="0" value="${Number(stop.visitMin || 0)}" style="width:75px" onchange="updateStopField(${dayIdx}, ${stopIdx}, 'visitMin', this.value)">
+        </div>
+
+        <div class="sv-time">
+          ${stop.arriveMin !== null ? `Arrive ${toReadableHM(stop.arriveMin)}<br>Leave ${toReadableHM(stop.departMin)}` : ''}
+        </div>
+
+        <div class="sv-move">
+          <button class="sv-mini" onclick="moveStop(${dayIdx}, ${stopIdx}, -1)">↑</button>
+          <button class="sv-mini" onclick="moveStop(${dayIdx}, ${stopIdx}, 1)">↓</button>
+          <button class="sv-mini danger" onclick="removeStop(${dayIdx}, ${stopIdx})">✕</button>
+        </div>
+      </div>`).join('') : `<div class="sched-empty">No offices assigned to this day yet.</div>`;
+
+    return `<div class="sched-day">
+      <div class="sched-day-hdr">
+        <div class="sched-day-date">${getDayName(day.date)}</div>
+        <div class="sched-day-meta">${escapeHtml(day.bucket || 'Manual planning day')} · ${day.stops.length} stop${day.stops.length===1?'':'s'}</div>
+      </div>
+
+      <div class="sched-day-body">
+        <div class="sched-day-tools">
+          <div class="tool-box">
+            <label>Start time</label>
+            <input class="planner-input" type="time" value="${escapeHtml(day.startTime)}" onchange="updateDayField(${dayIdx}, 'startTime', this.value)">
+          </div>
+          <div class="tool-box">
+            <label>Drive home (mins)</label>
+            <input class="planner-input" type="number" min="0" value="${Number(day.homeDriveMin || 0)}" onchange="updateDayField(${dayIdx}, 'homeDriveMin', this.value)">
+          </div>
+          <div class="tool-box">
+            <label>Location focus</label>
+            <div style="font-weight:700">${escapeHtml(day.bucket || 'Manual')}</div>
+          </div>
+        </div>
+
+        <div class="sched-visits">${visitsHtml}</div>
+
+        <div class="day-add-row">
+          <select class="planner-select" id="addOffice-${dayIdx}" style="min-width:280px">${options}</select>
+          <button class="btn btn-teal" onclick="addOfficeToDay(${dayIdx})">+ Add office</button>
+        </div>
+
+        <div class="day-summary">
+          <span class="sum-chip">Drive total: ${minutesLabel(day.totalDriveMin || 0)}</span>
+          <span class="sum-chip">Visit total: ${minutesLabel(day.totalVisitMin || 0)}</span>
+          <span class="sum-chip">Last stop done: ${toReadableHM(day.finishLastStopMin || toMin(day.startTime))}</span>
+          <span class="sum-chip">Home by: ${toReadableHM(day.returnHomeMin || toMin(day.startTime))}</span>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
 }
-// ════════════════════════════════════
-// RENDERS
-// ════════════════════════════════════
+function updateStopField(dayIdx, stopIdx, field, value){
+  plannerDays[dayIdx].stops[stopIdx][field] = Number(value || 0);
+  renderPlannerResults();
+}
+function updateDayField(dayIdx, field, value){
+  plannerDays[dayIdx][field] = field === 'homeDriveMin' ? Number(value || 0) : value;
+  renderPlannerResults();
+}
+function moveStop(dayIdx, stopIdx, direction){
+  const arr = plannerDays[dayIdx].stops;
+  const newIdx = stopIdx + direction;
+  if(newIdx < 0 || newIdx >= arr.length) return;
+  [arr[stopIdx], arr[newIdx]] = [arr[newIdx], arr[stopIdx]];
+  renderPlannerResults();
+}
+function removeStop(dayIdx, stopIdx){
+  plannerDays[dayIdx].stops.splice(stopIdx,1);
+  renderPlannerResults();
+}
+function addOfficeToDay(dayIdx){
+  const sel = document.getElementById('addOffice-' + dayIdx);
+  const practiceIndex = Number(sel.value);
+  if(Number.isNaN(practiceIndex)) return;
+  const stop = makeStop(practiceIndex, 'manual');
+  stop.driveMin = 15;
+  stop.visitMin = 60;
+  plannerDays[dayIdx].stops.push(stop);
+  renderPlannerResults();
+}
+
 function renderStats(){
-  const c={all:P.length,overdue:0,soon:0,upcoming:0,unsched:0,ontrack:0,flagged:0};
-  P.forEach(p=>{c[stOf(p)]++; if(hasFlags(p))c.flagged++;});
-  document.getElementById('statsEl').innerHTML=`
+  const c = {all:P.length, overdue:0, soon:0, upcoming:0, unsched:0, ontrack:0};
+  P.forEach(p=> c[stOf(p)]++);
+  document.getElementById('statsEl').innerHTML = `
     <div class="sc s-all" onclick="applyF('')"><div class="sc-num">${c.all}</div><div class="sc-lbl">Total</div></div>
     <div class="sc s-ov" onclick="applyF('overdue')"><div class="sc-num">${c.overdue}</div><div class="sc-lbl">Overdue</div></div>
     <div class="sc s-soon" onclick="applyF('soon')"><div class="sc-num">${c.soon}</div><div class="sc-lbl">Due Soon</div></div>
     <div class="sc s-ns" onclick="applyF('unsched')"><div class="sc-num">${c.unsched}</div><div class="sc-lbl">Not Scheduled</div></div>
-    <div class="sc s-soon" onclick="applyF('flagged')"><div class="sc-num">${c.flagged}</div><div class="sc-lbl">Flagged</div></div>
-    <div class="sc s-ok" onclick="applyF('ontrack')"><div class="sc-num">${c.ontrack+c.upcoming}</div><div class="sc-lbl">On Track</div></div>`;
+    <div class="sc s-ok" onclick="applyF('ontrack')"><div class="sc-num">${c.ontrack + c.upcoming}</div><div class="sc-lbl">On Track</div></div>`;
 }
-function applyF(v){document.getElementById('df').value=v;renderDash()}
-
+function applyF(v){ document.getElementById('df').value = v; renderDash(); }
 function renderWeek(){
-  const lo=new Date(TODAY);lo.setDate(lo.getDate()-lo.getDay());
-  const hi=new Date(lo);hi.setDate(hi.getDate()+6);
-  const items=P.filter(p=>{const d=nextDue(p);return d&&d>=lo&&d<=hi});
-  const b=document.getElementById('weekBanner');
-  if(!items.length){b.classList.remove('has');return}
+  const lo = new Date(TODAY); lo.setDate(lo.getDate() - lo.getDay());
+  const hi = new Date(lo); hi.setDate(hi.getDate() + 6);
+  const items = P.filter(p=>{ const d = nextDue(p); return d && d>=lo && d<=hi; });
+  const b = document.getElementById('weekBanner');
+  if(!items.length){ b.classList.remove('has'); return; }
   b.classList.add('has');
-  document.getElementById('weekList').innerHTML=items.map(p=>`
+  document.getElementById('weekList').innerHTML = items.map(p=>`
     <div class="week-item"><div class="w-dot"></div>
-    <div class="w-name">${p.name}</div>
-    <div class="w-due">Due ${fmt(nextDue(p))}</div></div>`).join('');
+      <div class="w-name">${escapeHtml(p.name)}</div>
+      <div class="w-due">Due ${fmt(nextDue(p))}</div>
+    </div>`).join('');
 }
-
 function getFiltered(sid,fid,frqid,ctid,spid){
-  const q=(document.getElementById(sid)||{}).value?.toLowerCase()||'';
-  const fr=(document.getElementById(fid)||{}).value||'';
-  const freq=(document.getElementById(frqid)||{}).value||'';
-  const ct=(document.getElementById(ctid)||{}).value||'';
-  const sp=(document.getElementById(spid)||{}).value||'';
+  const q = (document.getElementById(sid)||{}).value?.toLowerCase() || '';
+  const fr = (document.getElementById(fid)||{}).value || '';
+  const freq = (document.getElementById(frqid)||{}).value || '';
+  const ct = (document.getElementById(ctid)||{}).value || '';
+  const sp = (document.getElementById(spid)||{}).value || '';
   return P.map((p,i)=>({p,i})).filter(({p})=>{
-    const st=stOf(p);
-    if(fr==='ontrack'&&!(st==='ontrack'||st==='upcoming'))return false;
-    if(fr==='flagged'&&!hasFlags(p))return false;
-    if(fr&&fr!=='ontrack'&&fr!=='flagged'&&st!==fr)return false;
-    if(freq&&p.freq!==freq)return false;
-    if(ct&&p.city!==ct)return false;
-    if(sp&&p.spec!==sp)return false;
-    if(q&&!([p.name,p.city,p.spec,p.mgr||'',p.leadMA||''].join(' ').toLowerCase().includes(q)))return false;
+    const st = stOf(p);
+    if(fr==='ontrack' && !(st==='ontrack' || st==='upcoming')) return false;
+    if(fr && fr!=='ontrack' && st!==fr) return false;
+    if(freq && p.freq!==freq) return false;
+    if(ct && p.city!==ct) return false;
+    if(sp && p.spec!==sp) return false;
+    if(q && !([p.name,p.city,p.spec,p.mgr||'',p.leadMA||''].join(' ').toLowerCase().includes(q))) return false;
     return true;
   });
 }
-
 function renderDash(){
-  let list=getFiltered('ds','df','dfreq',null,null);
-  list.sort((a,b)=>{const da=nextDue(a.p),db=nextDue(b.p);if(!da&&!db)return 0;if(!da)return 1;if(!db)return-1;return da-db});
-  document.getElementById('dcnt').textContent=`${list.length} of ${P.length} practices`;
-  document.getElementById('dashList').innerHTML=list.length?list.map(({p,i})=>mkCard(p,i)).join(''):'<div style="text-align:center;padding:50px;color:var(--text2)">No practices match</div>';
+  let list = getFiltered('ds','df','dfreq',null,null);
+  list.sort((a,b)=>{
+    const da = nextDue(a.p), db = nextDue(b.p);
+    if(!da && !db) return 0;
+    if(!da) return 1;
+    if(!db) return -1;
+    return da - db;
+  });
+  document.getElementById('dcnt').textContent = `${list.length} of ${P.length} practices`;
+  document.getElementById('dashList').innerHTML = list.length ? list.map(({p,i})=>mkCard(p,i)).join('') : '<div style="text-align:center;padding:50px;color:var(--text2)">No practices match</div>';
 }
-
-let seeded=false;
+let seeded = false;
 function renderPrac(){
   if(!seeded){
-    const cities=[...new Set(P.map(p=>p.city))].sort();
-    const specs=[...new Set(P.map(p=>p.spec))].sort();
-    const cs=document.getElementById('pcity'),ss=document.getElementById('pspec');
-    cities.forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;cs.appendChild(o)});
-    specs.forEach(s=>{const o=document.createElement('option');o.value=s;o.textContent=s;ss.appendChild(o)});
-    seeded=true;
+    const cities = [...new Set(P.map(p=>p.city))].sort();
+    const specs = [...new Set(P.map(p=>p.spec))].sort();
+    const cs = document.getElementById('pcity'), ss = document.getElementById('pspec');
+    cities.forEach(c=>{ const o = document.createElement('option'); o.value = c; o.textContent = c; cs.appendChild(o); });
+    specs.forEach(s=>{ const o = document.createElement('option'); o.value = s; o.textContent = s; ss.appendChild(o); });
+    seeded = true;
   }
-  const list=getFiltered('ps',null,'pfreq','pcity','pspec');
-  document.getElementById('pcnt').textContent=`${list.length} of ${P.length}`;
-  document.getElementById('pracList').innerHTML=list.length?list.map(({p,i})=>mkCard(p,i)).join(''):'<div style="text-align:center;padding:50px;color:var(--text2)">No practices match</div>';
+  const list = getFiltered('ps',null,'pfreq','pcity','pspec');
+  document.getElementById('pcnt').textContent = `${list.length} of ${P.length}`;
+  document.getElementById('pracList').innerHTML = list.length ? list.map(({p,i})=>mkCard(p,i)).join('') : '<div style="text-align:center;padding:50px;color:var(--text2)">No practices match</div>';
 }
-
 function renderCal(){
-  const cur=TODAY.getMonth();
-  let h='<thead><tr><th class="pn-col">Practice</th>';
-  MOS.forEach((m,i)=>{h+=`<th class="${i===cur?'cur-mo':''}">${m}</th>`});
-  h+='</tr></thead><tbody>';
+  const cur = TODAY.getMonth();
+  let h = '<thead><tr><th class="pn-col">Practice</th>';
+  MOS.forEach((m,i)=>{ h += `<th class="${i===cur?'cur-mo':''}">${m}</th>`; });
+  h += '</tr></thead><tbody>';
   P.forEach(p=>{
-    h+=`<tr><td class="pname" title="${p.name}">${p.name}</td>`;
-    for(let mo=1;mo<=12;mo++){const c=calCell(p,mo);h+=c?`<td><span class="${c.c}">${c.t}</span></td>`:'<td></td>'}
-    h+='</tr>';
+    h += `<tr><td class="pname" title="${escapeHtml(p.name)}">${escapeHtml(p.name)}</td>`;
+    for(let mo=1; mo<=12; mo++){
+      const c = calCell(p,mo);
+      h += c ? `<td><span class="${c.c}">${c.t}</span></td>` : '<td></td>';
+    }
+    h += '</tr>';
   });
-  document.getElementById('calEl').innerHTML=h+'</tbody>';
+  document.getElementById('calEl').innerHTML = h + '</tbody>';
 }
-
 function goTab(id){
-  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',['dashboard','practices','calendar','planner'][i]===id));
-  document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+id));
-  if(id==='calendar')renderCal();
-  if(id==='practices')renderPrac();
-  if(id==='planner')renderAvailDates();
+  document.querySelectorAll('.tab').forEach((t,i)=> t.classList.toggle('active', ['dashboard','practices','calendar','planner'][i]===id));
+  document.querySelectorAll('.view').forEach(v=> v.classList.toggle('active', v.id === 'view-' + id));
+  if(id==='calendar') renderCal();
+  if(id==='practices') renderPrac();
+  if(id==='planner') renderAvailDates();
 }
-
 let tt;
 function toast(msg,type){
   clearTimeout(tt);
-  const el=document.getElementById('toast');
-  el.textContent=msg;el.className='toast'+(type?' '+type:'');el.classList.add('show');
-  tt=setTimeout(()=>el.classList.remove('show'),3000);
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'toast' + (type ? ' ' + type : '');
+  el.classList.add('show');
+  tt = setTimeout(()=> el.classList.remove('show'), 3000);
 }
 
-// ════════════════════════════════════
-// INIT
-// ════════════════════════════════════
 load();
-applyScreenshotSeed();
-renderStats();renderWeek();renderDash();
-setInterval(()=>{if(_unsaved)saveLocal()},180000);
+renderStats();
+renderWeek();
+renderDash();
+setInterval(()=>{ if(_unsaved) saveLocal(); }, 180000);
 </script>
 </body>
 </html>
