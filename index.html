@@ -205,6 +205,15 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
 .toast{position:fixed;bottom:20px;right:20px;background:var(--navy);color:#fff;padding:11px 18px;border-radius:var(--radius);font-size:13px;font-weight:500;box-shadow:var(--shadow-lg);transform:translateY(80px);opacity:0;transition:all .3s cubic-bezier(.34,1.56,.64,1);z-index:999;max-width:300px}
 .toast.show{transform:translateY(0);opacity:1}
 .toast.err{background:var(--red)}.toast.ok{background:var(--green)}
+.backup-overlay{display:none;position:fixed;inset:0;background:rgba(21,40,71,.55);z-index:1200;align-items:center;justify-content:center;padding:16px}
+.backup-overlay.open{display:flex}
+.backup-modal{background:#fff;border-radius:16px;box-shadow:var(--shadow-lg);width:min(760px,100%);max-height:92vh;overflow:auto;border:1px solid var(--border)}
+.backup-modal-hdr{padding:16px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px}
+.backup-modal-title{font-size:15px;font-weight:800;color:var(--navy)}
+.backup-modal-body{padding:16px 18px}
+.backup-modal-body textarea{width:100%;min-height:260px;padding:10px;border:1px solid var(--border);border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.45;resize:vertical;background:var(--bg);color:var(--text)}
+.backup-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;justify-content:flex-end}
+.backup-help{font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:10px}
 #settingsBar{background:var(--navy);padding:6px 18px;display:flex;gap:16px;align-items:center;font-size:11px;color:rgba(255,255,255,.65);flex-wrap:wrap}
 #settingsBar input[type=checkbox]{accent-color:var(--teal);cursor:pointer}
 @media print{.hdr,.tabs,.fbar,.chev,.eact,.dtabs,.btn-pr,.hdr-actions,.stats,.week-banner,.dcon:not(.active){display:none!important}body{background:#fff}.pcard{box-shadow:none;border:1px solid #ccc;break-inside:avoid}.pcard-body{display:block!important}.dcon.active{display:block!important}.page{padding:0}}
@@ -224,7 +233,9 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
       <span class="sync-status" id="syncStatus"></span>
       <button class="btn btn-teal" onclick="manualSave()">💾 Save</button>
       <button class="btn btn-dl" onclick="downloadBackup()">⬇ Backup</button>
-      <label class="btn btn-ul">⬆ Load<input type="file" accept=".json" style="display:none" onchange="uploadBackup(event)"></label>
+      <button class="btn btn-ul" onclick="copyBackupText()">📋 Copy Backup</button>
+      <button class="btn btn-ul" onclick="openPasteBackupModal()">📥 Paste Backup</button>
+      <label class="btn btn-ul">⬆ Load<input type="file" accept=".json,.txt" style="display:none" onchange="uploadBackup(event)"></label>
     </div>
   </div>
   <div class="tabs">
@@ -328,6 +339,24 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
 
 </div>
 
+<div class="backup-overlay" id="backupModal">
+  <div class="backup-modal">
+    <div class="backup-modal-hdr">
+      <div class="backup-modal-title" id="backupModalTitle">Paste Backup</div>
+      <button class="btn btn-grey" onclick="closeBackupModal()">Close</button>
+    </div>
+    <div class="backup-modal-body">
+      <div class="backup-help" id="backupHelp">Paste the backup text you copied from this tracker, then tap Restore Backup.</div>
+      <textarea id="backupTextArea" placeholder="Paste your backup text here..."></textarea>
+      <div class="backup-actions">
+        <button class="btn btn-grey" onclick="selectBackupText()">Select Text</button>
+        <button class="btn btn-dl" id="copyVisibleBackupBtn" onclick="copyVisibleBackupText()" style="display:none">Copy Text</button>
+        <button class="btn btn-teal" id="restoreBackupBtn" onclick="restorePastedBackup()">Restore Backup</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -353,6 +382,79 @@ function getDataForSave(){
     };
   });
   return out;
+}
+function makeBackupPayload(){
+  return {app:'VMG Site Visit Tracker 2026', backupVersion:2, createdAt:new Date().toISOString(), data:getDataForSave()};
+}
+function backupToText(){return JSON.stringify(makeBackupPayload(), null, 2)}
+function parseBackupText(raw){
+  if(!raw || !String(raw).trim()) throw new Error('Backup text is empty.');
+  const parsed = JSON.parse(String(raw).trim());
+  const data = parsed && parsed.data ? parsed.data : parsed;
+  if(!data || typeof data !== 'object' || Array.isArray(data)) throw new Error('Backup is not in the expected format.');
+  const keys = Object.keys(data);
+  if(!keys.length) throw new Error('Backup does not contain saved practice data.');
+  const ok = keys.some(k=>{
+    const row = data[k];
+    return row && typeof row === 'object' && ('lastVisit' in row || 'nextScheduled' in row || 'visitStatus' in row || 'notes' in row || 'history' in row || 'equip' in row || 'mgr' in row);
+  });
+  if(!ok) throw new Error('Backup does not look like a VMG Site Visit Tracker backup.');
+  return data;
+}
+function openBackupModal(mode, text=''){
+  const modal=document.getElementById('backupModal');
+  const title=document.getElementById('backupModalTitle');
+  const help=document.getElementById('backupHelp');
+  const area=document.getElementById('backupTextArea');
+  const restoreBtn=document.getElementById('restoreBackupBtn');
+  const copyBtn=document.getElementById('copyVisibleBackupBtn');
+  modal.classList.add('open');
+  area.value=text;
+  if(mode==='copy'){
+    title.textContent='Copy Backup';
+    help.textContent='Your backup text is below. If automatic copy did not work on your phone, tap Select Text, then Copy, then paste it into Notes, email, Teams, or iCloud.';
+    restoreBtn.style.display='none';
+    copyBtn.style.display='';
+    setTimeout(()=>area.focus(),50);
+  }else{
+    title.textContent='Paste Backup';
+    help.textContent='Paste your backup text below, then tap Restore Backup. This avoids iPhone and work OneDrive file-upload issues.';
+    restoreBtn.style.display='';
+    copyBtn.style.display='none';
+    setTimeout(()=>area.focus(),50);
+  }
+}
+function closeBackupModal(){document.getElementById('backupModal').classList.remove('open')}
+function selectBackupText(){
+  const area=document.getElementById('backupTextArea');
+  area.focus(); area.select(); area.setSelectionRange(0, area.value.length);
+}
+async function copyVisibleBackupText(){
+  const area=document.getElementById('backupTextArea');
+  selectBackupText();
+  try{await navigator.clipboard.writeText(area.value); toast('✓ Backup text copied','ok')}
+  catch(err){try{document.execCommand('copy')}catch(e){} toast('Text selected. Tap Copy if prompted.','ok')}
+}
+async function copyBackupText(){
+  saveLocal();
+  const txt=backupToText();
+  try{
+    await navigator.clipboard.writeText(txt);
+    setSS('Backup copied '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}));
+    toast('✓ Backup copied. Paste it into Notes or email.','ok');
+  }catch(err){
+    openBackupModal('copy', txt);
+    toast('Copy blocked. Use Select Text, then Copy.','err');
+  }
+}
+function openPasteBackupModal(){openBackupModal('paste','')}
+function restorePastedBackup(){
+  try{
+    const data=parseBackupText(document.getElementById('backupTextArea').value);
+    applyLoadedData(data);
+    closeBackupModal();
+    toast('✓ Backup restored','ok');
+  }catch(err){toast(err.message || 'Invalid backup text','err')}
 }
 function applyLoadedData(data){
   P.forEach((p,i)=>{
@@ -410,10 +512,11 @@ function uploadBackup(e){
   const r = new FileReader();
   r.onload = ev => {
     try{
-      applyLoadedData(JSON.parse(ev.target.result));
+      const data=parseBackupText(ev.target.result);
+      applyLoadedData(data);
       toast('✓ Data loaded','ok');
     }catch(err){
-      toast('Invalid file','err');
+      toast('Invalid backup. Use Copy Backup / Paste Backup if your file is encrypted.','err');
     }
   };
   r.readAsText(file);
