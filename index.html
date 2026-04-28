@@ -124,7 +124,7 @@ body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);font-s
 .flash{font-size:12px;color:var(--green);font-weight:700;opacity:0;transition:opacity .3s}
 .flash.show{opacity:1}
 .eq-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:7px}
-.eq-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--border);border-radius:var(--rsm);background:var(--bg);cursor:pointer;transition:background .12s;user-select:none}
+.eq-item{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:8px 10px;border:1px solid var(--border);border-radius:var(--rsm);background:var(--bg);cursor:pointer;transition:background .12s;user-select:none;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 .eq-item.yes{background:var(--green-lt);border-color:#A9D6A0}
 .eq-item.no{background:var(--grey-lt)}
 .eq-cb{width:16px;height:16px;border-radius:4px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;transition:all .12s}
@@ -710,14 +710,7 @@ function mkCard(p,idx){
     days===0 ? `<span style="color:var(--amber);font-weight:700">Due today</span>` :
     `<span style="color:var(--text2)">${days}d away</span>`;
 
-  const eqH = EQ_KEYS.map(k=>{
-    const v = (p.equip && p.equip[k]) ? String(p.equip[k]).trim() : '';
-    const y = v.toLowerCase().startsWith('yes'), n2 = v.toLowerCase()==='no';
-    return `<div class="eq-item ${y?'yes':n2?'no':''}" onclick="togEq(${idx}, ${JSON.stringify(k)})">
-      <div class="eq-cb">${y?'✓':''}</div>
-      <div><div class="eq-name">${escapeHtml(k)}</div><div style="font-size:10px;color:var(--text2)">${escapeHtml(v || '—')}</div></div>
-    </div>`;
-  }).join('');
+  const eqH = renderEqHTML(idx);
 
   const histItems = (p.history||[]).length===0 ? '<div class="hist-empty">No visit history yet.</div>' :
     [...(p.history||[])].reverse().map(h=>`
@@ -838,17 +831,34 @@ function dtab(i,n){
   tabs.forEach((t,j)=> t.classList.toggle('active', 'iueh'[j] === n));
   ['i','u','e','h'].forEach(x=> document.getElementById('d' + x + '-' + i)?.classList.toggle('active', x===n));
 }
+function renderEqHTML(i){
+  const p = P[i] || {};
+  p.equip = p.equip || {};
+  return EQ_KEYS.map(k=>{
+    const v = p.equip[k] ? String(p.equip[k]).trim() : '';
+    const y = v.toLowerCase().startsWith('yes');
+    const n2 = v.toLowerCase() === 'no';
+    return `<button type="button" class="eq-item ${y?'yes':n2?'no':''}" onclick="event.stopPropagation(); togEq(${i}, ${JSON.stringify(k)}); return false;">
+      <div class="eq-cb">${y?'✓':''}</div>
+      <div>
+        <div class="eq-name">${escapeHtml(k)}</div>
+        <div style="font-size:10px;color:var(--text2)">${escapeHtml(v || 'Tap to mark Yes')}</div>
+      </div>
+    </button>`;
+  }).join('');
+}
 function togEq(i,key){
-  const cur = String(P[i].equip[key] || '').toLowerCase();
+  if(!P[i]) return;
+  P[i].equip = P[i].equip || {};
+  const cur = String(P[i].equip[key] || '').trim().toLowerCase();
   P[i].equip[key] = cur.startsWith('yes') ? 'No' : 'Yes';
+
   const g = document.getElementById('eq-' + i);
-  if(g){
-    g.innerHTML = EQ_KEYS.map(k=>{
-      const v = (P[i].equip && P[i].equip[k]) ? String(P[i].equip[k]).trim() : '';
-      const y = v.toLowerCase().startsWith('yes'), n2 = v.toLowerCase()==='no';
-      return `<div class="eq-item ${y?'yes':n2?'no':''}" onclick="togEq(${i}, ${JSON.stringify(k)})"><div class="eq-cb">${y?'✓':''}</div><div><div class="eq-name">${escapeHtml(k)}</div><div style="font-size:10px;color:var(--text2)">${escapeHtml(v || '—')}</div></div></div>`;
-    }).join('');
-  }
+  if(g) g.innerHTML = renderEqHTML(i);
+
+  _unsaved = true;
+  saveLocal();
+  setSS('Equipment saved ' + new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}));
 }
 function addNote(i){
   const dateEl = document.getElementById('nd-' + i);
@@ -1757,6 +1767,48 @@ function toast(msg,type){
   tt = setTimeout(()=> el.classList.remove('show'), 3000);
 }
 
+
+// Robust equipment toggle for desktop + mobile after card re-renders
+function renderEqHTML(i){
+  const p = P[i] || {};
+  p.equip = p.equip || {};
+  return EQ_KEYS.map(k=>{
+    const v = p.equip[k] ? String(p.equip[k]).trim() : '';
+    const y = v.toLowerCase().startsWith('yes');
+    const n2 = v.toLowerCase() === 'no';
+    return `<button type="button" class="eq-item ${y?'yes':n2?'no':''}" data-eq-idx="${i}" data-eq-key="${escapeHtml(k)}" aria-label="Toggle ${escapeHtml(k)}">
+      <div class="eq-cb">${y?'✓':''}</div>
+      <div>
+        <div class="eq-name">${escapeHtml(k)}</div>
+        <div style="font-size:10px;color:var(--text2)">${escapeHtml(v || 'Tap to mark Yes')}</div>
+      </div>
+    </button>`;
+  }).join('');
+}
+function setEqValue(i,key){
+  if(!P[i]) return;
+  P[i].equip = P[i].equip || {};
+  const cur = String(P[i].equip[key] || '').trim().toLowerCase();
+  P[i].equip[key] = cur.startsWith('yes') ? 'No' : 'Yes';
+  const g = document.getElementById('eq-' + i);
+  if(g) g.innerHTML = renderEqHTML(i);
+  _unsaved = true;
+  saveLocal();
+  setSS('Equipment saved ' + new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}));
+  toast('✓ Equipment saved','ok');
+}
+function togEq(i,key){ setEqValue(i,key); }
+function handleEquipmentToggle(e){
+  const btn = e.target.closest && e.target.closest('.eq-item[data-eq-idx][data-eq-key]');
+  if(!btn) return;
+  e.preventDefault();
+  e.stopPropagation();
+  const i = Number(btn.getAttribute('data-eq-idx'));
+  const key = btn.getAttribute('data-eq-key');
+  setEqValue(i,key);
+}
+document.addEventListener('click', handleEquipmentToggle, true);
+document.addEventListener('touchend', handleEquipmentToggle, true);
 load();
 renderStats();
 renderWeek();
