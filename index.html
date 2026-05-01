@@ -139,7 +139,7 @@ body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);font-s
 .eq-toolbar .hint{font-size:11px;color:var(--text2);margin-left:auto}
 .eq-detail.collapsed .eq-detail-body{display:none}
 .eq-min-btn{background:var(--grey-lt);color:var(--text);border:1px solid var(--border);border-radius:6px;padding:5px 9px;font-size:10px;font-weight:800;cursor:pointer}
-.eq-card{border:1px solid var(--border);border-radius:var(--rsm);background:#eef4f8;overflow:hidden;min-height:92px}
+.eq-card{border:1px solid var(--border);border-radius:var(--rsm);background:#eef4f8;overflow:hidden;min-height:92px;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 .eq-card.yes{background:var(--green-lt);border-color:#A9D6A0}
 .eq-item{display:flex;align-items:flex-start;gap:8px;width:100%;text-align:left;padding:10px 10px 6px;border:0;background:transparent;cursor:pointer;transition:background .12s;user-select:none;touch-action:manipulation;-webkit-tap-highlight-color:transparent;color:var(--text);font-family:'Sora',sans-serif}
 .eq-cb{width:16px;height:16px;margin-top:2px;border-radius:3px;border:2px solid #9AA8B4;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;transition:all .12s}
@@ -1156,7 +1156,7 @@ function renderEqHTML(i){
     const n2 = v.toLowerCase() === 'no';
     const hasDetails = detailKeys.includes(k);
     const detailHint = y ? (hasDetails ? '✓ Yes — details open below' : '✓ Yes') : (n2 ? 'X No' : 'Not set — tap to mark Yes');
-    return `<div class="eq-card ${y?'yes':''}">
+    return `<div class="eq-card ${y?'yes':''}" data-eq-idx="${i}" data-eq-key="${escapeHtml(k)}">
       <button type="button" class="eq-item ${y?'yes':n2?'no':''}" data-eq-idx="${i}" data-eq-key="${escapeHtml(k)}" aria-label="Toggle ${escapeHtml(k)}">
         <div class="eq-cb">${y?'✓':''}</div>
         <div>
@@ -1375,16 +1375,23 @@ function handleEquipmentNote(e){
 }
 document.addEventListener('input', handleEquipmentNote, true);
 function handleEquipmentToggle(e){
-  const btn = e.target.closest && e.target.closest('.eq-item[data-eq-idx][data-eq-key]');
-  if(!btn) return;
+  if(!e.target.closest) return;
+
+  // Do not toggle when the user is typing in notes or editing detail fields.
+  if(e.target.closest('textarea,input,select')) return;
+
+  const target = e.target.closest('.eq-item[data-eq-idx][data-eq-key], .eq-card[data-eq-idx][data-eq-key]');
+  if(!target) return;
+
   e.preventDefault();
   e.stopPropagation();
-  const i = Number(btn.getAttribute('data-eq-idx'));
-  const key = btn.getAttribute('data-eq-key');
+
+  const i = Number(target.getAttribute('data-eq-idx'));
+  const key = target.getAttribute('data-eq-key');
   setEqValue(i,key);
 }
+// Use click only. On phones, touchend + click can fire twice and toggle Yes right back to No.
 document.addEventListener('click', handleEquipmentToggle, true);
-document.addEventListener('touchend', handleEquipmentToggle, true);
 
 function saveEquipmentDetail(){
   _unsaved = true;
