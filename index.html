@@ -7,37 +7,34 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  /* Virtua-inspired palette */
   --ocean:#26576F;--light-ocean:#558BB4;--sky:#69A3CF;--light-sky:#9BD4EE;
   --coral:#F25C58;--light-coral:#F47D7A;--sun:#F5A623;--light-sun:#FFD05E;
-  --navy:var(--ocean);--navy-dk:#1D4458;--teal:var(--light-ocean);--teal-lt:#E8F3FA;
-  --red:var(--coral);--red-lt:#FFE7E6;--amber:#D98200;--amber-lt:#FFF1D6;
-  --yellow-lt:#FFF5D6;--green:#1E7A3C;--green-lt:#E2EFDA;
-  --blue-dk:#1D4458;--blue-lt:#E3F2FB;--grey:#5D6D7E;--grey-lt:#EEF1F4;
-  --bg:#F3F7FA;--card:#fff;--border:#DCE6ED;--text:#182A35;--text2:#667887;
-  --font-body:"Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-mono:'JetBrains Mono', monospace;
-  --shadow:0 1px 8px rgba(38,87,111,.09),0 4px 16px rgba(38,87,111,.06);
-  --shadow-lg:0 8px 40px rgba(38,87,111,.16);
+  --navy:var(--ocean);--navy-dk:#1E485C;--teal:var(--light-ocean);--teal-lt:#EAF6FC;
+  --red:var(--coral);--red-lt:#FFE8E7;--amber:#D87C00;--amber-lt:#FFF2D8;
+  --yellow-lt:#FFF6DC;--green:#2F8A4C;--green-lt:#E7F4E8;
+  --blue-dk:#26576F;--blue-lt:#E9F6FD;--grey:#667887;--grey-lt:#F0F4F7;
+  --bg:#F7FAFC;--card:#fff;--border:#D9E7EF;--text:#172B36;--text2:#637989;
+  --shadow:0 2px 10px rgba(38,87,111,.08),0 8px 24px rgba(38,87,111,.05);
+  --shadow-lg:0 12px 42px rgba(38,87,111,.16);
   --radius:14px;--rsm:8px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--font-body);background:var(--bg);color:var(--text);font-size:14px;line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased}
-.hdr{background:var(--navy-dk);position:sticky;top:0;z-index:200;box-shadow:0 2px 20px rgba(0,0,0,.3)}
+body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased}
+.hdr{background:linear-gradient(135deg,var(--ocean),var(--light-ocean));position:sticky;top:0;z-index:200;box-shadow:0 2px 18px rgba(38,87,111,.22)}
 .hdr-top{display:flex;align-items:center;padding:0 14px;height:54px;gap:10px}
-.hdr-logo{width:34px;height:34px;background:var(--teal);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.hdr-logo{width:34px;height:34px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.25);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
 .hdr-text{flex:1;min-width:0}
 .hdr-title{font-size:15px;font-weight:700;color:#fff}
-.hdr-sub{font-size:10px;color:rgba(255,255,255,.4);font-family:var(--font-mono)}
+.hdr-sub{font-size:10px;color:rgba(255,255,255,.4);font-family:'JetBrains Mono',monospace}
 .hdr-actions{display:flex;gap:6px;align-items:center;flex-shrink:0;flex-wrap:wrap;position:relative}
 .action-menu-btn{display:none;background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.28)}
 .action-menu{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
-.sync-status{font-size:10px;color:rgba(255,255,255,.45);font-family:var(--font-mono);max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.btn{padding:7px 12px;border:none;border-radius:var(--rsm);font-family:var(--font-body);font-size:12px;font-weight:600;cursor:pointer;transition:background .15s;white-space:nowrap}
+.sync-status{font-size:10px;color:rgba(255,255,255,.45);font-family:'JetBrains Mono',monospace;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.btn{padding:7px 12px;border:none;border-radius:var(--rsm);font-family:'Sora',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:background .15s;white-space:nowrap}
 .btn-teal{background:var(--teal);color:#fff}.btn-teal:hover{background:#2565a0}
-.btn-dl{background:var(--sun);color:#1b2b34}.btn-dl:hover{background:var(--light-sun)}
+.btn-dl{background:#6B4EAA;color:#fff}.btn-dl:hover{background:#5a3e91}
 .btn-ul{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);cursor:pointer}.btn-ul:hover{background:rgba(255,255,255,.25)}
-.btn-sm{padding:5px 10px;font-size:11px;border-radius:6px;border:none;cursor:pointer;font-family:var(--font-body);font-weight:600}
+.btn-sm{padding:5px 10px;font-size:11px;border-radius:6px;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-weight:600}
 .btn-green{background:var(--green);color:#fff}.btn-green:hover{background:#165c2d}
 .btn-grey{background:var(--grey-lt);color:var(--text);border:1px solid var(--border)}.btn-grey:hover{background:var(--border)}
 .tabs{display:flex;background:var(--navy);padding:0 14px;border-top:1px solid rgba(255,255,255,.07);overflow-x:auto;scrollbar-width:none}
@@ -68,14 +65,14 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);font-si
 .week-item{background:rgba(255,255,255,.12);border-radius:var(--rsm);padding:7px 12px;display:flex;align-items:center;gap:10px}
 .w-dot{width:8px;height:8px;border-radius:50%;background:#FFD700;flex-shrink:0}
 .w-name{font-size:13px;font-weight:600;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.w-due{font-size:11px;font-family:var(--font-mono);opacity:.7;flex-shrink:0}
+.w-due{font-size:11px;font-family:'JetBrains Mono',monospace;opacity:.7;flex-shrink:0}
 .fbar{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center}
 .sw{position:relative;flex:1;min-width:180px}
-.sw input{width:100%;padding:9px 12px 9px 34px;border:1px solid var(--border);border-radius:var(--rsm);font-family:var(--font-body);font-size:13px;background:var(--card);color:var(--text);outline:none;transition:border-color .15s}
+.sw input{width:100%;padding:9px 12px 9px 34px;border:1px solid var(--border);border-radius:var(--rsm);font-family:'Sora',sans-serif;font-size:13px;background:var(--card);color:var(--text);outline:none;transition:border-color .15s}
 .sw input:focus{border-color:var(--teal)}
 .si{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text2);font-size:13px;pointer-events:none}
-.fsel{padding:9px 10px;border:1px solid var(--border);border-radius:var(--rsm);font-family:var(--font-body);font-size:12px;background:var(--card);color:var(--text);outline:none;cursor:pointer}
-.fcnt{font-size:11px;color:var(--text2);font-family:var(--font-mono);white-space:nowrap}
+.fsel{padding:9px 10px;border:1px solid var(--border);border-radius:var(--rsm);font-family:'Sora',sans-serif;font-size:12px;background:var(--card);color:var(--text);outline:none;cursor:pointer}
+.fcnt{font-size:11px;color:var(--text2);font-family:'JetBrains Mono',monospace;white-space:nowrap}
 .plist{display:flex;flex-direction:column;gap:8px}
 .pcard{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);border-left:4px solid var(--border);overflow:hidden;transition:box-shadow .15s;animation:fadeUp .18s ease both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
@@ -111,44 +108,93 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);font-si
 .notes-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--text2)}
 .note-log{display:flex;flex-direction:column;gap:6px;max-height:200px;overflow-y:auto;margin-bottom:8px}
 .note-entry{background:var(--bg);border-radius:var(--rsm);padding:8px 12px;border-left:3px solid var(--teal)}
-.note-entry-date{font-size:10px;font-family:var(--font-mono);color:var(--teal);font-weight:600;margin-bottom:2px}
+.note-entry-date{font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--teal);font-weight:600;margin-bottom:2px}
 .note-entry-text{font-size:12px;color:var(--text);line-height:1.5}
 .note-add-form{display:flex;gap:6px;flex-wrap:wrap;align-items:flex-end;margin-top:8px;padding:10px;background:var(--bg);border-radius:var(--rsm);border:1px solid var(--border)}
-.note-add-form input[type=date]{padding:6px 8px;border:1px solid var(--border);border-radius:6px;font-family:var(--font-body);font-size:12px;outline:none}
-.note-add-form textarea{flex:1;min-width:150px;padding:6px 8px;border:1px solid var(--border);border-radius:6px;font-family:var(--font-body);font-size:12px;resize:none;height:52px;outline:none}
+.note-add-form input[type=date]{padding:6px 8px;border:1px solid var(--border);border-radius:6px;font-family:'Sora',sans-serif;font-size:12px;outline:none}
+.note-add-form textarea{flex:1;min-width:150px;padding:6px 8px;border:1px solid var(--border);border-radius:6px;font-family:'Sora',sans-serif;font-size:12px;resize:none;height:52px;outline:none}
 .note-add-form input:focus,.note-add-form textarea:focus{border-color:var(--teal)}
 .eg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:12px}
 .eg{display:flex;flex-direction:column;gap:4px}
 .eg label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--text2)}
-.eg input[type=date],.eg select,.eg textarea{padding:8px 10px;border:1px solid var(--border);border-radius:var(--rsm);font-family:var(--font-body);font-size:13px;color:var(--text);background:var(--bg);outline:none;transition:border-color .15s;width:100%}
+.eg input[type=date],.eg select,.eg textarea{padding:8px 10px;border:1px solid var(--border);border-radius:var(--rsm);font-family:'Sora',sans-serif;font-size:13px;color:var(--text);background:var(--bg);outline:none;transition:border-color .15s;width:100%}
 .eg input:focus,.eg select:focus,.eg textarea:focus{border-color:var(--teal);background:#fff}
 .eg textarea{resize:vertical;min-height:60px}
 .eact{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.btn-upd{padding:9px 18px;background:var(--teal);color:#fff;border:none;border-radius:var(--rsm);font-family:var(--font-body);font-size:13px;font-weight:700;cursor:pointer;transition:background .15s}
+.tab-save-bar{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid var(--border)}
+.tab-save-note{font-size:11px;color:var(--text2);margin-right:auto}
+.btn-tab-save{padding:8px 14px;background:var(--teal);color:#fff;border:none;border-radius:var(--rsm);font-family:'Sora',sans-serif;font-size:12px;font-weight:700;cursor:pointer}
+.btn-tab-save:hover{background:#2565a0}
+.btn-upd{padding:9px 18px;background:var(--teal);color:#fff;border:none;border-radius:var(--rsm);font-family:'Sora',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:background .15s}
 .btn-upd:hover{background:#2565a0}
-.btn-pr{padding:8px 14px;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:var(--rsm);font-family:var(--font-body);font-size:12px;font-weight:600;cursor:pointer}
+.btn-pr{padding:8px 14px;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:var(--rsm);font-family:'Sora',sans-serif;font-size:12px;font-weight:600;cursor:pointer}
 .btn-pr:hover{background:var(--teal-lt)}
 .flash{font-size:12px;color:var(--green);font-weight:700;opacity:0;transition:opacity .3s}
 .flash.show{opacity:1}
-.eq-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:7px}
-.eq-item{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:8px 10px;border:1px solid var(--border);border-radius:var(--rsm);background:var(--bg);cursor:pointer;transition:background .12s;user-select:none;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
-.eq-item.yes{background:var(--green-lt);border-color:#A9D6A0}
-.eq-item.no{background:var(--grey-lt)}
-.eq-cb{width:16px;height:16px;border-radius:4px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;transition:all .12s}
+.eq-grid{display:block}
+.eq-card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-bottom:8px}
+.eq-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px;background:#F7FBFE;border:1px solid var(--border);border-radius:8px;padding:8px 10px}
+.eq-toolbar label{font-size:10px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;margin:0}
+.eq-toolbar select{padding:6px 9px;border:1px solid var(--border);border-radius:6px;background:#fff;color:var(--text);font-size:12px}
+.eq-toolbar .hint{font-size:11px;color:var(--text2);margin-left:auto}
+.eq-detail.collapsed .eq-detail-body{display:none}
+.eq-min-btn{background:var(--grey-lt);color:var(--text);border:1px solid var(--border);border-radius:6px;padding:5px 9px;font-size:10px;font-weight:800;cursor:pointer}
+.eq-card{border:1px solid var(--border);border-radius:var(--rsm);background:#eef4f8;overflow:hidden;min-height:92px}
+.eq-card.yes{background:var(--green-lt);border-color:#A9D6A0}
+.eq-item{display:flex;align-items:flex-start;gap:8px;width:100%;text-align:left;padding:10px 10px 6px;border:0;background:transparent;cursor:pointer;transition:background .12s;user-select:none;touch-action:manipulation;-webkit-tap-highlight-color:transparent;color:var(--text);font-family:'Sora',sans-serif}
+.eq-cb{width:16px;height:16px;margin-top:2px;border-radius:3px;border:2px solid #9AA8B4;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;transition:all .12s}
 .eq-item.yes .eq-cb{background:var(--green);border-color:var(--green);color:#fff}
-.eq-name{font-size:12px;font-weight:500}
+.eq-name{font-size:12px;font-weight:800;line-height:1.2}
+.eq-sub{font-size:10px;color:var(--text2);margin-top:2px;line-height:1.2}
+.eq-item.yes .eq-sub{color:var(--green);font-weight:700}
+.eq-note-wrap{padding:0 10px 10px}
+.eq-note-label{display:none}
+.eq-note{width:100%;min-height:38px;resize:vertical;border:1px solid var(--border);border-radius:6px;background:#fff;color:var(--text);font-family:'Sora',sans-serif;font-size:11px;line-height:1.35;padding:7px 8px;outline:none}
+.eq-note:focus{border-color:var(--teal);box-shadow:0 0 0 2px rgba(46,117,182,.08)}
+.eq-detail{grid-column:1/-1;margin-top:10px;border:1px solid #C8DAE8;border-radius:9px;background:#fff;padding:12px}
+.eq-detail-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;color:var(--navy);font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.8px}
+.eq-detail-help{font-size:11px;color:var(--text2);line-height:1.5;margin:-2px 0 12px}
+.eq-tip{background:#E7F2F9;color:#315A73;border-radius:8px;padding:9px 12px;font-size:12px;margin-bottom:12px}
+.eq-row-card{border:1px solid #D5E2EC;border-radius:7px;background:#F1F7FB;margin-bottom:12px;padding:10px}
+.eq-row-card.active{border-color:var(--teal);background:#E8F3FA}
+.poct-card{background:#F7FBFE;border-color:#D9E7F0;transition:all .15s}
+.poct-card.active{background:linear-gradient(180deg,#E8F5FC,#F8FCFF);border-color:var(--teal);box-shadow:0 1px 0 rgba(46,117,182,.08)}
+.poct-head{display:flex;align-items:center;gap:10px;justify-content:space-between;margin-bottom:9px}
+.poct-left{display:flex;align-items:center;gap:10px;min-width:0}
+.poc-active-check{width:18px;height:18px;accent-color:var(--teal);cursor:pointer;flex-shrink:0}
+.poc-icon{width:30px;height:30px;border-radius:9px;background:#fff;border:1px solid #D5E6F0;display:inline-flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;box-shadow:0 1px 2px rgba(31,56,100,.05)}
+.poc-name{font-size:12px;font-weight:900;color:var(--navy);line-height:1.2}
+.poc-desc{font-size:10px;color:var(--text2);margin-top:2px}
+.poct-card.active .poc-name{color:var(--teal)}
+.poct-card.active .poc-icon{border-color:var(--teal);background:#fff}
+.eq-row-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px;font-size:12px;font-weight:800;color:var(--navy)}
+.eq-row-status{font-size:10px;color:var(--teal);font-weight:800;text-transform:uppercase;cursor:pointer}
+.eq-row-toggle{display:flex;align-items:center;gap:8px;background:none;border:0;color:var(--navy);font-family:'Sora',sans-serif;font-size:12px;font-weight:800;cursor:pointer}
+.eq-row-check{width:16px;height:16px;border-radius:4px;border:1px solid #AAB8C2;background:#fff;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:10px}
+.eq-row-card.active .eq-row-check{background:var(--teal);border-color:var(--teal)}
+.eq-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(160px,1fr));gap:9px}
+.eq-detail-grid label{font-size:10px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.6px}
+.eq-detail-grid input,.eq-detail-grid select,.eq-detail-grid textarea{width:100%;margin-top:4px;padding:8px 9px;border:1px solid var(--border);border-radius:6px;background:#fff;color:var(--text);font-family:'Sora',sans-serif;font-size:12px;outline:none}
+.eq-detail-grid textarea{min-height:38px;resize:vertical;grid-column:1/-1}
+.eq-add-row{display:flex;gap:7px;flex-wrap:wrap;margin-top:6px}
+.eq-add-btn{background:var(--teal);color:#fff;border:0;border-radius:6px;padding:6px 10px;font-size:11px;font-weight:800;cursor:pointer}
+.eq-remove-btn{background:var(--red-lt);color:var(--red);border:0;border-radius:5px;padding:5px 8px;font-size:10px;font-weight:800;cursor:pointer}
+.eq-save-btn{background:var(--grey-lt);color:var(--text);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:11px;font-weight:800;cursor:pointer}
+.custom-eq-add{margin-top:12px;background:#F7FBFE;border:1px dashed var(--border);border-radius:8px;padding:10px;display:flex;align-items:center;gap:8px}
+.custom-eq-add input{flex:1;min-width:180px;padding:8px 10px;border:1px solid var(--border);border-radius:6px;background:#fff;font-size:12px}
+@media(max-width:700px){.eq-detail-grid{grid-template-columns:1fr}.eq-card-grid{grid-template-columns:1fr}.custom-eq-add{flex-direction:column;align-items:stretch}}
 .hist-list{display:flex;flex-direction:column;gap:6px;max-height:220px;overflow-y:auto;margin-bottom:12px}
 .hist-item{display:flex;align-items:flex-start;gap:10px;padding:8px 12px;background:var(--bg);border-radius:var(--rsm);border-left:3px solid var(--green)}
-.h-date{font-family:var(--font-mono);font-size:12px;font-weight:500;color:var(--teal);flex-shrink:0;min-width:80px}
+.h-date{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;color:var(--teal);flex-shrink:0;min-width:80px}
 .h-note{font-size:12px;color:var(--text);flex:1;line-height:1.4}
-.h-ts{font-size:10px;color:var(--text2);flex-shrink:0;font-family:var(--font-mono)}
+.h-ts{font-size:10px;color:var(--text2);flex-shrink:0;font-family:'JetBrains Mono',monospace}
 .hist-empty{font-size:13px;color:var(--text2);text-align:center;padding:16px;font-style:italic}
 .past-visit-form{background:var(--bg);border:1px solid var(--border);border-radius:var(--rsm);padding:12px;margin-top:6px}
 .past-visit-form h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text2);margin-bottom:10px}
 .past-visit-row{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end}
-.past-visit-row input[type=date]{padding:7px 10px;border:1px solid var(--border);border-radius:6px;font-family:var(--font-body);font-size:12px;outline:none;background:#fff}
+.past-visit-row input[type=date]{padding:7px 10px;border:1px solid var(--border);border-radius:6px;font-family:'Sora',sans-serif;font-size:12px;outline:none;background:#fff}
 .past-visit-row input[type=date]:focus{border-color:var(--teal)}
-.past-visit-row input[type=text]{flex:1;min-width:160px;padding:7px 10px;border:1px solid var(--border);border-radius:6px;font-family:var(--font-body);font-size:12px;outline:none;background:#fff}
+.past-visit-row input[type=text]{flex:1;min-width:160px;padding:7px 10px;border:1px solid var(--border);border-radius:6px;font-family:'Sora',sans-serif;font-size:12px;outline:none;background:#fff}
 .past-visit-row input[type=text]:focus{border-color:var(--teal)}
 .cal-hdr{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
 .cal-title{font-size:18px;font-weight:800;color:var(--navy)}
@@ -172,13 +218,13 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
 .sched-planner h3{font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px}
 .sched-planner p{font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.5}
 .avail-row{display:flex;gap:8px;align-items:center;background:var(--bg);padding:8px 12px;border-radius:var(--rsm);border:1px solid var(--border)}
-.avail-row input[type=date], .planner-input, .planner-select{padding:7px 9px;border:1px solid var(--border);border-radius:6px;font-family:var(--font-body);font-size:12px;outline:none;background:#fff}
+.avail-row input[type=date], .planner-input, .planner-select{padding:7px 9px;border:1px solid var(--border);border-radius:6px;font-family:'Sora',sans-serif;font-size:12px;outline:none;background:#fff}
 .avail-row input[type=date]:focus,.planner-input:focus,.planner-select:focus{border-color:var(--teal)}
 .sched-results{display:flex;flex-direction:column;gap:12px}
 .sched-day{background:var(--bg);border-radius:var(--radius);border:2px solid var(--border);overflow:hidden}
 .sched-day-hdr{background:var(--navy);color:#fff;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
 .sched-day-date{font-size:14px;font-weight:700}
-.sched-day-meta{font-size:11px;opacity:.75;font-family:var(--font-mono)}
+.sched-day-meta{font-size:11px;opacity:.75;font-family:'JetBrains Mono',monospace}
 .sched-day-body{padding:12px}
 .sched-day-tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-bottom:12px}
 .sched-day-tools .tool-box{background:#fff;border:1px solid var(--border);border-radius:var(--rsm);padding:8px 10px}
@@ -194,7 +240,7 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
 .sv-city{font-size:11px;color:var(--text2)}
 .sv-badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
 .sv-type{font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;background:var(--grey-lt);color:var(--grey)}
-.sv-time{font-size:11px;font-family:var(--font-mono);color:var(--navy);font-weight:700;min-width:115px}
+.sv-time{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--navy);font-weight:700;min-width:115px}
 .sv-move{display:flex;gap:4px}
 .sv-mini{padding:5px 8px;border:none;border-radius:6px;background:var(--grey-lt);cursor:pointer;font-size:11px;font-weight:700}
 .sv-mini:hover{background:var(--border)}
@@ -218,11 +264,47 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
 .backup-modal-hdr{padding:16px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px}
 .backup-modal-title{font-size:15px;font-weight:800;color:var(--navy)}
 .backup-modal-body{padding:16px 18px}
-.backup-modal-body textarea{width:100%;min-height:260px;padding:10px;border:1px solid var(--border);border-radius:10px;font-family:var(--font-mono);font-size:11px;line-height:1.45;resize:vertical;background:var(--bg);color:var(--text)}
+.backup-modal-body textarea{width:100%;min-height:260px;padding:10px;border:1px solid var(--border);border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.45;resize:vertical;background:var(--bg);color:var(--text)}
 .backup-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;justify-content:flex-end}
 .backup-help{font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:10px}
 #settingsBar{background:var(--navy);padding:6px 18px;display:flex;gap:16px;align-items:center;font-size:11px;color:rgba(255,255,255,.65);flex-wrap:wrap}
 #settingsBar input[type=checkbox]{accent-color:var(--teal);cursor:pointer}
+
+.manage-grid{display:grid;grid-template-columns:390px 1fr;gap:18px;align-items:start}
+.manage-panel{background:linear-gradient(180deg,#fff,#FBFDFE);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow);padding:0;overflow:hidden}
+.manage-panel::before{content:'';display:block;height:5px;background:linear-gradient(90deg,var(--light-sky),var(--light-sun),var(--light-coral))}
+.manage-panel-inner{padding:18px}
+.manage-title{font-size:15px;font-weight:800;color:var(--ocean);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.manage-help{font-size:12px;color:var(--text2);line-height:1.65;margin-bottom:14px}
+.manage-form{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:#F8FBFD;border:1px solid var(--border);border-radius:16px;padding:14px}
+.manage-form .eg{gap:5px}
+.manage-form .eg label{color:#5F7484;font-size:10px;font-weight:800;letter-spacing:.08em}
+.manage-form .full{grid-column:1/-1}
+.manage-form input[type=text],.manage-form input[type=date],.manage-form select{width:100%;min-height:38px;border:1px solid #D6E5ED;border-radius:10px;background:#fff;padding:9px 10px;font-family:'Sora',sans-serif;font-size:12px;color:var(--text);box-shadow:0 1px 0 rgba(38,87,111,.03)}
+.manage-form input:focus,.manage-form select:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(155,212,238,.25);outline:none}
+.manage-form .btn-upd{border-radius:12px;background:linear-gradient(135deg,var(--light-ocean),var(--sky));box-shadow:0 6px 14px rgba(85,139,180,.2)}
+.manage-list-tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;padding:12px;background:#F8FBFD;border:1px solid var(--border);border-radius:14px}
+.manage-list-tools input,.manage-list-tools select{border-radius:10px;background:#fff;border:1px solid #D6E5ED;min-height:38px}
+.manage-list{display:flex;flex-direction:column;gap:10px;max-height:68vh;overflow:auto;padding-right:4px}
+.manage-item{background:#fff;border:1px solid #D9E7EF;border-left:0;border-radius:16px;padding:14px 14px 14px 16px;display:flex;gap:12px;align-items:center;position:relative;overflow:hidden;box-shadow:0 2px 8px rgba(38,87,111,.04)}
+.manage-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--light-sky)}
+.manage-item:nth-child(3n+1)::before{background:var(--light-sky)}
+.manage-item:nth-child(3n+2)::before{background:var(--light-sun)}
+.manage-item:nth-child(3n)::before{background:var(--light-coral)}
+.manage-item.archived{opacity:.82;background:#F6F8FA;border-color:#E1E8EE}
+.manage-item.archived::before{background:#AAB8C2}
+.manage-item-main{flex:1;min-width:0}
+.manage-item-name{font-weight:800;font-size:14px;color:var(--text);margin-bottom:7px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.manage-item-meta{font-size:11px;color:var(--text2);display:flex;gap:7px;flex-wrap:wrap}
+.manage-chip{display:inline-flex;align-items:center;gap:4px;background:#F0F7FB;border:1px solid #D9ECF5;color:#476779;border-radius:999px;padding:3px 8px;font-size:10px;font-weight:700}
+.manage-chip.sun{background:#FFF5DC;border-color:#FFE1A0;color:#8A5A00}
+.manage-chip.coral{background:#FFECEB;border-color:#FFD1CF;color:#A94A47}
+.manage-chip.sky{background:#EAF6FC;border-color:#CFEAF7;color:#356985}
+.manage-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;align-items:center}
+.manage-actions .btn-sm{border-radius:10px;padding:7px 11px}
+.archived-badge{display:inline-flex;align-items:center;border-radius:999px;padding:3px 9px;font-size:10px;font-weight:800;background:#EEF2F5;color:#667887}
+@media(max-width:900px){.manage-grid{grid-template-columns:1fr}.manage-form{grid-template-columns:1fr}.manage-actions{justify-content:flex-start}.manage-list{max-height:none}.manage-panel-inner{padding:14px}}
+
 @media print{.hdr,.tabs,.fbar,.chev,.eact,.dtabs,.btn-pr,.hdr-actions,.stats,.week-banner,.dcon:not(.active){display:none!important}body{background:#fff}.pcard{box-shadow:none;border:1px solid #ccc;break-inside:avoid}.pcard-body{display:block!important}.dcon.active{display:block!important}.page{padding:0}}
 @media(max-width:760px){
   .hdr-top{height:auto;min-height:56px;padding:10px 12px}
@@ -231,7 +313,7 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
   .hdr-sub{display:none}
   .sync-status{display:none}
   .action-menu-btn{display:inline-flex;align-items:center;gap:5px;padding:7px 10px;font-size:11px}
-  .action-menu{display:none;position:absolute;right:0;top:40px;z-index:500;background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-lg);padding:8px;min-width:190px;flex-direction:column;align-items:stretch}
+  .action-menu{display:none;position:absolute;right:0;top:40px;z-index:500;background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-lg);padding:8px;min-width:200px;flex-direction:column;align-items:stretch}
   .action-menu.open{display:flex}
   .action-menu .btn,.action-menu label.btn{width:100%;justify-content:center;text-align:center;color:var(--text);border:1px solid var(--border);background:var(--grey-lt)}
   .action-menu .btn-teal{background:var(--teal);color:#fff;border-color:transparent}
@@ -240,6 +322,44 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
   #settingsBar span:last-child{display:none}
 }
 @media(max-width:480px){.page{padding:10px}.tab{padding:9px 10px;font-size:11px}.sc-num{font-size:26px}.pcard-name{font-size:13px}.hdr-actions .btn{padding:6px 8px;font-size:11px}}
+
+/* Simplified, lighter Virtua-style UI refresh */
+.hdr{background:linear-gradient(135deg,#26576F,#558BB4);box-shadow:0 2px 16px rgba(38,87,111,.18)}
+.tabs{background:#26576F}
+.tab.active{border-bottom-color:#FFD05E;color:#fff}
+.btn-teal,.btn-upd{background:linear-gradient(135deg,#558BB4,#69A3CF);color:#fff;border:0}
+.btn-dl{background:#FFD05E;color:#172B36}.btn-dl:hover{background:#F5A623}
+.week-banner{background:#fff;color:var(--text);border:1px solid var(--border);box-shadow:var(--shadow);position:relative;overflow:hidden}
+.week-banner::before{content:'';position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--light-sky),var(--light-sun),var(--light-coral))}
+.week-item{background:#F7FAFC;border:1px solid #E4EEF4;color:var(--text)}
+.week-title{color:#476779;opacity:1}.w-due{opacity:1;color:#637989}
+.sc{border:1px solid var(--border);box-shadow:0 2px 10px rgba(38,87,111,.05)}
+.sc.s-all::after{background:var(--light-sky)}.sc.s-all .sc-num{color:var(--ocean)}
+.sc.s-ov::after{background:var(--light-coral)}.sc.s-ov .sc-num{color:var(--coral)}
+.sc.s-soon::after{background:var(--light-sun)}.sc.s-soon .sc-num{color:#D87C00}
+.sc.s-ns::after{background:#D9E7EF}.sc.s-ns .sc-num{color:#667887}
+.sc.s-ok::after{background:#A9D8B6}.sc.s-ok .sc-num{color:#2F8A4C}
+.dash-list-head{display:flex;align-items:center;justify-content:space-between;margin:6px 0 10px;padding:12px 14px;background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow)}
+.dash-list-title{font-size:14px;font-weight:800;color:var(--ocean)}
+.dash-list-sub{font-size:12px;color:var(--text2);margin-top:2px}
+.priority-fbar{background:#F8FBFD;border:1px solid var(--border);border-radius:14px;padding:10px}
+.manage-grid{grid-template-columns:minmax(320px,370px) minmax(0,1fr);gap:18px;align-items:start}
+.manage-panel{border-radius:22px;overflow:visible;background:#fff;border-color:#D9E7EF}
+.manage-panel-inner{padding:18px}
+.manage-form{grid-template-columns:1fr 1fr;gap:12px;background:#F8FBFD;border-radius:18px;padding:16px}
+.manage-form input[type=text],.manage-form input[type=date],.manage-form select{min-height:42px;border-radius:12px}
+.manage-list-tools{position:sticky;top:108px;z-index:5;background:#F8FBFD;border-radius:18px;padding:14px;box-shadow:0 4px 12px rgba(38,87,111,.04)}
+.manage-list{max-height:none;overflow:visible;gap:12px;padding-right:0}
+.manage-item{min-height:78px;align-items:flex-start;padding:16px 16px 16px 18px;border-radius:18px;box-shadow:0 3px 12px rgba(38,87,111,.05)}
+.manage-item-name{font-size:15px;line-height:1.25;margin-bottom:8px}
+.manage-item-meta{line-height:1.6;gap:6px}
+.manage-actions{padding-top:2px;min-width:150px}
+.manage-chip{background:#F3FAFE;border-color:#D8EDF7;color:#476779}
+.manage-chip.sun{background:#FFF7E3;border-color:#FFE4A8;color:#8A5A00}
+.manage-chip.coral{background:#FFF0EF;border-color:#FFD5D3;color:#A94A47}
+.manage-chip.sky{background:#EDF8FE;border-color:#D4EEF9;color:#356985}
+@media(max-width:900px){.manage-grid{grid-template-columns:1fr}.manage-list-tools{position:static}.manage-actions{min-width:0}.manage-item{display:block}.manage-actions{margin-top:10px}}
+
 </style>
 </head>
 <body>
@@ -265,9 +385,10 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
   </div>
   <div class="tabs">
     <div class="tab active" onclick="goTab('dashboard')">📊 Dashboard</div>
-    <div class="tab" onclick="goTab('practices')">📋 All Practices</div>
+    <div class="tab" onclick="goTab('practices')">📋 Practice Details</div>
     <div class="tab" onclick="goTab('calendar')">📅 Schedule</div>
     <div class="tab" onclick="goTab('planner')">🗓 Day Planner</div>
+    <div class="tab" onclick="goTab('manage')">➕ Add / Archive</div>
   </div>
 </div>
 
@@ -302,10 +423,17 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
         <div class="week-list" id="scheduledList"></div>
       </div>
     </div>
-    <div class="fbar">
-      <div class="sw"><span class="si">🔍</span><input id="ds" type="text" placeholder="Search name, city, specialty, manager…" oninput="renderDash()"></div>
+    <div class="dash-list-head">
+      <div>
+        <div class="dash-list-title">Priority Visit List</div>
+        <div class="dash-list-sub">Use this for quick due/overdue review. Full office details live under Practice Details.</div>
+      </div>
+    </div>
+    <div class="fbar priority-fbar">
+      <div class="sw"><span class="si">🔍</span><input id="ds" type="text" placeholder="Search priority practices…" oninput="renderDash()"></div>
       <select class="fsel" id="df" onchange="renderDash()">
-        <option value="">All Statuses</option><option value="overdue">Overdue</option>
+        <option value="priority" selected>Priority: Overdue + Due Soon</option>
+        <option value="">All Active</option><option value="overdue">Overdue</option>
         <option value="soon">Due Soon</option><option value="upcoming">Upcoming</option>
         <option value="unsched">Not Scheduled</option><option value="ontrack">On Track</option>
       </select>
@@ -362,6 +490,55 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
     </div>
   </div>
 
+
+  <div class="view" id="view-manage">
+    <div class="manage-grid">
+      <div class="manage-panel">
+        <div class="manage-panel-inner">
+        <div class="manage-title">➕ Add New Practice</div>
+        <div class="manage-help">Add a new office here. It will immediately be included in the tracker and saved in your backup/local storage.</div>
+        <div class="manage-form">
+          <div class="eg full"><label>Practice Name</label><input type="text" id="newName" placeholder="Practice name"></div>
+          <div class="eg full"><label>Address</label><input type="text" id="newAddr" placeholder="Street address"></div>
+          <div class="eg"><label>City</label><input type="text" id="newCity" placeholder="City"></div>
+          <div class="eg"><label>Specialty</label><input type="text" id="newSpec" placeholder="Primary Care, Cardiology..."></div>
+          <div class="eg"><label>Frequency</label>
+            <select id="newFreq">
+              <option>Quarterly</option>
+              <option>Bi-Monthly</option>
+              <option>Bi-Annual</option>
+              <option>Annual</option>
+            </select>
+          </div>
+          <div class="eg"><label>Last Visit Date</label><input type="date" id="newLastVisit"></div>
+          <div class="eg"><label>Practice Manager</label><input type="text" id="newMgr"></div>
+          <div class="eg"><label>Director</label><input type="text" id="newDir"></div>
+          <div class="eg"><label>Lead MA</label><input type="text" id="newLead"></div>
+          <div class="eg"><label>Office Hours</label><input type="text" id="newHours" placeholder="Mon-Fri: 8am-5pm"></div>
+          <div class="eg"><label>NJIIS ID</label><input type="text" id="newNjiis"></div>
+          <div class="eg"><label>VFC PIN</label><input type="text" id="newVfcPin"></div>
+          <div class="eg full"><button class="btn-upd" onclick="addPracticeFromManage()">Add Practice</button></div>
+        </div>
+        </div>
+      </div>
+      <div class="manage-panel">
+        <div class="manage-panel-inner">
+        <div class="manage-title">🏥 Practice Management</div>
+        <div class="manage-help">Archive practices that close or are no longer yours. Archived practices keep history but do not count as overdue or show in active visit lists.</div>
+        <div class="manage-list-tools">
+          <input class="planner-input" id="manageSearch" placeholder="Search practices..." oninput="renderManage()" style="min-width:220px">
+          <select class="planner-select" id="manageStatus" onchange="renderManage()">
+            <option value="active">Active Practices</option>
+            <option value="archived">Archived Practices</option>
+            <option value="all">All Practices</option>
+          </select>
+        </div>
+        <div class="manage-list" id="manageList"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <div class="backup-overlay" id="backupModal">
@@ -388,7 +565,6 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
 const SKEY_DATA = 'vmgTracker26v3';
 const FILE_NAME = 'VMGTracker2026.json';
 let _unsaved = false, _lastSave = null, _autoDownload = true, _remindClose = true;
-
 function toggleActionMenu(e){
   if(e) e.stopPropagation();
   document.getElementById('actionMenu')?.classList.toggle('open');
@@ -412,107 +588,52 @@ function getDataForSave(){
       nextScheduled: p.nextScheduled,
       history: p.history,
       equip: p.equip,
+      equipNotes: p.equipNotes,
+      fridgeDetails: p.fridgeDetails,
+      poctDetails: p.poctDetails,
+      vfcDetails: p.vfcDetails,
+      sampleDetails: p.sampleDetails,
       noteLog: p.noteLog,
       mgr: p.mgr,
       dir: p.dir,
       leadMA: p.leadMA,
-      hours: p.hours
+      hours: p.hours,
+      njiisId: p.njiisId,
+      vfcPin: p.vfcPin
     };
   });
+  out.__practices = P.map(p => ({...p}));
   return out;
 }
-function makeBackupPayload(){
-  return {app:'VMG Site Visit Tracker 2026', backupVersion:2, createdAt:new Date().toISOString(), data:getDataForSave()};
-}
-function backupToText(){return JSON.stringify(makeBackupPayload(), null, 2)}
-function parseBackupText(raw){
-  if(!raw || !String(raw).trim()) throw new Error('Backup text is empty.');
-  const parsed = JSON.parse(String(raw).trim());
-  const data = parsed && parsed.data ? parsed.data : parsed;
-  if(!data || typeof data !== 'object' || Array.isArray(data)) throw new Error('Backup is not in the expected format.');
-  const keys = Object.keys(data);
-  if(!keys.length) throw new Error('Backup does not contain saved practice data.');
-  const ok = keys.some(k=>{
-    const row = data[k];
-    return row && typeof row === 'object' && ('lastVisit' in row || 'nextScheduled' in row || 'visitStatus' in row || 'notes' in row || 'history' in row || 'equip' in row || 'mgr' in row);
-  });
-  if(!ok) throw new Error('Backup does not look like a VMG Site Visit Tracker backup.');
-  return data;
-}
-function openBackupModal(mode, text=''){
-  const modal=document.getElementById('backupModal');
-  const title=document.getElementById('backupModalTitle');
-  const help=document.getElementById('backupHelp');
-  const area=document.getElementById('backupTextArea');
-  const restoreBtn=document.getElementById('restoreBackupBtn');
-  const copyBtn=document.getElementById('copyVisibleBackupBtn');
-  modal.classList.add('open');
-  area.value=text;
-  if(mode==='copy'){
-    title.textContent='Copy Backup';
-    help.textContent='Your backup text is below. If automatic copy did not work on your phone, tap Select Text, then Copy, then paste it into Notes, email, Teams, or iCloud.';
-    restoreBtn.style.display='none';
-    copyBtn.style.display='';
-    setTimeout(()=>area.focus(),50);
-  }else{
-    title.textContent='Paste Backup';
-    help.textContent='Paste your backup text below, then tap Restore Backup. This avoids iPhone and work OneDrive file-upload issues.';
-    restoreBtn.style.display='';
-    copyBtn.style.display='none';
-    setTimeout(()=>area.focus(),50);
-  }
-}
+function makeBackupPayload(){return {app:'VMG Site Visit Tracker 2026',backupVersion:2,createdAt:new Date().toISOString(),data:getDataForSave()};}
+function backupToText(){return JSON.stringify(makeBackupPayload(),null,2)}
+function parseBackupText(raw){if(!raw||!String(raw).trim())throw new Error('Backup text is empty.');const parsed=JSON.parse(String(raw).trim());const data=parsed&&parsed.data?parsed.data:parsed;if(!data||typeof data!=='object'||Array.isArray(data))throw new Error('Backup is not in the expected format.');const keys=Object.keys(data);if(!keys.length)throw new Error('Backup does not contain saved practice data.');const ok=keys.some(k=>{const row=data[k];return row&&typeof row==='object'&&('lastVisit'in row||'nextScheduled'in row||'visitStatus'in row||'notes'in row||'history'in row||'equip'in row||'mgr'in row)});if(!ok)throw new Error('Backup does not look like a VMG Site Visit Tracker backup.');return data;}
+function openBackupModal(mode,text=''){const modal=document.getElementById('backupModal'),title=document.getElementById('backupModalTitle'),help=document.getElementById('backupHelp'),area=document.getElementById('backupTextArea'),restoreBtn=document.getElementById('restoreBackupBtn'),copyBtn=document.getElementById('copyVisibleBackupBtn');modal.classList.add('open');area.value=text;if(mode==='copy'){title.textContent='Copy Backup';help.textContent='Your backup text is below. If automatic copy did not work on your phone, tap Select Text, then Copy, then paste it into Notes, email, Teams, or iCloud.';restoreBtn.style.display='none';copyBtn.style.display='';setTimeout(()=>area.focus(),50)}else{title.textContent='Paste Backup';help.textContent='Paste your backup text below, then tap Restore Backup. This avoids iPhone and work OneDrive file-upload issues.';restoreBtn.style.display='';copyBtn.style.display='none';setTimeout(()=>area.focus(),50)}}
 function closeBackupModal(){document.getElementById('backupModal').classList.remove('open')}
-function selectBackupText(){
-  const area=document.getElementById('backupTextArea');
-  area.focus(); area.select(); area.setSelectionRange(0, area.value.length);
-}
-async function copyVisibleBackupText(){
-  const area=document.getElementById('backupTextArea');
-  selectBackupText();
-  try{await navigator.clipboard.writeText(area.value); toast('✓ Backup text copied','ok')}
-  catch(err){try{document.execCommand('copy')}catch(e){} toast('Text selected. Tap Copy if prompted.','ok')}
-}
-async function copyBackupText(){
-  saveLocal();
-  const txt=backupToText();
-  try{
-    await navigator.clipboard.writeText(txt);
-    setSS('Backup copied '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}));
-    toast('✓ Backup copied. Paste it into Notes or email.','ok');
-  }catch(err){
-    openBackupModal('copy', txt);
-    toast('Copy blocked. Use Select Text, then Copy.','err');
-  }
-}
+function selectBackupText(){const area=document.getElementById('backupTextArea');area.focus();area.select();area.setSelectionRange(0,area.value.length)}
+async function copyVisibleBackupText(){const area=document.getElementById('backupTextArea');selectBackupText();try{await navigator.clipboard.writeText(area.value);toast('✓ Backup text copied','ok')}catch(err){try{document.execCommand('copy')}catch(e){}toast('Text selected. Tap Copy if prompted.','ok')}}
+async function copyBackupText(){saveLocal();const txt=backupToText();try{await navigator.clipboard.writeText(txt);setSS('Backup copied '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}));toast('✓ Backup copied. Paste it into Notes or email.','ok')}catch(err){openBackupModal('copy',txt);toast('Copy blocked. Use Select Text, then Copy.','err')}}
 function openPasteBackupModal(){openBackupModal('paste','')}
-function restorePastedBackup(){
-  try{
-    const data=parseBackupText(document.getElementById('backupTextArea').value);
-    applyLoadedData(data);
-    closeBackupModal();
-    toast('✓ Backup restored','ok');
-  }catch(err){toast(err.message || 'Invalid backup text','err')}
-}
+function restorePastedBackup(){try{const data=parseBackupText(document.getElementById('backupTextArea').value);applyLoadedData(data);closeBackupModal();toast('✓ Backup restored','ok')}catch(err){toast(err.message||'Invalid backup text','err')}}
 function applyLoadedData(data){
-  P.forEach((p,i)=>{
+  if(data && Array.isArray(data.__practices)){
+    P = data.__practices.map(p => normalizePractice(p));
+    localStorage.setItem(SKEY_DATA, JSON.stringify(getDataForSave()));
+    _unsaved = false;
+    resetPracticeFilters();
+    renderAll();
+    return;
+  }
+
+  P = BASE.map((b,i)=>{
     const s = data[i] || {};
-    if(s.lastVisit !== undefined) p.lastVisit = s.lastVisit;
-    if(s.visitStatus !== undefined) p.visitStatus = s.visitStatus;
-    if(s.notes !== undefined) p.notes = s.notes;
-    if(s.nextScheduled !== undefined) p.nextScheduled = s.nextScheduled;
-    if(s.history !== undefined) p.history = s.history;
-    if(s.equip !== undefined) p.equip = {...p.equip, ...s.equip};
-    if(s.noteLog !== undefined) p.noteLog = s.noteLog;
-    if(s.mgr !== undefined) p.mgr = s.mgr;
-    if(s.dir !== undefined) p.dir = s.dir;
-    if(s.leadMA !== undefined) p.leadMA = s.leadMA;
-    if(s.hours !== undefined) p.hours = s.hours;
+    return normalizePractice({...b, ...s, equip:{...b.equip, ...(s.equip||{})}});
   });
-  localStorage.setItem(SKEY_DATA, JSON.stringify(data));
+
+  localStorage.setItem(SKEY_DATA, JSON.stringify(getDataForSave()));
   _unsaved = false;
-  renderStats(); renderWeek(); renderScheduled(); renderDash();
-  if(document.getElementById('view-calendar').classList.contains('active')) renderCal();
+  resetPracticeFilters();
+  renderAll();
 }
 function saveLocal(){
   const d = getDataForSave();
@@ -587,6 +708,33 @@ const CITY_GROUPS = {
 };
 const CITY_GROUP_ORDER = Object.keys(CITY_GROUPS);
 
+
+const FRIDGE_PREFILL = {"Cardiology Hammonton": [{"type": "Refrigerator #1", "make": "Accucold", "model": "FF28L-WH-PRO", "mfgDate": "N/A", "sensorId": "19E81E", "stockType": "Private", "notes": ""}], "Cardiology Medford": [{"type": "Refrigerator #1", "make": "Follett", "model": "995969", "mfgDate": "Unknown", "sensorId": "", "stockType": "N/A", "notes": ""}], "Endocrinology Voorhees": [{"type": "Refrigerator #1", "make": "Aegis", "model": "Series I:EL-RG-4M", "mfgDate": "Unknown", "sensorId": "19E832", "stockType": "Private", "notes": ""}, {"type": "Refrigerator #2", "make": "Follett", "model": "T1-103", "mfgDate": "41087", "sensorId": "Aegis Scientific Sensor F4EA6D", "stockType": "Private", "notes": ""}], "Gastroenterology Infusion\nVoorhees at Centennial Blvd": [{"type": "Refrigerator #1", "make": "Aegis", "model": "GL-RG-16M", "mfgDate": "44805", "sensorId": "19E656", "stockType": "Private", "notes": ""}], "Gastroenterology Voorhees at Centennial Blvd": [{"type": "Refrigerator #1", "make": "Aegis", "model": "GL-RG-12M", "mfgDate": "44866", "sensorId": "19E646", "stockType": "Private", "notes": ""}], "Infectious Disease Haddon Heights": [{"type": "Refrigerator #1", "make": "ABS", "model": "PH-ABT-UCFS-0504G", "mfgDate": "Unknown", "sensorId": "19E633 -Primary", "stockType": "Private", "notes": ""}], "Infectious Disease Voorhees": [{"type": "Refrigerator #1", "make": "Follett", "model": "", "mfgDate": "", "sensorId": "F4EA47", "stockType": "Private", "notes": ""}], "Midwifery Camden": [{"type": "Refrigerator #1", "make": "Accucold", "model": "ARS6PV", "mfgDate": "Unknown", "sensorId": "19E55E", "stockType": "Private", "notes": ""}], "Midwifery Voorhees": [{"type": "Refrigerator #1", "make": "Accucold", "model": "FF7LBIMED2ADA", "mfgDate": "Unknown", "sensorId": "19E65E", "stockType": "Private", "notes": ""}, {"type": "Refrigerator #2", "make": "Accucold", "model": "FF7LBIMED2ADA", "mfgDate": "Unknown", "sensorId": "19E812", "stockType": "Private", "notes": ""}], "Neurosciences Marlton": [{"type": "Refrigerator #1", "make": "1St Floor\nABS", "model": "PH-ABT-HC-UCFS-0504G", "mfgDate": "Unknown", "sensorId": "F4EA55", "stockType": "Private", "notes": ""}, {"type": "Refrigerator #2", "make": "2nd Floor\nAccucold", "model": "ACR1718LH", "mfgDate": "N/A", "sensorId": "19E546", "stockType": "Private", "notes": ""}], "Neurosciences Washington Twp": [{"type": "Refrigerator #1", "make": "Aegis", "model": "EL-RG-4K", "mfgDate": "Unknown", "sensorId": "19E546", "stockType": "Private", "notes": ""}], "OB/GYN Pennsauken": [{"type": "Refrigerator #1", "make": "ABS", "model": "PH-ABT-HC-UCFS-0504G", "mfgDate": "Unknown", "sensorId": "F4EA53 (Primary)", "stockType": "Private", "notes": ""}], "OB/GYN Woodbury Heights": [{"type": "Refrigerator #1", "make": "Aegis Pharmacy", "model": "GL-RG-4M", "mfgDate": "44256", "sensorId": "19E601", "stockType": "Private", "notes": ""}], "OBGYN Moorestown": [{"type": "Refrigerator #1", "make": "Follett", "model": "REF4-ADA", "mfgDate": "unknown", "sensorId": "F4EA53", "stockType": "Private", "notes": ""}], "OBGYN Mullica Hill": [{"type": "Refrigerator #1", "make": "Aegis", "model": "GL-RG-4M", "mfgDate": "44256", "sensorId": "19E584(PRIMARY)", "stockType": "Private", "notes": ""}], "OBGYN Southampton": [{"type": "Refrigerator #1", "make": "Crosley", "model": "CRT181QW1", "mfgDate": "42095", "sensorId": "F4EA9E", "stockType": "Private", "notes": ""}, {"type": "Freezer #1", "make": "Have freezer but not monitoered\nHouse hold fridge", "model": "N/A", "mfgDate": "N/A", "sensorId": "N/A", "stockType": "N/A", "notes": ""}], "OBGYN Swedesboro": [{"type": "Refrigerator #1", "make": "Aegis", "model": "GL-RG-4M", "mfgDate": "44562", "sensorId": "19E58F(Primary)", "stockType": "Private", "notes": ""}], "OBGYN Voorhees": [{"type": "Refrigerator #1", "make": "Follett", "model": "", "mfgDate": "", "sensorId": "19E561", "stockType": "Private", "notes": ""}], "Occupational Health Marlton": [{"type": "Refrigerator #1", "make": "Aegis", "model": "GL-RG-12M", "mfgDate": "45292", "sensorId": "19E666", "stockType": "Private", "notes": ""}], "Plastic & Reconstructive Marlton": [{"type": "Refrigerator #1", "make": "Accucold", "model": "ARS6PV", "mfgDate": "Unknown", "sensorId": "F4E787", "stockType": "Private", "notes": ""}], "Pride Primary Care Marlton": [{"type": "Refrigerator #1", "make": "Aegis", "model": "2-R-23G", "mfgDate": "Unknown", "sensorId": "19E76D-Primary F4EAFC-Back up", "stockType": "Private", "notes": ""}, {"type": "Freezer #1", "make": "Aegis", "model": "PH-ABT-UCFS-0220M-TDA-A", "mfgDate": "N/A", "sensorId": "19E56D", "stockType": "Private", "notes": ""}], "Primary Care Bordentown": [{"type": "Refrigerator #1", "make": "Aegis", "model": "GL-RG-12M", "mfgDate": "Unknown", "sensorId": "19E60D-Primary  19E60C-Back up", "stockType": "Private", "notes": ""}, {"type": "Freezer #1", "make": "Aegis", "model": "EL-F-2.4K", "mfgDate": "N/A", "sensorId": "19E70K-Primary 19E68A-Back up", "stockType": "Private", "notes": ""}, {"type": "Freezer #2", "make": "Aegis", "model": "KYD006", "mfgDate": "N/A", "sensorId": "19E728", "stockType": "Private", "notes": ""}], "Primary Care Burlington": [{"type": "Refrigerator #1", "make": "ABS", "model": "PH-ABT-19", "mfgDate": "Unknown", "sensorId": "F4EA56", "stockType": "Private", "notes": ""}, {"type": "Freezer #1", "make": "Accucold", "model": "FS24L", "mfgDate": "N/A", "sensorId": "19E69B", "stockType": "Private", "notes": ""}], "Primary Care Camden Oliver Station": [{"type": "Refrigerator #1", "make": "Aegis", "model": "GL-RG-16M", "mfgDate": "Unknown", "sensorId": "19E69A (PRIMARY)", "stockType": "Private", "notes": ""}], "Primary Care Lindenwold": [{"type": "Refrigerator #1", "make": "Aegis", "model": "GL-RG-16M", "mfgDate": "45231", "sensorId": "19E80D (Primary)\n19E71C (Backup)", "stockType": "VFC", "notes": ""}, {"type": "Freezer #1", "make": "Accucold", "model": "FS24LMED", "mfgDate": "N/A", "sensorId": "19E80E (Primary)\n19E789 (Backup)", "stockType": "VFC", "notes": ""}], "Primary Care Linwood": [{"type": "Refrigerator #1", "make": "Aegis", "model": "", "mfgDate": "", "sensorId": "19E61B (Primary)\n19E681 (Backup)", "stockType": "VFC", "notes": ""}, {"type": "Freezer #1", "make": "Accucold", "model": "", "mfgDate": "", "sensorId": "19E68C (Primary)\n19E59F (Backup)", "stockType": "VFC", "notes": ""}], "Primary Care Marlton": [{"type": "Refrigerator #1", "make": "Accucold", "model": "FF511LADA", "mfgDate": "Unknown", "sensorId": "19E689 (Primary)\nF4EA4B (Backup)", "stockType": "VFC", "notes": ""}, {"type": "Refrigerator #2", "make": "", "model": "", "mfgDate": "", "sensorId": "F4EABD", "stockType": "Private", "notes": ""}, {"type": "Freezer #1", "make": "Accucold", "model": "FS-246Med", "mfgDate": "N/A", "sensorId": "19E71B (Primary)\n19E700 (Backup)", "stockType": "VFC", "notes": ""}], "Primary Care Medford": [{"type": "Refrigerator #1", "make": "Side A\nAegis", "model": "2-R-23G", "mfgDate": "Unknown", "sensorId": "F4E761", "stockType": "Private", "notes": ""}, {"type": "Refrigerator #2", "make": "Side B\nAccucold", "model": "ACR1718RH", "mfgDate": "Unknown", "sensorId": "5346076", "stockType": "Private", "notes": ""}, {"type": "Freezer #1", "make": "Aegis", "model": "HYD061", "mfgDate": "N/A", "sensorId": "F4EAA1", "stockType": "Private", "notes": ""}], "Primary Care Moorestown Young Ave.": [{"type": "Refrigerator #1", "make": "Accucold", "model": "ACR1718LH", "mfgDate": "unknown", "sensorId": "F4EB13-Primary F4EA84-Back up", "stockType": "VFC", "notes": ""}, {"type": "Freezer #1", "make": "Black&Decker", "model": "BUFK12W", "mfgDate": "N/A", "sensorId": "19E66C-Primary 19E66B-Back up", "stockType": "VFC", "notes": ""}], "Primary Care Pennsauken": [{"type": "Refrigerator #1", "make": "Aegis Pharmacy", "model": "GL-RG-16M", "mfgDate": "45047", "sensorId": "19E804(Primary) 19E76A (Backup)", "stockType": "VFC", "notes": ""}], "Primary Care Ventnor": [{"type": "Refrigerator #1", "make": "Accucold", "model": "ACR1718LH", "mfgDate": "Unknown", "sensorId": "F4EBA7(Primary) F4EADC (Backup)", "stockType": "Private", "notes": ""}], "Primary Care Voorhees 1605 Evesham": [{"type": "Refrigerator #1", "make": "Aegis", "model": "2-R-23G", "mfgDate": "Unknown", "sensorId": "", "stockType": "Private", "notes": ""}, {"type": "Freezer #1", "make": "AccuCold", "model": "FS24LMED", "mfgDate": "Unknown", "sensorId": "", "stockType": "Private", "notes": ""}], "Primary Care Voorhees 805 Cooper Rd": [{"type": "Refrigerator #1", "make": "Accucold", "model": "ACR1718RH", "mfgDate": "Unknown", "sensorId": "19E720 (Primary)\n19E67C (Back Up)", "stockType": "Private", "notes": ""}, {"type": "Freezer #1", "make": "Aegis", "model": "EL-F2.4K", "mfgDate": "N/A", "sensorId": "19E70B (Primary)\n19E710 (back Up)", "stockType": "Private", "notes": ""}], "Primary Care Westmont": [{"type": "Refrigerator #1", "make": "ABS", "model": "PH-ABT-UCFS-0504G", "mfgDate": "Unknown", "sensorId": "F4EA7C (PRIMARY)", "stockType": "Private", "notes": ""}, {"type": "Refrigerator #2", "make": "ABS", "model": "PH-ABT-HC-UCFS-0504G", "mfgDate": "Unknown", "sensorId": "FEEB87", "stockType": "Private", "notes": ""}, {"type": "Freezer #1", "make": "ABS", "model": "PH-ABT-UCFS-0220M-TDA-A", "mfgDate": "Unknown", "sensorId": "F4EAE9", "stockType": "Private", "notes": ""}], "Pulmonary and Sleep Hammonton": [{"type": "Refrigerator #1", "make": "Accucold", "model": "FF28L-WH-PRO", "mfgDate": "N/A", "sensorId": "19E771", "stockType": "Private", "notes": ""}], "Pulmonology Marlton Rt 70": [{"type": "Refrigerator #1", "make": "Aegis", "model": "2-R-23G", "mfgDate": "Unknown", "sensorId": "19E83A", "stockType": "Private", "notes": ""}], "Pulmonology Marlton Rt 73": [{"type": "Refrigerator #1", "make": "Aegis", "model": "GL-RG-12M", "mfgDate": "45292", "sensorId": "19E69E", "stockType": "Private", "notes": ""}], "Rowan Family Medicine Hammonton": [{"type": "Refrigerator #1", "make": "ABS", "model": "PH-ABT-UCFS-0504G", "mfgDate": "N/A", "sensorId": "N/A", "stockType": "Private", "notes": ""}, {"type": "Refrigerator #2", "make": "ABS", "model": "PH-ABT-HC-UCBI-0404G", "mfgDate": "N/A", "sensorId": "N/A", "stockType": "VFC", "notes": ""}, {"type": "Freezer #1", "make": "ABS", "model": "PH-ABT-HC-UCFS-0120", "mfgDate": "N/A", "sensorId": "N/A", "stockType": "VFC", "notes": ""}], "Rowan Internal Medicine Stratford": [{"type": "Refrigerator #1", "make": "Aegis Pharmacy", "model": "Serial # 240802358", "mfgDate": "45505", "sensorId": "N/A", "stockType": "Private", "notes": ""}, {"type": "Refrigerator #2", "make": "Aegis Pharamcy", "model": "Serial # 240802357", "mfgDate": "45893", "sensorId": "N/A", "stockType": "Private", "notes": ""}], "UC Mullica Hill": [{"type": "Refrigerator #1", "make": "Aegis", "model": "unknown", "mfgDate": "", "sensorId": "", "stockType": "", "notes": ""}], "Urgent Care Medford": [{"type": "Refrigerator #1", "make": "Accuclod", "model": "ARS6PV", "mfgDate": "Unknown", "sensorId": "19E702", "stockType": "Private", "notes": ""}, {"type": "Refrigerator #2", "make": "Follett", "model": "995969", "mfgDate": "n/a", "sensorId": "F4EAD8", "stockType": "N/A", "notes": ""}], "Urgent Care Voorhees": [{"type": "Refrigerator #1", "make": "Follett", "model": "995969", "mfgDate": "Unknown", "sensorId": "19E52A\n19E531", "stockType": "Private", "notes": ""}], "Virtua Nephrology Voorhees Laurel Oak": [{"type": "Refrigerator #1", "make": "Accucold", "model": "Pharma-Vac Performance could not locate #", "mfgDate": "Unknown", "sensorId": "Aegis F4EBA6", "stockType": "Private", "notes": ""}], "Women's Primary Care Moorestown": [{"type": "Refrigerator #1", "make": "Aegis", "model": "unknown", "mfgDate": "unknown", "sensorId": "F4EABF-Primary F4EABE-Back up", "stockType": "Private", "notes": ""}, {"type": "Freezer #1", "make": "Follett", "model": "FLR", "mfgDate": "N/A", "sensorId": "F4EBCA-Primary F4EA92- Back up", "stockType": "Private", "notes": ""}, {"type": "Freezer #2", "make": "Frigidaire", "model": "N/A", "mfgDate": "N/A", "sensorId": "19E678", "stockType": "Private", "notes": ""}], "Primary Care Maple Shade": [{"type": "Refrigerator #1", "make": "Aegis", "model": "unknown", "mfgDate": "Unknown", "sensorId": "19E825", "stockType": "VFC", "notes": ""}, {"type": "Refrigerator #2", "make": "Aegis", "model": "GL-RG-12M", "mfgDate": "45292", "sensorId": "19E822", "stockType": "Private", "notes": ""}, {"type": "Freezer #1", "make": "Aegis", "model": "unkown", "mfgDate": "unknown", "sensorId": "19E77-Primary 19E76B- Back up", "stockType": "", "notes": ""}], "Infectious Disease - Mt Laurel": [{"type": "Refrigerator #1", "make": "Aegis", "model": "GL-RG-12M", "mfgDate": "Unknown", "sensorId": "19E813", "stockType": "Private", "notes": ""}], "Ob/Gyn Cherry Hill": [{"type": "Refrigerator #1", "make": "unknown", "model": "unknown", "mfgDate": "Unknown", "sensorId": "F4EB99", "stockType": "Private", "notes": ""}], "Virtua Recontructive orthopedics": [{"type": "Refrigerator #1", "make": "unknown", "model": "unknown", "mfgDate": "unkown", "sensorId": "", "stockType": "Private", "notes": ""}], "Urgent Care Cherry hill": [{"type": "Refrigerator #1", "make": "Accucold", "model": "unkown", "mfgDate": "Unknown", "sensorId": "19E529", "stockType": "Private", "notes": ""}], "Female Pelvic Medicine": [{"type": "Refrigerator #1", "make": "", "model": "", "mfgDate": "", "sensorId": "", "stockType": "Private", "notes": ""}]};
+const POCT_PREFILL = {"Virtua Urgent Care - Cherry Hill": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 7, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 2, "type": "TrueMetrix", "notes": ""}], "Virtua Urgent Care - Medford": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 12, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 3, "type": "TrueMetrix", "notes": ""}], "Virtua Urgent Care - Moorestown": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 9, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 2, "type": "TrueMetrix", "notes": ""}], "Virtua Urgent Care - Mount Holly": [{"instrument": "Clinitek (Urinalysis)", "count": 2, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 8, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Urgent Care - Mullica Hill": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 8, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Urgent Care - Voorhees": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 12, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 2, "type": "TrueMetrix", "notes": ""}], "Virtua Urgent Care - Sewell": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 7, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 2, "type": "Both", "notes": ""}], "Virtua Urgent Care - Westmont": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 8, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Primary Care - Bordentown": [{"instrument": "Afinion (A1C)", "count": 1, "type": "", "notes": ""}, {"instrument": "Afinion Handheld Scanners Needed", "count": 1, "type": "", "notes": ""}, {"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 2, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Primary Care - Browns Mills": [{"instrument": "Afinion (A1C)", "count": 1, "type": "", "notes": ""}, {"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 6, "type": "", "notes": ""}, {"instrument": "CoaguChek XS Plus (INR)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Primary Care – Burlington": [{"instrument": "Afinion (A1C)", "count": 1, "type": "", "notes": ""}, {"instrument": "Afinion Handheld Scanners Needed", "count": 1, "type": "", "notes": ""}, {"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 3, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Primary Care - Camden": [{"instrument": "Afinion (A1C)", "count": 2, "type": "", "notes": ""}, {"instrument": "Afinion Handheld Scanners Needed", "count": 2, "type": "", "notes": ""}, {"instrument": "Clinitek (Urinalysis)", "count": 2, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 4, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 2, "type": "TrueMetrix", "notes": ""}], "Virtua Primary Care - Cherry Hill": [{"instrument": "Afinion (A1C)", "count": 1, "type": "", "notes": ""}, {"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 3, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Primary Care - Cinnaminson": [{"instrument": "Afinion (A1C)", "count": 1, "type": "", "notes": ""}, {"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 4, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Primary Care - Hainesport": [{"instrument": "Afinion (A1C)", "count": 1, "type": "", "notes": ""}, {"instrument": "Afinion Handheld Scanners Needed", "count": 1, "type": "", "notes": ""}, {"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 4, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Primary Care - Hammonton": [{"instrument": "Afinion (A1C)", "count": 1, "type": "", "notes": ""}, {"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 6, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Primary Care - Lindenwold": [{"instrument": "Afinion (A1C)", "count": 1, "type": "", "notes": ""}, {"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 4, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Primary Care - Linwood": [{"instrument": "Afinion (A1C)", "count": 1, "type": "", "notes": ""}, {"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 4, "type": "", "notes": ""}, {"instrument": "CoaguChek XS Plus (INR)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Primary Care - Lumberton": [{"instrument": "Afinion (A1C)", "count": 1, "type": "", "notes": ""}, {"instrument": "Clinitek (Urinalysis)", "count": 2, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 4, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Primary Care - Mansfield": [{"instrument": "Afinion (A1C)", "count": 1, "type": "", "notes": ""}, {"instrument": "Afinion Handheld Scanners Needed", "count": 1, "type": "", "notes": ""}, {"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 3, "type": "", "notes": ""}, {"instrument": "CoaguChek XS Plus (INR)", "count": 5, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 3, "type": "TrueMetrix", "notes": ""}], "Virtua Primary Care - Maple Shade": [{"instrument": "Afinion (A1C)", "count": 1, "type": "", "notes": ""}, {"instrument": "Afinion Handheld Scanners Needed", "count": 1, "type": "", "notes": ""}, {"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 4, "type": "", "notes": ""}, {"instrument": "CoaguChek XS Plus (INR)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Primary Care - Marlton at Route 70": [{"instrument": "Afinion (A1C)", "count": 1, "type": "", "notes": ""}, {"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 3, "type": "", "notes": ""}, {"instrument": "CoaguChek XS Plus (INR)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Pride Primary Care - Marlton": [{"instrument": "Afinion (A1C)", "count": 1, "type": "", "notes": ""}, {"instrument": "Afinion Handheld Scanners Needed", "count": 1, "type": "", "notes": ""}, {"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 4, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Primary Care - Medford": [{"instrument": "Afinion (A1C)", "count": 2, "type": "", "notes": ""}, {"instrument": "Clinitek (Urinalysis)", "count": 2, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 8, "type": "", "notes": ""}, {"instrument": "CoaguChek XS Plus (INR)", "count": 2, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 2, "type": "TrueMetrix", "notes": ""}], "Virtua Primary Care - Moorestown at Third Street": [{"instrument": "Afinion (A1C)", "count": 1, "type": "", "notes": ""}, {"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 4, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Primary Care - Moorestown at Young Avenue": [{"instrument": "Afinion (A1C)", "count": 1, "type": "", "notes": ""}, {"instrument": "Afinion Handheld Scanners Needed", "count": 1, "type": "", "notes": ""}, {"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 4, "type": "", "notes": ""}, {"instrument": "CoaguChek XS Plus (INR)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 2, "type": "TrueMetrix", "notes": ""}], "Virtua Primary Care - Moorestown at East Main Street": [{"instrument": "Afinion (A1C)", "count": 1, "type": "", "notes": ""}, {"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 2, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 2, "type": "TrueMetrix", "notes": ""}], "Virtua Primary Care - Pennsauken": [{"instrument": "Afinion (A1C)", "count": 2, "type": "", "notes": ""}, {"instrument": "Clinitek (Urinalysis)", "count": 2, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 4, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 2, "type": "TrueMetrix", "notes": ""}], "Virtua Primary Care - Telehealth (shares with PC Voorhees 1605)": [{"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Primary Care Telehealth - Sewell (shares with PC Sewell)": [{"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Primary Care - Ventnor": [{"instrument": "Afinion (A1C)", "count": 1, "type": "", "notes": ""}, {"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 2, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 2, "type": "TrueMetrix", "notes": ""}], "Virtua Primary Care - Voorhees at 1605 Evesham Road": [{"instrument": "Afinion (A1C)", "count": 1, "type": "", "notes": ""}, {"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 3, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Primary Care - Voorhees at 2225 Evesham Rd.": [{"instrument": "Afinion (A1C)", "count": 1, "type": "", "notes": ""}, {"instrument": "Afinion Handheld Scanners Needed", "count": 1, "type": "", "notes": ""}, {"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 4, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Primary Care - Voorhees at 805 Cooper Road": [{"instrument": "Afinion (A1C)", "count": 1, "type": "", "notes": ""}, {"instrument": "Afinion Handheld Scanners Needed", "count": 1, "type": "", "notes": ""}, {"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 4, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Primary Care - Sewell": [{"instrument": "Afinion (A1C)", "count": 1, "type": "", "notes": ""}, {"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 4, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Primary Care - Westmont": [{"instrument": "Afinion (A1C)", "count": 1, "type": "", "notes": ""}, {"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 4, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Women's Primary Care & Wellness Center": [{"instrument": "Afinion (A1C)", "count": 1, "type": "", "notes": ""}, {"instrument": "Afinion Handheld Scanners Needed", "count": 1, "type": "", "notes": ""}, {"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Sofia 2 (Flu, Strep, COVID)", "count": 4, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Center for Women – Voorhees": [{"instrument": "Clinitek (Urinalysis)", "count": 2, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Center for Women – Willingboro": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Midwifery - Sicklerville": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Midwifery - Camden (shares with OBGYN Camden)": [{"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Midwifery - Voorhees": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua OB/GYN – Camden": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua OB/GYN – Cherry Hill": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua OB/GYN - Hammonton": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua OB/GYN - Mansfield": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua OB/GYN - Marlton": [{"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua OB/GYN - Moorestown": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua OB/GYN – Mullica Hill": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Midwifery - Camden": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua OB/GYN - Southampton": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua OB/GYN - Swedesboro": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua OB/GYN - Voorhees": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua OB/GYN - Westampton": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua OB/GYN - Woodbury Heights": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Exuberan by Virtua - Moorestown": [{"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Female Pelvic Medicine – Cherry Hill": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Female Pelvic Medicine - Moorestown": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Female Pelvic Medicine - Sewell": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Sexual Wellness & Pelvic Health - Voorhees": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Endocrinology - Browns Mills (shares with PC Browns Mills)": [{"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Endocrinology - Cherry Hill": [{"instrument": "Afinion (A1C)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 2, "type": "TrueMetrix", "notes": ""}], "Virtua Endocrinology - Lumberton (shares with PC Lumberton)": [{"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Endocrinology - Moorestown": [{"instrument": "Afinion (A1C)", "count": 2, "type": "", "notes": ""}, {"instrument": "Clinitek (Urinalysis)", "count": 2, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "AccuChek", "notes": ""}], "Virtua Endocrinology - Voorhees": [{"instrument": "Afinion (A1C)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Endocrinology - Sewell": [{"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Cardiology - Bordentown": [{"instrument": "CoaguChek XS Plus (INR)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Cardiology - Columbus": [{"instrument": "CoaguChek XS Plus (INR)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 1, "type": "AccuChek", "notes": ""}], "Virtua Cardiology - Medford at Route 70": [{"instrument": "CoaguChek XS Plus (INR)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Cardiology - Moorestown": [{"instrument": "CoaguChek XS Plus (INR)", "count": 2, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Cardiology - William G. Rohrer Center - Voorhees": [{"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Cardiology - Sewell at 239 Hurffville Cross Keys Road Suite 350C": [{"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Cardiology -Voorhees at 2309 Evesham Road": [{"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Nephrology- Camden": [{"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Nephrology – Voorhees at Laurel Oak Road": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Nephrology - Cherry Hill": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Hemocue", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Nephrology - Hammonton (shares with OBGYN Hammonton)": [{"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Nephrology - Sewell": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Hemocue", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Nutrition & Diabetes Care - Camden": [{"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Nutrition & Diabetes Care - Moorestown at Endocrinology": [{"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Nutrition & Diabetes Care - Moorestown at Young Avenue": [{"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Nutrition & Diabetes Care - Voorhees": [{"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Nutrition & Diabetes Care - Sewell": [{"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Medication Assisted Treatment Program - Lumberton": [{"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Medication Assisted Treatment Program - Voorhees": [{"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Minimally Invasive Gynecologic Surgery - Camden": [{"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Minimally Invasive Gynecologic Surgery - Moorestown (shares with OBGYN Moorestown)": [{"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Minimally Invasive Gynecologic Surgery - Voorhees": [{"instrument": "Clinitek (Urinalysis)", "count": 1, "type": "", "notes": ""}, {"instrument": "Glucometers", "count": 0, "type": "0", "notes": ""}], "Virtua Reconstructive Orthopedics - Medford": [{"instrument": "Glucometers", "count": 2, "type": "TrueMetrix", "notes": ""}], "Virtua Reconstructive Orthopedics - Moorestown": [{"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Reconstructive Orthopedics - Sewell": [{"instrument": "Glucometers", "count": 1, "type": "TrueMetrix", "notes": ""}], "Virtua Reconstructive Orthopedics - Vineland": [{"instrument": "Glucometers", "count": 2, "type": "TrueMetrix", "notes": ""}]};
+function normalizeLookupName(name){
+  return String(name||'').toLowerCase()
+    .replace(/virtua|rowan|medicine|center for|primary care|family medicine|reconstructive|integrated|regional|health|wellness|clinic/g,'')
+    .replace(/&/g,'and')
+    .replace(/[^a-z0-9]+/g,' ')
+    .replace(/\s+/g,' ')
+    .trim();
+}
+function cloneData(v){ return JSON.parse(JSON.stringify(v || [])); }
+function findPrefill(map, practice){
+  const target = normalizeLookupName(practice.name + ' ' + practice.city);
+  let best = null, bestScore = 0;
+  Object.keys(map).forEach(k=>{
+    const nk = normalizeLookupName(k);
+    let score = 0;
+    nk.split(' ').filter(Boolean).forEach(part=>{ if(target.includes(part)) score++; });
+    target.split(' ').filter(Boolean).forEach(part=>{ if(nk.includes(part)) score += .25; });
+    if(score > bestScore){ bestScore = score; best = k; }
+  });
+  return bestScore >= 1.5 ? cloneData(map[best]) : [];
+}
+function getFridgePrefill(practice){ return findPrefill(FRIDGE_PREFILL, practice); }
+function getPocPrefill(practice){ return findPrefill(POCT_PREFILL, practice); }
+
 const BASE = [
   {name:"Virtua Center for Liver Disease - Linwood",addr:"1201 New Road, Suite 150F, Linwood, NJ 08221",spec:"Hepatology",city:"Linwood",freq:"Annual",lastVisit:"2025-04-01",mgr:"Yaitza Foley",dir:"Kara Hovatter",leadMA:"Erica Roberts",hours:"Mon–Fri: call to confirm ⚠",equip:{}},
   {name:"Virtua Gastroenterology - Hammonton",addr:"2 Sindoni Lane, Suite B, Hammonton, NJ 08037",spec:"Gastroenterology",city:"Hammonton",freq:"Annual",lastVisit:"2025-07-09",mgr:"Beth Grossman-Gilbert",dir:"Tracy McArthur",leadMA:"",hours:"2nd & 4th Wed only, 8am–3:30pm ⚠",equip:{'Vaccines/Refrig. Meds':'No','Sample Meds':'No','OceanView':'No','POC Testing':'No','VFC':'No','Autoclave':'No','Trophon':'No','AED':'Shared','Eyewash':'Shared','Oxygen':'No'}},
@@ -595,15 +743,15 @@ const BASE = [
   {name:"Virtua Cardiology - Sewell",addr:"539 Egg Harbor Road, Suite 1A, Sewell, NJ 08080",spec:"Cardiology",city:"Sewell",freq:"Bi-Annual",lastVisit:"2025-12-11",mgr:"Christina LaBelle",dir:"Jennifer Garron",leadMA:"",hours:"Mon–Fri: 8:30am–5pm",equip:{}},
   {name:"Virtua Cardiology - Berlin",addr:"181 W. White Horse Pike, Suite 201, Berlin, NJ 08009",spec:"Cardiology",city:"Berlin",freq:"Bi-Annual",lastVisit:"2025-12-16",mgr:"Christina LaBelle",dir:"Jennifer Garron",leadMA:"",hours:"Mon–Fri: 8:30am–5pm",equip:{'Vaccines/Refrig. Meds':'No','Sample Meds':'Yes','OceanView':'No','POC Testing':'No','VFC':'No','Autoclave':'No','Trophon':'No','AED':'Yes','Eyewash':'Yes','Oxygen':''}},
   {name:"Virtua Cardiology - Ventnor",addr:"6508 Ventnor Ave, Suite B, Ventnor City, NJ 08406",spec:"Cardiology",city:"Ventnor",freq:"Bi-Annual",lastVisit:"",mgr:"Catherine Martin",dir:"Tania Pinho",leadMA:"",hours:"Mon–Fri: call to confirm ⚠",equip:{}},
-  {name:"Virtua Primary Care - Linwood",addr:"1201 New Road, Suite 150G, Linwood, NJ 08221",spec:"Primary Care",city:"Linwood",freq:"Bi-Monthly",lastVisit:"2026-01-29",mgr:"Jennifer Laramore",dir:"Tamitra Tann",leadMA:"Alberta Lewis",hours:"Mon–Thu: 8am–7pm, Fri: 8am–3:30pm, Sat: 9am–12pm",equip:{'Vaccines/Refrig. Meds':'Yes','Sample Meds':'No','OceanView':'Yes','POC Testing':'Yes','VFC':'Yes','Autoclave':'No','Trophon':'No','AED':'Yes','Eyewash':'Yes','Oxygen':'Yes'}},
+  {name:"Virtua Primary Care - Linwood",njiisId:"685",vfcPin:"01-020",addr:"1201 New Road, Suite 150G, Linwood, NJ 08221",spec:"Primary Care",city:"Linwood",freq:"Bi-Monthly",lastVisit:"2026-01-29",mgr:"Jennifer Laramore",dir:"Tamitra Tann",leadMA:"Alberta Lewis",hours:"Mon–Thu: 8am–7pm, Fri: 8am–3:30pm, Sat: 9am–12pm",equip:{'Vaccines/Refrig. Meds':'Yes','Sample Meds':'No','OceanView':'Yes','POC Testing':'Yes','VFC':'Yes','Autoclave':'No','Trophon':'No','AED':'Yes','Eyewash':'Yes','Oxygen':'Yes'}},
   {name:"Virtua Primary Care - Ventnor",addr:"6508 Ventnor Avenue, Ventnor, NJ 08406",spec:"Primary Care",city:"Ventnor",freq:"Bi-Monthly",lastVisit:"2026-02-25",mgr:"Marisol Pirela",dir:"Tamitra Tann",leadMA:"Keily Velasquez",hours:"Mon–Fri: call to confirm ⚠",equip:{}},
-  {name:"Virtua Primary Care - Lindenwold",addr:"406 E Gibbsboro Road, Lindenwold, NJ 08021",spec:"Primary Care",city:"Lindenwold",freq:"Bi-Monthly",lastVisit:"2026-02-27",mgr:"Priscilla Chanza",dir:"Tamitra Tann",leadMA:"Laura Frias",hours:"Mon–Fri: call to confirm ⚠",equip:{'Vaccines/Refrig. Meds':'Yes','Sample Meds':'Yes','OceanView':'Yes','POC Testing':'Yes','VFC':'Yes','Autoclave':'No','Trophon':'No','AED':'Yes','Eyewash':'Yes','Oxygen':'Yes'}},
+  {name:"Virtua Primary Care - Lindenwold",njiisId:"8753",vfcPin:"04U153",addr:"406 E Gibbsboro Road, Lindenwold, NJ 08021",spec:"Primary Care",city:"Lindenwold",freq:"Bi-Monthly",lastVisit:"2026-02-27",mgr:"Priscilla Chanza",dir:"Tamitra Tann",leadMA:"Laura Frias",hours:"Mon–Fri: call to confirm ⚠",equip:{'Vaccines/Refrig. Meds':'Yes','Sample Meds':'Yes','OceanView':'Yes','POC Testing':'Yes','VFC':'Yes','Autoclave':'No','Trophon':'No','AED':'Yes','Eyewash':'Yes','Oxygen':'Yes'}},
   {name:"Virtua Primary Care - Hammonton",addr:"75 South White Horse Pike, Hammonton, NJ 08037",spec:"Primary Care",city:"Hammonton",freq:"Bi-Monthly",lastVisit:"2026-02-26",mgr:"Tiffany Tatum",dir:"Tamitra Tann",leadMA:"Samantha DeMarco",hours:"Mon: 8am–7pm, Tue: 7am–4:30pm ⚠",equip:{'Vaccines/Refrig. Meds':'Yes','Sample Meds':'No','OceanView':'Yes','POC Testing':'Yes','VFC':'No','Autoclave':'No','Trophon':'No','AED':'Yes','Eyewash':'Yes','Oxygen':'Yes'}},
   {name:"Rowan Medicine OBGYN - Sewell",addr:"405 Hurffville-Crosskeys Rd, Ste 202, Sewell, NJ",spec:"OBGYN",city:"Sewell",freq:"Quarterly",lastVisit:"2025-08-20",mgr:"(vacant)",dir:"Tiruayer Battle",leadMA:"Tina Rivera",hours:"Mon–Fri: call to confirm (856-589-1414) ⚠",equip:{'Vaccines/Refrig. Meds':'Yes','Sample Meds':'Yes','OceanView':'No','POC Testing':'Yes','VFC':'No','Autoclave':'Yes','Trophon':'No','AED':'Facilities','Eyewash':'','Oxygen':''}},
   {name:"Rowan Medicine Infectious Disease - Sewell",addr:"405 Hurffville-Crosskeys Rd, Ste 101, Sewell, NJ",spec:"Infectious Disease",city:"Sewell",freq:"Quarterly",lastVisit:"2025-09-02",mgr:"Nancy Fox",dir:"Brenda Savinson",leadMA:"",hours:"Tue: 9am–1pm, Wed: 8am–4pm ⚠",equip:{}},
   {name:"Virtua Reconstructive Orthopedics - Vineland",addr:"994 West Sherman Avenue, Vineland, NJ 08360",spec:"Orthopedic",city:"Vineland",freq:"Quarterly",lastVisit:"2026-03-13",mgr:"Melissa Atlee & Sal Spitalieri",dir:"Jennifer Ritondo",leadMA:"",hours:"Mon–Fri: 8am–5pm",equip:{'Vaccines/Refrig. Meds':'No','Sample Meds':'No','OceanView':'No','POC Testing':'No','VFC':'No','Autoclave':'Yes','Trophon':'No','AED':'Yes','Eyewash':'Yes','Oxygen':''}},
   {name:"Rowan NeuroMusculoskeletal - Vineland",addr:"3360 College Dr., Suite A, Vineland, NJ 08360",spec:"NMI",city:"Vineland",freq:"Quarterly",lastVisit:"2025-09-09",mgr:"Season Williams",dir:"Nikole Ticcino",leadMA:"",hours:"By appt only, Call 856-566-7017 ⚠",equip:{}},
-  {name:"Rowan Medicine Pediatrics - Sewell",addr:"405 Hurffville-Crosskeys Rd, Ste 203, Sewell, NJ",spec:"Pediatrics",city:"Sewell",freq:"Quarterly",lastVisit:"2026-01-23",mgr:"Janet Thornton",dir:"Tiruayer Battle",leadMA:"Janet Flood",hours:"Mon/Wed/Thu: 8am–7pm, Tue: 8am–4pm",equip:{}},
+  {name:"Rowan Medicine Pediatrics - Sewell",njiisId:"5959",vfcPin:"08053",addr:"405 Hurffville-Crosskeys Rd, Ste 203, Sewell, NJ",spec:"Pediatrics",city:"Sewell",freq:"Quarterly",lastVisit:"2026-01-23",mgr:"Janet Thornton",dir:"Tiruayer Battle",leadMA:"Janet Flood",hours:"Mon/Wed/Thu: 8am–7pm, Tue: 8am–4pm",equip:{}},
   {name:"Rowan Family Medicine - Sewell",addr:"405 Hurffville-Crosskeys Rd, Ste 101, Sewell, NJ",spec:"Primary Care",city:"Sewell",freq:"Quarterly",lastVisit:"2025-10-03",mgr:"Crystal Kanavel",dir:"Nancy Garback",leadMA:"Mindy Niedzawiadek",hours:"Mon/Thu: 8am–8pm, Tue/Wed/Fri: 8am–4pm",equip:{}},
   {name:"Virtua Reconstructive Orthopedics - Sewell",addr:"570 Egg Harbor Rd, Ste C4, Sewell, NJ 08080",spec:"Orthopedic",city:"Sewell",freq:"Quarterly",lastVisit:"2026-03-12",mgr:"Melissa Atlee & Sal Spitalieri",dir:"Jennifer Ritondo",leadMA:"Jacob Feenstra",hours:"Mon–Fri: 8am–5pm",equip:{'Vaccines/Refrig. Meds':'No','Sample Meds':'No','OceanView':'No','POC Testing':'No','VFC':'No','Autoclave':'Yes','Trophon':'No','AED':'Yes','Eyewash':'Yes','Oxygen':''}},
   {name:"Virtua Reconstructive Orthopedics - Somers Point",addr:"547 New Road, Somers Point, NJ 08244",spec:"Orthopedic",city:"Somers Point",freq:"Quarterly",lastVisit:"2025-11-07",mgr:"Sal Spitalieri",dir:"Jennifer Ritondo",leadMA:"",hours:"Mon/Wed: 7:30am–4pm, Tue/Thu: 8am–4pm ⚠",equip:{}},
@@ -619,12 +767,57 @@ const BASE = [
 
 let P = [];
 
+function createPracticeId(){
+  return 'p_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2,8);
+}
+function normalizePractice(p){
+  const base = p || {};
+  return {
+    id: base.id || createPracticeId(),
+    name: base.name || '',
+    addr: base.addr || '',
+    spec: base.spec || '',
+    city: base.city || '',
+    freq: base.freq || 'Quarterly',
+    lastVisit: base.lastVisit || '',
+    visitStatus: base.visitStatus || '',
+    notes: base.notes || '',
+    nextScheduled: base.nextScheduled || '',
+    history: Array.isArray(base.history) ? base.history : [],
+    equip: {...(base.equip || {})},
+    equipNotes: {...(base.equipNotes || {})},
+    fridgeDetails: base.fridgeDetails ?? getFridgePrefill(base),
+    poctDetails: base.poctDetails ?? getPocPrefill(base),
+    vfcDetails: {...(base.vfcDetails || {})},
+    sampleDetails: {...(base.sampleDetails || {})},
+    noteLog: Array.isArray(base.noteLog) ? base.noteLog : [],
+    mgr: base.mgr || '',
+    dir: base.dir || '',
+    leadMA: base.leadMA || '',
+    hours: base.hours || '',
+    njiisId: base.njiisId || '',
+    vfcPin: base.vfcPin || '',
+    archived: !!base.archived,
+    archivedDate: base.archivedDate || '',
+    archiveReason: base.archiveReason || ''
+  };
+}
+function isArchived(p){ return !!p.archived; }
+function activePracticeItems(){
+  return P.map((p,i)=>({p,i})).filter(({p})=>!isArchived(p));
+}
 function load(){
   let s = {};
   try{s = JSON.parse(localStorage.getItem(SKEY_DATA) || '{}')}catch(e){}
+
+  if(s && Array.isArray(s.__practices)){
+    P = s.__practices.map(p => normalizePractice(p));
+    return;
+  }
+
   P = BASE.map((b,i)=>{
     const sv = s[i] || {};
-    return {
+    return normalizePractice({
       ...b,
       lastVisit: sv.lastVisit ?? b.lastVisit,
       visitStatus: sv.visitStatus ?? '',
@@ -632,12 +825,22 @@ function load(){
       nextScheduled: sv.nextScheduled ?? '',
       history: sv.history ?? [],
       equip: {...b.equip, ...(sv.equip || {})},
+      equipNotes: sv.equipNotes ?? {},
+      fridgeDetails: sv.fridgeDetails ?? getFridgePrefill(b),
+      poctDetails: sv.poctDetails ?? getPocPrefill(b),
+      vfcDetails: sv.vfcDetails ?? {},
+      sampleDetails: sv.sampleDetails ?? {},
       noteLog: sv.noteLog ?? [],
       mgr: sv.mgr ?? b.mgr,
       dir: sv.dir ?? b.dir,
       leadMA: sv.leadMA ?? b.leadMA,
-      hours: sv.hours ?? b.hours
-    };
+      hours: sv.hours ?? b.hours,
+      njiisId: sv.njiisId ?? b.njiisId ?? '',
+      vfcPin: sv.vfcPin ?? b.vfcPin ?? '',
+      archived: sv.archived ?? false,
+      archivedDate: sv.archivedDate ?? '',
+      archiveReason: sv.archiveReason ?? ''
+    });
   });
 }
 
@@ -741,8 +944,16 @@ function calCell(p,mo){
   return {t:'DUE', c:'c-due'};
 }
 
+function hasVFCInfo(p){
+  const vfcEquip = String((p.equip && p.equip['VFC']) || '').trim().toLowerCase().startsWith('yes');
+  const hasIds = !!(String(p.njiisId || '').trim() || String(p.vfcPin || '').trim());
+  const v = p.vfcDetails || {};
+  const hasDetails = !!(String(v.primary || '').trim() || String(v.primaryContact || '').trim() || String(v.backup || '').trim() || String(v.backupContact || '').trim() || String(v.notes || '').trim());
+  return vfcEquip || hasIds || hasDetails;
+}
 function mkCard(p,idx){
   const due = nextDue(p), st = stOf(p), days = due ? dd(due) : null, warn = p.hours && p.hours.includes('⚠');
+  const showVFC = hasVFCInfo(p);
   const dStr = days===null ? '' :
     days<0 ? `<span style="color:var(--red);font-weight:700">${Math.abs(days)}d overdue</span>` :
     days===0 ? `<span style="color:var(--amber);font-weight:700">Due today</span>` :
@@ -766,7 +977,7 @@ function mkCard(p,idx){
       </div>`).join('');
 
   return `<div class="pcard ${stCard(st)}" id="pc-${idx}">
-    <div class="pcard-hdr" onclick="tog(${idx})">
+    <div class="pcard-hdr" onclick="togCard(event)">
       <div class="pcard-main">
         <div class="pcard-name">${escapeHtml(p.name)}</div>
         <div class="pcard-meta">
@@ -783,10 +994,10 @@ function mkCard(p,idx){
     </div>
     <div class="pcard-body">
       <div class="dtabs">
-        <div class="dtab active" onclick="dtab(${idx},'i')">Info & Notes</div>
-        <div class="dtab" onclick="dtab(${idx},'u')">✏️ Update</div>
-        <div class="dtab" onclick="dtab(${idx},'e')">🔧 Equipment</div>
-        <div class="dtab" onclick="dtab(${idx},'h')">📋 History</div>
+        <div class="dtab active" onclick="dtabEvent(event,'i')">Info & Notes</div>
+        <div class="dtab" onclick="dtabEvent(event,'u')">✏️ Update</div>
+        <div class="dtab" onclick="dtabEvent(event,'e')">🔧 Equipment</div>
+        <div class="dtab" onclick="dtabEvent(event,'h')">📋 History</div>
       </div>
 
       <div class="dcon active" id="di-${idx}">
@@ -798,6 +1009,15 @@ function mkCard(p,idx){
           ${p.leadMA ? `<div class="cf"><div class="cf-lbl">Lead MA</div><div class="cf-val">${escapeHtml(p.leadMA)}</div></div>` : ''}
           <div class="cf"><div class="cf-lbl">Last Visit</div><div class="cf-val">${p.lastVisit ? fmt(pd(p.lastVisit)) : 'None on record'}</div></div>
           ${p.nextScheduled ? `<div class="cf"><div class="cf-lbl">Next Scheduled</div><div class="cf-val" style="color:var(--teal);font-weight:600">${fmt(pd(p.nextScheduled))}</div></div>` : ''}
+          ${showVFC ? `
+          <div class="cf"><div class="cf-lbl">NJIIS ID</div><div class="cf-val">${escapeHtml(p.njiisId || '—')}</div></div>
+          <div class="cf"><div class="cf-lbl">VFC PIN</div><div class="cf-val">${escapeHtml(p.vfcPin || '—')}</div></div>
+          <div class="cf"><div class="cf-lbl">Primary VFC Coordinator</div><div class="cf-val">${escapeHtml((p.vfcDetails&&p.vfcDetails.primary) || '—')}</div></div>
+          <div class="cf"><div class="cf-lbl">Primary VFC Contact</div><div class="cf-val">${escapeHtml((p.vfcDetails&&p.vfcDetails.primaryContact) || '—')}</div></div>
+          <div class="cf"><div class="cf-lbl">Backup VFC Coordinator</div><div class="cf-val">${escapeHtml((p.vfcDetails&&p.vfcDetails.backup) || '—')}</div></div>
+          <div class="cf"><div class="cf-lbl">Backup VFC Contact</div><div class="cf-val">${escapeHtml((p.vfcDetails&&p.vfcDetails.backupContact) || '—')}</div></div>
+          ${(p.vfcDetails&&p.vfcDetails.notes) ? `<div class="cf" style="grid-column:1/-1"><div class="cf-lbl">VFC Notes</div><div class="cf-val">${escapeHtml(p.vfcDetails.notes)}</div></div>` : ''}
+          ` : ''}
         </div>
 
         <div class="notes-section">
@@ -809,6 +1029,10 @@ function mkCard(p,idx){
             <textarea id="nt-${idx}" placeholder="Type your note here…" rows="2"></textarea>
             <button class="btn-sm btn-green" onclick="addNote(${idx})">Add Note</button>
           </div>
+        </div>
+        <div class="tab-save-bar">
+          <span class="tab-save-note">Save any Info & Notes changes before closing or switching devices.</span>
+          <button class="btn-tab-save" onclick="saveTabData(${idx}, 'Info & Notes')">💾 Save Info & Notes</button>
         </div>
       </div>
 
@@ -835,6 +1059,15 @@ function mkCard(p,idx){
           <div class="eg"><label>Practice Manager</label><input type="text" id="mgr-${idx}" value="${escapeHtml(p.mgr || '')}"></div>
           <div class="eg"><label>Director</label><input type="text" id="dir-${idx}" value="${escapeHtml(p.dir || '')}"></div>
           <div class="eg"><label>Lead MA</label><input type="text" id="lead-${idx}" value="${escapeHtml(p.leadMA || '')}"></div>
+          ${showVFC ? `
+          <div class="eg"><label>NJIIS ID</label><input type="text" id="njiis-${idx}" value="${escapeHtml(p.njiisId || '')}" placeholder="NJIIS ID"></div>
+          <div class="eg"><label>VFC PIN</label><input type="text" id="vfcpin-${idx}" value="${escapeHtml(p.vfcPin || '')}" placeholder="VFC PIN"></div>
+          <div class="eg"><label>Primary VFC Coordinator</label><input type="text" id="vfcprimary-${idx}" value="${escapeHtml((p.vfcDetails&&p.vfcDetails.primary) || '')}" placeholder="Name"></div>
+          <div class="eg"><label>Primary VFC Contact</label><input type="text" id="vfcprimarycontact-${idx}" value="${escapeHtml((p.vfcDetails&&p.vfcDetails.primaryContact) || '')}" placeholder="Email or phone"></div>
+          <div class="eg"><label>Backup VFC Coordinator</label><input type="text" id="vfcbackup-${idx}" value="${escapeHtml((p.vfcDetails&&p.vfcDetails.backup) || '')}" placeholder="Name"></div>
+          <div class="eg"><label>Backup VFC Contact</label><input type="text" id="vfcbackupcontact-${idx}" value="${escapeHtml((p.vfcDetails&&p.vfcDetails.backupContact) || '')}" placeholder="Email or phone"></div>
+          <div class="eg" style="grid-column:1/-1"><label>VFC Notes</label><textarea id="vfcnotes-${idx}" placeholder="Ordering month, PIN/access notes, coordinator details…">${escapeHtml((p.vfcDetails&&p.vfcDetails.notes) || '')}</textarea></div>
+          ` : ''}
           <div class="eg" style="grid-column:1/-1"><label>Office Hours</label><textarea id="hours-${idx}" placeholder="Office hours">${escapeHtml(p.hours || '')}</textarea></div>
           <div class="eg" style="grid-column:1/-1">
             <label>General Notes</label>
@@ -844,13 +1077,18 @@ function mkCard(p,idx){
         <div class="eact">
           <button class="btn-upd" onclick="doUpd(${idx})">Save Changes</button>
           <button class="btn-pr" onclick="printCard(${idx})">🖨 Print Summary</button>
+          <button class="btn-pr" onclick="toggleArchive(${idx})">${p.archived?'↩ Restore Practice':'📦 Archive Practice'}</button>
           <span class="flash" id="fl-${idx}">✓ Saved</span>
         </div>
       </div>
 
       <div class="dcon" id="de-${idx}">
-        <div style="font-size:11px;color:var(--text2);margin-bottom:10px">Tap to toggle Yes/No. Hit Save Changes in the Update tab to persist.</div>
+        <div style="font-size:11px;color:var(--text2);margin-bottom:10px">Tap to toggle Yes/No. Use the save button below to lock in equipment notes and details.</div>
         <div class="eq-grid" id="eq-${idx}">${eqH}</div>
+        <div class="tab-save-bar">
+          <span class="tab-save-note">Equipment details auto-save as you type, but this saves immediately.</span>
+          <button class="btn-tab-save" onclick="saveTabData(${idx}, 'Equipment')">💾 Save Equipment</button>
+        </div>
       </div>
 
       <div class="dcon" id="dh-${idx}">
@@ -864,46 +1102,410 @@ function mkCard(p,idx){
           </div>
           <div style="font-size:11px;color:var(--text2);margin-top:6px">This adds to the history log only. To update the Last Visit Date, use the Update tab.</div>
         </div>
+        <div class="tab-save-bar">
+          <span class="tab-save-note">Save after adding or editing visit history.</span>
+          <button class="btn-tab-save" onclick="saveTabData(${idx}, 'History')">💾 Save History</button>
+        </div>
       </div>
     </div>
   </div>`;
 }
 
 function tog(i){ document.getElementById('pc-' + i)?.classList.toggle('open'); }
+function togCard(e){
+  if(e) e.stopPropagation();
+  const card = e?.currentTarget?.closest('.pcard');
+  if(card) card.classList.toggle('open');
+}
 function dtab(i,n){
   const tabs = document.getElementById('pc-' + i)?.querySelectorAll('.dtab') || [];
   tabs.forEach((t,j)=> t.classList.toggle('active', 'iueh'[j] === n));
   ['i','u','e','h'].forEach(x=> document.getElementById('d' + x + '-' + i)?.classList.toggle('active', x===n));
 }
+function dtabEvent(e,n){
+  if(e){ e.preventDefault(); e.stopPropagation(); }
+  const card = e?.currentTarget?.closest('.pcard');
+  if(!card) return;
+  const cons = ['i','u','e','h'];
+  const tabs = card.querySelectorAll('.dtab');
+  tabs.forEach((t,j)=> t.classList.toggle('active', cons[j]===n));
+  cons.forEach(x=>{
+    const panel = card.querySelector(`[id^="d${x}-"]`);
+    if(panel) panel.classList.toggle('active', x===n);
+  });
+}
 function renderEqHTML(i){
   const p = P[i] || {};
   p.equip = p.equip || {};
-  return EQ_KEYS.map(k=>{
+  p.equipNotes = p.equipNotes || {};
+  const filter = EQ_FILTERS[i] || 'all';
+  const detailKeys = ['Vaccines/Refrig. Meds','Sample Meds','POC Testing','VFC'];
+  const visibleKeys = EQ_KEYS.filter(k=>{
+    const v = String(p.equip[k] || '').trim().toLowerCase();
+    const y = v.startsWith('yes');
+    const n = v === 'no';
+    if(filter === 'yes') return y;
+    if(filter === 'no') return n;
+    if(filter === 'details') return y && detailKeys.includes(k);
+    return true;
+  });
+  const cards = visibleKeys.map(k=>{
     const v = p.equip[k] ? String(p.equip[k]).trim() : '';
+    const note = p.equipNotes[k] ? String(p.equipNotes[k]) : '';
     const y = v.toLowerCase().startsWith('yes');
     const n2 = v.toLowerCase() === 'no';
-    return `<button type="button" class="eq-item ${y?'yes':n2?'no':''}" onclick="event.stopPropagation(); togEq(${i}, ${JSON.stringify(k)}); return false;">
-      <div class="eq-cb">${y?'✓':''}</div>
-      <div>
-        <div class="eq-name">${escapeHtml(k)}</div>
-        <div style="font-size:10px;color:var(--text2)">${escapeHtml(v || 'Tap to mark Yes')}</div>
+    const hasDetails = detailKeys.includes(k);
+    const detailHint = y ? (hasDetails ? '✓ Yes — details open below' : '✓ Yes') : (n2 ? 'X No' : 'Not set — tap to mark Yes');
+    return `<div class="eq-card ${y?'yes':''}">
+      <button type="button" class="eq-item ${y?'yes':n2?'no':''}" data-eq-idx="${i}" data-eq-key="${escapeHtml(k)}" aria-label="Toggle ${escapeHtml(k)}">
+        <div class="eq-cb">${y?'✓':''}</div>
+        <div>
+          <div class="eq-name">${escapeHtml(k)}</div>
+          <div class="eq-sub">${escapeHtml(detailHint)}</div>
+        </div>
+      </button>
+      <div class="eq-note-wrap">
+        <textarea class="eq-note" data-eq-note-idx="${i}" data-eq-note-key="${escapeHtml(k)}" placeholder="Notes (optional)...">${escapeHtml(note)}</textarea>
       </div>
-    </button>`;
-  }).join('');
+    </div>`;
+  }).join('') || '<div style="font-size:12px;color:var(--text2);padding:10px">No equipment items match this filter.</div>';
+  const details = EQ_KEYS
+    .filter(k => String(p.equip[k] || '').toLowerCase().startsWith('yes'))
+    .map(k => renderEquipmentDetails(i,k))
+    .join('');
+  return `<div class="eq-toolbar">
+      <label>Filter equipment</label>
+      <select onchange="setEqFilter(${i},this.value)">
+        ${['all','yes','no','details'].map(opt=>`<option value="${opt}" ${filter===opt?'selected':''}>${opt==='all'?'All items':opt==='yes'?'Marked Yes':opt==='no'?'Marked No':'Items with details'}</option>`).join('')}
+      </select>
+      <span class="hint">Use filters to shrink this section. Detail panels can be minimized.</span>
+    </div>
+    <div class="eq-card-grid">${cards}</div>${details}<div class="custom-eq-add"><strong style="font-size:11px;color:var(--text2)">+ Add item:</strong><input id="custom-eq-${i}" placeholder="Custom equipment name..."><button class="eq-add-btn" type="button" onclick="addCustomEquipment(${i})">Add</button></div>`;
 }
-function togEq(i,key){
+function renderEquipmentDetails(i,key){
+  if(key === 'Vaccines/Refrig. Meds') return renderFridgeDetails(i);
+  if(key === 'Sample Meds') return renderSampleDetails(i);
+  if(key === 'POC Testing') return renderPocDetails(i);
+  if(key === 'VFC') return renderVfcDetails(i);
+  return '';
+}
+function setEqFilter(i,val){
+  EQ_FILTERS[i] = val || 'all';
+  const g = document.getElementById('eq-' + i);
+  if(g) g.innerHTML = renderEqHTML(i);
+}
+function eqCollapseKey(i,key){ return i + '::' + key; }
+function isEqDetailCollapsed(i,key){ return EQ_DETAIL_COLLAPSED[eqCollapseKey(i,key)] === true; }
+function toggleEqDetail(i,key){
+  const ck = eqCollapseKey(i,key);
+  EQ_DETAIL_COLLAPSED[ck] = !EQ_DETAIL_COLLAPSED[ck];
+  const g = document.getElementById('eq-' + i);
+  if(g) g.innerHTML = renderEqHTML(i);
+}
+function renderFridgeDetails(i){
+  const p = P[i] || {};
+  p.fridgeDetails = Array.isArray(p.fridgeDetails) ? p.fridgeDetails : [];
+  if(!p.fridgeDetails.length) p.fridgeDetails = [
+    {type:'Refrigerator',make:'',model:'',mfgDate:'',sensorId:'',stockType:'Private',notes:''},
+    {type:'Freezer',make:'',model:'',mfgDate:'',sensorId:'',stockType:'Private',notes:''}
+  ];
+  return `<div class="eq-detail ${isEqDetailCollapsed(i,'Vaccines/Refrig. Meds')?'collapsed':''}">
+    <div class="eq-detail-title"><span>🧊 Vaccine / Refrigerated Medication Storage</span><button class="eq-min-btn" type="button" onclick="toggleEqDetail(${i},'Vaccines/Refrig. Meds')">${isEqDetailCollapsed(i,'Vaccines/Refrig. Meds')?'Expand':'Minimize'}</button></div>
+    <div class="eq-detail-body">
+    <div class="eq-detail-help">Because Vaccines/Refrigerated Meds was marked Yes, enter refrigerator/freezer units, model numbers, storage type, and Dickson sensor IDs for this office.</div>
+    ${p.fridgeDetails.map((d,row)=>`
+      <div class="eq-row-card active">
+        <div class="eq-row-head">
+          <select class="fridge-field" data-idx="${i}" data-row="${row}" data-field="type" style="flex:1;max-width:none">
+            ${['Refrigerator','Freezer','Refrigerator #1','Refrigerator #2','Freezer #1','Freezer #2'].map(opt=>`<option ${String(d.type||'')===opt?'selected':''}>${opt}</option>`).join('')}
+          </select>
+          <select class="fridge-field" data-idx="${i}" data-row="${row}" data-field="stockType" style="width:110px">
+            ${['Private','VFC','Both','N/A',''].map(opt=>`<option value="${opt}" ${String(d.stockType||'')===opt?'selected':''}>${opt||'—'}</option>`).join('')}
+          </select>
+          <button class="eq-remove-btn" type="button" onclick="event.stopPropagation();removeFridgeDevice(${i},${row});return false;">✕ Remove</button>
+        </div>
+        <div class="eq-detail-grid">
+          <label>Make<input class="fridge-field" data-idx="${i}" data-row="${row}" data-field="make" value="${escapeHtml(d.make||'')}"></label>
+          <label>Model #<input class="fridge-field" data-idx="${i}" data-row="${row}" data-field="model" value="${escapeHtml(d.model||'')}"></label>
+          <label>MFG Date<input class="fridge-field" type="date" data-idx="${i}" data-row="${row}" data-field="mfgDate" value="${escapeHtml(d.mfgDate||'')}"></label>
+          <label>Dickson Sensor ID<input class="fridge-field" data-idx="${i}" data-row="${row}" data-field="sensorId" value="${escapeHtml(d.sensorId||'')}" placeholder="e.g. 19E61B Primary / 19E681 Backup..."></label>
+          <label style="grid-column:1/-1">Unit Notes<textarea class="fridge-field" data-idx="${i}" data-row="${row}" data-field="notes" placeholder="Shared unit, backup sensor, maintenance notes...">${escapeHtml(d.notes||'')}</textarea></label>
+        </div>
+      </div>`).join('')}
+    <div class="eq-add-row"><button class="eq-add-btn" type="button" onclick="addFridgeDevice(${i},'Refrigerator')">+ Add Refrigerator</button><button class="eq-add-btn" type="button" onclick="addFridgeDevice(${i},'Freezer')">+ Add Freezer</button><button class="eq-save-btn" type="button" onclick="saveLocal();toast('✓ Unit details saved','ok')">Save Unit Details</button></div>
+    </div>
+  </div>`;
+}
+function renderSampleDetails(i){
+  const p = P[i] || {};
+  p.sampleDetails = p.sampleDetails || {};
+  const s = p.sampleDetails;
+  return `<div class="eq-detail ${isEqDetailCollapsed(i,'Sample Meds')?'collapsed':''}">
+    <div class="eq-detail-title"><span>💊 Sample Medication Audit Information</span><button class="eq-min-btn" type="button" onclick="toggleEqDetail(${i},'Sample Meds')">${isEqDetailCollapsed(i,'Sample Meds')?'Expand':'Minimize'}</button></div>
+    <div class="eq-detail-body">
+      <div class="eq-detail-help">Because Sample Meds was marked Yes, track the last sample medication audit and discrepancy rate for this office.</div>
+      <div class="eq-detail-grid">
+        <label>Last Sample Audit<input class="sample-field" type="date" data-idx="${i}" data-field="lastAudit" value="${escapeHtml(s.lastAudit||'')}"></label>
+        <label>Last Discrepancy Rate %<input class="sample-field" type="number" step="0.1" min="0" data-idx="${i}" data-field="discrepancyRate" value="${escapeHtml(s.discrepancyRate||'')}" placeholder="e.g. 10.6"></label>
+        <label style="grid-column:1/-1">Sample Audit Notes<textarea class="sample-field" data-idx="${i}" data-field="notes" placeholder="Action plan, follow-up, common issues...">${escapeHtml(s.notes||'')}</textarea></label>
+      </div>
+    </div>
+  </div>`;
+}
+function getPocIcon(name){
+  const n = String(name||'').toLowerCase();
+  if(n.includes('afinion') || n.includes('a1c')) return '🩸';
+  if(n.includes('clinitek') || n.includes('urinalysis') || n.includes('microalbumin')) return '🧪';
+  if(n.includes('sofia') || n.includes('liat') || n.includes('flu') || n.includes('strep') || n.includes('covid') || n.includes('rsv')) return '🦠';
+  if(n.includes('coagu') || n.includes('inr')) return '💧';
+  if(n.includes('hemocue')) return '🩺';
+  if(n.includes('glucose') || n.includes('glucometer')) return '🍬';
+  return '🔬';
+}
+function getPocDescription(name){
+  const n = String(name||'').toLowerCase();
+  if(n.includes('a1c')) return 'A1C testing';
+  if(n.includes('urinalysis')) return 'Urinalysis testing';
+  if(n.includes('flu') || n.includes('strep') || n.includes('covid') || n.includes('rsv')) return 'Respiratory / infectious testing';
+  if(n.includes('inr') || n.includes('coagu')) return 'INR / coagulation testing';
+  if(n.includes('glucose') || n.includes('glucometer')) return 'Blood glucose testing';
+  if(n.includes('microalbumin')) return 'Urine microalbumin testing';
+  return 'Point-of-care instrument';
+}
+function getPocMasterList(p){
+  const defaults = ['Afinion 2 (A1C)','Clinitek (Urinalysis)','Sofia 2 (Flu / Strep / COVID)','Liat (Flu / Strep / COVID / RSV)','CoaguChek XS Plus (INR)','Hemocue','Glucometers','A1c Now','Microalbumin','Other'];
+  const existing = (Array.isArray(p.poctDetails) ? p.poctDetails : []).map(x=>x.instrument).filter(Boolean);
+  return [...new Set([...existing, ...defaults])];
+}
+function findPocDetail(p,instrument){
+  p.poctDetails = Array.isArray(p.poctDetails) ? p.poctDetails : [];
+  let d = p.poctDetails.find(x => String(x.instrument||'') === instrument);
+  if(!d){ d = {instrument, count:0, type:'', notes:'', active:false}; p.poctDetails.push(d); }
+  return d;
+}
+function renderPocDetails(i){
+  const p = P[i] || {};
+  p.poctDetails = Array.isArray(p.poctDetails) ? p.poctDetails : [];
+  const instruments = getPocMasterList(p);
+  return `<div class="eq-detail poct-detail-section ${isEqDetailCollapsed(i,'POC Testing')?'collapsed':''}">
+    <div class="eq-detail-title"><span>🔬 POCT Instruments</span><button class="eq-min-btn" type="button" onclick="toggleEqDetail(${i},'POC Testing')">${isEqDetailCollapsed(i,'POC Testing')?'Expand':'Minimize'}</button></div>
+    <div class="eq-detail-body">
+    <div class="eq-detail-help">Because POC Testing was marked Yes, add or update POCT instruments directly from this Equipment tab. Check an instrument to activate it, then enter quantity and serial number details.</div>
+    <div class="eq-tip">✓ Use the checkbox to add or remove each instrument. Fields auto-save as you type.</div>
+    ${instruments.map((name)=>{
+      const d = findPocDetail(p,name);
+      const active = d.active === true || Number(d.count||0) > 0 || !!d.type || !!d.notes;
+      const icon = getPocIcon(name);
+      const desc = getPocDescription(name);
+      return `<div class="eq-row-card poct-card ${active?'active':''}">
+        <div class="poct-head">
+          <div class="poct-left">
+            <input type="checkbox" class="poc-active-check" data-idx="${i}" data-instrument="${escapeHtml(name)}" ${active?'checked':''} aria-label="Activate ${escapeHtml(name)}">
+            <span class="poc-icon">${icon}</span>
+            <div>
+              <div class="poc-name">${escapeHtml(name)}</div>
+              <div class="poc-desc">${escapeHtml(desc)}</div>
+            </div>
+          </div>
+          <span class="eq-row-status">${active?'ACTIVE':'click checkbox to add'}</span>
+        </div>
+        ${active ? `<div class="eq-detail-grid">
+          <label>Qty<input class="poct-field" type="number" min="0" data-idx="${i}" data-instrument="${escapeHtml(name)}" data-field="count" value="${escapeHtml(d.count??1)}"></label>
+          <label>Type / Model<input class="poct-field" data-idx="${i}" data-instrument="${escapeHtml(name)}" data-field="type" value="${escapeHtml(d.type||'')}" placeholder="Model or type..."></label>
+          <label style="grid-column:1/-1">Serial Number(s)<input class="poct-field" data-idx="${i}" data-instrument="${escapeHtml(name)}" data-field="notes" value="${escapeHtml(d.notes||'')}" placeholder="Serial numbers, comma or space separated..."></label>
+        </div>` : ''}
+      </div>`;
+    }).join('')}
+    </div>
+  </div>`;
+}
+function renderVfcDetails(i){
+  const p = P[i] || {};
+  p.vfcDetails = p.vfcDetails || {};
+  const v = p.vfcDetails;
+  return `<div class="eq-detail ${isEqDetailCollapsed(i,'VFC')?'collapsed':''}">
+    <div class="eq-detail-title"><span>💉 VFC Coordinator Information</span><button class="eq-min-btn" type="button" onclick="toggleEqDetail(${i},'VFC')">${isEqDetailCollapsed(i,'VFC')?'Expand':'Minimize'}</button></div>
+    <div class="eq-detail-body">
+    <div class="eq-detail-help">Because VFC was marked Yes, enter the primary and backup VFC coordinators for this practice.</div>
+    <div class="eq-detail-grid">
+      <label>NJIIS ID<input class="practice-field" data-idx="${i}" data-field="njiisId" value="${escapeHtml(p.njiisId||'')}" placeholder="NJIIS ID"></label>
+      <label>VFC PIN<input class="practice-field" data-idx="${i}" data-field="vfcPin" value="${escapeHtml(p.vfcPin||'')}" placeholder="VFC PIN"></label>
+      <label>Primary VFC Coordinator<input class="vfc-field" data-idx="${i}" data-field="primary" value="${escapeHtml(v.primary||'')}" placeholder="Name"></label>
+      <label>Primary Email / Phone<input class="vfc-field" data-idx="${i}" data-field="primaryContact" value="${escapeHtml(v.primaryContact||'')}" placeholder="Email or phone"></label>
+      <label>Backup VFC Coordinator<input class="vfc-field" data-idx="${i}" data-field="backup" value="${escapeHtml(v.backup||'')}" placeholder="Name"></label>
+      <label>Backup Email / Phone<input class="vfc-field" data-idx="${i}" data-field="backupContact" value="${escapeHtml(v.backupContact||'')}" placeholder="Email or phone"></label>
+      <label style="grid-column:1/-1">VFC Notes<textarea class="vfc-field" data-idx="${i}" data-field="notes" placeholder="Ordering month, PIN, access notes, etc.">${escapeHtml(v.notes||'')}</textarea></label>
+    </div>
+    </div>
+  </div>`;
+}
+function setEqValue(i,key){
   if(!P[i]) return;
   P[i].equip = P[i].equip || {};
   const cur = String(P[i].equip[key] || '').trim().toLowerCase();
   P[i].equip[key] = cur.startsWith('yes') ? 'No' : 'Yes';
-
   const g = document.getElementById('eq-' + i);
   if(g) g.innerHTML = renderEqHTML(i);
-
   _unsaved = true;
   saveLocal();
   setSS('Equipment saved ' + new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}));
+  toast('✓ Equipment saved','ok');
 }
+function togEq(i,key){ setEqValue(i,key); }
+let _eqNoteTimer;
+const EQ_FILTERS = {};
+const EQ_DETAIL_COLLAPSED = {};
+function saveEqNote(i,key,val){
+  if(!P[i]) return;
+  P[i].equipNotes = P[i].equipNotes || {};
+  P[i].equipNotes[key] = val;
+  _unsaved = true;
+  clearTimeout(_eqNoteTimer);
+  _eqNoteTimer = setTimeout(()=>{
+    saveLocal();
+    setSS('Equipment note saved ' + new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}));
+  }, 350);
+}
+function handleEquipmentNote(e){
+  const el = e.target.closest && e.target.closest('.eq-note[data-eq-note-idx][data-eq-note-key]');
+  if(!el) return;
+  const i = Number(el.getAttribute('data-eq-note-idx'));
+  const key = el.getAttribute('data-eq-note-key');
+  saveEqNote(i,key,el.value);
+}
+document.addEventListener('input', handleEquipmentNote, true);
+function handleEquipmentToggle(e){
+  const btn = e.target.closest && e.target.closest('.eq-item[data-eq-idx][data-eq-key]');
+  if(!btn) return;
+  e.preventDefault();
+  e.stopPropagation();
+  const i = Number(btn.getAttribute('data-eq-idx'));
+  const key = btn.getAttribute('data-eq-key');
+  setEqValue(i,key);
+}
+document.addEventListener('click', handleEquipmentToggle, true);
+document.addEventListener('touchend', handleEquipmentToggle, true);
+
+function saveEquipmentDetail(){
+  _unsaved = true;
+  clearTimeout(_eqNoteTimer);
+  _eqNoteTimer = setTimeout(()=>{
+    saveLocal();
+    setSS('Equipment details saved ' + new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}));
+  }, 350);
+}
+function addFridgeDevice(i,type='Refrigerator'){
+  if(!P[i]) return;
+  P[i].fridgeDetails = Array.isArray(P[i].fridgeDetails) ? P[i].fridgeDetails : [];
+  P[i].fridgeDetails.push({type:type,make:'',model:'',mfgDate:'',sensorId:'',stockType:'Private',notes:''});
+  const g = document.getElementById('eq-' + i);
+  if(g) g.innerHTML = renderEqHTML(i);
+  saveLocal();
+}
+function removeFridgeDevice(i,row){
+  if(!P[i] || !Array.isArray(P[i].fridgeDetails)) return;
+  P[i].fridgeDetails.splice(row,1);
+  const g = document.getElementById('eq-' + i);
+  if(g) g.innerHTML = renderEqHTML(i);
+  saveLocal();
+}
+function addPocInstrument(i){
+  if(!P[i]) return;
+  P[i].poctDetails = Array.isArray(P[i].poctDetails) ? P[i].poctDetails : [];
+  P[i].poctDetails.push({instrument:'',count:1,type:'',notes:''});
+  const g = document.getElementById('eq-' + i);
+  if(g) g.innerHTML = renderEqHTML(i);
+  saveLocal();
+}
+function removePocInstrument(i,row){
+  if(!P[i] || !Array.isArray(P[i].poctDetails)) return;
+  P[i].poctDetails.splice(row,1);
+  const g = document.getElementById('eq-' + i);
+  if(g) g.innerHTML = renderEqHTML(i);
+  saveLocal();
+}
+function togglePocInstrument(i,instrument,forceActive){
+  if(!P[i]) return;
+  P[i].poctDetails = Array.isArray(P[i].poctDetails) ? P[i].poctDetails : [];
+  let d = P[i].poctDetails.find(x => String(x.instrument||'') === instrument);
+  if(!d){ d = {instrument, count:1, type:'', notes:'', active:true}; P[i].poctDetails.push(d); }
+  const active = d.active === true || Number(d.count||0) > 0 || !!d.type || !!d.notes;
+  d.active = (typeof forceActive === 'boolean') ? forceActive : !active;
+  if(d.active && !Number(d.count||0)) d.count = 1;
+  if(!d.active) d.count = 0;
+  const g = document.getElementById('eq-' + i);
+  if(g) g.innerHTML = renderEqHTML(i);
+  saveLocal();
+}
+function addCustomEquipment(i){
+  const inp = document.getElementById('custom-eq-' + i);
+  const name = inp?.value?.trim();
+  if(!name) return;
+  if(!EQ_KEYS.includes(name)) EQ_KEYS.push(name);
+  P[i].equip = P[i].equip || {};
+  P[i].equip[name] = 'Yes';
+  if(inp) inp.value = '';
+  const g = document.getElementById('eq-' + i);
+  if(g) g.innerHTML = renderEqHTML(i);
+  saveLocal();
+}
+function handlePocInstrumentCheckbox(e){
+  const cb = e.target.closest && e.target.closest('.poc-active-check[data-idx][data-instrument]');
+  if(!cb) return;
+  e.stopPropagation();
+  const i = Number(cb.getAttribute('data-idx'));
+  const instrument = cb.getAttribute('data-instrument');
+  togglePocInstrument(i,instrument,cb.checked);
+}
+document.addEventListener('change', handlePocInstrumentCheckbox, true);
+function handlePracticeField(e){
+  const f = e.target.closest && e.target.closest('.practice-field[data-idx][data-field]');
+  if(!f) return;
+  const i = Number(f.getAttribute('data-idx'));
+  const field = f.getAttribute('data-field');
+  if(!P[i] || !field) return;
+  P[i][field] = f.value;
+  saveEquipmentDetail();
+}
+document.addEventListener('input', handlePracticeField, true);
+document.addEventListener('change', handlePracticeField, true);
+function handleStructuredEquipmentDetail(e){
+  const f = e.target.closest && e.target.closest('.fridge-field,.poct-field,.vfc-field,.sample-field');
+  if(!f) return;
+  const i = Number(f.getAttribute('data-idx'));
+  const field = f.getAttribute('data-field');
+  if(Number.isNaN(i) || !field || !P[i]) return;
+
+  if(f.classList.contains('fridge-field')){
+    const row = Number(f.getAttribute('data-row'));
+    P[i].fridgeDetails = Array.isArray(P[i].fridgeDetails) ? P[i].fridgeDetails : [];
+    P[i].fridgeDetails[row] = P[i].fridgeDetails[row] || {};
+    P[i].fridgeDetails[row][field] = f.value;
+  } else if(f.classList.contains('poct-field')){
+    const inst = f.getAttribute('data-instrument');
+    P[i].poctDetails = Array.isArray(P[i].poctDetails) ? P[i].poctDetails : [];
+    let rowObj;
+    if(inst){
+      rowObj = P[i].poctDetails.find(x => String(x.instrument||'') === inst);
+      if(!rowObj){ rowObj = {instrument:inst,count:0,type:'',notes:'',active:true}; P[i].poctDetails.push(rowObj); }
+    } else {
+      const row = Number(f.getAttribute('data-row'));
+      rowObj = P[i].poctDetails[row] = P[i].poctDetails[row] || {};
+    }
+    rowObj[field] = field === 'count' ? Number(f.value || 0) : f.value;
+    rowObj.active = true;
+  } else if(f.classList.contains('vfc-field')){
+    P[i].vfcDetails = P[i].vfcDetails || {};
+    P[i].vfcDetails[field] = f.value;
+  } else if(f.classList.contains('sample-field')){
+    P[i].sampleDetails = P[i].sampleDetails || {};
+    P[i].sampleDetails[field] = f.value;
+  }
+  saveEquipmentDetail();
+}
+document.addEventListener('input', handleStructuredEquipmentDetail, true);
+document.addEventListener('change', handleStructuredEquipmentDetail, true);
+
 function addNote(i){
   const dateEl = document.getElementById('nd-' + i);
   const textEl = document.getElementById('nt-' + i);
@@ -957,84 +1559,102 @@ function addPastVisit(i){
   toast('✓ Past visit added to history','ok');
 }
 function doUpd(i){
-  const kv = document.getElementById('k-' + i)?.value;
-  const qv = document.getElementById('q-' + i)?.value;
-  const ov = document.getElementById('o-' + i)?.value;
-  const nv = document.getElementById('n-' + i)?.value;
-  const mgrv = document.getElementById('mgr-' + i)?.value;
-  const dirv = document.getElementById('dir-' + i)?.value;
-  const leadv = document.getElementById('lead-' + i)?.value;
-  const hoursv = document.getElementById('hours-' + i)?.value;
-  const completeChecked = document.getElementById('complete-' + i)?.checked;
-  const oldK = P[i].lastVisit;
-
-  P[i].history = P[i].history || [];
-
+  const kv=document.getElementById('k-'+i)?.value,qv=document.getElementById('q-'+i)?.value,ov=document.getElementById('o-'+i)?.value,nv=document.getElementById('n-'+i)?.value,mgrv=document.getElementById('mgr-'+i)?.value,dirv=document.getElementById('dir-'+i)?.value,leadv=document.getElementById('lead-'+i)?.value,hoursv=document.getElementById('hours-'+i)?.value;
+  const njiisv=document.getElementById('njiis-'+i)?.value,vfcpinv=document.getElementById('vfcpin-'+i)?.value,vfcprimaryv=document.getElementById('vfcprimary-'+i)?.value,vfcprimarycontactv=document.getElementById('vfcprimarycontact-'+i)?.value,vfcbackupv=document.getElementById('vfcbackup-'+i)?.value,vfcbackupcontactv=document.getElementById('vfcbackupcontact-'+i)?.value,vfcnotesv=document.getElementById('vfcnotes-'+i)?.value;
+  const completeChecked=document.getElementById('complete-'+i)?.checked;
+  const oldK=P[i].lastVisit;P[i].history=P[i].history||[];
   if(completeChecked){
-    if(!qv){
-      toast('Add a Next Scheduled date before marking the visit completed.','err');
-      return;
-    }
-
-    if(kv && kv !== qv){
-      const alreadyInHistory = P[i].history.some(h => h.date === kv);
-      if(!alreadyInHistory){
-        P[i].history.push({
-          date: kv,
-          note: 'Previous last visit moved to history after completed scheduled visit',
-          ts: new Date().toLocaleDateString()
-        });
-      }
-    }
-
-    P[i].lastVisit = qv;
-    P[i].nextScheduled = '';
-    P[i].visitStatus = '';
-
-    const completedAlreadyInHistory = P[i].history.some(h => h.date === qv && String(h.note || '').includes('Scheduled visit completed'));
-    if(!completedAlreadyInHistory){
-      P[i].history.push({
-        date: qv,
-        note: (nv || '').substring(0,80) || 'Scheduled visit completed',
-        ts: new Date().toLocaleDateString()
-      });
-    }
-  } else {
-    if(kv && kv !== oldK){
-      P[i].history.push({date:kv, note:(nv || '').substring(0,80) || 'Visit completed', ts:new Date().toLocaleDateString()});
-    }
-    P[i].lastVisit = kv ?? P[i].lastVisit;
-    P[i].nextScheduled = qv ?? P[i].nextScheduled;
-    P[i].visitStatus = ov ?? P[i].visitStatus;
+    if(!qv){toast('Add a Next Scheduled date before marking the visit completed.','err');return;}
+    if(kv&&kv!==qv&&!P[i].history.some(h=>h.date===kv))P[i].history.push({date:kv,note:'Previous last visit moved to history after completed scheduled visit',ts:new Date().toLocaleDateString()});
+    P[i].lastVisit=qv;P[i].nextScheduled='';P[i].visitStatus='';
+    if(!P[i].history.some(h=>h.date===qv&&String(h.note||'').includes('Scheduled visit completed')))P[i].history.push({date:qv,note:(nv||'').substring(0,80)||'Scheduled visit completed',ts:new Date().toLocaleDateString()});
+  }else{
+    if(kv&&kv!==oldK)P[i].history.push({date:kv,note:(nv||'').substring(0,80)||'Visit completed',ts:new Date().toLocaleDateString()});
+    P[i].lastVisit=kv??P[i].lastVisit;P[i].nextScheduled=qv??P[i].nextScheduled;P[i].visitStatus=ov??P[i].visitStatus;
   }
-
-  P[i].history.sort((a,b)=> a.date.localeCompare(b.date));
-  P[i].notes = nv ?? P[i].notes;
-  P[i].mgr = mgrv ?? P[i].mgr;
-  P[i].dir = dirv ?? P[i].dir;
-  P[i].leadMA = leadv ?? P[i].leadMA;
-  P[i].hours = hoursv ?? P[i].hours;
-  _unsaved = true;
-  autoSave(getDataForSave());
-  renderStats(); renderWeek(); renderScheduled(); renderDash();
-  if(document.getElementById('view-practices').classList.contains('active')) renderPrac();
-  if(document.getElementById('view-calendar').classList.contains('active')) renderCal();
-  const wasOpen = document.getElementById('pc-' + i)?.classList.contains('open');
+  P[i].history.sort((a,b)=>a.date.localeCompare(b.date));P[i].notes=nv??P[i].notes;P[i].mgr=mgrv??P[i].mgr;P[i].dir=dirv??P[i].dir;P[i].leadMA=leadv??P[i].leadMA;P[i].hours=hoursv??P[i].hours;
+  P[i].njiisId=njiisv??P[i].njiisId;P[i].vfcPin=vfcpinv??P[i].vfcPin;P[i].vfcDetails=P[i].vfcDetails||{};P[i].vfcDetails.primary=vfcprimaryv??P[i].vfcDetails.primary;P[i].vfcDetails.primaryContact=vfcprimarycontactv??P[i].vfcDetails.primaryContact;P[i].vfcDetails.backup=vfcbackupv??P[i].vfcDetails.backup;P[i].vfcDetails.backupContact=vfcbackupcontactv??P[i].vfcDetails.backupContact;P[i].vfcDetails.notes=vfcnotesv??P[i].vfcDetails.notes;
+  _unsaved=true;autoSave(getDataForSave());renderStats();renderWeek();renderScheduled();renderDash();
+  if(document.getElementById('view-practices').classList.contains('active'))renderPrac();if(document.getElementById('view-calendar').classList.contains('active'))renderCal();
+  const wasOpen=document.getElementById('pc-'+i)?.classList.contains('open');const tmp=document.createElement('div');tmp.innerHTML=mkCard(P[i],i);const nc=tmp.firstElementChild;if(wasOpen)nc.classList.add('open');document.getElementById('pc-'+i)?.replaceWith(nc);if(wasOpen)dtab(i,'u');
+  const fl=document.getElementById('fl-'+i);if(fl){fl.classList.add('show');setTimeout(()=>fl.classList.remove('show'),2500)}
+  toast(completeChecked?'✓ Visit completed and dates moved automatically':'✓ '+P[i].name.split(' - ')[0]+' updated','ok');
+}
+function refreshPracticeCard(i, activeTab){
+  const existing = document.getElementById('pc-' + i);
+  if(!existing) return;
+  const wasOpen = existing.classList.contains('open');
   const tmp = document.createElement('div');
   tmp.innerHTML = mkCard(P[i], i);
   const nc = tmp.firstElementChild;
   if(wasOpen) nc.classList.add('open');
-  document.getElementById('pc-' + i)?.replaceWith(nc);
-  if(wasOpen) dtab(i,'u');
-  const fl = document.getElementById('fl-' + i);
-  if(fl){ fl.classList.add('show'); setTimeout(()=>fl.classList.remove('show'), 2500); }
-  toast(completeChecked ? '✓ Visit completed and dates moved automatically' : '✓ ' + P[i].name.split(' - ')[0] + ' updated','ok');
+  existing.replaceWith(nc);
+  if(wasOpen && activeTab) dtab(i, activeTab);
 }
+function refreshPracticeViewsAfterSave(i, activeTab){
+  renderStats();
+  renderWeek();
+  renderScheduled();
+  if(document.getElementById('view-dashboard').classList.contains('active')) renderDash();
+  if(document.getElementById('view-practices').classList.contains('active')) {
+    refreshPracticeCard(i, activeTab || 'i');
+  }
+  if(document.getElementById('view-calendar').classList.contains('active')) renderCal();
+  if(document.getElementById('view-manage').classList.contains('active')) renderManage();
+}
+function saveTabData(i, label){
+  if(typeof _eqNoteTimer !== 'undefined') clearTimeout(_eqNoteTimer);
+  _unsaved = true;
+  saveLocal();
+  const activeTab = label === 'Equipment' ? 'e' : label === 'History' ? 'h' : label === 'Info & Notes' ? 'i' : 'u';
+  refreshPracticeViewsAfterSave(i, activeTab);
+  setSS(label + ' saved ' + new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}));
+  toast('✓ ' + label + ' saved','ok');
+}
+
 function printCard(i){
   const p = P[i], due = nextDue(p);
   const w = window.open('', '_blank', 'width=700,height=900');
   w.document.write(`<!DOCTYPE html><html><head><title>Visit Summary — ${escapeHtml(p.name)}</title>
-  <style>body{font-family:Helvetica,Arial,sans-serif;padding:30px;font-size:13px;line-height:1.6}h1{font-size:18px;color:#1F3864;margin-bottom:4px}.sub{font-size:11px;color:#888;margin-bottom:20px;font-family:monospace}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}.f{border:1px solid #ddd;border-radius:6px;padding:10px 12px}.lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#888;margin-bottom:3px}h2{font-size:13px;font-weight:700;border-bottom:2px solid #1F3864;padding-bottom:4px;margin-bottom:10px;color:#1F3864}.hi{display:flex;gap:12px;padding:6px 0;border-bottom:1px solid #eee;font-size:12px}.hd{font-family:monospace;color:#2E75B6;font-weight:700;min-width:80px}.ni{padding:6px 0;border-bottom:1px solid #eee;font-size:12px}.nd{font-family:monospace;color:#2E75B6;font-size:11px;margin-bottom:2px}@media print{button{display:none}}</style></head><body>
+  <style>body{font-family:sans-serif;padding:30px;font-size:13px;line-height:1.6}h1{font-size:18px;color:#1F3864;margin-bottom:4px}.sub{font-size:11px;color:#888;margin-bottom:20px;font-family:monospace}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}.f{border:1px solid #ddd;border-radius:6px;padding:10px 12px}.lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#888;margin-bottom:3px}h2{font-size:13px;font-weight:700;border-bottom:2px solid #1F3864;padding-bottom:4px;margin-bottom:10px;color:#1F3864}.hi{display:flex;gap:12px;padding:6px 0;border-bottom:1px solid #eee;font-size:12px}.hd{font-family:monospace;color:#2E75B6;font-weight:700;min-width:80px}.ni{padding:6px 0;border-bottom:1px solid #eee;font-size:12px}.nd{font-family:monospace;color:#2E75B6;font-size:11px;margin-bottom:2px}@media print{button{display:none}}
+/* Simplified, lighter Virtua-style UI refresh */
+.hdr{background:linear-gradient(135deg,#26576F,#558BB4);box-shadow:0 2px 16px rgba(38,87,111,.18)}
+.tabs{background:#26576F}
+.tab.active{border-bottom-color:#FFD05E;color:#fff}
+.btn-teal,.btn-upd{background:linear-gradient(135deg,#558BB4,#69A3CF);color:#fff;border:0}
+.btn-dl{background:#FFD05E;color:#172B36}.btn-dl:hover{background:#F5A623}
+.week-banner{background:#fff;color:var(--text);border:1px solid var(--border);box-shadow:var(--shadow);position:relative;overflow:hidden}
+.week-banner::before{content:'';position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--light-sky),var(--light-sun),var(--light-coral))}
+.week-item{background:#F7FAFC;border:1px solid #E4EEF4;color:var(--text)}
+.week-title{color:#476779;opacity:1}.w-due{opacity:1;color:#637989}
+.sc{border:1px solid var(--border);box-shadow:0 2px 10px rgba(38,87,111,.05)}
+.sc.s-all::after{background:var(--light-sky)}.sc.s-all .sc-num{color:var(--ocean)}
+.sc.s-ov::after{background:var(--light-coral)}.sc.s-ov .sc-num{color:var(--coral)}
+.sc.s-soon::after{background:var(--light-sun)}.sc.s-soon .sc-num{color:#D87C00}
+.sc.s-ns::after{background:#D9E7EF}.sc.s-ns .sc-num{color:#667887}
+.sc.s-ok::after{background:#A9D8B6}.sc.s-ok .sc-num{color:#2F8A4C}
+.dash-list-head{display:flex;align-items:center;justify-content:space-between;margin:6px 0 10px;padding:12px 14px;background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow)}
+.dash-list-title{font-size:14px;font-weight:800;color:var(--ocean)}
+.dash-list-sub{font-size:12px;color:var(--text2);margin-top:2px}
+.priority-fbar{background:#F8FBFD;border:1px solid var(--border);border-radius:14px;padding:10px}
+.manage-grid{grid-template-columns:minmax(320px,370px) minmax(0,1fr);gap:18px;align-items:start}
+.manage-panel{border-radius:22px;overflow:visible;background:#fff;border-color:#D9E7EF}
+.manage-panel-inner{padding:18px}
+.manage-form{grid-template-columns:1fr 1fr;gap:12px;background:#F8FBFD;border-radius:18px;padding:16px}
+.manage-form input[type=text],.manage-form input[type=date],.manage-form select{min-height:42px;border-radius:12px}
+.manage-list-tools{position:sticky;top:108px;z-index:5;background:#F8FBFD;border-radius:18px;padding:14px;box-shadow:0 4px 12px rgba(38,87,111,.04)}
+.manage-list{max-height:none;overflow:visible;gap:12px;padding-right:0}
+.manage-item{min-height:78px;align-items:flex-start;padding:16px 16px 16px 18px;border-radius:18px;box-shadow:0 3px 12px rgba(38,87,111,.05)}
+.manage-item-name{font-size:15px;line-height:1.25;margin-bottom:8px}
+.manage-item-meta{line-height:1.6;gap:6px}
+.manage-actions{padding-top:2px;min-width:150px}
+.manage-chip{background:#F3FAFE;border-color:#D8EDF7;color:#476779}
+.manage-chip.sun{background:#FFF7E3;border-color:#FFE4A8;color:#8A5A00}
+.manage-chip.coral{background:#FFF0EF;border-color:#FFD5D3;color:#A94A47}
+.manage-chip.sky{background:#EDF8FE;border-color:#D4EEF9;color:#356985}
+@media(max-width:900px){.manage-grid{grid-template-columns:1fr}.manage-list-tools{position:static}.manage-actions{min-width:0}.manage-item{display:block}.manage-actions{margin-top:10px}}
+
+</style></head><body>
   <h1>${escapeHtml(p.name)}</h1><div class="sub">VMG Site Visit Tracker · Printed ${new Date().toLocaleDateString()}</div>
   <div class="grid">
     <div class="f"><div class="lbl">Address</div>${escapeHtml(p.addr)}</div>
@@ -1048,7 +1668,7 @@ function printCard(i){
     <div class="f"><div class="lbl">Visit Status</div>${escapeHtml(p.visitStatus || '—')}</div>
     <div class="f"><div class="lbl">General Notes</div>${escapeHtml(p.notes || '—')}</div>
   </div>
-  <h2>Equipment</h2><div class="grid">${EQ_KEYS.map(k=>`<div class="f"><div class="lbl">${escapeHtml(k)}</div>${escapeHtml((p.equip && p.equip[k]) || '—')}</div>`).join('')}</div>
+  <h2>Equipment</h2><div class="grid">${EQ_KEYS.map(k=>`<div class="f"><div class="lbl">${escapeHtml(k)}</div>${escapeHtml((p.equip && p.equip[k]) || '—')}${p.equipNotes && p.equipNotes[k] ? `<div style="margin-top:6px;font-size:11px;color:#555"><strong>Note:</strong> ${escapeHtml(p.equipNotes[k])}</div>` : ''}</div>`).join('')}</div>
   <h2>Visit History</h2>${(p.history||[]).length===0?'<p style="color:#999;font-style:italic">No history.</p>':[...(p.history||[])].reverse().map(h=>`<div class="hi"><div class="hd">${escapeHtml(h.date)}</div><div>${escapeHtml(h.note || 'Visit completed')}</div><div style="margin-left:auto;color:#999;font-size:11px">${escapeHtml(h.ts || '')}</div></div>`).join('')}
   <h2>Notes Log</h2>${(p.noteLog||[]).length===0?'<p style="color:#999;font-style:italic">No notes.</p>':[...(p.noteLog||[])].reverse().map(n=>`<div class="ni"><div class="nd">${escapeHtml(n.date)}${n.ts ? ' · ' + escapeHtml(n.ts) : ''}</div>${escapeHtml(n.text)}</div>`).join('')}
   <br><button onclick="window.print()">🖨 Print</button></body></html>`);
@@ -1366,7 +1986,7 @@ function makeStop(practiceIndex, source='suggested'){
   };
 }
 function buildPlannerCandidates(){
-  return P.map((p,i)=>({
+  return activePracticeItems().map(({p,i})=>({
     p, i,
     status: stOf(p),
     bucket: getLocationBucket(p.city),
@@ -1453,96 +2073,124 @@ async function generateSchedule(){
       return;
     }
 
-    const byBucket = new Map();
-    candidates.forEach(item=>{
-      if(!byBucket.has(item.bucket)) byBucket.set(item.bucket, []);
-      byBucket.get(item.bucket).push(item);
-    });
-
-    const bucketQueue = [...byBucket.entries()]
-      .sort((a,b)=>{
-        const orderDiff = bucketSortValue(a[0]) - bucketSortValue(b[0]);
-        if(orderDiff !== 0) return orderDiff;
-        const aWeight = Math.max(...a[1].map(x=>statusWeight(x.status)));
-        const bWeight = Math.max(...b[1].map(x=>statusWeight(x.status)));
-        return bWeight - aWeight;
-      })
-      .map(([bucket, items]) => ({ bucket, items:[...items] }));
-
     const sortedDates = [...availDates].map(normalizeAvailEntry).sort((a,b)=> {
       const ad = `${a.date}T${a.startTime || '09:00'}`;
       const bd = `${b.date}T${b.startTime || '09:00'}`;
       return ad.localeCompare(bd);
     });
 
-    plannerDays = sortedDates.map(entry => {
-      let chosenBucket = '';
-      let chosenItems = [];
-      let officeHoursNote = '';
+    let unassigned = [...candidates].sort((a,b)=>{
+      const bucketDiff = bucketSortValue(a.bucket) - bucketSortValue(b.bucket);
+      if(bucketDiff !== 0) return bucketDiff;
+      const pri = plannerPriority(a.status) - plannerPriority(b.status);
+      if(pri !== 0) return pri;
+      if(a.due && b.due) return a.due - b.due;
+      if(a.due && !b.due) return -1;
+      if(!a.due && b.due) return 1;
+      return a.p.name.localeCompare(b.p.name);
+    });
 
-      for(const bucketEntry of bucketQueue){
-        if(!bucketEntry.items.length) continue;
-        const openItems = bucketEntry.items.filter(x => isOfficeLikelyOpenForWindow(entry.date, entry.startTime, entry.endTime, x.p.hours));
-        if(!openItems.length) continue;
+    plannerDays = [];
 
-        chosenBucket = bucketEntry.bucket;
-        chosenItems = openItems;
-        const blocked = bucketEntry.items.filter(x => !isOfficeLikelyOpenForWindow(entry.date, entry.startTime, entry.endTime, x.p.hours));
-        if(blocked.length){
-          const reasons = blocked.map(x => getOfficeHoursMismatchReason(entry.date, entry.startTime, entry.endTime, x.p.hours)).filter(Boolean);
-          const detail = reasons.includes('outside available hours') ? ' or fall outside your available time window' : '';
-          officeHoursNote = `Skipped ${blocked.length} office${blocked.length===1?'':'s'} in ${bucketEntry.bucket} because the posted office hours do not match ${getDayName(entry.date)}${detail}.`;
-        }
-        bucketEntry.items = blocked;
-        break;
-      }
-
-      return {
+    for(const entry of sortedDates){
+      const day = {
         date: entry.date,
-        bucket: chosenBucket,
+        bucket: '',
         startTime: entry.startTime || '09:00',
         endTime: entry.endTime || '15:00',
         homeDriveMin: 30,
         homeDriveMiles: 'home estimate',
-        officeHoursNote,
-        stops: chosenItems.map(x => makeStop(x.i, 'suggested'))
+        officeHoursNote: '',
+        stops: []
       };
-    });
 
-    bucketQueue.forEach(bucketEntry => {
-      bucketEntry.items = bucketEntry.items.filter(item => {
-        return !plannerDays.some(day => day.stops.some(stop => stop.practiceIndex === item.i));
+      const openItems = unassigned.filter(x => isOfficeLikelyOpenForWindow(entry.date, entry.startTime, entry.endTime, x.p.hours));
+      const blockedItems = unassigned.filter(x => !isOfficeLikelyOpenForWindow(entry.date, entry.startTime, entry.endTime, x.p.hours));
+      if(blockedItems.length){
+        const reasons = blockedItems.map(x => getOfficeHoursMismatchReason(entry.date, entry.startTime, entry.endTime, x.p.hours)).filter(Boolean);
+        const detail = reasons.includes('outside available hours') ? ' or fall outside your available time window' : '';
+        day.officeHoursNote = `Some offices were skipped because posted office hours do not match ${getDayName(entry.date)}${detail}.`;
+      }
+
+      const bucketChoices = [...new Set(openItems.map(x => x.bucket))].sort((a,b)=>{
+        const orderDiff = bucketSortValue(a) - bucketSortValue(b);
+        if(orderDiff !== 0) return orderDiff;
+        const aBest = Math.min(...openItems.filter(x=>x.bucket===a).map(x=>plannerPriority(x.status)));
+        const bBest = Math.min(...openItems.filter(x=>x.bucket===b).map(x=>plannerPriority(x.status)));
+        return aBest - bBest;
       });
-    });
+
+      for(const bucket of bucketChoices){
+        const bucketItems = unassigned
+          .filter(x => x.bucket === bucket && isOfficeLikelyOpenForWindow(entry.date, entry.startTime, entry.endTime, x.p.hours))
+          .sort((a,b)=>{
+            const pri = plannerPriority(a.status) - plannerPriority(b.status);
+            if(pri !== 0) return pri;
+            if(a.due && b.due) return a.due - b.due;
+            if(a.due && !b.due) return -1;
+            if(!a.due && b.due) return 1;
+            return a.p.name.localeCompare(b.p.name);
+          });
+
+        let addedAnyFromBucket = false;
+
+        for(const item of bucketItems){
+          const originalStops = day.stops.map(s => ({...s}));
+          const originalHomeDriveMin = day.homeDriveMin;
+          const originalHomeDriveMiles = day.homeDriveMiles;
+          const stop = makeStop(item.i, 'suggested');
+          day.stops.push(stop);
+          day.bucket = bucket;
+
+          await applyAccurateDriveTimes(day);
+          recalcDay(day);
+
+          if(day.returnHomeMin <= day.availableEndMin){
+            unassigned = unassigned.filter(x => x.i !== item.i);
+            addedAnyFromBucket = true;
+          } else {
+            day.stops = originalStops;
+            day.homeDriveMin = originalHomeDriveMin;
+            day.homeDriveMiles = originalHomeDriveMiles;
+            if(day.stops.length){
+              await applyAccurateDriveTimes(day);
+            }
+            recalcDay(day);
+          }
+        }
+
+        if(addedAnyFromBucket) break;
+      }
+
+      plannerDays.push(day);
+    }
 
     for(let i=0;i<plannerDays.length;i++){
       if(plannerDays[i].stops.length){
         await applyAccurateDriveTimes(plannerDays[i]);
+        recalcDay(plannerDays[i]);
       }
     }
 
     renderPlannerResults();
 
-    const remainingBuckets = bucketQueue.filter(x => x.items.length);
-    if(remainingBuckets.length){
-      const extra = remainingBuckets.map(({bucket, items})=>{
-        const closedCounts = items.filter(item => sortedDates.length && !sortedDates.some(d => isOfficeLikelyOpenForWindow(d.date, d.startTime, d.endTime, item.p.hours))).length;
-        const suffix = closedCounts ? ` (some may be blocked by office hours)` : '';
-        return `${bucket}: ${items.map(x=>x.p.name.split(' - ').pop()).join(', ')}${suffix}`;
-      });
-      toast('Generated, but some locations still need dates','err');
+    if(unassigned.length){
+      const extra = unassigned.map(x=>`${x.bucket}: ${x.p.name}`).join('<br>');
+      toast('Generated, but some visits need another available date','err');
       const extraBox = `<div style="margin-top:12px;padding:12px;background:var(--amber-lt);border-left:4px solid var(--amber);border-radius:10px">
-        <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:6px">Additional locations still needing a date</div>
-        <div style="font-size:12px;line-height:1.6">${extra.map(x=>escapeHtml(x)).join('<br>')}</div>
+        <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:6px">Visits not scheduled because they did not fit your available windows</div>
+        <div style="font-size:12px;line-height:1.6">${extra}</div>
+        <div style="font-size:11px;color:var(--amber);margin-top:8px">Add another available date or extend your availability, then generate again.</div>
       </div>`;
       document.getElementById('schedResults').insertAdjacentHTML('beforeend', extraBox);
     } else {
-      toast('✓ Schedule generated with map-based office routes','ok');
+      toast('✓ Schedule generated within your availability windows','ok');
     }
   } finally {
     setPlannerBusy(false, '');
   }
 }
+
 function recalcDay(day){
   let cur = toMin(day.startTime || '09:00');
   let totalDrive = 0;
@@ -1561,6 +2209,9 @@ function recalcDay(day){
   day.totalVisitMin = totalVisit;
   day.returnHomeMin = cur + Number(day.homeDriveMin || 0);
   day.finishLastStopMin = cur;
+  day.availableEndMin = toMin(day.endTime || '15:00');
+  day.overByMin = Math.max(0, day.returnHomeMin - day.availableEndMin);
+  day.fitsWindow = day.overByMin === 0;
 }
 function renderPlannerResults(){
   const wrap = document.getElementById('schedResults');
@@ -1615,6 +2266,7 @@ function renderPlannerResults(){
 
       <div class="sched-day-body">
         ${day.officeHoursNote ? `<div style="margin-bottom:10px;padding:10px 12px;background:var(--amber-lt);border-left:4px solid var(--amber);border-radius:10px;font-size:12px;color:var(--amber)">${escapeHtml(day.officeHoursNote)}</div>` : ''}
+        ${day.overByMin > 0 ? `<div style="margin-bottom:10px;padding:10px 12px;background:var(--red-lt);border-left:4px solid var(--red);border-radius:10px;font-size:12px;color:var(--red);font-weight:700">⚠ This route does not fit your availability. Home by ${toReadableHM(day.returnHomeMin)} is ${minutesLabel(day.overByMin)} past your ${toReadableHM(day.availableEndMin)} end time. Remove a stop, shorten visit time, or add another available date.</div>` : ''}
         <div class="sched-day-tools">
           <div class="tool-box">
             <label>Available from</label>
@@ -1647,7 +2299,7 @@ function renderPlannerResults(){
           <span class="sum-chip">Visit total: ${minutesLabel(day.totalVisitMin || 0)}</span>
           <span class="sum-chip">Last stop done: ${toReadableHM(day.finishLastStopMin || toMin(day.startTime))}</span>
           <span class="sum-chip">Home by: ${toReadableHM(day.returnHomeMin || toMin(day.startTime))}</span>
-          <span class="sum-chip">${day.overByMin > 0 ? `Over window by ${minutesLabel(day.overByMin)}` : `Fits by ${toReadableHM(day.availableEndMin || toMin(day.endTime || '15:00'))}`}</span>
+          <span class="sum-chip" style="${day.overByMin > 0 ? 'background:var(--red-lt);border-color:var(--red);color:var(--red)' : 'background:var(--green-lt);border-color:var(--green);color:var(--green)'}">${day.overByMin > 0 ? `Over available window by ${minutesLabel(day.overByMin)}` : `Fits by ${toReadableHM(day.availableEndMin || toMin(day.endTime || '15:00'))}`}</span>
         </div>
       </div>
     </div>`;
@@ -1706,10 +2358,11 @@ async function addOfficeToDay(dayIdx){
   await refreshDayRoutes(dayIdx);
 }
 function renderStats(){
-  const c = {all:P.length, overdue:0, soon:0, upcoming:0, unsched:0, ontrack:0};
-  P.forEach(p=> c[stOf(p)]++);
+  const active = activePracticeItems();
+  const c = {all:active.length, overdue:0, soon:0, upcoming:0, unsched:0, ontrack:0, archived:P.filter(p=>p.archived).length};
+  active.forEach(({p})=> c[stOf(p)]++);
   document.getElementById('statsEl').innerHTML = `
-    <div class="sc s-all" onclick="applyF('')"><div class="sc-num">${c.all}</div><div class="sc-lbl">Total</div></div>
+    <div class="sc s-all" onclick="applyF('')"><div class="sc-num">${c.all}</div><div class="sc-lbl">Active</div></div>
     <div class="sc s-ov" onclick="applyF('overdue')"><div class="sc-num">${c.overdue}</div><div class="sc-lbl">Overdue</div></div>
     <div class="sc s-soon" onclick="applyF('soon')"><div class="sc-num">${c.soon}</div><div class="sc-lbl">Due Soon</div></div>
     <div class="sc s-ns" onclick="applyF('unsched')"><div class="sc-num">${c.unsched}</div><div class="sc-lbl">Not Scheduled</div></div>
@@ -1719,8 +2372,8 @@ function applyF(v){ document.getElementById('df').value = v; renderDash(); }
 function renderWeek(){
   const lo = new Date(TODAY); lo.setDate(lo.getDate() - lo.getDay());
   const hi = new Date(lo); hi.setDate(hi.getDate() + 6);
-  const weekItems = P.filter(p=>{ const d = nextDue(p); return d && d>=lo && d<=hi; }).sort((a,b)=> nextDue(a)-nextDue(b));
-  const monthItems = P.filter(p=>{
+  const weekItems = activePracticeItems().map(x=>x.p).filter(p=>{ const d = nextDue(p); return d && d>=lo && d<=hi; }).sort((a,b)=> nextDue(a)-nextDue(b));
+  const monthItems = activePracticeItems().map(x=>x.p).filter(p=>{
     const d = nextDue(p);
     return d && d.getFullYear() === TODAY.getFullYear() && d.getMonth() === TODAY.getMonth();
   }).sort((a,b)=> nextDue(a)-nextDue(b));
@@ -1749,7 +2402,7 @@ function renderWeek(){
   }
 }
 function renderScheduled(){
-  const items = P.filter(p => p.nextScheduled && p.nextScheduled !== '').sort((a,b)=>{
+  const items = activePracticeItems().map(x=>x.p).filter(p => p.nextScheduled && p.nextScheduled !== '').sort((a,b)=>{
     const ad = pd(a.nextScheduled);
     const bd = pd(b.nextScheduled);
     if(!ad && !bd) return 0;
@@ -1779,10 +2432,11 @@ function getFiltered(sid,fid,frqid,ctid,spid){
   const freq = (document.getElementById(frqid)||{}).value || '';
   const ct = (document.getElementById(ctid)||{}).value || '';
   const sp = (document.getElementById(spid)||{}).value || '';
-  return P.map((p,i)=>({p,i})).filter(({p})=>{
+  return activePracticeItems().filter(({p})=>{
     const st = stOf(p);
+    if(fr==='priority' && !(st==='overdue' || st==='soon')) return false;
     if(fr==='ontrack' && !(st==='ontrack' || st==='upcoming')) return false;
-    if(fr && fr!=='ontrack' && st!==fr) return false;
+    if(fr && fr!=='ontrack' && fr!=='priority' && st!==fr) return false;
     if(freq && p.freq!==freq) return false;
     if(ct && p.city!==ct) return false;
     if(sp && p.spec!==sp) return false;
@@ -1799,21 +2453,21 @@ function renderDash(){
     if(!db) return -1;
     return da - db;
   });
-  document.getElementById('dcnt').textContent = `${list.length} of ${P.length} practices`;
+  document.getElementById('dcnt').textContent = `${list.length} of ${activePracticeItems().length} active practices`;
   document.getElementById('dashList').innerHTML = list.length ? list.map(({p,i})=>mkCard(p,i)).join('') : '<div style="text-align:center;padding:50px;color:var(--text2)">No practices match</div>';
 }
 let seeded = false;
 function renderPrac(){
   if(!seeded){
-    const cities = [...new Set(P.map(p=>p.city))].sort();
-    const specs = [...new Set(P.map(p=>p.spec))].sort();
+    const cities = [...new Set(activePracticeItems().map(x=>x.p.city))].filter(Boolean).sort();
+    const specs = [...new Set(activePracticeItems().map(x=>x.p.spec))].filter(Boolean).sort();
     const cs = document.getElementById('pcity'), ss = document.getElementById('pspec');
     cities.forEach(c=>{ const o = document.createElement('option'); o.value = c; o.textContent = c; cs.appendChild(o); });
     specs.forEach(s=>{ const o = document.createElement('option'); o.value = s; o.textContent = s; ss.appendChild(o); });
     seeded = true;
   }
   const list = getFiltered('ps',null,'pfreq','pcity','pspec');
-  document.getElementById('pcnt').textContent = `${list.length} of ${P.length}`;
+  document.getElementById('pcnt').textContent = `${list.length} of ${activePracticeItems().length} active`;
   document.getElementById('pracList').innerHTML = list.length ? list.map(({p,i})=>mkCard(p,i)).join('') : '<div style="text-align:center;padding:50px;color:var(--text2)">No practices match</div>';
 }
 function renderCal(){
@@ -1821,7 +2475,7 @@ function renderCal(){
   let h = '<thead><tr><th class="pn-col">Practice</th>';
   MOS.forEach((m,i)=>{ h += `<th class="${i===cur?'cur-mo':''}">${m}</th>`; });
   h += '</tr></thead><tbody>';
-  P.forEach(p=>{
+  activePracticeItems().forEach(({p})=>{
     h += `<tr><td class="pname" title="${escapeHtml(p.name)}">${escapeHtml(p.name)}</td>`;
     for(let mo=1; mo<=12; mo++){
       const c = calCell(p,mo);
@@ -1832,12 +2486,121 @@ function renderCal(){
   document.getElementById('calEl').innerHTML = h + '</tbody>';
 }
 function goTab(id){
-  document.querySelectorAll('.tab').forEach((t,i)=> t.classList.toggle('active', ['dashboard','practices','calendar','planner'][i]===id));
+  document.querySelectorAll('.tab').forEach((t,i)=> t.classList.toggle('active', ['dashboard','practices','calendar','planner','manage'][i]===id));
   document.querySelectorAll('.view').forEach(v=> v.classList.toggle('active', v.id === 'view-' + id));
   if(id==='calendar') renderCal();
   if(id==='practices') renderPrac();
   if(id==='planner') renderAvailDates();
+  if(id==='manage') renderManage();
 }
+function resetPracticeFilters(){
+  seeded = false;
+  const citySel = document.getElementById('pcity');
+  const specSel = document.getElementById('pspec');
+  if(citySel) citySel.innerHTML = '<option value="">All Cities</option>';
+  if(specSel) specSel.innerHTML = '<option value="">All Specialties</option>';
+}
+function renderAll(){
+  renderStats();
+  renderWeek();
+  renderScheduled();
+  renderDash();
+  if(document.getElementById('view-practices')?.classList.contains('active')) renderPrac();
+  if(document.getElementById('view-calendar')?.classList.contains('active')) renderCal();
+  if(document.getElementById('view-manage')?.classList.contains('active')) renderManage();
+}
+function savePracticeChanges(){
+  _unsaved = true;
+  saveLocal();
+  resetPracticeFilters();
+  renderAll();
+}
+function addPracticeFromManage(){
+  const name = document.getElementById('newName').value.trim();
+  if(!name){ toast('Practice name is required','err'); return; }
+  const p = normalizePractice({
+    name,
+    addr: document.getElementById('newAddr').value.trim(),
+    city: document.getElementById('newCity').value.trim(),
+    spec: document.getElementById('newSpec').value.trim(),
+    freq: document.getElementById('newFreq').value,
+    lastVisit: document.getElementById('newLastVisit').value,
+    mgr: document.getElementById('newMgr').value.trim(),
+    dir: document.getElementById('newDir').value.trim(),
+    leadMA: document.getElementById('newLead').value.trim(),
+    hours: document.getElementById('newHours').value.trim(),
+    njiisId: document.getElementById('newNjiis').value.trim(),
+    vfcPin: document.getElementById('newVfcPin').value.trim(),
+    equip:{}
+  });
+  P.push(p);
+  ['newName','newAddr','newCity','newSpec','newLastVisit','newMgr','newDir','newLead','newHours','newNjiis','newVfcPin'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+  document.getElementById('newFreq').value='Quarterly';
+  savePracticeChanges();
+  renderManage();
+  toast('✓ Practice added','ok');
+}
+function toggleArchive(i){
+  const p = P[i];
+  if(!p) return;
+  if(p.archived){
+    p.archived = false;
+    p.archivedDate = '';
+    p.archiveReason = '';
+    toast('✓ Practice restored','ok');
+  }else{
+    const reason = prompt('Archive reason? Example: closed, no longer mine, merged, etc.', p.archiveReason || '');
+    p.archived = true;
+    p.archivedDate = new Date().toISOString().slice(0,10);
+    p.archiveReason = reason || '';
+    toast('✓ Practice archived. History is preserved.','ok');
+  }
+  savePracticeChanges();
+}
+function renderManage(){
+  const list = document.getElementById('manageList');
+  if(!list) return;
+  const q = (document.getElementById('manageSearch')?.value || '').toLowerCase();
+  const status = document.getElementById('manageStatus')?.value || 'active';
+  let items = P.map((p,i)=>({p,i})).filter(({p})=>{
+    if(status==='active' && p.archived) return false;
+    if(status==='archived' && !p.archived) return false;
+    if(q && ![p.name,p.city,p.spec,p.mgr,p.leadMA,p.archiveReason].join(' ').toLowerCase().includes(q)) return false;
+    return true;
+  }).sort((a,b)=> (a.p.archived - b.p.archived) || a.p.name.localeCompare(b.p.name));
+  if(!items.length){
+    list.innerHTML = '<div class="hist-empty">No practices match.</div>';
+    return;
+  }
+  list.innerHTML = items.map(({p,i})=>`
+    <div class="manage-item ${p.archived?'archived':''}">
+      <div class="manage-item-main">
+        <div class="manage-item-name">${escapeHtml(p.name)} ${p.archived?'<span class="archived-badge">Archived</span>':''}</div>
+        <div class="manage-item-meta">
+          <span class="manage-chip sky">📍 ${escapeHtml(p.city||'')}</span>
+          <span class="manage-chip">🏥 ${escapeHtml(p.spec||'')}</span>
+          <span class="manage-chip sun">🔄 ${escapeHtml(p.freq||'')}</span>
+          ${p.lastVisit?`<span class="manage-chip coral">Last: ${fmt(pd(p.lastVisit))}</span>`:''}
+          ${p.archived?`<span class="manage-chip">Archived: ${escapeHtml(p.archivedDate||'')}</span>`:''}
+          ${p.archiveReason?`<span class="manage-chip">Reason: ${escapeHtml(p.archiveReason)}</span>`:''}
+        </div>
+      </div>
+      <div class="manage-actions">
+        <button class="btn-sm btn-grey" onclick="goPracticeFromManage(${i})">Open</button>
+        <button class="btn-sm ${p.archived?'btn-green':'btn-grey'}" onclick="toggleArchive(${i})">${p.archived?'Restore':'Archive'}</button>
+      </div>
+    </div>
+  `).join('');
+}
+function goPracticeFromManage(i){
+  goTab('practices');
+  setTimeout(()=>{
+    document.getElementById('ps').value = P[i].name;
+    renderPrac();
+    setTimeout(()=>{ const card=document.getElementById('pc-'+i); if(card){ card.classList.add('open'); card.scrollIntoView({behavior:'smooth',block:'center'}); }},50);
+  },50);
+}
+
 let tt;
 function toast(msg,type){
   clearTimeout(tt);
@@ -1848,48 +2611,6 @@ function toast(msg,type){
   tt = setTimeout(()=> el.classList.remove('show'), 3000);
 }
 
-
-// Robust equipment toggle for desktop + mobile after card re-renders
-function renderEqHTML(i){
-  const p = P[i] || {};
-  p.equip = p.equip || {};
-  return EQ_KEYS.map(k=>{
-    const v = p.equip[k] ? String(p.equip[k]).trim() : '';
-    const y = v.toLowerCase().startsWith('yes');
-    const n2 = v.toLowerCase() === 'no';
-    return `<button type="button" class="eq-item ${y?'yes':n2?'no':''}" data-eq-idx="${i}" data-eq-key="${escapeHtml(k)}" aria-label="Toggle ${escapeHtml(k)}">
-      <div class="eq-cb">${y?'✓':''}</div>
-      <div>
-        <div class="eq-name">${escapeHtml(k)}</div>
-        <div style="font-size:10px;color:var(--text2)">${escapeHtml(v || 'Tap to mark Yes')}</div>
-      </div>
-    </button>`;
-  }).join('');
-}
-function setEqValue(i,key){
-  if(!P[i]) return;
-  P[i].equip = P[i].equip || {};
-  const cur = String(P[i].equip[key] || '').trim().toLowerCase();
-  P[i].equip[key] = cur.startsWith('yes') ? 'No' : 'Yes';
-  const g = document.getElementById('eq-' + i);
-  if(g) g.innerHTML = renderEqHTML(i);
-  _unsaved = true;
-  saveLocal();
-  setSS('Equipment saved ' + new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}));
-  toast('✓ Equipment saved','ok');
-}
-function togEq(i,key){ setEqValue(i,key); }
-function handleEquipmentToggle(e){
-  const btn = e.target.closest && e.target.closest('.eq-item[data-eq-idx][data-eq-key]');
-  if(!btn) return;
-  e.preventDefault();
-  e.stopPropagation();
-  const i = Number(btn.getAttribute('data-eq-idx'));
-  const key = btn.getAttribute('data-eq-key');
-  setEqValue(i,key);
-}
-document.addEventListener('click', handleEquipmentToggle, true);
-document.addEventListener('touchend', handleEquipmentToggle, true);
 load();
 renderStats();
 renderWeek();
