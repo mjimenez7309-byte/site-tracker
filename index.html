@@ -120,6 +120,8 @@ body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);font-s
 .eg input[type=date],.eg select,.eg textarea{padding:8px 10px;border:1px solid var(--border);border-radius:var(--rsm);font-family:'Sora',sans-serif;font-size:13px;color:var(--text);background:var(--bg);outline:none;transition:border-color .15s;width:100%}
 .eg input:focus,.eg select:focus,.eg textarea:focus{border-color:var(--teal);background:#fff}
 .eg textarea{resize:vertical;min-height:60px}
+.freq-help{font-size:10px;color:var(--text2);line-height:1.35;margin-top:2px}
+.freq-custom-row{display:flex;gap:6px;align-items:center}.freq-custom-row input{max-width:110px}
 .eact{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .tab-save-bar{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid var(--border)}
 .tab-save-note{font-size:11px;color:var(--text2);margin-right:auto}
@@ -439,7 +441,7 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
       </select>
       <select class="fsel" id="dfreq" onchange="renderDash()">
         <option value="">All Frequencies</option><option value="Quarterly">Quarterly</option>
-        <option value="Bi-Monthly">Bi-Monthly</option><option value="Bi-Annual">Bi-Annual</option><option value="Annual">Annual</option>
+        <option value="Bi-Monthly">Bi-Monthly</option><option value="Bi-Annual">Bi-Annual</option><option value="Annual">Annual</option><option value="Custom">Custom</option>
       </select>
       <span class="fcnt" id="dcnt"></span>
     </div>
@@ -449,7 +451,7 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
   <div class="view" id="view-practices">
     <div class="fbar">
       <div class="sw"><span class="si">🔍</span><input id="ps" type="text" placeholder="Search name, city, specialty, manager, lead MA…" oninput="renderPrac()"></div>
-      <select class="fsel" id="pfreq" onchange="renderPrac()"><option value="">All Frequencies</option><option value="Quarterly">Quarterly</option><option value="Bi-Monthly">Bi-Monthly</option><option value="Bi-Annual">Bi-Annual</option><option value="Annual">Annual</option></select>
+      <select class="fsel" id="pfreq" onchange="renderPrac()"><option value="">All Frequencies</option><option value="Quarterly">Quarterly</option><option value="Bi-Monthly">Bi-Monthly</option><option value="Bi-Annual">Bi-Annual</option><option value="Annual">Annual</option><option value="Custom">Custom</option></select>
       <select class="fsel" id="pcity" onchange="renderPrac()"><option value="">All Cities</option></select>
       <select class="fsel" id="pspec" onchange="renderPrac()"><option value="">All Specialties</option></select>
       <span class="fcnt" id="pcnt"></span>
@@ -503,13 +505,15 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
           <div class="eg"><label>City</label><input type="text" id="newCity" placeholder="City"></div>
           <div class="eg"><label>Specialty</label><input type="text" id="newSpec" placeholder="Primary Care, Cardiology..."></div>
           <div class="eg"><label>Frequency</label>
-            <select id="newFreq">
+            <select id="newFreq" onchange="toggleNewCustomFrequency()">
               <option>Quarterly</option>
               <option>Bi-Monthly</option>
               <option>Bi-Annual</option>
               <option>Annual</option>
+              <option>Custom</option>
             </select>
           </div>
+          <div class="eg" id="newCustomFreqWrap" style="display:none"><label>Custom Frequency</label><input type="number" min="1" id="newCustomFreq" placeholder="Months"><div class="freq-help">Example: 3 = every 3 months</div></div>
           <div class="eg"><label>Last Visit Date</label><input type="date" id="newLastVisit"></div>
           <div class="eg"><label>Practice Manager</label><input type="text" id="newMgr"></div>
           <div class="eg"><label>Director</label><input type="text" id="newDir"></div>
@@ -599,7 +603,8 @@ function getDataForSave(){
       leadMA: p.leadMA,
       hours: p.hours,
       njiisId: p.njiisId,
-      vfcPin: p.vfcPin
+      vfcPin: p.vfcPin,
+      customFreqMonths: p.customFreqMonths
     };
   });
   out.__practices = P.map(p => ({...p}));
@@ -693,7 +698,17 @@ function toggleAutoDownload(cb){ _autoDownload = cb.checked; toast(_autoDownload
 function toggleRemindOnClose(cb){ _remindClose = cb.checked; }
 
 const TODAY = new Date(); TODAY.setHours(0,0,0,0);
-const FREQ_MO = {Annual:12,'Bi-Annual':6,Quarterly:3,'Bi-Monthly':2};
+const FREQ_MO = {Annual:12,'Bi-Annual':6,Quarterly:3,'Bi-Monthly':2,Custom:null};
+function getFrequencyMonths(p){
+  const custom = Number(p?.customFreqMonths || 0);
+  if(p?.freq === 'Custom' && custom > 0) return custom;
+  return FREQ_MO[p?.freq] || 12;
+}
+function freqLabel(p){
+  const months = getFrequencyMonths(p);
+  if(p?.freq === 'Custom') return months ? `Custom: every ${months} mo` : 'Custom';
+  return p?.freq || '—';
+}
 const MOS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const EQ_KEYS = ['Vaccines/Refrig. Meds','Sample Meds','OceanView','POC Testing','VFC','Autoclave','Trophon','AED','Eyewash','Oxygen'];
 
@@ -779,6 +794,7 @@ function normalizePractice(p){
     spec: base.spec || '',
     city: base.city || '',
     freq: base.freq || 'Quarterly',
+    customFreqMonths: base.customFreqMonths ? Number(base.customFreqMonths) : null,
     lastVisit: base.lastVisit || '',
     visitStatus: base.visitStatus || '',
     notes: base.notes || '',
@@ -849,7 +865,7 @@ function addMo(d,n){ const r = new Date(d); r.setMonth(r.getMonth() + n); return
 function fmt(d){ return d ? (d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear() : ''; }
 function fmts(d){ return d ? (d.getMonth()+1)+'/'+d.getDate() : ''; }
 function dd(d){ return Math.round((d - TODAY)/864e5); }
-function nextDue(p){ const l = pd(p.lastVisit); if(!l) return null; return addMo(l, FREQ_MO[p.freq] || 12); }
+function nextDue(p){ const l = pd(p.lastVisit); if(!l) return null; return addMo(l, getFrequencyMonths(p)); }
 function stOf(p){
   const d = nextDue(p);
   if(!d) return 'unsched';
@@ -929,7 +945,7 @@ function minutesLabel(mins){
 }
 
 function calCell(p,mo){
-  const last = pd(p.lastVisit), qd = pd(p.nextScheduled), iv = FREQ_MO[p.freq] || 12, vs = p.visitStatus || '';
+  const last = pd(p.lastVisit), qd = pd(p.nextScheduled), iv = getFrequencyMonths(p), vs = p.visitStatus || '';
   if(last && last.getFullYear()===2026 && last.getMonth()+1===mo) return {t:fmts(last), c:'c-done'};
   if(qd && qd.getFullYear()===2026 && qd.getMonth()+1===mo) return {t:fmts(qd), c:'c-done'};
   const dm = new Set();
@@ -981,7 +997,7 @@ function mkCard(p,idx){
       <div class="pcard-main">
         <div class="pcard-name">${escapeHtml(p.name)}</div>
         <div class="pcard-meta">
-          <span>📍${escapeHtml(p.city)}</span><span>🏥${escapeHtml(p.spec)}</span><span>🔄${escapeHtml(p.freq)}</span>
+          <span>📍${escapeHtml(p.city)}</span><span>🏥${escapeHtml(p.spec)}</span><span>🔄${escapeHtml(freqLabel(p))}</span>
           ${due?`<span>📅${fmt(due)}</span>`:''}
           ${dStr?`<span>${dStr}</span>`:''}
         </div>
@@ -1059,6 +1075,13 @@ function mkCard(p,idx){
           <div class="eg"><label>Practice Manager</label><input type="text" id="mgr-${idx}" value="${escapeHtml(p.mgr || '')}"></div>
           <div class="eg"><label>Director</label><input type="text" id="dir-${idx}" value="${escapeHtml(p.dir || '')}"></div>
           <div class="eg"><label>Lead MA</label><input type="text" id="lead-${idx}" value="${escapeHtml(p.leadMA || '')}"></div>
+          <div class="eg"><label>Rounding Frequency</label>
+            <select id="freq-${idx}" onchange="toggleCustomFrequency(${idx})">
+              ${['Quarterly','Bi-Monthly','Bi-Annual','Annual','Custom'].map(f=>`<option value="${f}" ${p.freq===f?'selected':''}>${f}</option>`).join('')}
+            </select>
+            <div class="freq-help">Changing this updates due dates, dashboard, schedule, and planner.</div>
+          </div>
+          <div class="eg" id="customFreqWrap-${idx}" style="${p.freq==='Custom'?'':'display:none'}"><label>Custom Frequency</label><input type="number" min="1" id="customFreq-${idx}" value="${escapeHtml(p.customFreqMonths || '')}" placeholder="Months"><div class="freq-help">Example: 3 = every 3 months</div></div>
           ${showVFC ? `
           <div class="eg"><label>NJIIS ID</label><input type="text" id="njiis-${idx}" value="${escapeHtml(p.njiisId || '')}" placeholder="NJIIS ID"></div>
           <div class="eg"><label>VFC PIN</label><input type="text" id="vfcpin-${idx}" value="${escapeHtml(p.vfcPin || '')}" placeholder="VFC PIN"></div>
@@ -1565,8 +1588,19 @@ function addPastVisit(i){
   }
   toast('✓ Past visit added to history','ok');
 }
+function toggleCustomFrequency(i){
+  const freq = document.getElementById('freq-' + i)?.value;
+  const wrap = document.getElementById('customFreqWrap-' + i);
+  if(wrap) wrap.style.display = freq === 'Custom' ? '' : 'none';
+}
+function toggleNewCustomFrequency(){
+  const freq = document.getElementById('newFreq')?.value;
+  const wrap = document.getElementById('newCustomFreqWrap');
+  if(wrap) wrap.style.display = freq === 'Custom' ? '' : 'none';
+}
 function doUpd(i){
   const kv=document.getElementById('k-'+i)?.value,qv=document.getElementById('q-'+i)?.value,ov=document.getElementById('o-'+i)?.value,nv=document.getElementById('n-'+i)?.value,mgrv=document.getElementById('mgr-'+i)?.value,dirv=document.getElementById('dir-'+i)?.value,leadv=document.getElementById('lead-'+i)?.value,hoursv=document.getElementById('hours-'+i)?.value;
+  const freqv=document.getElementById('freq-'+i)?.value,customFreqRaw=document.getElementById('customFreq-'+i)?.value;
   const njiisv=document.getElementById('njiis-'+i)?.value,vfcpinv=document.getElementById('vfcpin-'+i)?.value,vfcprimaryv=document.getElementById('vfcprimary-'+i)?.value,vfcprimarycontactv=document.getElementById('vfcprimarycontact-'+i)?.value,vfcbackupv=document.getElementById('vfcbackup-'+i)?.value,vfcbackupcontactv=document.getElementById('vfcbackupcontact-'+i)?.value,vfcnotesv=document.getElementById('vfcnotes-'+i)?.value;
   const completeChecked=document.getElementById('complete-'+i)?.checked;
   const oldK=P[i].lastVisit;P[i].history=P[i].history||[];
@@ -1580,6 +1614,7 @@ function doUpd(i){
     P[i].lastVisit=kv??P[i].lastVisit;P[i].nextScheduled=qv??P[i].nextScheduled;P[i].visitStatus=ov??P[i].visitStatus;
   }
   P[i].history.sort((a,b)=>a.date.localeCompare(b.date));P[i].notes=nv??P[i].notes;P[i].mgr=mgrv??P[i].mgr;P[i].dir=dirv??P[i].dir;P[i].leadMA=leadv??P[i].leadMA;P[i].hours=hoursv??P[i].hours;
+  if(freqv){P[i].freq=freqv;P[i].customFreqMonths=(freqv==='Custom' && Number(customFreqRaw)>0)?Number(customFreqRaw):null;}
   P[i].njiisId=njiisv??P[i].njiisId;P[i].vfcPin=vfcpinv??P[i].vfcPin;P[i].vfcDetails=P[i].vfcDetails||{};P[i].vfcDetails.primary=vfcprimaryv??P[i].vfcDetails.primary;P[i].vfcDetails.primaryContact=vfcprimarycontactv??P[i].vfcDetails.primaryContact;P[i].vfcDetails.backup=vfcbackupv??P[i].vfcDetails.backup;P[i].vfcDetails.backupContact=vfcbackupcontactv??P[i].vfcDetails.backupContact;P[i].vfcDetails.notes=vfcnotesv??P[i].vfcDetails.notes;
   _unsaved=true;autoSave(getDataForSave());renderStats();renderWeek();renderScheduled();renderDash();
   if(document.getElementById('view-practices').classList.contains('active'))renderPrac();if(document.getElementById('view-calendar').classList.contains('active'))renderCal();
@@ -1669,7 +1704,7 @@ function printCard(i){
     <div class="f"><div class="lbl">Practice Manager</div>${escapeHtml(p.mgr || '—')}</div>
     <div class="f"><div class="lbl">Director</div>${escapeHtml(p.dir || '—')}</div>
     <div class="f"><div class="lbl">Lead MA</div>${escapeHtml(p.leadMA || '—')}</div>
-    <div class="f"><div class="lbl">Frequency</div>${escapeHtml(p.freq)}</div>
+    <div class="f"><div class="lbl">Frequency</div>${escapeHtml(freqLabel(p))}</div>
     <div class="f"><div class="lbl">Last Visit</div>${p.lastVisit ? fmt(pd(p.lastVisit)) : 'None'}</div>
     <div class="f"><div class="lbl">Next Due</div>${due ? fmt(due) : '—'}</div>
     <div class="f"><div class="lbl">Visit Status</div>${escapeHtml(p.visitStatus || '—')}</div>
@@ -2531,6 +2566,7 @@ function addPracticeFromManage(){
     city: document.getElementById('newCity').value.trim(),
     spec: document.getElementById('newSpec').value.trim(),
     freq: document.getElementById('newFreq').value,
+    customFreqMonths: document.getElementById('newFreq').value === 'Custom' && Number(document.getElementById('newCustomFreq').value) > 0 ? Number(document.getElementById('newCustomFreq').value) : null,
     lastVisit: document.getElementById('newLastVisit').value,
     mgr: document.getElementById('newMgr').value.trim(),
     dir: document.getElementById('newDir').value.trim(),
@@ -2541,8 +2577,8 @@ function addPracticeFromManage(){
     equip:{}
   });
   P.push(p);
-  ['newName','newAddr','newCity','newSpec','newLastVisit','newMgr','newDir','newLead','newHours','newNjiis','newVfcPin'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
-  document.getElementById('newFreq').value='Quarterly';
+  ['newName','newAddr','newCity','newSpec','newLastVisit','newMgr','newDir','newLead','newHours','newNjiis','newVfcPin','newCustomFreq'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+  document.getElementById('newFreq').value='Quarterly'; toggleNewCustomFrequency();
   savePracticeChanges();
   renderManage();
   toast('✓ Practice added','ok');
@@ -2586,7 +2622,7 @@ function renderManage(){
         <div class="manage-item-meta">
           <span class="manage-chip sky">📍 ${escapeHtml(p.city||'')}</span>
           <span class="manage-chip">🏥 ${escapeHtml(p.spec||'')}</span>
-          <span class="manage-chip sun">🔄 ${escapeHtml(p.freq||'')}</span>
+          <span class="manage-chip sun">🔄 ${escapeHtml(freqLabel(p))}</span>
           ${p.lastVisit?`<span class="manage-chip coral">Last: ${fmt(pd(p.lastVisit))}</span>`:''}
           ${p.archived?`<span class="manage-chip">Archived: ${escapeHtml(p.archivedDate||'')}</span>`:''}
           ${p.archiveReason?`<span class="manage-chip">Reason: ${escapeHtml(p.archiveReason)}</span>`:''}
