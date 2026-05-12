@@ -83,6 +83,13 @@ body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);font-s
 .pcard-main{flex:1;min-width:0}
 .pcard-name{font-weight:700;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pcard-meta{font-size:11px;color:var(--text2);margin-top:3px;display:flex;gap:10px;flex-wrap:wrap}
+.pcard-meta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 16px;margin-top:6px;align-items:center}
+.pcard-meta-grid span{font-size:11px;color:var(--text2);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.meta-strong{font-weight:800;color:var(--navy)!important}
+.meta-status{font-weight:700;color:var(--red)!important}
+.pcard-meta-grid span.meta-contact{background:#F7FAFC;border:1px solid var(--border);border-radius:8px;padding:4px 8px}
+.pcard-meta-grid span.meta-visit{background:#EEF6FB;border:1px solid #D8EAF5;border-radius:8px;padding:4px 8px}
+@media(max-width:700px){.pcard-meta-grid{grid-template-columns:1fr;gap:5px}.pcard-meta-grid span{white-space:normal}}
 .pcard-right{display:flex;align-items:center;gap:7px;flex-shrink:0}
 .pill{display:inline-block;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;white-space:nowrap}
 .p-ov{background:var(--red-lt);color:var(--red)}.p-soon{background:var(--amber-lt);color:var(--amber)}
@@ -996,10 +1003,17 @@ function mkCard(p,idx){
     <div class="pcard-hdr" onclick="togCard(event)">
       <div class="pcard-main">
         <div class="pcard-name">${escapeHtml(p.name)}</div>
-        <div class="pcard-meta">
-          <span>📍${escapeHtml(p.city)}</span><span>🏥${escapeHtml(p.spec)}</span><span>🔄${escapeHtml(freqLabel(p))}</span>
-          ${due?`<span>📅${fmt(due)}</span>`:''}
-          ${dStr?`<span>${dStr}</span>`:''}
+        <div class="pcard-meta pcard-meta-grid">
+          <span>📍 ${escapeHtml(p.city || 'Location not listed')}</span>
+          <span>🏥 ${escapeHtml(p.spec || 'Specialty not listed')}</span>
+          <span>🔄 ${escapeHtml(freqLabel(p))}</span>
+          <span>📅 Due: ${due ? fmt(due) : 'Not calculated'}</span>
+          <span class="meta-contact">👩‍⚕️ Lead MA: ${escapeHtml(p.leadMA || 'Not listed')}</span>
+          <span class="meta-contact">👤 Manager: ${escapeHtml(p.mgr || 'Not listed')}</span>
+          <span class="meta-contact">🧭 Director: ${escapeHtml(p.dir || 'Not listed')}</span>
+          <span class="meta-strong meta-visit">✅ Last Completed: ${p.lastVisit ? fmt(pd(p.lastVisit)) : 'Not recorded'}</span>
+          <span class="meta-strong meta-visit">🗓 Next Scheduled: ${p.nextScheduled ? fmt(pd(p.nextScheduled)) : 'Not scheduled'}</span>
+          ${dStr ? `<span class="meta-status">${dStr}</span>` : ''}
         </div>
       </div>
       <div class="pcard-right">
