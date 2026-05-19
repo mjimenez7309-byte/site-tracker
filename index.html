@@ -377,6 +377,132 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
 .target-box{grid-column:1/-1;background:#FFF8E8;border:1px solid #FFE1A6;border-radius:12px;padding:12px}
 .target-box label{color:#7A5100!important}.target-box textarea{background:#fff}
 .sc.s-target::after{background:var(--sun)}.sc.s-target .sc-num{color:var(--sun)}
+
+
+/* 2026 enterprise polish update: Virtua palette, planner preview, route tools */
+:root{
+  --green:var(--light-ocean);
+  --green-lt:#EAF6FC;
+}
+body,button,input,select,textarea{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif!important}
+.hdr-logo{background:rgba(255,255,255,.22);font-weight:800}
+.sc.s-ok::after{background:var(--light-ocean)}.sc.s-ok .sc-num{color:var(--ocean)}
+.p-ok,.c-done{background:#EAF6FC!important;color:#26576F!important}
+.hist-item{border-left-color:var(--light-ocean)}
+.btn-green,.toast.ok{background:var(--ocean)!important;color:#fff!important}
+.eq-card.yes{background:#EAF6FC!important;border-color:#9BD4EE!important}.eq-item.yes .eq-cb{background:var(--ocean)!important;border-color:var(--ocean)!important}.eq-item.yes .eq-sub{color:var(--ocean)!important}
+.route-preview-card{background:linear-gradient(135deg,#fff,#F7FBFE);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow);margin:0 0 16px;overflow:hidden;position:relative}
+.route-preview-card::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:linear-gradient(90deg,var(--ocean),var(--light-ocean),var(--sky),var(--light-sky),var(--light-sun),var(--light-coral),var(--coral))}
+.route-preview-inner{padding:16px 18px 14px}.route-preview-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}.route-preview-title{font-size:15px;font-weight:900;color:var(--ocean);display:flex;align-items:center;gap:8px}.route-preview-sub{font-size:12px;color:var(--text2);line-height:1.45;margin-top:3px}.route-preview-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.route-metric-row{display:grid;grid-template-columns:repeat(4,minmax(120px,1fr));gap:10px;margin-bottom:12px}.route-metric{background:#F8FBFD;border:1px solid #D9E7EF;border-radius:14px;padding:10px 12px}.route-metric-num{font-size:20px;font-weight:900;color:var(--ocean);line-height:1}.route-metric-label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--text2);font-weight:800;margin-top:5px}.route-days-preview{display:flex;flex-direction:column;gap:8px}.route-day-preview{display:grid;grid-template-columns:130px 1fr auto;gap:10px;align-items:center;background:#fff;border:1px solid var(--border);border-radius:13px;padding:10px 12px}.route-day-preview.over{border-color:#FFD1CF;background:#FFF8F7}.route-date-chip{font-size:12px;font-weight:900;color:var(--ocean)}.route-stops-line{font-size:12px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.route-time-chip{font-size:11px;font-weight:800;border-radius:999px;padding:5px 9px;background:#EAF6FC;color:#26576F}.route-time-chip.warn{background:#FFECEB;color:#A94A47}.planner-command-card{position:sticky;top:104px;z-index:10;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);padding:12px;margin:0 0 14px}.planner-command-title{font-size:13px;font-weight:900;color:var(--ocean);margin-bottom:8px}.planner-command-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}.planner-command-grid button{min-height:36px;border-radius:11px}.route-cache-panel{display:none;background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:12px;margin:12px 0}.route-cache-panel.open{display:block}.route-cache-list{display:flex;flex-direction:column;gap:7px;max-height:260px;overflow:auto}.route-cache-item{display:grid;grid-template-columns:1fr 75px 90px 70px;gap:8px;align-items:center;border:1px solid #E4EEF4;border-radius:12px;padding:8px 10px;background:#F8FBFD;font-size:12px}.route-cache-key{font-weight:700;color:var(--text);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.route-cache-pill{font-weight:800;color:var(--ocean);background:#EAF6FC;border-radius:999px;padding:4px 8px;text-align:center}.route-cache-delete{border:0;background:#FFECEB;color:#A94A47;border-radius:8px;font-weight:900;padding:6px;cursor:pointer}.sv-drag-handle{font-size:16px;color:var(--light-ocean);cursor:grab;align-self:center}.sched-visit{grid-template-columns:22px minmax(220px,1.4fr) repeat(4,auto)!important}.sched-visit.dragging{opacity:.55;outline:2px dashed var(--light-ocean)}.sched-visit.drag-over{box-shadow:0 0 0 3px rgba(155,212,238,.5)}.planner-overflow-card{background:#FFF7E3;border:1px solid #FFE2A8;border-radius:16px;padding:12px;margin:12px 0}.planner-overflow-title{font-weight:900;color:#7A5100;margin-bottom:8px}.planner-overflow-list{display:flex;gap:8px;flex-wrap:wrap}.planner-overflow-chip{background:#fff;border:1px solid #FFE2A8;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:800;color:#7A5100}.sched-day.fit-ok .sched-day-hdr{background:linear-gradient(135deg,var(--ocean),var(--light-ocean))}.sched-day.fit-warn .sched-day-hdr{background:linear-gradient(135deg,var(--coral),var(--sun))}.availability-pill{display:inline-flex;align-items:center;gap:5px;background:#FFF7E3;color:#7A5100;border:1px solid #FFE2A8;border-radius:999px;padding:4px 9px;font-size:10px;font-weight:900;margin-left:6px}
+
+/* Scheduled-day time away summary */
+.scheduled-day-card{background:linear-gradient(135deg,#fff,#F8FBFD);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow);padding:14px;margin:0 0 16px;position:relative;overflow:hidden}
+.scheduled-day-card::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:linear-gradient(90deg,var(--ocean),var(--sky),var(--light-sun),var(--light-coral))}
+.scheduled-day-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px;padding-top:4px}
+.scheduled-day-title{font-size:15px;font-weight:900;color:var(--ocean)}
+.scheduled-day-sub{font-size:12px;color:var(--text2);line-height:1.45;margin-top:3px}
+.scheduled-day-controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;align-items:center}
+.scheduled-day-metrics{display:grid;grid-template-columns:repeat(4,minmax(120px,1fr));gap:10px;margin:12px 0}
+.scheduled-day-metric{background:#fff;border:1px solid #D9E7EF;border-radius:14px;padding:10px 12px}
+.scheduled-day-metric-num{font-size:18px;font-weight:900;color:var(--ocean);line-height:1.1}
+.scheduled-day-metric-label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--text2);font-weight:800;margin-top:5px}
+.scheduled-timeline{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.scheduled-stop-row{display:grid;grid-template-columns:92px 1fr 150px;gap:10px;align-items:center;background:#fff;border:1px solid var(--border);border-left:4px solid var(--sky);border-radius:14px;padding:10px 12px}
+.scheduled-stop-row.home{border-left-color:var(--light-sun);background:#FFFDF7}
+.scheduled-stop-row.warn{border-left-color:var(--coral);background:#FFF8F7}
+.scheduled-time-chip{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:900;color:var(--ocean);background:#EAF6FC;border-radius:999px;padding:6px 8px;text-align:center}
+.scheduled-stop-name{font-size:13px;font-weight:900;color:var(--text);line-height:1.3}
+.scheduled-stop-meta{font-size:11px;color:var(--text2);line-height:1.4;margin-top:2px}
+.scheduled-drive-chip{font-size:11px;font-weight:800;color:#356985;background:#F0F8FC;border:1px solid #D4EEF9;border-radius:999px;padding:5px 8px;text-align:center}
+.scheduled-empty-card{background:#fff;border:1px dashed var(--border);border-radius:14px;padding:16px;color:var(--text2);font-size:13px;text-align:center}
+@media(max-width:760px){.scheduled-day-head{display:block}.scheduled-day-controls{justify-content:flex-start;margin-top:10px}.scheduled-day-metrics{grid-template-columns:repeat(2,1fr)}.scheduled-stop-row{grid-template-columns:1fr}.scheduled-time-chip,.scheduled-drive-chip{text-align:left}.scheduled-day-card{padding:12px}}
+
+.scheduled-edit-grid{display:grid;grid-template-columns:repeat(5,minmax(96px,1fr));gap:8px;margin-top:8px}
+.scheduled-edit-field label{display:block;font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.07em;color:var(--text2);margin-bottom:3px}
+.scheduled-edit-field input{width:100%;border:1px solid #D6E5ED;border-radius:9px;background:#fff;padding:7px 8px;font-family:'Sora',sans-serif;font-size:11px;color:var(--text);outline:none}
+.scheduled-edit-field input:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(155,212,238,.22)}
+.scheduled-start-edit{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:10px 0;padding:10px;background:#F8FBFD;border:1px solid var(--border);border-radius:14px}
+.scheduled-edit-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;margin-top:10px}
+.scheduled-date-chips{display:flex;gap:7px;flex-wrap:wrap;margin:8px 0 12px;padding:8px;background:#F8FBFD;border:1px solid var(--border);border-radius:14px}
+.scheduled-date-chip{border:1px solid #D6E5ED;background:#fff;color:var(--ocean);border-radius:999px;padding:6px 10px;font-size:11px;font-weight:900;cursor:pointer}
+.scheduled-date-chip.active{background:linear-gradient(135deg,var(--light-ocean),var(--sky));color:#fff;border-color:transparent}
+.scheduled-date-chip .count{opacity:.78;font-weight:800;margin-left:4px}
+.scheduled-empty-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+.scheduled-stop-row.editable{grid-template-columns:92px minmax(0,1fr) 130px}
+.scheduled-stop-row.editable .scheduled-edit-grid{background:#F8FBFD;border:1px solid #E1EDF4;border-radius:12px;padding:8px}
+.scheduled-edit-field input:not([readonly]){background:#fffdf8;border-color:#CFE2EF}
+.scheduled-edit-field input:not([readonly]):focus{background:#fff;border-color:var(--sky);box-shadow:0 0 0 3px rgba(105,163,207,.22)}
+.dashboard-side-col .scheduled-date-chips{padding:6px;margin:6px 0 8px;max-height:86px;overflow:auto}
+.dashboard-side-col .scheduled-date-chip{font-size:10px;padding:5px 8px}
+@media(min-width:1181px){.dashboard-schedule-card{position:sticky;top:112px}.dashboard-priority-list .pcard-hdr{padding:10px 12px}.dashboard-main-col .dash-list-head{margin-bottom:8px}.dashboard-main-col .pcard-name{font-size:13px}.dashboard-main-col .pcard-meta-grid{grid-template-columns:repeat(3,minmax(160px,1fr))}}
+
+.dashboard-schedule-card{background:linear-gradient(135deg,#fff,#F8FBFD);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow);padding:14px;margin:0 0 16px;position:relative;overflow:hidden}
+.dashboard-schedule-card::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:linear-gradient(90deg,var(--light-sky),var(--light-sun),var(--light-coral))}
+.dashboard-schedule-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding-top:4px;margin-bottom:10px}
+.dashboard-schedule-title{font-size:15px;font-weight:900;color:var(--ocean)}
+.dashboard-schedule-sub{font-size:12px;color:var(--text2);line-height:1.45;margin-top:3px}
+.dashboard-schedule-controls{display:flex;gap:8px;align-items:center;justify-content:flex-end;flex-wrap:wrap}
+.dashboard-schedule-mini{display:grid;grid-template-columns:repeat(4,minmax(105px,1fr));gap:8px;margin:10px 0}
+.dashboard-schedule-mini .route-metric{background:#fff}
+.dashboard-schedule-list{display:flex;flex-direction:column;gap:7px;margin-top:10px}
+.dashboard-schedule-row{display:grid;grid-template-columns:110px 1fr 140px;gap:10px;align-items:center;background:#fff;border:1px solid var(--border);border-left:4px solid var(--sky);border-radius:13px;padding:9px 11px}
+.dashboard-schedule-row.home{border-left-color:var(--light-sun);background:#FFFDF7}
+.dashboard-schedule-time{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:900;color:var(--ocean);background:#EAF6FC;border-radius:999px;padding:6px 8px;text-align:center}
+.dashboard-schedule-name{font-size:12px;font-weight:900;color:var(--text);line-height:1.3}
+.dashboard-schedule-meta{font-size:11px;color:var(--text2);line-height:1.35;margin-top:2px}
+.dashboard-schedule-chip{font-size:11px;font-weight:800;color:#356985;background:#F0F8FC;border:1px solid #D4EEF9;border-radius:999px;padding:5px 8px;text-align:center}
+@media(max-width:760px){.scheduled-edit-grid{grid-template-columns:1fr 1fr}.dashboard-schedule-head{display:block}.dashboard-schedule-controls{justify-content:flex-start;margin-top:10px}.dashboard-schedule-mini{grid-template-columns:repeat(2,1fr)}.dashboard-schedule-row{grid-template-columns:1fr}.dashboard-schedule-time,.dashboard-schedule-chip{text-align:left}}
+
+
+@media(max-width:760px){.route-preview-head{display:block}.route-preview-actions{justify-content:flex-start;margin-top:10px}.route-metric-row{grid-template-columns:repeat(2,1fr)}.route-day-preview{grid-template-columns:1fr}.route-stops-line{white-space:normal}.planner-command-card{position:static}.route-cache-item{grid-template-columns:1fr 64px 74px 42px}.sched-visit{grid-template-columns:1fr!important}.sv-drag-handle{display:none}.avail-row{grid-template-columns:1fr 1fr!important}.avail-row span{grid-column:1/-1}.avail-row button{width:100%}}
+
+
+
+/* Compact dashboard workspace with daily route on the side */
+.page{max-width:1680px;width:min(96vw,1680px)}
+.dashboard-workspace{display:grid;grid-template-columns:minmax(0,1fr) minmax(390px,520px);gap:14px;align-items:start}
+.dashboard-main-col{min-width:0}
+.dashboard-side-col{position:sticky;top:126px;align-self:start;min-width:0}
+.dash-list-head.compact{margin:0 0 8px;padding:10px 12px;border-radius:14px}
+.dash-list-head.compact .dash-list-title{font-size:13px}
+.dash-list-head.compact .dash-list-sub{font-size:11px}
+.priority-fbar.compact{margin-bottom:10px;padding:8px;border-radius:12px}
+.priority-fbar.compact .sw input,.priority-fbar.compact .fsel{padding-top:7px;padding-bottom:7px;font-size:11px}
+.dashboard-priority-list{gap:7px}
+.dashboard-priority-list .pcard-hdr{padding:10px 12px}
+.dashboard-priority-list .pcard-name{font-size:13px}
+.dashboard-priority-list .pcard-meta-grid{grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:4px 8px;margin-top:4px}
+.dashboard-priority-list .pcard-meta-grid span{font-size:10px;padding:3px 6px}
+.dashboard-schedule-card{margin:0;border-radius:18px;padding:12px;max-height:calc(100vh - 145px);overflow:auto}
+.dashboard-schedule-head{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:8px}
+.dashboard-schedule-title{font-size:14px}
+.dashboard-schedule-sub{font-size:11px}
+.dashboard-schedule-controls{justify-content:stretch;display:grid;grid-template-columns:1fr auto auto;gap:6px}
+.dashboard-schedule-controls .btn-teal{grid-column:1/-1}
+.dashboard-schedule-mini{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin:8px 0}
+.dashboard-schedule-mini .route-metric{padding:9px 10px;border-radius:12px}
+.dashboard-schedule-mini .route-metric-num{font-size:18px}
+.dashboard-schedule-mini .route-metric-label{font-size:9px}
+.dashboard-schedule-list{gap:6px;margin-top:8px}
+.dashboard-schedule-row{grid-template-columns:82px minmax(0,1fr);gap:8px;padding:8px 9px;border-radius:12px}
+.dashboard-schedule-chip{grid-column:1/-1;justify-self:start;font-size:10px;padding:4px 7px}
+.dashboard-schedule-time{font-size:10px;padding:6px 7px}
+.dashboard-schedule-name{font-size:12px}
+.dashboard-schedule-meta{font-size:10px}
+.route-preview-card{margin-bottom:12px}
+.route-preview-inner{padding:12px}
+.route-preview-head{gap:8px}
+.route-preview-title{font-size:13px}
+.route-preview-sub{font-size:11px}
+.route-metric-row{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.route-metric{padding:9px 10px;border-radius:12px}
+.route-metric-num{font-size:19px}
+.route-metric-label{font-size:9px}
+.week-banner-grid{margin-bottom:12px}
+.stats{margin-bottom:12px}
+@media(max-width:1180px){.dashboard-workspace{grid-template-columns:1fr}.dashboard-side-col{position:static}.dashboard-schedule-card{max-height:none}.dashboard-schedule-controls{grid-template-columns:1fr auto auto auto}.dashboard-schedule-controls .btn-teal{grid-column:auto}}
+@media(max-width:760px){.page{width:100%;max-width:none}.dashboard-schedule-controls{grid-template-columns:1fr 1fr}.dashboard-schedule-controls input{grid-column:1/-1}.dashboard-schedule-controls .btn-teal{grid-column:1/-1}.dashboard-schedule-row{grid-template-columns:1fr}.dashboard-schedule-chip{grid-column:auto}.route-metric-row{grid-template-columns:repeat(2,1fr)}}
+
 </style>
 </head>
 <body>
@@ -441,28 +567,51 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
         <div class="week-list" id="scheduledList"></div>
       </div>
     </div>
-    <div class="dash-list-head">
-      <div>
-        <div class="dash-list-title">Priority Visit List</div>
-        <div class="dash-list-sub">Use this for quick due/overdue review. Full office details live under Practice Details.</div>
+    <div class="dashboard-workspace">
+      <div class="dashboard-main-col">
+        <div id="dashboardRoutePreview"></div>
+        <div class="dash-list-head compact">
+          <div>
+            <div class="dash-list-title">Priority Visit List</div>
+            <div class="dash-list-sub">Targeted, overdue, and upcoming offices stay on the left while the daily route stays visible on the right.</div>
+          </div>
+        </div>
+        <div class="fbar priority-fbar compact">
+          <div class="sw"><span class="si">🔍</span><input id="ds" type="text" placeholder="Search priority practices…" oninput="renderDash()"></div>
+          <select class="fsel" id="df" onchange="renderDash()">
+            <option value="priority" selected>Priority: Targeted + Overdue + Due Soon</option>
+            <option value="targeted">Targeted / Priority Visits</option>
+            <option value="">All Active</option><option value="overdue">Overdue</option>
+            <option value="soon">Due Soon</option><option value="upcoming">Upcoming</option>
+            <option value="unsched">Not Scheduled</option><option value="ontrack">On Track</option>
+          </select>
+          <select class="fsel" id="dfreq" onchange="renderDash()">
+            <option value="">All Frequencies</option><option value="Quarterly">Quarterly</option>
+            <option value="Bi-Monthly">Bi-Monthly</option><option value="Bi-Annual">Bi-Annual</option><option value="Annual">Annual</option><option value="Custom">Custom</option>
+          </select>
+          <span class="fcnt" id="dcnt"></span>
+        </div>
+        <div class="plist dashboard-priority-list" id="dashList"></div>
       </div>
+      <aside class="dashboard-side-col">
+        <div class="dashboard-schedule-card" id="dashboardScheduleCard">
+          <div class="dashboard-schedule-head">
+            <div>
+              <div class="dashboard-schedule-title">📅 Today’s Route & Time Away</div>
+              <div class="dashboard-schedule-sub">Daily scheduled route with drive times, visit length, and total time away.</div>
+            </div>
+            <div class="dashboard-schedule-controls">
+              <input class="planner-input" type="date" id="dashboardScheduleDate" onchange="renderDashboardSchedulePanel()">
+              <button class="btn btn-grey" onclick="setDashboardScheduleQuick(0)">Today</button>
+              <button class="btn btn-grey" onclick="setDashboardScheduleQuick(1)">Tomorrow</button>
+              <button class="btn btn-teal" onclick="openScheduledDayInPlanner()">Open / Edit</button>
+            </div>
+          </div>
+          <div id="dashboardScheduleChips" class="scheduled-date-chips"></div>
+          <div id="dashboardScheduleBody"></div>
+        </div>
+      </aside>
     </div>
-    <div class="fbar priority-fbar">
-      <div class="sw"><span class="si">🔍</span><input id="ds" type="text" placeholder="Search priority practices…" oninput="renderDash()"></div>
-      <select class="fsel" id="df" onchange="renderDash()">
-        <option value="priority" selected>Priority: Targeted + Overdue + Due Soon</option>
-        <option value="targeted">Targeted / Priority Visits</option>
-        <option value="">All Active</option><option value="overdue">Overdue</option>
-        <option value="soon">Due Soon</option><option value="upcoming">Upcoming</option>
-        <option value="unsched">Not Scheduled</option><option value="ontrack">On Track</option>
-      </select>
-      <select class="fsel" id="dfreq" onchange="renderDash()">
-        <option value="">All Frequencies</option><option value="Quarterly">Quarterly</option>
-        <option value="Bi-Monthly">Bi-Monthly</option><option value="Bi-Annual">Bi-Annual</option><option value="Annual">Annual</option><option value="Custom">Custom</option>
-      </select>
-      <span class="fcnt" id="dcnt"></span>
-    </div>
-    <div class="plist" id="dashList"></div>
   </div>
 
   <div class="view" id="view-practices">
@@ -493,8 +642,8 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
     <div class="sched-planner">
       <h3>🗓 Smart Day Planner</h3>
       <p>
-        Suggestions are built by targeted priority first, then location, then urgency. Offices marked as targeted visits ignore their normal rounding frequency and are placed first in the planner.
-        After generating, you can edit the route, change drive minutes, add offices manually, and recalculate times.
+        Suggestions are built by targeted priority first, then location, then urgency. Offices marked as targeted visits ignore their normal rounding frequency and are placed first, but offices already on your schedule are not shown as suggestions.
+        After generating, you can edit the route, enter exact drive minutes and miles, save those drive values for future use, add offices manually, and recalculate times.
       </p>
       <div style="display:flex;gap:8px;align-items:center;margin-bottom:12px;flex-wrap:wrap">
         <button class="btn btn-teal" onclick="addAvailDate()">+ Add Available Date</button>
@@ -504,6 +653,36 @@ table.cal tr:hover td.pname{background:var(--teal-lt)}
       <div id="availDates" style="display:flex;flex-direction:column;gap:6px;margin-bottom:16px"></div>
       <div class="small-note" style="margin-bottom:12px">
         Tip: office-to-office drive times and miles are pulled from map routing and cached. Home is estimated from Annie Way, Sicklerville, NJ 08081 and can still be edited if needed.
+      </div>
+
+      <div class="scheduled-day-card" id="scheduledDayCard">
+        <div class="scheduled-day-head">
+          <div>
+            <div class="scheduled-day-title">📅 Scheduled Visit Day View</div>
+            <div class="scheduled-day-sub">See what is scheduled for a specific day, including arrival/leave times, drive time, and total time away from the office.</div>
+          </div>
+          <div class="scheduled-day-controls">
+            <input class="planner-input" type="date" id="scheduledDayDate" onchange="renderScheduledDayPanel()">
+            <button class="btn btn-grey" onclick="setScheduledDayQuick(1)">Tomorrow</button>
+            <button class="btn btn-grey" onclick="setScheduledDayQuick(0)">Today</button>
+            <button class="btn btn-teal" onclick="refreshScheduledDayRoutes()">↻ Refresh times</button>
+            <button class="btn btn-grey" onclick="copyScheduledDaySummary()">📋 Copy times</button>
+            <button class="btn btn-teal" onclick="saveScheduledDayEdits(true)">💾 Save edited times</button>
+          </div>
+        </div>
+        <div id="scheduledDateChips" class="scheduled-date-chips"></div>
+        <div id="scheduledDayBody"></div>
+      </div>
+
+      <div class="planner-command-card" id="plannerCommandCard">
+        <div class="planner-command-title">Route tools</div>
+        <div class="planner-command-grid">
+          <button class="btn btn-grey" onclick="refreshAllPlannerRoutes()">↻ Refresh route times</button>
+          <button class="btn btn-grey" onclick="saveAllVisibleRouteOverrides()">💾 Save all edited drives</button>
+          <button class="btn btn-grey" onclick="toggleRouteCachePanel()">🧭 Saved distances</button>
+          <button class="btn btn-grey" onclick="copyPlannerSummary()">📋 Copy route summary</button>
+        </div>
+        <div class="route-cache-panel" id="routeCachePanel"></div>
       </div>
       <div id="schedResults"></div>
     </div>
@@ -996,6 +1175,9 @@ function getHoursShort(hours){
 }
 function escapeHtml(str){
   return String(str ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+function escapeAttr(str){
+  return escapeHtml(str).replace(/`/g, '&#96;');
 }
 function toMin(hm){
   if(!hm) return 540;
@@ -1799,6 +1981,53 @@ function printCard(i){
 .manage-chip.sky{background:#EDF8FE;border-color:#D4EEF9;color:#356985}
 @media(max-width:900px){.manage-grid{grid-template-columns:1fr}.manage-list-tools{position:static}.manage-actions{min-width:0}.manage-item{display:block}.manage-actions{margin-top:10px}}
 
+
+
+/* Compact dashboard workspace with daily route on the side */
+.page{max-width:1680px;width:min(96vw,1680px)}
+.dashboard-workspace{display:grid;grid-template-columns:minmax(0,1fr) minmax(390px,520px);gap:14px;align-items:start}
+.dashboard-main-col{min-width:0}
+.dashboard-side-col{position:sticky;top:126px;align-self:start;min-width:0}
+.dash-list-head.compact{margin:0 0 8px;padding:10px 12px;border-radius:14px}
+.dash-list-head.compact .dash-list-title{font-size:13px}
+.dash-list-head.compact .dash-list-sub{font-size:11px}
+.priority-fbar.compact{margin-bottom:10px;padding:8px;border-radius:12px}
+.priority-fbar.compact .sw input,.priority-fbar.compact .fsel{padding-top:7px;padding-bottom:7px;font-size:11px}
+.dashboard-priority-list{gap:7px}
+.dashboard-priority-list .pcard-hdr{padding:10px 12px}
+.dashboard-priority-list .pcard-name{font-size:13px}
+.dashboard-priority-list .pcard-meta-grid{grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:4px 8px;margin-top:4px}
+.dashboard-priority-list .pcard-meta-grid span{font-size:10px;padding:3px 6px}
+.dashboard-schedule-card{margin:0;border-radius:18px;padding:12px;max-height:calc(100vh - 145px);overflow:auto}
+.dashboard-schedule-head{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:8px}
+.dashboard-schedule-title{font-size:14px}
+.dashboard-schedule-sub{font-size:11px}
+.dashboard-schedule-controls{justify-content:stretch;display:grid;grid-template-columns:1fr auto auto;gap:6px}
+.dashboard-schedule-controls .btn-teal{grid-column:1/-1}
+.dashboard-schedule-mini{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin:8px 0}
+.dashboard-schedule-mini .route-metric{padding:9px 10px;border-radius:12px}
+.dashboard-schedule-mini .route-metric-num{font-size:18px}
+.dashboard-schedule-mini .route-metric-label{font-size:9px}
+.dashboard-schedule-list{gap:6px;margin-top:8px}
+.dashboard-schedule-row{grid-template-columns:82px minmax(0,1fr);gap:8px;padding:8px 9px;border-radius:12px}
+.dashboard-schedule-chip{grid-column:1/-1;justify-self:start;font-size:10px;padding:4px 7px}
+.dashboard-schedule-time{font-size:10px;padding:6px 7px}
+.dashboard-schedule-name{font-size:12px}
+.dashboard-schedule-meta{font-size:10px}
+.route-preview-card{margin-bottom:12px}
+.route-preview-inner{padding:12px}
+.route-preview-head{gap:8px}
+.route-preview-title{font-size:13px}
+.route-preview-sub{font-size:11px}
+.route-metric-row{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.route-metric{padding:9px 10px;border-radius:12px}
+.route-metric-num{font-size:19px}
+.route-metric-label{font-size:9px}
+.week-banner-grid{margin-bottom:12px}
+.stats{margin-bottom:12px}
+@media(max-width:1180px){.dashboard-workspace{grid-template-columns:1fr}.dashboard-side-col{position:static}.dashboard-schedule-card{max-height:none}.dashboard-schedule-controls{grid-template-columns:1fr auto auto auto}.dashboard-schedule-controls .btn-teal{grid-column:auto}}
+@media(max-width:760px){.page{width:100%;max-width:none}.dashboard-schedule-controls{grid-template-columns:1fr 1fr}.dashboard-schedule-controls input{grid-column:1/-1}.dashboard-schedule-controls .btn-teal{grid-column:1/-1}.dashboard-schedule-row{grid-template-columns:1fr}.dashboard-schedule-chip{grid-column:auto}.route-metric-row{grid-template-columns:repeat(2,1fr)}}
+
 </style></head><body>
   <h1>${escapeHtml(p.name)}</h1><div class="sub">VMG Site Visit Tracker · Printed ${new Date().toLocaleDateString()}</div>
   <div class="grid">
@@ -1935,8 +2164,10 @@ async function getRouteByCoords(fromKey, fromCoords, toKey, toCoords){
 }
 async function getRouteDataByPracticeIndexes(fromIdx, toIdx){
   const from = P[fromIdx], to = P[toIdx];
-  const ovr = DRIVE_TIME_OVERRIDES[routeKey(from.name, to.name)];
+  const rk = routeKey(from.name, to.name);
+  const ovr = DRIVE_TIME_OVERRIDES[rk];
   if(ovr) return ovr;
+  if(routeCache[rk]) return routeCache[rk];
 
   const a = await geocodePractice(fromIdx);
   const b = await geocodePractice(toIdx);
@@ -2140,7 +2371,7 @@ function buildPlannerCandidates(){
     scheduledFuture: isScheduledFuture(p),
     targeted: isTargeted(p)
   }))
-  .filter(x => x.targeted || (!x.scheduledFuture && x.status !== 'ontrack'))
+  .filter(x => !x.scheduledFuture && (x.targeted || x.status !== 'ontrack'))
   .sort((a,b)=>{
     if(a.targeted !== b.targeted) return a.targeted ? -1 : 1;
     const aBucket = bucketSortValue(a.bucket);
@@ -2159,12 +2390,16 @@ async function applyAccurateDriveTimes(day){
     const stop = day.stops[idx];
     if(idx === 0){
       try {
-        const home = await geocodeHome();
-        const office = await geocodePractice(stop.practiceIndex);
-        const route = await getRouteByCoords(HOME_QUERY, home, P[stop.practiceIndex].name, office);
+        const homeRouteKey = routeKey(HOME_QUERY, P[stop.practiceIndex].name);
+        const cachedHomeRoute = routeCache[homeRouteKey];
+        const route = cachedHomeRoute || await (async()=>{
+          const home = await geocodeHome();
+          const office = await geocodePractice(stop.practiceIndex);
+          return await getRouteByCoords(HOME_QUERY, home, P[stop.practiceIndex].name, office);
+        })();
         stop.driveMin = route.mins;
         stop.driveMiles = route.miles;
-        stop.driveSource = 'home';
+        stop.driveSource = route.source || (cachedHomeRoute ? 'manual' : 'home');
       } catch(err){
         if(stop.driveMin === null || stop.driveMin === undefined || stop.driveMin === '') stop.driveMin = 30;
         stop.driveMiles = 'home estimate';
@@ -2189,9 +2424,13 @@ async function applyAccurateDriveTimes(day){
   if(day.stops.length){
     try {
       const lastStop = day.stops[day.stops.length - 1];
-      const office = await geocodePractice(lastStop.practiceIndex);
-      const home = await geocodeHome();
-      const route = await getRouteByCoords(P[lastStop.practiceIndex].name, office, HOME_QUERY, home);
+      const homeRouteKey = routeKey(P[lastStop.practiceIndex].name, HOME_QUERY);
+      const cachedHomeRoute = routeCache[homeRouteKey];
+      const route = cachedHomeRoute || await (async()=>{
+        const office = await geocodePractice(lastStop.practiceIndex);
+        const home = await geocodeHome();
+        return await getRouteByCoords(P[lastStop.practiceIndex].name, office, HOME_QUERY, home);
+      })();
       day.homeDriveMin = route.mins;
       day.homeDriveMiles = route.miles;
     } catch(err){
@@ -2390,8 +2629,12 @@ function renderPlannerResults(){
 
         <div>
           <label class="small-note">Drive from previous</label><br>
-          <input class="planner-input" type="number" min="0" value="${Number(stop.driveMin || 0)}" style="width:85px" onchange="updateStopField(${dayIdx}, ${stopIdx}, 'driveMin', this.value)">
-          ${stop.driveMiles ? `<div class="small-note" style="margin-top:4px">${escapeHtml(stop.driveMiles)}${stop.driveSource === 'estimate' ? ' · est.' : (stop.driveSource === 'map' || stop.driveSource === 'override' ? ' · map' : '')}</div>` : ''}
+          <input class="planner-input" type="number" min="0" value="${Number(stop.driveMin || 0)}" style="width:78px" onchange="updateStopField(${dayIdx}, ${stopIdx}, 'driveMin', this.value)">
+          <div style="display:flex;gap:5px;align-items:center;margin-top:5px;flex-wrap:wrap">
+            <input class="planner-input" type="text" value="${escapeHtml(formatMilesInput(stop.driveMiles || ''))}" placeholder="miles" style="width:78px" onchange="updateStopField(${dayIdx}, ${stopIdx}, 'driveMiles', this.value)">
+            <button class="sv-mini" onclick="saveManualRoute(${dayIdx}, ${stopIdx})" title="Save this drive time and distance for future route suggestions">Save drive</button>
+          </div>
+          <div class="small-note" style="margin-top:4px">${driveSourceLabel(stop.driveSource)}</div>
         </div>
 
         <div>
@@ -2430,9 +2673,10 @@ function renderPlannerResults(){
             <input class="planner-input" type="time" value="${escapeHtml(day.endTime || '15:00')}" onchange="updateDayField(${dayIdx}, 'endTime', this.value)">
           </div>
           <div class="tool-box">
-            <label>Drive home (mins)</label>
-            <input class="planner-input" type="number" min="0" value="${Number(day.homeDriveMin || 0)}" onchange="updateDayField(${dayIdx}, 'homeDriveMin', this.value)">
-            <div class="small-note" style="margin-top:4px">${escapeHtml(day.homeDriveMiles || 'home estimate')}</div>
+            <label>Drive home</label>
+            <input class="planner-input" type="number" min="0" value="${Number(day.homeDriveMin || 0)}" onchange="updateDayField(${dayIdx}, 'homeDriveMin', this.value)" placeholder="mins">
+            <input class="planner-input" type="text" value="${escapeHtml(formatMilesInput(day.homeDriveMiles || ''))}" onchange="updateDayField(${dayIdx}, 'homeDriveMiles', this.value)" placeholder="miles" style="margin-top:5px">
+            <button class="sv-mini" style="margin-top:5px" onclick="saveHomeDriveOverride(${dayIdx})">Save home drive</button>
           </div>
           <div class="tool-box">
             <label>Location focus</label>
@@ -2443,6 +2687,7 @@ function renderPlannerResults(){
         <div class="sched-visits">${visitsHtml}</div>
 
         <div class="day-add-row">
+          <button class="btn btn-teal" onclick="schedulePlannerDay(${dayIdx})">📅 Add whole day to schedule</button>
           <select class="planner-select" id="addOffice-${dayIdx}" style="min-width:280px">${options}</select>
           <button class="btn btn-teal" onclick="addOfficeToDay(${dayIdx})">+ Add office</button>
         </div>
@@ -2458,17 +2703,83 @@ function renderPlannerResults(){
     </div>`;
   }).join('');
 }
+function normalizeMilesValue(value){
+  const raw = String(value ?? '').trim();
+  if(!raw) return '';
+  if(/same building|estimate|manual|map/i.test(raw)) return raw;
+  const num = Number(raw.replace(/mi|miles/gi,'').trim());
+  if(!Number.isNaN(num)) return `${num} mi`;
+  return raw;
+}
+function formatMilesInput(value){
+  return String(value || '').replace(/\s*mi(?:les)?\s*$/i,'').trim();
+}
+function driveSourceLabel(source){
+  if(source === 'manual') return 'manual saved';
+  if(source === 'manual-unsaved') return 'manual, not saved yet';
+  if(source === 'estimate') return 'estimated';
+  if(source === 'map') return 'map/cached';
+  if(source === 'override') return 'built-in override';
+  if(source === 'home') return 'home estimate/map';
+  return 'editable';
+}
+function manualRouteForStop(dayIdx, stopIdx){
+  const day = plannerDays[dayIdx];
+  const stop = day?.stops?.[stopIdx];
+  if(!day || !stop) return null;
+  const toPractice = P[stop.practiceIndex];
+  if(!toPractice) return null;
+  if(stopIdx === 0){
+    return {fromKey: HOME_QUERY, toKey: toPractice.name, reverse:false, stop};
+  }
+  const prevStop = day.stops[stopIdx - 1];
+  const fromPractice = P[prevStop?.practiceIndex];
+  if(!fromPractice) return null;
+  return {fromKey: fromPractice.name, toKey: toPractice.name, reverse:true, stop};
+}
+function saveManualRoute(dayIdx, stopIdx){
+  const info = manualRouteForStop(dayIdx, stopIdx);
+  if(!info) return;
+  const mins = Number(info.stop.driveMin || 0);
+  const miles = normalizeMilesValue(info.stop.driveMiles || '');
+  const saved = {mins, miles, source:'manual'};
+  routeCache[routeKey(info.fromKey, info.toKey)] = saved;
+  if(info.reverse && info.fromKey !== HOME_QUERY && info.toKey !== HOME_QUERY){
+    routeCache[routeKey(info.toKey, info.fromKey)] = saved;
+  }
+  info.stop.driveMiles = miles;
+  info.stop.driveSource = 'manual';
+  saveRouteCache();
+  renderPlannerResults();
+  toast('✓ Drive time and distance saved for future planner routes','ok');
+}
+function saveHomeDriveOverride(dayIdx){
+  const day = plannerDays[dayIdx];
+  if(!day || !day.stops.length) return;
+  const lastStop = day.stops[day.stops.length - 1];
+  const fromPractice = P[lastStop.practiceIndex];
+  if(!fromPractice) return;
+  const saved = {mins:Number(day.homeDriveMin || 0), miles:normalizeMilesValue(day.homeDriveMiles || ''), source:'manual'};
+  routeCache[routeKey(fromPractice.name, HOME_QUERY)] = saved;
+  day.homeDriveMiles = saved.miles;
+  saveRouteCache();
+  renderPlannerResults();
+  toast('✓ Drive home time and distance saved','ok');
+}
 async function updateStopField(dayIdx, stopIdx, field, value){
   const stop = plannerDays[dayIdx].stops[stopIdx];
-  stop[field] = Number(value || 0);
-  if(field === 'driveMin'){
-    stop.driveSource = stopIdx === 0 ? 'home' : 'manual';
-    if(!stop.driveMiles) stop.driveMiles = stopIdx === 0 ? 'home estimate' : 'manual';
+  if(field === 'driveMin' || field === 'visitMin') stop[field] = Number(value || 0);
+  else if(field === 'driveMiles') stop[field] = normalizeMilesValue(value);
+  else stop[field] = value;
+  if(field === 'driveMin' || field === 'driveMiles'){
+    stop.driveSource = 'manual-unsaved';
   }
   renderPlannerResults();
 }
 async function updateDayField(dayIdx, field, value){
-  plannerDays[dayIdx][field] = field === 'homeDriveMin' ? Number(value || 0) : value;
+  if(field === 'homeDriveMin') plannerDays[dayIdx][field] = Number(value || 0);
+  else if(field === 'homeDriveMiles') plannerDays[dayIdx][field] = normalizeMilesValue(value);
+  else plannerDays[dayIdx][field] = value;
   renderPlannerResults();
 }
 async function moveStop(dayIdx, stopIdx, direction){
@@ -2496,6 +2807,7 @@ function schedulePlannerVisit(dayIdx, stopIdx){
   renderWeek();
   renderScheduled();
   renderDash();
+  renderDashboardSchedulePanel();
   if(document.getElementById('view-practices').classList.contains('active')) renderPrac();
   if(document.getElementById('view-calendar').classList.contains('active')) renderCal();
   toast(`✓ Added ${p.name} to the schedule for ${fmt(pd(day.date))}`,'ok');
@@ -2600,6 +2912,7 @@ function getFiltered(sid,fid,frqid,ctid,spid){
   });
 }
 function renderDash(){
+  renderDashboardSchedulePanel();
   let list = getFiltered('ds','df','dfreq',null,null);
   list.sort((a,b)=>{
     if(isTargeted(a.p) !== isTargeted(b.p)) return isTargeted(a.p) ? -1 : 1;
@@ -2646,7 +2959,8 @@ function goTab(id){
   document.querySelectorAll('.view').forEach(v=> v.classList.toggle('active', v.id === 'view-' + id));
   if(id==='calendar') renderCal();
   if(id==='practices') renderPrac();
-  if(id==='planner') renderAvailDates();
+  if(id==='planner'){ renderAvailDates(); renderScheduledDayPanel(); }
+  if(id==='dashboard') renderDashboardSchedulePanel();
   if(id==='manage') renderManage();
 }
 function resetPracticeFilters(){
@@ -2661,6 +2975,7 @@ function renderAll(){
   renderWeek();
   renderScheduled();
   renderDash();
+  renderDashboardSchedulePanel();
   if(document.getElementById('view-practices')?.classList.contains('active')) renderPrac();
   if(document.getElementById('view-calendar')?.classList.contains('active')) renderCal();
   if(document.getElementById('view-manage')?.classList.contains('active')) renderManage();
@@ -2768,11 +3083,566 @@ function toast(msg,type){
   tt = setTimeout(()=> el.classList.remove('show'), 3000);
 }
 
+
+
+/* 2026 enterprise planner/dashboard enhancements */
+let plannerOverflowQueue = [];
+function safeNum(v){ const n = Number(v || 0); return Number.isFinite(n) ? n : 0; }
+function routeCacheEntries(){ return Object.entries(routeCache || {}).filter(([k,v])=>v && typeof v === 'object'); }
+function totalPlannerMetrics(){
+  (plannerDays || []).forEach(d=>{ try{ recalcDay(d); }catch(e){} });
+  const days = plannerDays || [];
+  const stops = days.reduce((sum,d)=>sum + (d.stops?.length || 0),0);
+  const drive = days.reduce((sum,d)=>sum + safeNum(d.totalDriveMin),0);
+  const visit = days.reduce((sum,d)=>sum + safeNum(d.totalVisitMin),0);
+  const over = days.reduce((sum,d)=>sum + safeNum(d.overByMin),0);
+  return {days:days.length, stops, drive, visit, over};
+}
+function renderDashboardRoutePreview(){
+  const el = document.getElementById('dashboardRoutePreview');
+  if(!el) return;
+  if(!plannerDays || !plannerDays.length){
+    const targeted = activePracticeItems().filter(({p})=>isTargeted(p)).length;
+    const scheduled = activePracticeItems().filter(({p})=>isScheduledFuture(p)).length;
+    el.innerHTML = `<div class="route-preview-card"><div class="route-preview-inner">
+      <div class="route-preview-head"><div><div class="route-preview-title">🧭 Route preview</div><div class="route-preview-sub">No active planner route yet. Add available dates in Smart Day Planner, then generate a route.</div></div>
+      <div class="route-preview-actions"><button class="btn btn-grey" onclick="goTab('planner')">Open Day Planner</button></div></div>
+      <div class="route-metric-row"><div class="route-metric"><div class="route-metric-num">${targeted}</div><div class="route-metric-label">Targeted</div></div><div class="route-metric"><div class="route-metric-num">${scheduled}</div><div class="route-metric-label">Scheduled</div></div><div class="route-metric"><div class="route-metric-num">${routeCacheEntries().length}</div><div class="route-metric-label">Saved Routes</div></div><div class="route-metric"><div class="route-metric-num">${activePracticeItems().length}</div><div class="route-metric-label">Active Offices</div></div></div>
+    </div></div>`;
+    return;
+  }
+  const m = totalPlannerMetrics();
+  const dayHtml = plannerDays.slice(0,4).map(day=>{
+    const names = (day.stops || []).map(s=>s.name).join(' → ') || 'No stops assigned';
+    const warn = safeNum(day.overByMin) > 0;
+    return `<div class="route-day-preview ${warn?'over':''}"><div class="route-date-chip">${getDayName(day.date)}</div><div class="route-stops-line">${escapeHtml(names)}</div><div class="route-time-chip ${warn?'warn':''}">${warn ? '+' + minutesLabel(day.overByMin) : 'Fits'} · ${minutesLabel(safeNum(day.totalDriveMin))} drive</div></div>`;
+  }).join('');
+  el.innerHTML = `<div class="route-preview-card"><div class="route-preview-inner">
+    <div class="route-preview-head"><div><div class="route-preview-title">🧭 Dashboard route preview</div><div class="route-preview-sub">Current unsaved planning route. Scheduled offices stay excluded from future suggestions.</div></div>
+    <div class="route-preview-actions"><button class="btn btn-teal" onclick="goTab('planner')">Edit route</button><button class="btn btn-grey" onclick="copyPlannerSummary()">Copy summary</button></div></div>
+    <div class="route-metric-row"><div class="route-metric"><div class="route-metric-num">${m.days}</div><div class="route-metric-label">Days</div></div><div class="route-metric"><div class="route-metric-num">${m.stops}</div><div class="route-metric-label">Stops</div></div><div class="route-metric"><div class="route-metric-num">${minutesLabel(m.drive)}</div><div class="route-metric-label">Drive Time</div></div><div class="route-metric"><div class="route-metric-num">${m.over ? minutesLabel(m.over) : '0m'}</div><div class="route-metric-label">Over Window</div></div></div>
+    <div class="route-days-preview">${dayHtml}</div>
+  </div></div>`;
+}
+function renderPlannerOverflow(){
+  if(!plannerOverflowQueue || !plannerOverflowQueue.length) return '';
+  return `<div class="planner-overflow-card"><div class="planner-overflow-title">Overflow moved to another day</div><div class="planner-overflow-list">${plannerOverflowQueue.map(x=>`<span class="planner-overflow-chip">${escapeHtml(x.p?.city || '')} · ${escapeHtml(x.p?.name || '')}</span>`).join('')}</div></div>`;
+}
+async function refreshAllPlannerRoutes(){
+  if(!plannerDays.length){ toast('Generate a planner route first','err'); return; }
+  setPlannerBusy(true, 'Refreshing route distances.');
+  try{
+    for(let i=0;i<plannerDays.length;i++) await refreshDayRoutes(i);
+    renderDashboardRoutePreview();
+    toast('✓ Planner route times refreshed','ok');
+  }finally{ setPlannerBusy(false); }
+}
+function saveAllVisibleRouteOverrides(){
+  if(!plannerDays.length){ toast('No planner route to save','err'); return; }
+  let count = 0;
+  plannerDays.forEach((day, dayIdx)=>{
+    (day.stops || []).forEach((stop, stopIdx)=>{
+      const info = manualRouteForStop(dayIdx, stopIdx);
+      if(!info) return;
+      const mins = Number(info.stop.driveMin || 0);
+      const miles = normalizeMilesValue(info.stop.driveMiles || '');
+      if(!mins && !miles) return;
+      const saved = {mins, miles, source:'manual'};
+      routeCache[routeKey(info.fromKey, info.toKey)] = saved;
+      if(info.reverse && info.fromKey !== HOME_QUERY && info.toKey !== HOME_QUERY) routeCache[routeKey(info.toKey, info.fromKey)] = saved;
+      count++;
+    });
+    if(day.stops?.length && day.homeDriveMin !== undefined){
+      const last = day.stops[day.stops.length-1];
+      const from = P[last.practiceIndex];
+      if(from){ routeCache[routeKey(from.name, HOME_QUERY)] = {mins:Number(day.homeDriveMin || 0), miles:normalizeMilesValue(day.homeDriveMiles || ''), source:'manual'}; count++; }
+    }
+  });
+  saveRouteCache();
+  renderRouteCachePanel();
+  toast(`✓ Saved ${count} drive value${count===1?'':'s'} for future route planning`,'ok');
+}
+function renderRouteCachePanel(){
+  const panel = document.getElementById('routeCachePanel');
+  if(!panel) return;
+  const entries = routeCacheEntries().sort((a,b)=>a[0].localeCompare(b[0]));
+  if(!entries.length){ panel.innerHTML = '<div class="small-note">No saved route distances yet. Edit drive minutes/miles in a generated route, then save them.</div>'; return; }
+  panel.innerHTML = `<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;flex-wrap:wrap"><strong style="color:var(--ocean)">Saved route distances</strong><button class="btn-sm btn-grey" onclick="clearRouteCacheConfirm()">Clear saved distances</button></div><div class="route-cache-list">${entries.map(([key,val])=>`<div class="route-cache-item"><div class="route-cache-key" title="${escapeHtml(key)}">${escapeHtml(key.replaceAll('||',' → '))}</div><div class="route-cache-pill">${safeNum(val.mins)} min</div><div class="route-cache-pill">${escapeHtml(String(val.miles || ''))}</div><button class="route-cache-delete" onclick="deleteRouteCacheItem('${escapeHtml(key).replaceAll("'","&#39;")}')">✕</button></div>`).join('')}</div>`;
+}
+function toggleRouteCachePanel(){
+  const panel = document.getElementById('routeCachePanel');
+  if(!panel) return;
+  renderRouteCachePanel();
+  panel.classList.toggle('open');
+}
+function deleteRouteCacheItem(key){
+  if(!key) return;
+  delete routeCache[key];
+  saveRouteCache();
+  renderRouteCachePanel();
+  renderDashboardRoutePreview();
+}
+function clearRouteCacheConfirm(){
+  if(!confirm('Clear all saved manual/map route distances? This will not change practice data.')) return;
+  routeCache = {};
+  saveRouteCache();
+  renderRouteCachePanel();
+  renderDashboardRoutePreview();
+  toast('Saved route distances cleared','ok');
+}
+function copyPlannerSummary(){
+  if(!plannerDays.length){ toast('Generate a planner route first','err'); return; }
+  plannerDays.forEach(recalcDay);
+  const lines = ['VMG Site Visit Planner Route'];
+  plannerDays.forEach(day=>{
+    lines.push('', `${getDayName(day.date)} (${day.startTime || '09:00'}-${day.endTime || '15:00'})`);
+    (day.stops || []).forEach((s,idx)=> lines.push(`${idx+1}. ${s.name} - arrive ${toReadableHM(s.arriveMin)} / leave ${toReadableHM(s.departMin)} / drive ${s.driveMin || 0} min ${s.driveMiles ? '('+s.driveMiles+')' : ''}`));
+    lines.push(`Drive home: ${day.homeDriveMin || 0} min ${day.homeDriveMiles ? '('+day.homeDriveMiles+')' : ''}`);
+    lines.push(`Estimated home: ${toReadableHM(day.returnHomeMin)}${day.overByMin ? ' - OVER by ' + minutesLabel(day.overByMin) : ''}`);
+  });
+  const txt = lines.join('\n');
+  navigator.clipboard?.writeText(txt).then(()=>toast('✓ Route summary copied','ok')).catch(()=>{ prompt('Copy route summary:', txt); });
+}
+function enablePlannerDragDrop(){
+  document.querySelectorAll('.sched-visit[data-day-idx]').forEach(card=>{
+    card.setAttribute('draggable','true');
+    card.addEventListener('dragstart',e=>{ card.classList.add('dragging'); e.dataTransfer.setData('text/plain', JSON.stringify({dayIdx:Number(card.dataset.dayIdx), stopIdx:Number(card.dataset.stopIdx)})); });
+    card.addEventListener('dragend',()=>card.classList.remove('dragging'));
+    card.addEventListener('dragover',e=>{ e.preventDefault(); card.classList.add('drag-over'); });
+    card.addEventListener('dragleave',()=>card.classList.remove('drag-over'));
+    card.addEventListener('drop',async e=>{
+      e.preventDefault(); card.classList.remove('drag-over');
+      let src; try{ src = JSON.parse(e.dataTransfer.getData('text/plain')); }catch(err){ return; }
+      const targetDay = Number(card.dataset.dayIdx), targetStop = Number(card.dataset.stopIdx);
+      if(src.dayIdx === targetDay && src.stopIdx === targetStop) return;
+      const moving = plannerDays[src.dayIdx]?.stops?.splice(src.stopIdx,1)[0];
+      if(!moving) return;
+      plannerDays[targetDay].stops.splice(targetStop,0,moving);
+      await refreshDayRoutes(src.dayIdx);
+      if(src.dayIdx !== targetDay) await refreshDayRoutes(targetDay);
+    });
+  });
+}
+function annotatePlannerCards(){
+  document.querySelectorAll('.sched-day').forEach((dayEl,dayIdx)=>{
+    const day = plannerDays[dayIdx];
+    if(day) dayEl.classList.add(safeNum(day.overByMin)>0 ? 'fit-warn' : 'fit-ok');
+  });
+  document.querySelectorAll('.sched-visit').forEach((el,idx)=>{
+    const dayEl = el.closest('.sched-day');
+    const dayIdx = Array.from(document.querySelectorAll('.sched-day')).indexOf(dayEl);
+    const stopIdx = idx - Array.from(document.querySelectorAll('.sched-day')).slice(0,dayIdx).reduce((sum,d)=>sum+d.querySelectorAll('.sched-visit').length,0);
+    if(dayIdx >= 0 && stopIdx >= 0){
+      el.dataset.dayIdx = dayIdx; el.dataset.stopIdx = stopIdx;
+      if(!el.querySelector('.sv-drag-handle')) el.insertAdjacentHTML('afterbegin','<div class="sv-drag-handle" title="Drag to reorder">⋮⋮</div>');
+    }
+  });
+  enablePlannerDragDrop();
+}
+const _baseRenderDash = renderDash;
+renderDash = function(){ _baseRenderDash(); renderDashboardRoutePreview(); };
+const _baseRenderPlannerResults = renderPlannerResults;
+renderPlannerResults = function(){ _baseRenderPlannerResults(); const wrap = document.getElementById('schedResults'); if(wrap && plannerDays.length){ wrap.insertAdjacentHTML('afterbegin', renderPlannerOverflow()); annotatePlannerCards(); } renderDashboardRoutePreview(); };
+const _baseGenerateSchedule = generateSchedule;
+generateSchedule = async function(){ plannerOverflowQueue = []; await _baseGenerateSchedule(); plannerOverflowQueue = buildPlannerCandidates().filter(x=>!plannerDays.some(d=>(d.stops||[]).some(s=>s.practiceIndex===x.i))).slice(0,12); renderPlannerResults(); };
+
+
+
+/* Scheduled visit day view with drive times and time away from office */
+function toInputTime(min){
+  min = Math.max(0, Math.round(Number(min) || 0));
+  const h = Math.floor(min / 60) % 24;
+  const m = min % 60;
+  return String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0');
+}
+function dateOffsetISO(offsetDays){
+  const d = new Date(TODAY);
+  d.setDate(d.getDate() + Number(offsetDays || 0));
+  return d.toISOString().slice(0,10);
+}
+function ensureScheduledDayDate(){
+  const inp = document.getElementById('scheduledDayDate');
+  if(inp && !inp.value) inp.value = getNextScheduledDateAfter(dateOffsetISO(0)) || dateOffsetISO(1);
+  return inp?.value || getNextScheduledDateAfter(dateOffsetISO(0)) || dateOffsetISO(1);
+}
+function setScheduledDayQuick(offsetDays){
+  let target = dateOffsetISO(offsetDays);
+  if(Number(offsetDays) === 1 && !scheduledItemsForDate(target).length){
+    target = getNextScheduledDateAfter(dateOffsetISO(0)) || target;
+  }
+  const inp = document.getElementById('scheduledDayDate');
+  if(inp) inp.value = target;
+  renderScheduledDayPanel();
+}
+function ensureDashboardScheduleDate(){
+  const inp = document.getElementById('dashboardScheduleDate');
+  if(inp && !inp.value) inp.value = scheduledItemsForDate(dateOffsetISO(0)).length ? dateOffsetISO(0) : (getNextScheduledDateAfter(dateOffsetISO(0)) || dateOffsetISO(0));
+  return inp?.value || dateOffsetISO(0);
+}
+function setDashboardScheduleQuick(offsetDays){
+  let target = dateOffsetISO(offsetDays);
+  if(Number(offsetDays) === 1 && !scheduledItemsForDate(target).length){
+    target = getNextScheduledDateAfter(dateOffsetISO(0)) || target;
+  }
+  const inp = document.getElementById('dashboardScheduleDate');
+  if(inp) inp.value = target;
+  renderDashboardSchedulePanel();
+}
+function openScheduledDayInPlanner(){
+  const dateStr = ensureDashboardScheduleDate();
+  goTab('planner');
+  const inp = document.getElementById('scheduledDayDate');
+  if(inp) inp.value = dateStr;
+  renderScheduledDayPanel();
+}
+
+function getScheduledDatesSorted(){
+  const map = new Map();
+  activePracticeItems().forEach(({p})=>{
+    const d = String(p.nextScheduled || '').slice(0,10);
+    if(!d) return;
+    map.set(d, (map.get(d) || 0) + 1);
+  });
+  return [...map.entries()].sort((a,b)=>a[0].localeCompare(b[0])).map(([date,count])=>({date,count}));
+}
+function getNextScheduledDateAfter(baseDate){
+  const base = String(baseDate || dateOffsetISO(0)).slice(0,10);
+  const dates = getScheduledDatesSorted();
+  return (dates.find(x=>x.date > base) || dates.find(x=>x.date >= base) || dates[0] || {}).date || '';
+}
+function renderScheduledDateChips(target, selectedDate){
+  const id = target === 'dashboard' ? 'dashboardScheduleChips' : 'scheduledDateChips';
+  const el = document.getElementById(id);
+  if(!el) return;
+  const dates = getScheduledDatesSorted();
+  if(!dates.length){ el.innerHTML = '<span class="small-note">No scheduled dates yet.</span>'; return; }
+  el.innerHTML = dates.slice(0,18).map(x=>`<button class="scheduled-date-chip ${sameISODate(x.date, selectedDate) ? 'active' : ''}" onclick="selectScheduledDate('${target}','${x.date}')">${getDayName(x.date)} <span class="count">${x.count}</span></button>`).join('');
+}
+function selectScheduledDate(target, dateStr){
+  if(target === 'dashboard'){
+    const inp = document.getElementById('dashboardScheduleDate');
+    if(inp) inp.value = dateStr;
+    renderDashboardSchedulePanel();
+  } else {
+    const inp = document.getElementById('scheduledDayDate');
+    if(inp) inp.value = dateStr;
+    renderScheduledDayPanel();
+  }
+}
+function renderDashboardSchedulePanel(){
+  const dateStr = ensureDashboardScheduleDate();
+  const body = document.getElementById('dashboardScheduleBody');
+  if(!body) return;
+  const model = buildScheduledDayModel(dateStr);
+  renderScheduledDateChips('dashboard', dateStr);
+  const title = document.querySelector('.dashboard-schedule-title');
+  if(title) title.textContent = sameISODate(dateStr, dateOffsetISO(0)) ? '📅 Today’s Scheduled Visits' : `📅 Scheduled Visits for ${getDayName(dateStr)}`;
+  if(!model.items.length){
+    const nextDate = getNextScheduledDateAfter(dateStr);
+    body.innerHTML = `<div class="scheduled-empty-card">No visits are scheduled for ${getDayName(dateStr)}.${nextDate ? `<div class="scheduled-empty-actions"><button class="btn btn-teal" onclick="selectScheduledDate('dashboard','${nextDate}')">Open next scheduled day: ${getDayName(nextDate)}</button></div>` : ''}</div>`;
+    return;
+  }
+  const rowsHtml = model.rows.map((r,idx)=>`
+    <div class="dashboard-schedule-row">
+      <div class="dashboard-schedule-time">${toReadableHM(r.arriveMin)}<br>to ${toReadableHM(r.departMin)}</div>
+      <div><div class="dashboard-schedule-name">${idx+1}. ${escapeHtml(r.item.p.name)}</div><div class="dashboard-schedule-meta">${escapeHtml(r.item.p.city || '')} · Visit ${minutesLabel(r.visitMin)} · From ${escapeHtml(r.fromName)}</div></div>
+      <div class="dashboard-schedule-chip">Drive: ${minutesLabel(r.driveMin)}${r.driveMiles ? ` · ${escapeHtml(r.driveMiles)}` : ''}</div>
+    </div>`).join('');
+  body.innerHTML = `
+    <div class="dashboard-schedule-mini">
+      <div class="route-metric"><div class="route-metric-num">${model.items.length}</div><div class="route-metric-label">Visits</div></div>
+      <div class="route-metric"><div class="route-metric-num">${minutesLabel(model.totalDrive)}</div><div class="route-metric-label">Drive Time</div></div>
+      <div class="route-metric"><div class="route-metric-num">${minutesLabel(model.totalVisit)}</div><div class="route-metric-label">Visit Time</div></div>
+      <div class="route-metric"><div class="route-metric-num">${minutesLabel(model.timeAwayMin)}</div><div class="route-metric-label">Time Away</div></div>
+    </div>
+    <div class="dashboard-schedule-list">
+      <div class="dashboard-schedule-row home"><div class="dashboard-schedule-time">Start<br>${toReadableHM(model.startMin)}</div><div><div class="dashboard-schedule-name">Leave office/home base</div><div class="dashboard-schedule-meta">Route starts from Annie Way Sicklerville NJ 08081.</div></div><div class="dashboard-schedule-chip">First drive below</div></div>
+      ${rowsHtml}
+      <div class="dashboard-schedule-row home"><div class="dashboard-schedule-time">Back by<br>${toReadableHM(model.returnHomeMin)}</div><div><div class="dashboard-schedule-name">Estimated return</div><div class="dashboard-schedule-meta">Drive home from final stop: ${minutesLabel(model.homeDriveMin)}${model.homeDriveMiles ? ` · ${escapeHtml(model.homeDriveMiles)}` : ''}</div></div><div class="dashboard-schedule-chip">Away: ${minutesLabel(model.timeAwayMin)}</div></div>
+    </div>`;
+}
+function sameISODate(a,b){ return String(a || '').slice(0,10) === String(b || '').slice(0,10); }
+function scheduledItemsForDate(dateStr){
+  return activePracticeItems()
+    .filter(({p}) => sameISODate(p.nextScheduled, dateStr))
+    .map(({p,i}) => ({p,i, route:p.scheduledRoute || {}}))
+    .sort((a,b)=>{
+      const ao = Number(a.route.order || 999);
+      const bo = Number(b.route.order || 999);
+      if(ao !== bo) return ao - bo;
+      const aa = Number(a.route.arriveMin ?? 99999);
+      const ba = Number(b.route.arriveMin ?? 99999);
+      if(aa !== ba) return aa - ba;
+      return `${a.p.city} ${a.p.name}`.localeCompare(`${b.p.city} ${b.p.name}`);
+    });
+}
+function routeFromCacheOrEstimate(fromName, toName, sameCity=false){
+  const key = routeKey(fromName, toName);
+  const cached = routeCache?.[key];
+  if(cached) return {mins:safeNum(cached.mins), miles:cached.miles || '', source:cached.source || 'saved'};
+  return {mins: fromName === HOME_QUERY ? 30 : (sameCity ? 8 : 20), miles: sameCity ? 'same city estimate' : 'estimate', source:'estimate'};
+}
+function buildScheduledDayModel(dateStr){
+  const items = scheduledItemsForDate(dateStr);
+  let startMin = 9 * 60;
+  const plannedStarts = items.map(x => Number(x.route.plannedStartMin ?? toMin(x.route.plannedStartTime || ''))).filter(n=>Number.isFinite(n) && n>0);
+  if(plannedStarts.length) startMin = Math.min(...plannedStarts);
+  let cur = startMin;
+  let totalDrive = 0;
+  let totalVisit = 0;
+  const rows = [];
+  items.forEach((item, idx)=>{
+    const prev = idx ? items[idx-1] : null;
+    const savedRoute = item.route || {};
+    let driveMin = Number(savedRoute.driveMin);
+    let driveMiles = savedRoute.driveMiles || '';
+    if(!Number.isFinite(driveMin) || driveMin < 0){
+      const fromName = prev ? prev.p.name : HOME_QUERY;
+      const sameCity = prev ? String(prev.p.city || '').toLowerCase() === String(item.p.city || '').toLowerCase() : false;
+      const est = routeFromCacheOrEstimate(fromName, item.p.name, sameCity);
+      driveMin = est.mins;
+      driveMiles = est.miles;
+    }
+    const visitMin = Number(savedRoute.visitMin || 60);
+    const arriveMin = Number.isFinite(Number(savedRoute.arriveMin)) ? Number(savedRoute.arriveMin) : cur + driveMin;
+    const departMin = Number.isFinite(Number(savedRoute.departMin)) ? Number(savedRoute.departMin) : arriveMin + visitMin;
+    cur = departMin;
+    totalDrive += driveMin;
+    totalVisit += visitMin;
+    rows.push({item, driveMin, driveMiles, visitMin, arriveMin, departMin, fromName:prev ? prev.p.name : 'Home'});
+  });
+  let homeDriveMin = 0;
+  let homeDriveMiles = '';
+  if(items.length){
+    const last = items[items.length - 1];
+    if(last.route && last.route.homeDriveMin !== undefined){
+      homeDriveMin = safeNum(last.route.homeDriveMin);
+      homeDriveMiles = last.route.homeDriveMiles || '';
+    } else {
+      const est = routeFromCacheOrEstimate(last.p.name, HOME_QUERY, false);
+      homeDriveMin = est.mins;
+      homeDriveMiles = est.miles;
+    }
+  }
+  totalDrive += homeDriveMin;
+  const returnHomeMin = items.length ? cur + homeDriveMin : startMin;
+  return {dateStr, items, rows, startMin, totalDrive, totalVisit, homeDriveMin, homeDriveMiles, returnHomeMin, timeAwayMin: items.length ? returnHomeMin - startMin : 0};
+}
+function scheduledEditNum(id, fallback=0){
+  const el = document.getElementById(id);
+  const n = Number(el?.value);
+  return Number.isFinite(n) && n >= 0 ? n : fallback;
+}
+function scheduledEditText(id, fallback=''){
+  const el = document.getElementById(id);
+  return el ? String(el.value || '').trim() : fallback;
+}
+function saveScheduledDayEdits(showToast=true){
+  const dateStr = ensureScheduledDayDate();
+  const items = scheduledItemsForDate(dateStr);
+  if(!items.length) return;
+  let cur = toMin(document.getElementById('scheduledStartTime')?.value || '09:00');
+  if(!Number.isFinite(cur) || cur < 0) cur = 9 * 60;
+  items.forEach((item, idx)=>{
+    const driveMin = scheduledEditNum(`schedDriveMin_${idx}`, Number(item.route?.driveMin || 0));
+    const driveMiles = scheduledEditText(`schedDriveMiles_${idx}`, item.route?.driveMiles || '');
+    const visitMin = Math.max(5, scheduledEditNum(`schedVisitMin_${idx}`, Number(item.route?.visitMin || 60)));
+    const arriveMin = cur + driveMin;
+    const departMin = arriveMin + visitMin;
+    item.p.scheduledRoute = {
+      ...(item.p.scheduledRoute || {}),
+      date: dateStr,
+      order: idx + 1,
+      plannedStartTime: toInputTime(cur),
+      plannedStartMin: idx === 0 ? cur : item.p.scheduledRoute?.plannedStartMin,
+      driveMin,
+      driveMiles,
+      visitMin,
+      arriveMin,
+      departMin,
+      fromName: idx === 0 ? HOME_QUERY : items[idx-1]?.p?.name
+    };
+    cur = departMin;
+  });
+  const last = items[items.length - 1];
+  if(last){
+    last.p.scheduledRoute = {
+      ...(last.p.scheduledRoute || {}),
+      homeDriveMin: scheduledEditNum('schedHomeDriveMin', Number(last.route?.homeDriveMin || 0)),
+      homeDriveMiles: scheduledEditText('schedHomeDriveMiles', last.route?.homeDriveMiles || '')
+    };
+  }
+  _unsaved = true;
+  autoSave(getDataForSave());
+  renderScheduledDayPanel();
+  renderDashboardSchedulePanel();
+  if(showToast) toast('✓ Edited schedule times saved','ok');
+}
+function renderScheduledDayPanel(){
+  const dateStr = ensureScheduledDayDate();
+  const body = document.getElementById('scheduledDayBody');
+  if(!body) return;
+  const model = buildScheduledDayModel(dateStr);
+  renderScheduledDateChips('planner', dateStr);
+  if(!model.items.length){
+    const nextDate = getNextScheduledDateAfter(dateStr);
+    body.innerHTML = `<div class="scheduled-empty-card">No visits are scheduled for ${getDayName(dateStr)}. Use the scheduled date buttons above to open another route.${nextDate ? `<div class="scheduled-empty-actions"><button class="btn btn-teal" onclick="selectScheduledDate('planner','${nextDate}')">Open next scheduled day: ${getDayName(nextDate)}</button></div>` : ''}</div>`;
+    return;
+  }
+  const rowsHtml = model.rows.map((r,idx)=>`
+    <div class="scheduled-stop-row editable">
+      <div class="scheduled-time-chip">${toReadableHM(r.arriveMin)}<br>to ${toReadableHM(r.departMin)}</div>
+      <div>
+        <div class="scheduled-stop-name">${idx+1}. ${escapeHtml(r.item.p.name)}</div>
+        <div class="scheduled-stop-meta">${escapeHtml(r.item.p.city || '')} · ${escapeHtml(r.item.p.specialty || '')}</div>
+        <div class="scheduled-stop-meta">Visit: ${minutesLabel(r.visitMin)} · From: ${escapeHtml(r.fromName)}</div>
+        <div class="scheduled-edit-grid">
+          <div class="scheduled-edit-field"><label>Drive min</label><input type="number" min="0" id="schedDriveMin_${idx}" value="${Number(r.driveMin || 0)}" onchange="saveScheduledDayEdits(false)"></div>
+          <div class="scheduled-edit-field"><label>Drive miles</label><input type="text" id="schedDriveMiles_${idx}" value="${escapeAttr(r.driveMiles || '')}" placeholder="ex: 12.4" onchange="saveScheduledDayEdits(false)"></div>
+          <div class="scheduled-edit-field"><label>Visit min</label><input type="number" min="5" step="5" id="schedVisitMin_${idx}" value="${Number(r.visitMin || 60)}" onchange="saveScheduledDayEdits(false)"></div>
+          <div class="scheduled-edit-field"><label>Arrive</label><input type="text" value="${toReadableHM(r.arriveMin)}" readonly></div>
+          <div class="scheduled-edit-field"><label>Leave</label><input type="text" value="${toReadableHM(r.departMin)}" readonly></div>
+        </div>
+      </div>
+      <div class="scheduled-drive-chip">Drive in: ${minutesLabel(r.driveMin)}${r.driveMiles ? ` · ${escapeHtml(r.driveMiles)}` : ''}</div>
+    </div>`).join('');
+  body.innerHTML = `
+    <div class="scheduled-day-metrics">
+      <div class="scheduled-day-metric"><div class="scheduled-day-metric-num">${model.items.length}</div><div class="scheduled-day-metric-label">Visits</div></div>
+      <div class="scheduled-day-metric"><div class="scheduled-day-metric-num">${minutesLabel(model.totalDrive)}</div><div class="scheduled-day-metric-label">Drive Time</div></div>
+      <div class="scheduled-day-metric"><div class="scheduled-day-metric-num">${minutesLabel(model.totalVisit)}</div><div class="scheduled-day-metric-label">Visit Time</div></div>
+      <div class="scheduled-day-metric"><div class="scheduled-day-metric-num">${minutesLabel(model.timeAwayMin)}</div><div class="scheduled-day-metric-label">Time Away</div></div>
+    </div>
+    <div class="scheduled-start-edit">
+      <div class="scheduled-edit-field"><label>Leave office / home base</label><input type="time" id="scheduledStartTime" value="${toInputTime(model.startMin)}" onchange="saveScheduledDayEdits(false)"></div>
+      <div class="scheduled-edit-field"><label>Drive home min</label><input type="number" min="0" id="schedHomeDriveMin" value="${Number(model.homeDriveMin || 0)}" onchange="saveScheduledDayEdits(false)"></div>
+      <div class="scheduled-edit-field"><label>Drive home miles</label><input type="text" id="schedHomeDriveMiles" value="${escapeAttr(model.homeDriveMiles || '')}" placeholder="ex: 18.2" onchange="saveScheduledDayEdits(false)"></div>
+    </div>
+    <div class="scheduled-timeline">
+      <div class="scheduled-stop-row home">
+        <div class="scheduled-time-chip">Start<br>${toReadableHM(model.startMin)}</div>
+        <div><div class="scheduled-stop-name">Leave office/home base</div><div class="scheduled-stop-meta">Edit the start time above. Route starts from Annie Way Sicklerville NJ 08081 unless you changed the route values.</div></div>
+        <div class="scheduled-drive-chip">First drive included below</div>
+      </div>
+      ${rowsHtml}
+      <div class="scheduled-stop-row home">
+        <div class="scheduled-time-chip">Back by<br>${toReadableHM(model.returnHomeMin)}</div>
+        <div><div class="scheduled-stop-name">Estimated return</div><div class="scheduled-stop-meta">Drive home from final stop: ${minutesLabel(model.homeDriveMin)}${model.homeDriveMiles ? ` · ${escapeHtml(model.homeDriveMiles)}` : ''}</div></div>
+        <div class="scheduled-drive-chip">Total away: ${minutesLabel(model.timeAwayMin)}</div>
+      </div>
+    </div>
+    <div class="scheduled-edit-actions">
+      <button class="btn btn-teal" onclick="saveScheduledDayEdits(true)">💾 Save edited times</button>
+      <button class="btn btn-grey" onclick="refreshScheduledDayRoutes()">↻ Recalculate from routes</button>
+      <button class="btn btn-grey" onclick="copyScheduledDaySummary()">📋 Copy summary</button>
+    </div>`;
+}
+async function refreshScheduledDayRoutes(){
+  const dateStr = ensureScheduledDayDate();
+  const items = scheduledItemsForDate(dateStr);
+  if(!items.length){ renderScheduledDayPanel(); return; }
+  setPlannerBusy(true, 'Refreshing scheduled visit drive times...');
+  try{
+    let cur = Math.min(...items.map(x=>Number(x.route?.plannedStartMin ?? toMin(x.route?.plannedStartTime || '09:00'))).filter(n=>Number.isFinite(n) && n>0));
+    if(!Number.isFinite(cur)) cur = 9*60;
+    for(let idx=0; idx<items.length; idx++){
+      const item = items[idx];
+      const route = idx === 0
+        ? (routeCache[routeKey(HOME_QUERY, item.p.name)] || await (async()=>{ const home=await geocodeHome(); const office=await geocodePractice(item.i); return await getRouteByCoords(HOME_QUERY, home, item.p.name, office); })())
+        : await getRouteDataByPracticeIndexes(items[idx-1].i, item.i);
+      const driveMin = safeNum(route.mins);
+      const visitMin = safeNum(item.route?.visitMin || 60);
+      const arriveMin = cur + driveMin;
+      const departMin = arriveMin + visitMin;
+      item.p.scheduledRoute = {...(item.p.scheduledRoute || {}), date:dateStr, order:idx+1, plannedStartMin:idx===0 ? cur : item.p.scheduledRoute?.plannedStartMin, driveMin, driveMiles:route.miles || '', visitMin, arriveMin, departMin};
+      cur = departMin;
+    }
+    const last = items[items.length-1];
+    const homeRoute = routeCache[routeKey(last.p.name, HOME_QUERY)] || await (async()=>{ const office=await geocodePractice(last.i); const home=await geocodeHome(); return await getRouteByCoords(last.p.name, office, HOME_QUERY, home); })();
+    last.p.scheduledRoute = {...(last.p.scheduledRoute || {}), homeDriveMin:safeNum(homeRoute.mins), homeDriveMiles:homeRoute.miles || ''};
+    _unsaved = true;
+    autoSave(getDataForSave());
+    renderScheduledDayPanel();
+    toast('✓ Scheduled day drive times refreshed','ok');
+  }catch(err){
+    renderScheduledDayPanel();
+    toast('Could not refresh all scheduled drive times. Showing saved/estimated values.','err');
+  }finally{ setPlannerBusy(false); }
+}
+function saveScheduledRouteForStop(dayIdx, stopIdx){
+  const day = plannerDays[dayIdx];
+  const stop = day?.stops?.[stopIdx];
+  if(!day || !stop) return;
+  recalcDay(day);
+  const p = P[stop.practiceIndex];
+  if(!p) return;
+  const lastStop = day.stops[day.stops.length - 1];
+  const isLast = lastStop && lastStop.practiceIndex === stop.practiceIndex;
+  p.scheduledRoute = {
+    date: day.date,
+    order: stopIdx + 1,
+    plannedStartTime: day.startTime || '09:00',
+    plannedStartMin: toMin(day.startTime || '09:00'),
+    driveMin: Number(stop.driveMin || 0),
+    driveMiles: normalizeMilesValue(stop.driveMiles || ''),
+    visitMin: Number(stop.visitMin || 0),
+    arriveMin: stop.arriveMin,
+    departMin: stop.departMin,
+    fromName: stopIdx === 0 ? HOME_QUERY : P[day.stops[stopIdx-1]?.practiceIndex]?.name,
+    homeDriveMin: isLast ? Number(day.homeDriveMin || 0) : undefined,
+    homeDriveMiles: isLast ? normalizeMilesValue(day.homeDriveMiles || '') : undefined
+  };
+}
+function schedulePlannerDay(dayIdx){
+  const day = plannerDays[dayIdx];
+  if(!day || !day.stops?.length){ toast('No visits to schedule for this day','err'); return; }
+  recalcDay(day);
+  day.stops.forEach((stop, stopIdx)=>{
+    const p = P[stop.practiceIndex];
+    if(!p) return;
+    p.nextScheduled = day.date;
+    p.visitStatus = 'Scheduled';
+    saveScheduledRouteForStop(dayIdx, stopIdx);
+  });
+  _unsaved = true;
+  autoSave(getDataForSave());
+  renderAll();
+  renderScheduledDayPanel();
+  renderDashboardSchedulePanel();
+  toast(`✓ Added ${day.stops.length} visit${day.stops.length===1?'':'s'} to the schedule for ${fmt(pd(day.date))}`,'ok');
+}
+const _schedulePlannerVisitWithTimes = schedulePlannerVisit;
+schedulePlannerVisit = function(dayIdx, stopIdx){
+  saveScheduledRouteForStop(dayIdx, stopIdx);
+  _schedulePlannerVisitWithTimes(dayIdx, stopIdx);
+  const dateInput = document.getElementById('scheduledDayDate');
+  if(dateInput) dateInput.value = plannerDays[dayIdx]?.date || dateInput.value;
+  renderScheduledDayPanel();
+  renderDashboardSchedulePanel();
+};
+function copyScheduledDaySummary(){
+  const dateStr = ensureScheduledDayDate();
+  const model = buildScheduledDayModel(dateStr);
+  if(!model.items.length){ toast('No scheduled visits to copy for this date','err'); return; }
+  const lines = [`Scheduled visits for ${getDayName(dateStr)}`, `Total time away: ${minutesLabel(model.timeAwayMin)}`, `Drive time: ${minutesLabel(model.totalDrive)}`, `Visit time: ${minutesLabel(model.totalVisit)}`, ''];
+  model.rows.forEach((r,idx)=>{
+    lines.push(`${idx+1}. ${r.item.p.name}`);
+    lines.push(`   Arrive ${toReadableHM(r.arriveMin)} / leave ${toReadableHM(r.departMin)}`);
+    lines.push(`   Drive in: ${minutesLabel(r.driveMin)}${r.driveMiles ? ' (' + r.driveMiles + ')' : ''}`);
+  });
+  lines.push(`Return/home by: ${toReadableHM(model.returnHomeMin)}`);
+  const txt = lines.join('\n');
+  navigator.clipboard?.writeText(txt).then(()=>toast('✓ Scheduled day summary copied','ok')).catch(()=>{ prompt('Copy scheduled day summary:', txt); });
+}
+
+
 load();
 renderStats();
 renderWeek();
 renderScheduled();
 renderDash();
+renderScheduledDayPanel();
+renderDashboardSchedulePanel();
 setInterval(()=>{ if(_unsaved) saveLocal(); }, 180000);
 </script>
 </body>
