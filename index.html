@@ -986,10 +986,18 @@ function getDataForSave(){
       vfcPin: p.vfcPin,
       customFreqMonths: p.customFreqMonths,
       targetedVisit: !!p.targetedVisit,
-      targetReason: p.targetReason || ''
+      targetReason: p.targetReason || '',
+      scheduledRoute: p.scheduledRoute || null,
+      archived: !!p.archived,
+      archivedDate: p.archivedDate || '',
+      archiveReason: p.archiveReason || ''
     };
   });
-  out.__practices = P.map(p => ({...p}));
+  // Keep the complete practice objects for newer backups, including scheduled route timing edits.
+  out.__practices = P.map(p => ({...p, scheduledRoute: p.scheduledRoute || null}));
+  // Include route/geocode caches so manually corrected drive times survive backup/upload/phone changes.
+  out.__routeCache = routeCache || {};
+  out.__geoCache = geoCache || {};
   return out;
 }
 function makeBackupPayload(){return {app:'VMG Site Visit Tracker 2026',backupVersion:2,createdAt:new Date().toISOString(),data:getDataForSave()};}
@@ -1003,6 +1011,14 @@ async function copyBackupText(){saveLocal();const txt=backupToText();try{await n
 function openPasteBackupModal(){openBackupModal('paste','')}
 function restorePastedBackup(){try{const data=parseBackupText(document.getElementById('backupTextArea').value);applyLoadedData(data);closeBackupModal();toast('✓ Backup restored','ok')}catch(err){toast(err.message||'Invalid backup text','err')}}
 function applyLoadedData(data){
+  if(data && data.__routeCache && typeof data.__routeCache === 'object'){
+    routeCache = data.__routeCache;
+    saveRouteCache();
+  }
+  if(data && data.__geoCache && typeof data.__geoCache === 'object'){
+    geoCache = data.__geoCache;
+    saveGeoCache();
+  }
   if(data && Array.isArray(data.__practices)){
     P = data.__practices.map(p => normalizePractice(p));
     localStorage.setItem(SKEY_DATA, JSON.stringify(getDataForSave()));
@@ -1199,7 +1215,8 @@ function normalizePractice(p){
     vfcPin: base.vfcPin || '',
     archived: !!base.archived,
     archivedDate: base.archivedDate || '',
-    archiveReason: base.archiveReason || ''
+    archiveReason: base.archiveReason || '',
+    scheduledRoute: (base.scheduledRoute && typeof base.scheduledRoute === 'object') ? {...base.scheduledRoute} : null
   };
 }
 function isArchived(p){ return !!p.archived; }
@@ -1242,6 +1259,7 @@ function load(){
         customFreqMonths: sv.customFreqMonths ?? b.customFreqMonths ?? null,
         targetedVisit: sv.targetedVisit ?? b.targetedVisit ?? false,
         targetReason: sv.targetReason ?? b.targetReason ?? '',
+        scheduledRoute: sv.scheduledRoute ?? b.scheduledRoute ?? null,
         archived: sv.archived ?? b.archived ?? false,
         archivedDate: sv.archivedDate ?? b.archivedDate ?? '',
         archiveReason: sv.archiveReason ?? b.archiveReason ?? ''
@@ -3619,7 +3637,7 @@ function saveScheduledDayEdits(showToast=true){
       date: dateStr,
       order: idx + 1,
       plannedStartTime: toInputTime(cur),
-      plannedStartMin: idx === 0 ? cur : item.p.scheduledRoute?.plannedStartMin,
+      plannedStartMin: cur,
       driveMin,
       driveMiles,
       visitMin,
@@ -3719,7 +3737,7 @@ async function refreshScheduledDayRoutes(){
       const visitMin = safeNum(item.route?.visitMin || 60);
       const arriveMin = cur + driveMin;
       const departMin = arriveMin + visitMin;
-      item.p.scheduledRoute = {...(item.p.scheduledRoute || {}), date:dateStr, order:idx+1, plannedStartMin:idx===0 ? cur : item.p.scheduledRoute?.plannedStartMin, driveMin, driveMiles:route.miles || '', visitMin, arriveMin, departMin};
+      item.p.scheduledRoute = {...(item.p.scheduledRoute || {}), date:dateStr, order:idx+1, plannedStartMin:cur, plannedStartTime:toInputTime(cur), driveMin, driveMiles:route.miles || '', visitMin, arriveMin, departMin};
       cur = departMin;
     }
     const last = items[items.length-1];
