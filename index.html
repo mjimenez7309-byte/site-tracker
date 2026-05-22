@@ -669,8 +669,41 @@ button,.btn,.btn-sm,.btn-upd,.btn-pr,.tab,.dtab,.scheduled-date-chip{
 }
 </style>
 
+
+<style>
+/* 2026-05-19 compact mobile/desktop usability pass */
+.compact-card-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;align-items:center}
+.quick-btn{border:0;border-radius:999px;padding:6px 10px;font-size:11px;font-weight:900;cursor:pointer;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif!important;line-height:1;box-shadow:0 1px 3px rgba(38,87,111,.08)}
+.quick-schedule{background:#EAF6FC;color:#26576F;border:1px solid #CFEAF7}
+.quick-complete{background:#FFF7E3;color:#7A5100;border:1px solid #FFE2A8}
+.quick-open{background:#FFECEB;color:#A94A47;border:1px solid #FFD5D3}
+.quick-btn:hover{filter:brightness(.98);transform:translateY(-1px)}
+.quick-btn:active{transform:translateY(0)}
+.dashboard-schedule-actions,.scheduled-route-actions{display:flex;gap:6px;flex-wrap:wrap;align-items:center;justify-content:flex-end}
+.dashboard-schedule-actions .quick-btn,.scheduled-route-actions .quick-btn{padding:6px 9px;font-size:10px}
+.compact-view .page{padding-top:10px}
+.compact-view .stats{gap:7px;margin-bottom:9px}
+.compact-view .sc{padding:10px 11px}.compact-view .sc-num{font-size:25px}.compact-view .sc-lbl{font-size:9px}
+.compact-view .week-banner-grid{gap:8px;margin-bottom:9px}.compact-view .week-banner{padding:10px 12px}.compact-view .week-item{padding:5px 8px}
+.compact-view .fbar{margin-bottom:8px}.compact-view .pcard{border-radius:12px}.compact-view .pcard-hdr{padding:9px 11px}.compact-view .pcard-meta-grid{gap:4px 8px;margin-top:4px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}.compact-view .pcard-meta-grid span{font-size:10px;padding:3px 6px}.compact-view .pcard-name{font-size:13px}.compact-view .pill{font-size:9px;padding:3px 7px}
+.compact-view .dtab{padding:8px 11px;font-size:11px}.compact-view .dcon{padding:11px}.compact-view .cg{gap:8px}.compact-view .notes-section{margin-top:10px;padding-top:10px}.compact-view .note-log{max-height:125px}
+.compact-view .dashboard-schedule-card{padding:10px;border-radius:16px}.compact-view .dashboard-schedule-mini{gap:6px;margin:6px 0}.compact-view .dashboard-schedule-row{padding:7px 8px;gap:7px}.compact-view .dashboard-schedule-list{gap:5px}.compact-view .dashboard-schedule-time{font-size:10px;padding:5px 7px}.compact-view .dashboard-schedule-name{font-size:11px}.compact-view .dashboard-schedule-meta{font-size:10px}.compact-view .dashboard-schedule-chip{font-size:10px;padding:4px 7px}.compact-view .route-metric{padding:7px 8px}.compact-view .route-metric-num{font-size:16px}.compact-view .route-metric-label{font-size:8px}
+.compact-view .scheduled-day-card{padding:10px;border-radius:16px}.compact-view .scheduled-day-metrics{gap:7px;margin:8px 0}.compact-view .scheduled-day-metric{padding:8px 9px}.compact-view .scheduled-stop-row{padding:8px 9px;gap:8px}.compact-view .scheduled-edit-grid{grid-template-columns:repeat(3,minmax(80px,1fr));gap:6px}.compact-view .scheduled-edit-field input{padding:6px 7px}.compact-view .scheduled-timeline{gap:6px}
+@media(max-width:760px){
+  .compact-view .page{padding:8px 8px 76px!important}
+  .compact-view .stats{grid-template-columns:repeat(3,1fr)!important;gap:6px}.compact-view .sc{padding:9px 6px;text-align:center}.compact-view .sc-num{font-size:21px}.compact-view .sc-lbl{font-size:8px;letter-spacing:.04em}
+  .compact-view .week-banner-grid{display:none}
+  .compact-view .dashboard-workspace{gap:9px}.compact-view .dash-list-head{padding:8px 10px}.compact-view .dash-list-sub{display:none}
+  .compact-view .pcard-hdr{grid-template-columns:1fr!important;padding:9px 10px!important}.compact-view .pcard-right{grid-column:auto!important}.compact-view .pcard-meta-grid{display:flex!important;gap:5px!important;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}.compact-view .pcard-meta-grid::-webkit-scrollbar{display:none}.compact-view .pcard-meta-grid span{flex:0 0 auto;max-width:210px;white-space:nowrap!important}.compact-view .pcard-meta-grid span.meta-contact{display:none}.compact-view .pcard-meta-grid span:nth-of-type(2),.compact-view .pcard-meta-grid span:nth-of-type(3){display:none}
+  .compact-card-actions{margin-top:7px}.quick-btn{padding:7px 10px;font-size:10px;min-height:30px}
+  .compact-view .dashboard-schedule-mini,.compact-view .scheduled-day-metrics{grid-template-columns:repeat(4,1fr)!important}.compact-view .route-metric,.compact-view .scheduled-day-metric{padding:7px 5px;text-align:center}.compact-view .route-metric-num,.compact-view .scheduled-day-metric-num{font-size:14px}.compact-view .route-metric-label,.compact-view .scheduled-day-metric-label{font-size:7px;letter-spacing:.03em}
+  .compact-view .dashboard-schedule-row,.compact-view .scheduled-stop-row,.compact-view .scheduled-stop-row.editable{grid-template-columns:1fr!important}.dashboard-schedule-actions,.scheduled-route-actions{justify-content:flex-start}.compact-view .scheduled-edit-grid{grid-template-columns:repeat(2,1fr)}
+  .compact-view .dashboard-schedule-card{max-height:none;overflow:visible}.compact-view .dashboard-schedule-sub,.compact-view .scheduled-day-sub{font-size:10px}
+}
+</style>
+
 </head>
-<body>
+<body class="compact-view">
 
 <div class="hdr">
   <div class="hdr-top">
@@ -1455,6 +1488,11 @@ function mkCard(p,idx){
           <span class="meta-strong meta-visit">🗓 Next Scheduled: ${p.nextScheduled ? fmt(pd(p.nextScheduled)) : 'Not scheduled'}</span>
           ${dStr ? `<span class="meta-status">${dStr}</span>` : ''}
         </div>
+        <div class="compact-card-actions">
+          <button class="quick-btn quick-schedule" onclick="event.stopPropagation();quickScheduleVisit(${idx})">📅 Schedule</button>
+          <button class="quick-btn quick-complete" onclick="event.stopPropagation();quickCompleteVisit(${idx})">✅ Mark complete</button>
+          <button class="quick-btn quick-open" onclick="event.stopPropagation();openUpdateTab(${idx})">✏️ Edit</button>
+        </div>
       </div>
       <div class="pcard-right">
         ${isTargeted(p) ? `<span class="pill target-chip">⭐ Targeted</span>` : ''}
@@ -2211,7 +2249,40 @@ function printCard(i){
 @media(max-width:1180px){.dashboard-workspace{grid-template-columns:1fr}.dashboard-side-col{position:static}.dashboard-schedule-card{max-height:none}.dashboard-schedule-controls{grid-template-columns:1fr auto auto auto}.dashboard-schedule-controls .btn-teal{grid-column:auto}}
 @media(max-width:760px){.page{width:100%;max-width:none}.dashboard-schedule-controls{grid-template-columns:1fr 1fr}.dashboard-schedule-controls input{grid-column:1/-1}.dashboard-schedule-controls .btn-teal{grid-column:1/-1}.dashboard-schedule-row{grid-template-columns:1fr}.dashboard-schedule-chip{grid-column:auto}.route-metric-row{grid-template-columns:repeat(2,1fr)}}
 
-</style></head><body>
+</style>
+<style>
+/* 2026-05-19 compact mobile/desktop usability pass */
+.compact-card-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;align-items:center}
+.quick-btn{border:0;border-radius:999px;padding:6px 10px;font-size:11px;font-weight:900;cursor:pointer;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif!important;line-height:1;box-shadow:0 1px 3px rgba(38,87,111,.08)}
+.quick-schedule{background:#EAF6FC;color:#26576F;border:1px solid #CFEAF7}
+.quick-complete{background:#FFF7E3;color:#7A5100;border:1px solid #FFE2A8}
+.quick-open{background:#FFECEB;color:#A94A47;border:1px solid #FFD5D3}
+.quick-btn:hover{filter:brightness(.98);transform:translateY(-1px)}
+.quick-btn:active{transform:translateY(0)}
+.dashboard-schedule-actions,.scheduled-route-actions{display:flex;gap:6px;flex-wrap:wrap;align-items:center;justify-content:flex-end}
+.dashboard-schedule-actions .quick-btn,.scheduled-route-actions .quick-btn{padding:6px 9px;font-size:10px}
+.compact-view .page{padding-top:10px}
+.compact-view .stats{gap:7px;margin-bottom:9px}
+.compact-view .sc{padding:10px 11px}.compact-view .sc-num{font-size:25px}.compact-view .sc-lbl{font-size:9px}
+.compact-view .week-banner-grid{gap:8px;margin-bottom:9px}.compact-view .week-banner{padding:10px 12px}.compact-view .week-item{padding:5px 8px}
+.compact-view .fbar{margin-bottom:8px}.compact-view .pcard{border-radius:12px}.compact-view .pcard-hdr{padding:9px 11px}.compact-view .pcard-meta-grid{gap:4px 8px;margin-top:4px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}.compact-view .pcard-meta-grid span{font-size:10px;padding:3px 6px}.compact-view .pcard-name{font-size:13px}.compact-view .pill{font-size:9px;padding:3px 7px}
+.compact-view .dtab{padding:8px 11px;font-size:11px}.compact-view .dcon{padding:11px}.compact-view .cg{gap:8px}.compact-view .notes-section{margin-top:10px;padding-top:10px}.compact-view .note-log{max-height:125px}
+.compact-view .dashboard-schedule-card{padding:10px;border-radius:16px}.compact-view .dashboard-schedule-mini{gap:6px;margin:6px 0}.compact-view .dashboard-schedule-row{padding:7px 8px;gap:7px}.compact-view .dashboard-schedule-list{gap:5px}.compact-view .dashboard-schedule-time{font-size:10px;padding:5px 7px}.compact-view .dashboard-schedule-name{font-size:11px}.compact-view .dashboard-schedule-meta{font-size:10px}.compact-view .dashboard-schedule-chip{font-size:10px;padding:4px 7px}.compact-view .route-metric{padding:7px 8px}.compact-view .route-metric-num{font-size:16px}.compact-view .route-metric-label{font-size:8px}
+.compact-view .scheduled-day-card{padding:10px;border-radius:16px}.compact-view .scheduled-day-metrics{gap:7px;margin:8px 0}.compact-view .scheduled-day-metric{padding:8px 9px}.compact-view .scheduled-stop-row{padding:8px 9px;gap:8px}.compact-view .scheduled-edit-grid{grid-template-columns:repeat(3,minmax(80px,1fr));gap:6px}.compact-view .scheduled-edit-field input{padding:6px 7px}.compact-view .scheduled-timeline{gap:6px}
+@media(max-width:760px){
+  .compact-view .page{padding:8px 8px 76px!important}
+  .compact-view .stats{grid-template-columns:repeat(3,1fr)!important;gap:6px}.compact-view .sc{padding:9px 6px;text-align:center}.compact-view .sc-num{font-size:21px}.compact-view .sc-lbl{font-size:8px;letter-spacing:.04em}
+  .compact-view .week-banner-grid{display:none}
+  .compact-view .dashboard-workspace{gap:9px}.compact-view .dash-list-head{padding:8px 10px}.compact-view .dash-list-sub{display:none}
+  .compact-view .pcard-hdr{grid-template-columns:1fr!important;padding:9px 10px!important}.compact-view .pcard-right{grid-column:auto!important}.compact-view .pcard-meta-grid{display:flex!important;gap:5px!important;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}.compact-view .pcard-meta-grid::-webkit-scrollbar{display:none}.compact-view .pcard-meta-grid span{flex:0 0 auto;max-width:210px;white-space:nowrap!important}.compact-view .pcard-meta-grid span.meta-contact{display:none}.compact-view .pcard-meta-grid span:nth-of-type(2),.compact-view .pcard-meta-grid span:nth-of-type(3){display:none}
+  .compact-card-actions{margin-top:7px}.quick-btn{padding:7px 10px;font-size:10px;min-height:30px}
+  .compact-view .dashboard-schedule-mini,.compact-view .scheduled-day-metrics{grid-template-columns:repeat(4,1fr)!important}.compact-view .route-metric,.compact-view .scheduled-day-metric{padding:7px 5px;text-align:center}.compact-view .route-metric-num,.compact-view .scheduled-day-metric-num{font-size:14px}.compact-view .route-metric-label,.compact-view .scheduled-day-metric-label{font-size:7px;letter-spacing:.03em}
+  .compact-view .dashboard-schedule-row,.compact-view .scheduled-stop-row,.compact-view .scheduled-stop-row.editable{grid-template-columns:1fr!important}.dashboard-schedule-actions,.scheduled-route-actions{justify-content:flex-start}.compact-view .scheduled-edit-grid{grid-template-columns:repeat(2,1fr)}
+  .compact-view .dashboard-schedule-card{max-height:none;overflow:visible}.compact-view .dashboard-schedule-sub,.compact-view .scheduled-day-sub{font-size:10px}
+}
+</style>
+
+</head><body>
   <h1>${escapeHtml(p.name)}</h1><div class="sub">VMG Site Visit Tracker · Printed ${new Date().toLocaleDateString()}</div>
   <div class="grid">
     <div class="f"><div class="lbl">Address</div>${escapeHtml(p.addr)}</div>
@@ -3005,6 +3076,75 @@ async function addOfficeToDay(dayIdx){
   plannerDays[dayIdx].stops.push(stop);
   await refreshDayRoutes(dayIdx);
 }
+
+function refreshAllViewsAfterQuickAction(activeIdx){
+  _unsaved = true;
+  autoSave(getDataForSave());
+  renderStats();
+  renderWeek();
+  renderScheduled();
+  renderDash();
+  renderDashboardSchedulePanel();
+  if(document.getElementById('view-practices')?.classList.contains('active')) renderPrac();
+  if(document.getElementById('view-calendar')?.classList.contains('active')) renderCal();
+  if(typeof renderScheduledDayPanel === 'function') renderScheduledDayPanel();
+  if(Number.isFinite(Number(activeIdx))) refreshPracticeCard(Number(activeIdx), 'u');
+}
+function openUpdateTab(i){
+  const card = document.getElementById('pc-' + i);
+  if(card && !card.classList.contains('open')) card.classList.add('open');
+  dtab(i,'u');
+  setTimeout(()=>document.getElementById('pc-' + i)?.scrollIntoView({behavior:'smooth', block:'center'}), 50);
+}
+function isValidISODateInput(v){
+  return /^\d{4}-\d{2}-\d{2}$/.test(String(v || '')) && !Number.isNaN(new Date(String(v || '') + 'T00:00:00').getTime());
+}
+function quickScheduleVisit(i){
+  const p = P[i];
+  if(!p) return;
+  const today = new Date().toISOString().slice(0,10);
+  const current = p.nextScheduled || today;
+  const dateVal = prompt('Schedule this visit for which date? Use YYYY-MM-DD.', current);
+  if(dateVal === null) return;
+  const clean = String(dateVal || '').trim();
+  if(!isValidISODateInput(clean)){ toast('Use date format YYYY-MM-DD. Example: 2026-05-19','err'); return; }
+  p.nextScheduled = clean;
+  p.visitStatus = 'Scheduled';
+  p.scheduledRoute = p.scheduledRoute || {};
+  p.scheduledRoute.date = clean;
+  refreshAllViewsAfterQuickAction(i);
+  toast(`✓ Scheduled ${p.name.split(' - ')[0]} for ${fmt(pd(clean))}`,'ok');
+}
+function quickCompleteVisit(i, completedDate){
+  const p = P[i];
+  if(!p) return;
+  const suggested = completedDate || p.nextScheduled || new Date().toISOString().slice(0,10);
+  let dateVal = completedDate || prompt('Mark visit complete for which date? Use YYYY-MM-DD.', suggested);
+  if(dateVal === null) return;
+  dateVal = String(dateVal || '').trim();
+  if(!isValidISODateInput(dateVal)){ toast('Use date format YYYY-MM-DD. Example: 2026-05-19','err'); return; }
+  if(!confirm(`Mark ${p.name.split(' - ')[0]} complete for ${fmt(pd(dateVal))}?`)) return;
+  p.history = p.history || [];
+  const oldLast = p.lastVisit;
+  if(oldLast && oldLast !== dateVal && !p.history.some(h => h.date === oldLast)){
+    p.history.push({date:oldLast,note:'Previous last visit moved to history after quick complete',ts:new Date().toLocaleDateString()});
+  }
+  if(!p.history.some(h => h.date === dateVal && String(h.note || '').includes('Quick visit completed'))){
+    p.history.push({date:dateVal,note:'Quick visit completed from dashboard/schedule action',ts:new Date().toLocaleDateString()});
+  }
+  p.history.sort((a,b)=>String(a.date).localeCompare(String(b.date)));
+  p.lastVisit = dateVal;
+  p.nextScheduled = '';
+  p.visitStatus = '';
+  p.targetedVisit = false;
+  p.targetReason = '';
+  if(p.scheduledRoute && (!p.scheduledRoute.date || sameISODate(p.scheduledRoute.date, dateVal) || sameISODate(p.scheduledRoute.date, suggested))){
+    p.scheduledRoute = {};
+  }
+  refreshAllViewsAfterQuickAction(i);
+  toast(`✓ Marked ${p.name.split(' - ')[0]} complete`,'ok');
+}
+
 function renderStats(){
   const active = activePracticeItems();
   const c = {all:active.length, overdue:0, soon:0, upcoming:0, unsched:0, ontrack:0, targeted:0, archived:P.filter(p=>p.archived).length};
@@ -3529,7 +3669,7 @@ function renderDashboardSchedulePanel(){
     <div class="dashboard-schedule-row">
       <div class="dashboard-schedule-time">${toReadableHM(r.arriveMin)}<br>to ${toReadableHM(r.departMin)}</div>
       <div><div class="dashboard-schedule-name">${idx+1}. ${escapeHtml(r.item.p.name)}</div><div class="dashboard-schedule-meta">${escapeHtml(r.item.p.city || '')} · Visit ${minutesLabel(r.visitMin)} · From ${escapeHtml(r.fromName)}</div></div>
-      <div class="dashboard-schedule-chip">Drive: ${minutesLabel(r.driveMin)}${r.driveMiles ? ` · ${escapeHtml(r.driveMiles)}` : ''}</div>
+      <div class="dashboard-schedule-actions"><div class="dashboard-schedule-chip">Drive: ${minutesLabel(r.driveMin)}${r.driveMiles ? ` · ${escapeHtml(r.driveMiles)}` : ''}</div><button class="quick-btn quick-complete" onclick="quickCompleteVisit(${r.item.i}, '${dateStr}')">✅ Complete</button></div>
     </div>`).join('');
   body.innerHTML = `
     <div class="dashboard-schedule-mini">
@@ -3687,7 +3827,7 @@ function renderScheduledDayPanel(){
           <div class="scheduled-edit-field"><label>Leave</label><input type="text" value="${toReadableHM(r.departMin)}" readonly></div>
         </div>
       </div>
-      <div class="scheduled-drive-chip">Drive in: ${minutesLabel(r.driveMin)}${r.driveMiles ? ` · ${escapeHtml(r.driveMiles)}` : ''}</div>
+      <div class="scheduled-route-actions"><div class="scheduled-drive-chip">Drive in: ${minutesLabel(r.driveMin)}${r.driveMiles ? ` · ${escapeHtml(r.driveMiles)}` : ''}</div><button class="quick-btn quick-complete" onclick="quickCompleteVisit(${r.item.i}, '${dateStr}')">✅ Complete</button></div>
     </div>`).join('');
   body.innerHTML = `
     <div class="scheduled-day-metrics">
